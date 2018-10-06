@@ -53,7 +53,7 @@ int main(){
   float avg;
 
   for (int i = 0; i < 5; ++i) { // Search minimum number
-	  scanf("%d",&numbers[i]);
+      scanf("%d",&numbers[i]);
 	  if(min > numbers[i])
 	  	min = numbers[i];
 	  if(max < numbers[i])

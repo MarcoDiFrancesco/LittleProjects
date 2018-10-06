@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1463655098 source:c:\users\difrancesco.fermi\desktop\16-05-19 verifica lettura file\main.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<time.h>
+

@@ -1,0 +1,12 @@
+PROG main
+	ASSIGN totale=0
+	OUT "Dimmi numeri da colcolare"
+	IN numeri_da_calcolare
+	IN primo_numero
+	DO_WHILE //numeri_da_calcolare>0
+		IN numero_seguente
+		ASSIGN numeri_da_calcolare=numeri_da_calcolare-1
+		ASSIGN totale=totale+numero_seguente
+	END DO_WHILE numeri_da_calcolare>0
+	OUT totale
+END PROG //main

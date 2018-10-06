@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1460633780 source:e:\informatica programmi\c++\16-04-14 salva numeri su file\main.cpp
+	<iostream>
+	<cstdlib>
+	<fstream>
+
