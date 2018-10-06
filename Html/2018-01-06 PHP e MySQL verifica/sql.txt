@@ -1,0 +1,31 @@
+
+1)
+
+select calciatori.nominativo, calciatori_squadre.ruolo, calciatori.data_nascita 
+from calciatori_squadre, calciatori, squadre 
+where calciatori_squadre.matricola = calciatori.matricola and calciatori_squadre.id_squadra = squadre.id_squadra 
+and squadre.nome_societa = 'spotted hyena' and calciatori_squadre.stagione = '2006'
+
+2)
+
+select calciatori.nominativo, calciatori_squadre.ruolo, count(*) as totale_goal from calciatori_squadre,calciatori,squadre 
+where calciatori_squadre.matricola = calciatori.matricola and calciatori_squadre.id_squadra = squadre.id_squadra
+group by calciatori.nominativo 
+
+3)
+
+select calciatori.matricola, max(calciatori_squadre.goal) from calciatori_squadre,squadre,calciatori
+where calciatori_squadre.matricola = calciatori.matricola and calciatori_squadre.id_squadra = squadre.id_squadra
+
+4)
+
+select campionati.anno, squadre.nome_societa, campionati.punteggio from campionati,squadre 
+where campionati.id_squadra = squadre.id_squadra 
+group by campionati.anno 
+asc
+
+5)
+
+select calciatori.matricola from squadre,campionati,calciatori_squadre,calciatori 
+where calciatori_squadre.matricola = calciatori.matricola and calciatori_squadre.id_squadra = squadre.id_squadra and campionati.id_squadra = squadre.id_squadra 
+group by calciatori.matricola having count(*) > 0

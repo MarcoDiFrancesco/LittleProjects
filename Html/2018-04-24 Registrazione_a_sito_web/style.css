@@ -1,0 +1,20 @@
+.box{
+  float: left;
+  width: 300px;   
+  margin: 15px;
+	background-color: #CFFFCC;
+	padding: 15px;
+}
+
+h1{
+  margin: auto;
+  text-align: center;
+}
+
+.dataInput{
+  width: 150px;
+}
+
+table, td{
+	padding: 5px;
+}
