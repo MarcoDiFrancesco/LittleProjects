@@ -137,7 +137,7 @@ int main(){
   int sizeRho;
   int halfRho; // detect half of the rhombus
 
-  printf("Set size of the rhombus: ");
+  printf("Set size of the rhombus (odd number): ");
   scanf("%d", &size);
   printf("\n");
 
