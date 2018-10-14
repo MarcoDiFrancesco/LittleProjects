@@ -148,7 +148,8 @@ int main(){
       printf(" ");
     }
     for(roundChaRho = 0; roundChaRho < chaRho; roundChaRho++) {
-      printf("*");
+ 
+     printf("*");
     }
 
     if(halfRho>round9){
