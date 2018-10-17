@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 int main(){
-	int n1,n2,counter=0,mcd,min;
+	int n1,n2,mcd,min =0;
+	int counter=1;
 	scanf("%d",&n1);
 	scanf("%d",&n2);
 	if(n1<=n2){
@@ -13,8 +14,8 @@ int main(){
 	while(counter <= min){
 		if(((n1/counter)*counter == n1) && ((n2/counter)*counter == n2)){
 			mcd=counter;
-			counter++;
 		}
+		counter++;
 	}
 	printf("MCD: %d", mcd);
   return 0;
