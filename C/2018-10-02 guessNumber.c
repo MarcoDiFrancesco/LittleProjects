@@ -1,11 +1,3 @@
-/******************************************************************************
-
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
 #include <stdio.h>
 
 int main()
@@ -23,18 +15,23 @@ int main()
         }
     }
     test = 0;
+    int tmp=0;
     printf("Guess the numer: ");
     while(test == 0){
-        scanf("%d",&n2);
+        if(tmp==0)
+        {
+            scanf("%d",&n2);
+            ++tmp;
+        }
         if(n1>n2){
-            printf("Too small. Type another number: ");
+            printf("\nToo small. Type another number: ");
             scanf("%d",&n2);
         } else if(n1<n2) {
-            printf("Too big. Type another number: ");
+            printf("\nToo big. Type another number: ");
             scanf("%d",&n2);
         } else { 
             test = 1;
-            printf("Number correct");
+            printf("\nNumber correct\n");
         }
     }
     printf("End");
