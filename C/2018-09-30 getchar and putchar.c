@@ -3,8 +3,8 @@
 
 int main(){
   int c=getchar(); // take the first input character
-	printf("numero inserito:");
-	putchar(c); // the variable must be int
+	printf("Inserted number:");
+	putchar(c); // the variable must be an int
 	printf("\n");
 	int counter=0;
 	while((c=getchar()) != EOF)
@@ -15,6 +15,6 @@ int main(){
 		putchar(c);
 		printf("\n");
 	}
-	printf("\nNumber of character: %d", counter);
+	printf("\nNumber of characters: %d", counter);
   return 0;
 }
