@@ -20,5 +20,6 @@ int main() {
     reverseArray[counter] = array[reverseCount];
     reverseCount--;
     printf("%d ", reverseArray[counter]);
+    printf("\n");
   }
 }
