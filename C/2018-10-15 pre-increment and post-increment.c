@@ -5,5 +5,4 @@ int main() {
   
   printf("i= %d\n", i++);
   printf("w= %d", ++w);
-
 }
