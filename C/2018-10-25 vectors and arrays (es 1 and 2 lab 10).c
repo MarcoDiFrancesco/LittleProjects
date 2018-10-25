@@ -24,12 +24,20 @@ int main() {
   scanf("%d", &vet2.n_elem);
   init(vet2.v, vet2.n_elem);
   stampa(vet2.v, vet2.n_elem);
+  stampa2(vet2);
 }
 
 void stampa(int vett[], int dim){
   int i;
   for(i = 0; i<dim; i++) {
     printf("%3d",vett[i]);
+  }
+}
+
+void stampa2(Tvettore vett){
+  int i;
+  for(i = 0; i<vett.n_elem; i++) {
+    printf("%3d",vett.v[i]);
   }
 }
 
