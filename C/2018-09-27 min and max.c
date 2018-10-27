@@ -8,7 +8,7 @@ int main(){
 	int nInput=0; // set 0 to make the first while false
 
 	while(test == false){
-		if (nInput >= 10 || nInput <= 1)	{
+		if (nInput >= 10 || nInput <= 1 {
 			test = false;
 			printf("Insert a number: ");
 			scanf("%d",&nInput);
