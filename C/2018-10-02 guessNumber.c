@@ -2,7 +2,7 @@
 
 int main()
 {
-    int n1 = 0, n2, test = 0;
+    int n1 = 0, n2, test = 0; // Initializing int
     printf("Insert a number: ");
     scanf("%d",&n1);
     printf("\x1b[H\x1b[J");
