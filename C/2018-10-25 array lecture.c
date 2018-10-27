@@ -4,4 +4,6 @@
 int main(){
   int grades[3] = {3,4,5};
   printf("Grades");
+  printf("Ciao");
+  
 }
