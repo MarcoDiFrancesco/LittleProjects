@@ -88,9 +88,11 @@ int main(){
     for(roundLeftSpace = 0; roundLeftSpace<leftSpace; roundLeftSpace++) {
       printf(" ");
     }
+
     for(roundWidthTree = 0; roundWidthTree<widthTree; roundWidthTree++) {
       printf("*");
     }
+
     for(roundRightSpace = 0; roundRightSpace<rightSpace; roundRightSpace++) {
       printf(" ");
     }
