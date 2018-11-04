@@ -22,6 +22,7 @@ int main() {
   vet2.n_elem = 0;
   printf("\ndim= ");
   scanf("%d", &vet2.n_elem);
+
   init(vet2.v, vet2.n_elem);
   stampa(vet2.v, vet2.n_elem);
   stampa2(vet2);
