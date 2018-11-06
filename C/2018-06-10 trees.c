@@ -150,7 +150,6 @@ int main(){
       printf(" ");
     }
     for(roundChaRho = 0; roundChaRho < chaRho; roundChaRho++) {
- 
      printf("*");
     }
 
