@@ -1,2 +1,12 @@
 # My school projects
-This repository contains all my school projects, from the first program in C to the programs made in the university. 
+This repository contains all my school projects.
+The folder are separated by languages or programs used for them:
+* Arduino
+* Assembly
+* C
+* C++
+* HTML
+* Java
+* Packet tracer
+* Powershell
+* XLS
