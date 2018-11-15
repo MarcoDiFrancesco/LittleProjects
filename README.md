@@ -3,7 +3,7 @@ This repository contains all my school projects.
 The folder are separated by languages or programs used:
 * Arduino
 * Assembly
-* C
+* [C](C)
 * C++
 * HTML
 * Java
