@@ -1,6 +1,6 @@
 # My school projects
 This repository contains all my school projects.
-The folder are separated by languages or programs used for them:
+The folder are separated by languages or programs used:
 * Arduino
 * Assembly
 * C
@@ -9,4 +9,4 @@ The folder are separated by languages or programs used for them:
 * Java
 * Packet tracer
 * Powershell
-* XLS
+* Excel (XLS)
