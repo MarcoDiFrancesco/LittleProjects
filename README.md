@@ -1,12 +1,13 @@
 # My school projects
 This repository contains all my school projects.
 The folder are separated by languages or programs used:
-* Arduino
-* Assembly
+* [Arduino](Arduino)
+* [Assembly](Assembly)
 * [C](C)
-* C++
-* HTML
-* Java
-* Packet tracer
-* Powershell
-* Excel (XLS)
+* [C++](C++)
+* [Database](Database)
+* [Excel](Xls)
+* [HTML](Html)
+* [Java](Java)
+* [Packet tracer](Packet%20tracer)
+* [Powershell](Powershell)
