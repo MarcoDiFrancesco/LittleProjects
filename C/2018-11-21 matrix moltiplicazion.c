@@ -45,7 +45,7 @@ int main(){
   // calculate moltiplication matrix
   for(w=0; w<min; w++){
     for(j=0; j<min; j++){
-      for(k=0; k<min; k++){
+      for(k=0; k<max; k++){
         matrixFinal[w][j] += matrix1[w][k]*matrix2[k][j];
       }
     }
