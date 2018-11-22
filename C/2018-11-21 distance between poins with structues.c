@@ -1,23 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define numStudenti 100
+#define numStudenti 5
+#define numEsami 4
 
-typedef struct Studente {
-  int matricola;
-  int voto[];
-} Studente;
+int main(){
+  int tabellaVoti[numStudenti][numEsami];
+  int w,j;
+  for(w=0; w<numStudenti; w++){
+    for(j=0; j<numEsami; j++){
+      tabellaVoti[w][j]=rand()/5000;
+    }
+  }
 
-int main() {
-  Studente studenti[numStudenti];
+  for(w=0; w<numStudenti; w++){
+    for(j=0; j<numEsami; j++){
+      printf("%d\t",tabellaVoti[w][j]);
+    }
+    printf("\n");
+  }  
 
-  studenti[0].matricola = 200;
-  studenti[1].matricola = 300;
-  studenti[2].matricola = 400;
-  // why does this make error?
-  studenti[0].voto[5]={4};
-  studenti[1].voto[5];
-  studenti[2].voto[5];
-  
-  printf("%d-",studenti[0].matricola);
+  // average of a single student
+  int studentAverage = 0;
+  int studentAnalyzed;
+
+  printf("Which student you want to know the average? ");
+  scanf("%d",&studentAnalyzed);
+  for(w=0;w<numEsami;w++){
+    studentAverage += tabellaVoti[studentAnalyzed][w];
+  }
+  studentAverage = studentAverage/numEsami;
+  printf("\nAverage: %d\n",studentAverage);
+
+  // average of all the students
+  int studentsAverage = 0;
+  for(w=0; w<numStudenti; w++){
+    for(j=0; j<numEsami; j++){
+      studentsAverage += tabellaVoti[w][j];
+    }
+  }
+  studentsAverage = studentsAverage / (numStudenti*numEsami);
+  printf("Average of all the students: %d\n", studentsAverage);
 }
