@@ -21,7 +21,7 @@ int main()
     //Calcolo da zero il minimo
     float min=temp[0];
     for(i=0; i<10; i++) //faccio il "for" per fare il minimo
-    if(min>temp[i]) //if che segna se il numero temp[x] è maggiore di quello selezionato prima, se si scambia questo in max
+    if(min>temp[i]) //if che segna se il numero temp[x] ï¿½ maggiore di quello selezionato prima, se si scambia questo in max
     {
     min=temp[i]; //se si scambia questo in max
     }
@@ -37,7 +37,6 @@ int main()
     }
     cout<< "  massimo:"<<max; //stampo il numero massimo
     cout<<"\n\n\n  "; //spazio di 3 per la fine
-    
     
     system("PAUSE");
     return EXIT_SUCCESS;
