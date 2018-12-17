@@ -6,4 +6,6 @@ int main(){
   float c=10.4;
   a=c;
   printf("%d",a);
+
+  printf("-hello\t-hello\r-hello\n-hello");
 }
