@@ -1,37 +1,51 @@
 #include <stdlib.h>
 #include <stdio.h>
 #define N_GIOCATORI 10
-#define STRING_LENGTH 10
+#define N_PARTITE 10
+#define STR_LENGTH 10
 
-typedef struct {
-  char nome[STRING_LENGTH];
-  char conome[STRING_LENGTH];
+// Lab 8 es 5
+
+typedef struct Data {
+  int anno;
+  int mese;
+  int giorno;
+} Data;
+
+typedef struct Tgiocatore {
+  char nome[STR_LENGTH];
+  char conome[STR_LENGTH];
   int playerNumber;
 } Tgiocatore;
 
-typedef struct {
-  char nomeSquadra[N_GIOCATORI];
+typedef struct Tsquadra {
+  char nomeSquadra[STR_LENGTH];
   Tgiocatore giocatore[N_GIOCATORI];
 } Tsquadra;
 
-typedef struct {
-  Tsquadra[2];
+typedef struct Tpartita {
+  Tsquadra squadra[2]; // squadra A ([0]) and B ([1])
   int date;
-  int dayNumber; // numero della giornata della partita
+  Data data; // numero della giornata della partita
   int girone; // 0 andata, 1 ritorno
-  Result result;
+  int goalTeamA;
+  int goalTeamB;
 } Tpartita;
 
-typedef struct {
-  Tpartita partite;
+typedef struct Tcampionato {
+  Tpartita partita[N_PARTITE];
   char serie; // A, B, C...
 } Tcampionato;
 
-typedef struct {
-  int winner; // 0 tie, 1 first team, 2 second
-  int numberOfGoal;
-} Result;
-
 int main() {
+  Tcampionato campionato1;
+  Tcampionato campionato2;
+  
+  campionato1.serie = 'A';
+  campionato2.serie = 'B';
+  printf("%c - ",campionato1.serie);
+  printf("%c - ",campionato2.serie);
 
+  campionato1.partita[0].data.anno = 1998;
+  printf("%d - ",campionato1.partita[0].data.anno);
 }
