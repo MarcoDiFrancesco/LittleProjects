@@ -5,7 +5,6 @@
 int main(){
 
   // SQUARE n*n
-
   int round1, round2;
   int size;
   int nCol, nRow;
