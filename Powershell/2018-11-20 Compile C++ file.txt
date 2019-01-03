@@ -1,1 +1,1 @@
-clear;gcc '.\c++\2018-11-20 Dynamic allocation memory.cpp' -lstdc++;if($LASTEXITCODE -eq 0){./a.exe}else{Write-Host error compiling}
+clear;gcc '.\c++\2018-11-20 Dynamic allocation memory.cpp' -lstdc++;if($LASTEXITCODE -eq 0){./a.exe}else{Write-Host error_compiling}
