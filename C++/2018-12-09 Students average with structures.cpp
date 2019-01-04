@@ -1,6 +1,6 @@
+using namespace std;
 #include <iostream>
 #include <cstdlib>
-using namespace std;
 #define NUM_STUDENTI 8
 #define NUM_ESAMI 8
 
