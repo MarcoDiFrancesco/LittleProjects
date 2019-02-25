@@ -1,3 +1,13 @@
+# Calolatori
+Il primo computer venne creato dall'università della Pennsylvania chiamato ENIAC (Electronic Numerical Integrator And Computer). Nel 1969 venne creato l'Apollo Guidance Computer che consisteva di 2800 circuiti integrati, il processore aveva una frequenza di 0.042 MHz, aveva 152 KByte tra ROM e RAM e aveva un'interfaccia DSKY (Display&Keyboard).
+
+### Programmazione assembly
+Il linguaggio Assembly è stato creato per andare a tradurre sequenze di bit in semplici istruzioni, per esempio `add A,B` viene l'assembler lo traduce in `00000000000010001000100001000000`.
+
+L'elaborazione dei dati viene effettuta dal processore, diviso in due parti: parte operativa e parte di controllo. I dati vengono memorizzati nelle unità di memoria. I dispositivi di input e di outpurt permettono di scambiare informazioni con l'esterno.
+
+---
+
 Basi di numerazione
 Un numero in base n ha n cifre che partono da 0 a n-1.
 Il byte è composto da 8 bit, con 28 valori, da 0 (=00000000) a 255 (=11111111).
