@@ -12,3 +12,9 @@ The name are set starting by date (YYYY-MM-DD) and followed by the name of the p
 * [Java](Java)
 * [Packet tracer](Packet%20tracer)
 * [Powershell](Powershell)
+
+## Notes
+* [Calcolatori](Calcolatori.md)
+* [Linguaggi Di Programmazione modulo 1](LinguaggiDiProgrammazione1.md)
+* [Linguaggi Di Programmazione modulo 2](LinguaggiDiProgrammazione2.md)
+* [Programmazione 1](Programmazione1.md)
