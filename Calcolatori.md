@@ -21,8 +21,6 @@ Idem per la base 16: E24 = E*162 + 2*161 + 4*160
 La somma di numeri binari: si mettono i numeri in colonna e si sommano tenendo conto del resto.
 Nella sottrazione di numeri binari: 
 
-
-
 Nulla moltiplicazione di numeri binari: quando devo moltiplicare un numero binario per 2 basta che faccio lo shift di una cifra verso sinistra.
 Ex: 10012*2 = 100102
 Quando devo fare la moltiplicazione tra un numero più grande di 2 basta che replico questa operazione per tutti i numeri del moltiplicando, quando ho un un 1 scrivo il numero, quindi nel numero 10001 scriverò il numero 1101 solamente la prima volta e la quinta volta.
@@ -30,3 +28,6 @@ Nella codifica con modulo e segno ho il primo bit assegnato al segno, 0 per il s
 Complemento a 1: 
 Complemento a 2:
 
+---
+28/02/2019
+Somma e sottrazione si applicano facilmente anche con 
