@@ -40,7 +40,7 @@ Nella **gestione delle periferiche** la sincronizzazione tra processore e perife
 Finish to write with screens 24/02/2019 18:55
 
 ---
-
+ 
 Switch vs If-Else
 L'istruzione switch ha delle differenze dall'if-else, infatti può essere usata solo in alcuni casi dove:
 • Viene valutata solamente una variabile, tutte le scelte dipenderanno, infatti, da questa variabile. La variabile deve essere un tipo integral ( int ma anche altri tipi che vedremo )

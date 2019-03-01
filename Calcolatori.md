@@ -14,7 +14,7 @@ Il byte è composto da 8 bit, con 28 valori, da 0 (=00000000) a 255 (=11111111).
 Si utilizza la base 16 per la compattezza e la facilità di conversione:
 Ex: (0011 1110 1000)2 = 3E816
 Conversione base 10 → k di n: si fa n/k=ris e si tiene conto del resto. Il risultato sarà l’unione di tutti i resti.
-Conversione da base k → 10 di n: si moltiplicano i numeri la potenza della propria base. 
+Conversione da base k → 10 di n: si moltiplicano i numeri la potenza della propria base.  
 Nella numerazione in base 10 si moltiplica ogni cifra per ogni potenza di 10: 501 = 5*102 + 0*101 + 1*100
 Nella base 2 si fa la stessa cosa: 10110 = 1*24 + 0*23 + 1*22 + 1*21 + 0*20
 Idem per la base 16: E24 = E*162 + 2*161 + 4*160
