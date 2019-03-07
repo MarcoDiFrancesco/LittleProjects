@@ -1,2 +1,4 @@
 *.exe
 .vscode
+/JavaUni/FirstProject/nbproject/private/
+/JavaUni/FirstProject/build/
