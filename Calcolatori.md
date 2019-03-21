@@ -19,12 +19,28 @@ La **somma di numeri binari** si mettono i numeri in colonna e si sommano tenend
 Nella **sottrazione di numeri binari** eseguiamo il prestito al posto di utilizzare il resto.  Esempio 1 1 0 1 0 1 1 0 - 1 1 1 0 1 0 1 = 1 1 0 0 0 0 1  
 Nulla moltiplicazione di numeri binari: quando devo moltiplicare un numero binario per 2 basta che faccio lo shift di una cifra verso sinistra.
 Ex: 10012*2 = 100102
-Quando devo fare la moltiplicazione tra un numero più grande di 2 basta che replico questa operazione per tutti i numeri del moltiplicando, quando ho un un 1 scrivo il numero, quindi nel numero 10001 scriverò il numero 1101 solamente la prima volta e la quinta volta.
+Quando devo fare la moltiplicazione tra un numero più grande di 2 basta che replico questa operazione per tutti i numeri del moltiplicando, quando ho un un 1 scrivo il numero, quindi nel numero 10001 scriverò il numero 1101 solamente la prima volta e la quinta volta.  
 ![moltiplication with binary numbers](https://i.imgur.com/aWS70UB.png)
 
-Nella codifica con modulo e segno ho il primo bit assegnato al segno, 0 per il segno positivo e 1 per il segno negativo.
-Complemento a 1: 
-Complemento a 2:
+Nella *codifica con modulo e segno* ho il primo bit assegnato al segno, 0 per il segno positivo e 1 per il segno negativo.
+I numeri codificati sono: da `-2^(k-1)+1` a `2^(k-1)-1`.  
+Il **complemento a 1**:
+* Numero positivo: rappresento il valore assoluto
+* Numero negativo: rappresento il complemento a 1 del valore assoluto
+
+Per fare complemento a 1 cambio tutti i bit di x, da 0 a 1, e da 1 a 0 quando il numero è negativo.
+
+Operazione di complemento a 1 di un numero binario x:  
+![moltiplication with binary numbers on complemento a 1](https://i.imgur.com/57QPmpp.png)  
+Il **complemento a 2**:
+Faccio il complemento a 1 di x, e poi sommo 1.  Esempio di 0101000: (0101000)complementare + 1 = 101001.  
+Anche nel complemento a 2 il bit più significativo a 0 rappresenta il numero positivo e 1 negativo. Ma la codifica dell 0 è unica (non esiste più il "doppione" dello 0 positivo e negativo).  
+L'operzione inversa, da numero in complemento a 2 in numero decimale la ottengo: convertendo il numero binario in decimale se il numero più significativo è 0, mentre se il numero significativo è 1 faccio il complemento a 2, sommo +1 e converto in numero decimale.  
+Esempi:  
+![esempi di codifiche](https://i.imgur.com/SBVu5LZ.png)  
+La **somma nel complemento a 2** si ottiene
+SLIDE 26 LEZ 2
+
 
 ---
 28/02/2019
