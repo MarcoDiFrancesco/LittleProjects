@@ -30,3 +30,8 @@ val rec fact = fn n => if n=0 then 1 else n*fact (n-1);
 With rec you are allowing recursion in the program, without it it throws you an error.
 With fact 20; it calculates
 
+---
+22/03/2019
+## Interfacce
+Un'interfaccia è una classe completamente astratta, senza attributi. L'interfaccia è fatta in modo che anche se non compila esattamente fuzioni. Un interfaccia può ereditare da una o più interacce ma non da classi: `interface <nome> extends <nome1>,..,<nomen> {...}`.
+Una classe può implementare una o più interfacce, e DEVE implementarne tutti i metodi (a meno che non sia astratta): `class <nome> implements <nome1>,..,<nomen> {...} `.
