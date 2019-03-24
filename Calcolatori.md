@@ -37,11 +37,15 @@ Faccio il complemento a 1 di x, e poi sommo 1.  Esempio di 0101000: (0101000)com
 Anche nel complemento a 2 il bit più significativo a 0 rappresenta il numero positivo e 1 negativo. Ma la codifica dell 0 è unica (non esiste più il "doppione" dello 0 positivo e negativo).  
 L'operzione inversa, da numero in complemento a 2 in numero decimale la ottengo: convertendo il numero binario in decimale se il numero più significativo è 0, mentre se il numero significativo è 1 faccio il complemento a 2, sommo +1 e converto in numero decimale.  
 Esempi:  
-![esempi di codifiche](https://i.imgur.com/SBVu5LZ.png)  
-La **somma nel complemento a 2** si ottiene
-SLIDE 26 LEZ 2
+Decimale|Modulo|Complemento a 1|Complemento a 2
+-|-|-|-
+-4|-|-|100
+-3|111|100|101
+-2|110|101|110
+-1|101|110|111
+0|100 / 000|111 / 000|000
+1|001|001|001
+2|010|010|010
+3|011|011|011
 
-
----
-28/02/2019
-Somma e sottrazione si applicano facilmente anche con 
+La **somma nel complemento a 2** si ottiene come se fosse un numero binario normale. Ma bisogna stare attenti agli overflow.
