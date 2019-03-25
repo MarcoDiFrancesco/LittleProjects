@@ -49,3 +49,13 @@ Decimale|Modulo|Complemento a 1|Complemento a 2
 3|011|011|011
 
 La **somma nel complemento a 2** si ottiene come se fosse un numero binario normale. Ma bisogna stare attenti agli overflow.
+Esempio:  
+![moltiplication with binary numbers on complemento a 1](https://i.imgur.com/xWVcBXn.png)  
+![moltiplication with binary numbers on complemento a 1](https://i.imgur.com/1c6weBs.png)  
+Vediamo che si ha overflow nel complemento a 2 quando:
+* a+b > 2^(k-1)-1
+* a+b < -2^(k-1)
+## Virgola fissa e mobile
+Trasformazione da decimale a binario con virgola fissa: moltiplico la parte decimale ricordivamente per 2 tante volte quanti sono i bit della parte devimale e considero nell'ordine le parti intere della moltiplicazione.
+Esempio:  
+![moltiplication with binary numbers on complemento a 1](https://i.imgur.com/cpKUlyD.png)  
