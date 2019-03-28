@@ -1,4 +1,4 @@
-# Calolatori
+# Calcolatori
 Il primo computer venne creato dall'università della Pennsylvania chiamato ENIAC (Electronic Numerical Integrator And Computer). Nel 1969 venne creato l'Apollo Guidance Computer che consisteva di 2800 circuiti integrati, il processore aveva una frequenza di 0.042 MHz, aveva 152 KByte tra ROM e RAM e aveva un'interfaccia DSKY (Display&Keyboard).
 
 ## Programmazione assembly
