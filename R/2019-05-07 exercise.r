@@ -1,0 +1,6 @@
+n1 <- pnorm(1.39,1.09,sqrt(8.15))-pnorm(-0.67,1.09,sqrt(8.15))
+print(n1)
+n2 <- pnorm(-0.97,1.09,sqrt(8.15))
+print(n2)
+n3 <- 1-pnorm(2.5,1.09,sqrt(8.15))+pnorm(-2.5,1.09,sqrt(8.15))
+print(n3)
