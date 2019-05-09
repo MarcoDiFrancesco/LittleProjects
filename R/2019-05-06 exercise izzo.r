@@ -1,6 +1,0 @@
-n1 <- pnorm(-5.41,-4.94,sqrt(6.61))-pnorm(-7.42,-4.94,sqrt(6.61))
-print(n1)
-n2 <- 1-pnorm(-6.63,-4.94,sqrt(6.61))
-print(n2)
-n3 <- pnorm(1.79,-4.94,sqrt(6.61))-pnorm(-1.79,-4.94,sqrt(6.61))
-print(n3)
