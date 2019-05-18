@@ -1,9 +1,21 @@
 # pexp(x,lambda) distribution function
 # dexp(x,lambda) probability function
 
+lx <- 0.6 # lambda X
+ly <- 1.5 # lambda Y
+lu <- lx + ly
 
-n1 <- function(u) { ifelse(u>0.841181,dexp(u,1.4),dexp(u,1)) }
-n2 <- pexp(1.0181,0.6)-pexp(0.36,0.6)+(1-pexp(1.0181,1.5))
+# F(X) function
+fx <- function(x) { lx*exp(-lx*x) }
 
-print(n1(0))
-print(n2) # n2 and n3
+# F(Y) function
+fy <- function(x) { ly*exp(-ly*x) }
+
+# F(U) function
+fu <- function(x) { ifelse(x>0, lu*exp(-lu*x), 0) }
+
+n2 <- integrate(fu, 0.262, +Inf)$value * integrate(fx, 0.36, +Inf)$value
+n3 <- integrate(fu, 0.36, +Inf)$value * integrate(fx, 0.262, +Inf)$value
+
+print(n2)
+print(n3)
