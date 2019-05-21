@@ -19,9 +19,3 @@ n3 <- integrate(fu, 0.665, +Inf)$value * integrate(fx, 0.349, +Inf)$value
 
 print(n2)
 print(n3)
-
-print(exp(-2.4*0.349)*exp(-1*0.665))
-fu2 <- 
-n <- 0
-print(fu(n))
-print(fu2(n))
