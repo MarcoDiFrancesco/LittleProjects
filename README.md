@@ -1,7 +1,8 @@
-# My school projects
-This repository contains all my school projects.
+# Little projects
+This repository contains all the projects I've been making in school and university.
 The folder are separated by languages or programs used.
-The name are set starting by date (YYYY-MM-DD) and followed by the name of the project.
+The names are set starting by date (YYYY-MM-DD) and followed by the name of the project.
+## Projects:
 * [Arduino](Arduino)
 * [Assembly](Assembly)
 * [C](C)

@@ -1,7 +1,7 @@
 n1 <- FALSE
 
 f2 <- function(n) { 1/2^n*1/2^(10-n)*choose(10,n)}
-n2 <- sum(t2(8:10))
+n2 <- sum(f2(8:10))
 # on wolfram n2 <- 7/128
 
 n3 <- choose(10,8)
@@ -13,6 +13,6 @@ for(n in 0:10){
 }
 
 print(n1)
-print(n2)
+print(n2,digits=22)
 print(n3)
 print(expectedValue) # n4
