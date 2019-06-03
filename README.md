@@ -8,7 +8,7 @@ The names are set starting by date (YYYY-MM-DD) and followed by the name of the 
 * [C](C)
 * [C++](C++)
 * [Database](Database)
-* [Excel](Xls)
+* [Excel](Xlsx)
 * [HTML](Html)
 * [Java](Java)
 * [Packet tracer](Packet%20tracer)
