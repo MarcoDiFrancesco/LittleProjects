@@ -13,6 +13,7 @@ The names are set starting by date (YYYY-MM-DD) and followed by the name of the 
 * [Java](Java)
 * [Packet tracer](Packet%20tracer)
 * [Powershell](Powershell)
+* [R](R)
 
 ## Notes
 * [Calcolatori](Calcolatori.md)
