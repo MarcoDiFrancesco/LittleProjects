@@ -1,12 +1,12 @@
 package binding;
 
-public class B extends A {
-    public void f(A x) {
-      System.out.println("Called 1 on istance of B");
-    }
+class B extends A {
 
-    public void f(B x) {
-      System.out.println("Called 2 on istance of B");
-    }
+  public void g(A x) {
+    System.out.println("called	1	on	instance	of	B");
+  }
 
+  public void g(B x) {
+    System.out.println("called	2	on	instance	of	B");
+  }
 }
