@@ -11,9 +11,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 public class Poker extends Application {
@@ -25,13 +27,12 @@ public class Poker extends Application {
 
     addCards(deck);
     Collections.shuffle(deck);
-    
+
     TextInputDialog textInputDialog = new TextInputDialog();
     textInputDialog.setContentText("Number of cards");
     textInputDialog.showAndWait();
     int numberOfCards = Integer.parseInt(textInputDialog.getResult());
-    
-    
+
     List<Card> hand = new ArrayList();
     // get first 10 cards from the deck and put it in the hand
     for (int i = 0; i < numberOfCards; i++) {
@@ -40,22 +41,40 @@ public class Poker extends Application {
     System.out.println(hand);
     boolean hasWin = CheckWin(hand, numberOfCards);
     System.out.println(hasWin);
-    
+
     Stage stage = new Stage();
-    StackPane stackPane = new StackPane();
-    Scene scene = new Scene(stackPane,800,800);
-    Rectangle rectangle = new Rectangle();
-    rectangle.setX(10);
-    rectangle.setY(10);
-    rectangle.setWidth(50);
-    rectangle.setHeight(100);
-    
-    rectangle.setFill(Color.LIGHTBLUE);
-    stackPane.getChildren().add(rectangle);
-    
+    BorderPane borderPane = new BorderPane();
+
+    Scene scene = new Scene(borderPane, 800, 800);
+
+    List<Rectangle> rectangleList = new ArrayList();
+    List<Text> textList = new ArrayList();
+
+    for (int i = 0; i < numberOfCards; i++) {
+      int width = 100;
+      int height = 200;
+      int margin = 10;
+
+      rectangleList.add(i, new Rectangle());
+      rectangleList.get(i).setX(i * width + i * margin + margin);
+      rectangleList.get(i).setY(margin);
+      rectangleList.get(i).setWidth(width);
+      rectangleList.get(i).setHeight(height);
+      rectangleList.get(i).setFill(Color.LIGHTBLUE);
+      borderPane.getChildren().add(rectangleList.get(i));
+
+      textList.add(new Text());
+      textList.get(i).setFont(new Font(20));
+      textList.get(i).setX(width*i + margin*i + 10);
+      textList.get(i).setY(margin + 35); // +35 because starts from bottom left of the text
+      String handCardText = hand.get(i).toString();
+      textList.get(i).setText(handCardText);
+      borderPane.getChildren().add(textList.get(i));
+    }
+
     stage.setScene(scene);
     stage.show();
-    
+
   }
 
   public static void main(String[] args) {
