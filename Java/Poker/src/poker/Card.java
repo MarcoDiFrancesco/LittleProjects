@@ -2,7 +2,7 @@ package poker;
 
 public class Card {
 
-  enum CardName {
+  enum Value {
 
     A,
     _1,
@@ -28,16 +28,16 @@ public class Card {
     Quadri
   }
 
-  CardName cardName;
+  Value value;
   Seed seed;
 
-  Card(CardName cardName, Seed seed) {
-    this.cardName = cardName;
+  Card(Value value, Seed seed) {
+    this.value = value;
     this.seed = seed;
   }
 
   @Override
   public String toString() {
-    return "(" + cardName + "," + seed + ")";
+    return "(" + value + "," + seed + ")";
   }
 }
