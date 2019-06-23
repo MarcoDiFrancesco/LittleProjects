@@ -67,7 +67,8 @@ public class Calculator extends Application {
     // Center output box
     TextField outputText = new TextField();
     verticalPane.getChildren().add(outputText);
-
+    outputText.setEditable(false);
+    
     calculatorButton.get(0).addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
       @Override
