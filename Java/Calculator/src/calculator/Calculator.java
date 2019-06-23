@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 public class Calculator extends Application {
 
   Text bottomText = null;
+
   @Override
   public void start(Stage stage) {
     BorderPane layout = new BorderPane();
@@ -40,7 +41,7 @@ public class Calculator extends Application {
 
     // Bottom
     bottomText = new Text("");
-    bottomText.setFont(Font.font("VERDANA",30));
+    bottomText.setFont(Font.font("VERDANA", 30));
     BorderPane.setAlignment(bottomText, Pos.CENTER);
     layout.setBottom(bottomText);
 
@@ -68,67 +69,51 @@ public class Calculator extends Application {
     TextField outputText = new TextField();
     verticalPane.getChildren().add(outputText);
     outputText.setEditable(false);
-    
-    calculatorButton.get(0).addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
-      @Override
-      public void handle(MouseEvent event) {
-        try {
-          String input1 = inputText1.getText();
-          String input2 = inputText2.getText();
-          int result = Integer.parseInt(input1) + Integer.parseInt(input2);
-          outputText.setText(Integer.toString(result));
-          bottomText.setText("");
-        } catch (NumberFormatException error) {
-          errorMessage();
+    for (Button button : calculatorButton) {
+      button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+        @Override
+        public void handle(MouseEvent event) {
+          try {
+            String input1 = inputText1.getText();
+            String input2 = inputText2.getText();
+            String buttonValue = ((Button)event.getTarget()).getText();
+            int result = 0;
+            switch (buttonValue) {
+              case "+":
+                result = Integer.parseInt(input1) + Integer.parseInt(input2);
+                break;
+              case "-":
+                result = Integer.parseInt(input1) - Integer.parseInt(input2);
+                break;
+              case "*":
+                result = Integer.parseInt(input1) * Integer.parseInt(input2);
+                break;
+              case "/":
+                result = Integer.parseInt(input1) / Integer.parseInt(input2);
+                break;
+            }
+            outputText.setText(Integer.toString(result));
+            bottomText.setText("");
+          } catch (NumberFormatException error) {
+            errorMessage();
+          }
         }
-      }
-
-    });
-
-    calculatorButton.get(1).addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        String input1 = inputText1.getText();
-        String input2 = inputText2.getText();
-        int result = Integer.parseInt(input1) - Integer.parseInt(input2);
-        outputText.setText(Integer.toString(result));
-      }
-    });
-
-    calculatorButton.get(2).addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        String input1 = inputText1.getText();
-        String input2 = inputText2.getText();
-        int result = Integer.parseInt(input1) * Integer.parseInt(input2);
-        outputText.setText(Integer.toString(result));
-      }
-    });
-
-    calculatorButton.get(3).addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        String input1 = inputText1.getText();
-        String input2 = inputText2.getText();
-        int result = Integer.parseInt(input1) / Integer.parseInt(input2);
-        outputText.setText(Integer.toString(result));
-      }
-    });
+      });
+    }
 
     // Right clear button
     Button clearButton = new Button("Clear");
     BorderPane.setAlignment(clearButton, Pos.CENTER);
     layout.setRight(clearButton);
     clearButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
       @Override
       public void handle(MouseEvent event) {
         inputText1.setText("");
         inputText2.setText("");
         outputText.setText("");
       }
-
     });
 
     // Center setup
