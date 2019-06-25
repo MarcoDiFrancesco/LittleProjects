@@ -1,4 +1,4 @@
-package calculator;
+package miniCalculator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Calculator extends Application {
+public class MiniCalculator extends Application {
 
   Text bottomText = null;
 
