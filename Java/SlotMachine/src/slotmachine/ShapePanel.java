@@ -2,6 +2,8 @@ package slotmachine;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -10,7 +12,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
-public class ShapePanel extends HBox{
+public class ShapePanel extends GridPane{
   ShapePanel(){
     List<MyCircle> circle = new ArrayList();
     circle.add(new MyCircle(Color.BLUE));
@@ -25,13 +27,21 @@ public class ShapePanel extends HBox{
     rectangle.add(new MyRectangle(Color.RED));
     rectangle.add(new MyRectangle(Color.GREEN));
     
-    for(int i = 0; i<3; i++){
-      StackPane stackPane = new StackPane();
-      stackPane.getChildren().addAll(circle);
-      stackPane.getChildren().addAll(triangle);
-      stackPane.getChildren().addAll(rectangle);
-      getChildren().add(stackPane);
-    }
+    StackPane stackPane1 = new StackPane();
+    stackPane1.getChildren().addAll(circle);
+    stackPane1.getChildren().addAll(triangle);
+    stackPane1.getChildren().addAll(rectangle);
+    StackPane stackPane2 = new StackPane();
+    stackPane2.getChildren().addAll(circle);
+    stackPane2.getChildren().addAll(triangle);
+    stackPane2.getChildren().addAll(rectangle);
+    
+    add(stackPane1,0,0);
+    add(stackPane2,1,0);
+    add(new Button("c"),0,0);
+    add(new Button("c"),1,0);
+    
+
   }  
 }
 
