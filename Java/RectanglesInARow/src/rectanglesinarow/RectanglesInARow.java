@@ -11,6 +11,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+/**
+ * The objects inside the scene update automatically (for example a text inside
+ * scene update alone) but the objects inside a StackPane (inside scene) need to
+ * be removed and replaced
+ *
+ * @author marco
+ */
 public class RectanglesInARow extends Application {
 
   HBox hBox;
