@@ -31,7 +31,8 @@ public class Shape extends Application {
     dialogRadius.setTitle("Radius change");
     dialogRadius.setHeaderText("Radius change");
     dialogRadius.setContentText("Set the new radius for the circle...");
-
+    
+    
     boolean exceptionInt = false;
     do {
       String newRadius = dialogRadius.showAndWait().get();

@@ -41,8 +41,6 @@ public class NumberPad extends Application {
           } else {
             listButton.get(Integer.parseInt(keyTyped)).setVisible(true);
           }
-          
-          
           System.out.println(keyTyped);
         }
       }

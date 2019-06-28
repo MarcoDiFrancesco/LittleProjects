@@ -3,6 +3,7 @@ package figuregeometricheesame;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -124,7 +125,7 @@ public class MainWindow extends BorderPane {
       hexagonShapeButton.setDisable(false);
       refresh();
     });
-
+    
     /**
      * Set the button to make appear the triangle in the central panel
      */
