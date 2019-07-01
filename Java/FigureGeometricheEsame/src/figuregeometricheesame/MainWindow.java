@@ -50,6 +50,10 @@ public class MainWindow extends BorderPane {
     mainShape.getChildren().add(rectangleMainShape);
     addCenterBoxes();
     setCenter(flowPaneCenter);
+    flowPaneBottom.setAlignment(Pos.CENTER);
+    flowPaneCenter.setAlignment(Pos.CENTER);
+    flowPaneTop.setAlignment(Pos.CENTER);
+    
     setButtonEvent();
   }
 
@@ -168,7 +172,7 @@ public class MainWindow extends BorderPane {
           shapeList.remove(0);
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
-          alert.setContentText("You did't select any shape to add");
+          alert.setContentText("You didn't select any shape to add");
           alert.showAndWait();
         }
       } else {
