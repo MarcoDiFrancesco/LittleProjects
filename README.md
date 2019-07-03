@@ -11,12 +11,13 @@ The names are set starting by date (YYYY-MM-DD) and followed by the name of the 
 * [Excel](Xlsx)
 * [HTML](Html)
 * [Java](Java)
+* [Ml](Ml)
 * [Packet tracer](Packet%20tracer)
 * [Powershell](Powershell)
 * [R](R)
 
 ## Notes
-* [Calcolatori](Calcolatori.md)
-* [Linguaggi Di Programmazione modulo 1](LinguaggiDiProgrammazione1.md)
-* [Linguaggi Di Programmazione modulo 2](LinguaggiDiProgrammazione2.md)
-* [Programmazione 1](Programmazione1.md)
+* [Calcolatori](Assembly/README.md)
+* [Linguaggi Di Programmazione modulo 1](Java/README.md)
+* [Linguaggi Di Programmazione modulo 2](Ml/README.md)
+* [Programmazione 1](C++/README.md)
