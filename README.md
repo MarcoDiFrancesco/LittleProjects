@@ -17,7 +17,7 @@ The names are set starting by date (YYYY-MM-DD) and followed by the name of the 
 * [R](R)
 
 ## Notes
-* [Calcolatori](Assembly/README.md)
-* [Linguaggi Di Programmazione modulo 1](Java/README.md)
-* [Linguaggi Di Programmazione modulo 2](Ml/README.md)
-* [Programmazione 1](C++/README.md)
+* [Assembly](Assembly/README.md)
+* [Java](Java/README.md)
+* [ML language](Ml/README.md)
+* [C and C++](C++/README.md)
