@@ -9,7 +9,7 @@ public class Main {
 		quadrato = new Quadrato(30);
 //		System.out.println(fg.calcolaArea());
 //		fg = new Quadrato(20);
-//F		System.out.println(fg.calcolaArea());
+//		System.out.println(fg.calcolaArea());
 
 	}
 
