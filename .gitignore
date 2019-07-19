@@ -1,20 +1,9 @@
 *.exe
 .vscode/*
 !.vscode/tasks.json
-/JavaUni/FirstProject/nbproject/private/
-/JavaUni/FirstProject/build/
-/Python/credential*
-/JavaUni/Fattoria/nbproject/private/
-/JavaUni/HelloWorld/nbproject/private/
-/JavaUni/HelloWorld/build/
-/JavaUni/Point3D/nbproject/private/
-/JavaUni/Point/nbproject/private/
-/JavaUni/Point/build/
-/JavaUni/Point/dist/
-/JavaUni/LabFirst/nbproject/private/
-/JavaUni/LabFirst/build/
-/JavaUni/Person/nbproject/private/
-/JavaUni/Person/build/
+!.vscode/keybindings.json
+
+# Java
 /Java/JavaApplication7/nbproject/private/
 /Java/ShapesJavaFX/nbproject/private/
 /Java/ShapesJavaFX/build/
