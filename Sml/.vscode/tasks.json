@@ -4,20 +4,13 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build C",
-      "type": "shell",
-      "command": "gcc '${fileDirname}/${fileBasename}'; if($LASTEXITCODE -eq 0){./a.exe}else{Write-Host error_compiling}",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}/C"
-      },
-      "problemMatcher": []
-    },
-    {
       "label": "Build sml",
       "type": "shell",
       "command": "sml '${fileDirname}/${fileBasename}'",
-      "group": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "options": {
         "cwd": "${workspaceFolder}/Sml"
       },

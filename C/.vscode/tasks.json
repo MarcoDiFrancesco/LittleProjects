@@ -9,17 +9,7 @@
       "command": "gcc '${fileDirname}/${fileBasename}'; if($LASTEXITCODE -eq 0){./a.exe}else{Write-Host error_compiling}",
       "group": "build",
       "options": {
-        "cwd": "${workspaceFolder}/C"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Build sml",
-      "type": "shell",
-      "command": "sml '${fileDirname}/${fileBasename}'",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}/Sml"
+        "cwd": "${workspaceFolder}/C",
       },
       "problemMatcher": []
     }
