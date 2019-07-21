@@ -17,7 +17,10 @@
       "label": "Build sml",
       "type": "shell",
       "command": "sml '${fileDirname}/${fileBasename}'",
-      "group": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "options": {
         "cwd": "${workspaceFolder}/Sml"
       },
