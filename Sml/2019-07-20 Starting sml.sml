@@ -41,3 +41,22 @@ sum(5,6);
 
 (* to write values on variables *)
 val (x, y) = (4, 5);
+
+(* recursive functions *)
+val rec fact = fn n => if n = 0 then 1 else n * fact(n-1);
+fact(5);
+(* fun had already the recursion *)
+fun fact2(n) = if n = 0 then 1 else n * fact2(n - 1);
+fact2(5);
+
+val fact3 = fn n =>
+	let
+		val rec fact_tr = fn n => fn res =>
+			if n = 0 then
+				res
+			else
+				fact_tr(n - 1) (n * res)
+	in
+		fact_tr n 1
+	end;
+fact3(5);
