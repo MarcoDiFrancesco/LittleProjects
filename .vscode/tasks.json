@@ -16,7 +16,7 @@
     {
       "label": "Build C++",
       "type": "shell",
-      "command": "g++ '${fileDirname}/${fileBasename}'; if($LASTEXITCODE -eq 0){./a.exe}else{Write-Host error_compiling}",
+      "command": "g++ '${fileDirname}/${fileBasename}'; ./a.out;",
       "group": "build",
       "options": {
         "cwd": "${workspaceFolder}/C"

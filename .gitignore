@@ -1,4 +1,5 @@
 *.exe
+*.out
 .vscode/*
 !.vscode/tasks.json
 !.vscode/keybindings.json
