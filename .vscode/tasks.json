@@ -6,7 +6,7 @@
     {
       "label": "Build C",
       "type": "shell",
-      "command": "gcc '${fileDirname}/${fileBasename}'; if($LASTEXITCODE -eq 0){./a.exe}else{Write-Host error_compiling}",
+      "command": "gcc '${fileDirname}/${fileBasename}'; ./a.out;",
       "group": "build",
       "options": {
         "cwd": "${workspaceFolder}/C"
