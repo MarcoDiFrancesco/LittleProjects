@@ -4,7 +4,7 @@
     {
       "label": "Build C",
       "type": "shell",
-      "command": "gcc '${fileDirname}/${fileBasename}'; ./a.out;",
+      "command": "clear; gcc '${fileDirname}/${fileBasename}'; ./a.out;",
       "group": "build",
       "options": {
         "cwd": "${workspaceFolder}"
@@ -14,7 +14,7 @@
     {
       "label": "Build C++",
       "type": "shell",
-      "command": "g++ '${fileDirname}/${fileBasename}'; ./a.out;",
+      "command": "clear; g++ '${fileDirname}/${fileBasename}'; ./a.out;",
       "group": "build",
       "options": {
         "cwd": "${workspaceFolder}"
@@ -43,6 +43,20 @@
       ],
       "options": {
         "cwd": "/usr/bin"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "g++ build active file",
+      "command": "/bin/g++",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "/bin"
       }
     }
   ]
