@@ -1,6 +1,4 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
   "version": "2.0.0",
   "tasks": [
     {
@@ -9,7 +7,7 @@
       "command": "gcc '${fileDirname}/${fileBasename}'; ./a.out;",
       "group": "build",
       "options": {
-        "cwd": "${workspaceFolder}/C"
+        "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
     },
@@ -19,7 +17,7 @@
       "command": "g++ '${fileDirname}/${fileBasename}'; ./a.out;",
       "group": "build",
       "options": {
-        "cwd": "${workspaceFolder}/C"
+        "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
     },
@@ -32,6 +30,20 @@
         "cwd": "${workspaceFolder}/Sml"
       },
       "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "gcc build active file",
+      "command": "/usr/bin/gcc",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "/usr/bin"
+      }
     }
   ]
 }
