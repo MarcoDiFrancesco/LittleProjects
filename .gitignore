@@ -3,7 +3,7 @@
 .vscode/*
 !.vscode/tasks.json
 !.vscode/keybindings.json
-
+!.vscode/launch.json
 # Java
 /Java/JavaApplication7/nbproject/private/
 /Java/ShapesJavaFX/nbproject/private/

@@ -31,20 +31,7 @@
       },
       "problemMatcher": []
     },
-    {
-      "type": "shell",
-      "label": "gcc build active file",
-      "command": "/usr/bin/gcc",
-      "args": [
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
-      ],
-      "options": {
-        "cwd": "/usr/bin"
-      }
-    },
+    // used by the debugger
     {
       "type": "shell",
       "label": "g++ build active file",
@@ -53,7 +40,7 @@
         "-g",
         "${file}",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${workspaceFolder}/a.out"
       ],
       "options": {
         "cwd": "/bin"
