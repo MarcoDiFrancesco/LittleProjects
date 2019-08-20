@@ -1,6 +1,4 @@
-#include <iostream>
 #include "salone.h"
-using namespace std;
 
 int askNVetture(Tsalone *salone)
 {
