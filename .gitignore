@@ -1,9 +1,7 @@
 *.exe
 *.out
-.vscode/*
-!.vscode/tasks.json
-!.vscode/keybindings.json
-!.vscode/launch.json
+.vscode/
+
 # Java
 /Java/JavaApplication7/nbproject/private/
 /Java/ShapesJavaFX/nbproject/private/
