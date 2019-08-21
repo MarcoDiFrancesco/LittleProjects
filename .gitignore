@@ -1,69 +1,16 @@
+# Compiled C/C++ files (Windows)
 *.exe
+# Compiled C/C++ files (Linux)
 *.out
-.vscode/
-
-# Java
-/Java/JavaApplication7/nbproject/private/
-/Java/ShapesJavaFX/nbproject/private/
-/Java/ShapesJavaFX/build/
-/Java/ShapesJavaFX/dist/
-/Java/PingPong/nbproject/private/
-/Java/PingPong/build/
-/Java/PingPong/dist/
-/Java/Virus/nbproject/private/
-/Java/Virus/build/
-/Java/Virus/dist/
-/Java/PictureInAWindow/nbproject/private/
-/Java/PictureInAWindow/build/
-/Java/PictureInAWindow/dist/
-/Java/University/nbproject/private/
-/Java/University/build/
-/Java/Binding/nbproject/private/
-/Java/Binding/build/
-/Java/Poker/nbproject/private/
-/Java/Poker/build/
-/Java/Poker/dist/
-/Java/UniversityManagement/nbproject/private/
-/Java/ListenerApp/nbproject/private/
-/Java/ListenerApp/build/
-/Java/ListenerApp/dist/
-/Java/PickAColor/nbproject/private/
-/Java/PickAColor/build/
-/Java/PickAColor/dist/
-/Java/PositionPane/nbproject/private/
-/Java/PositionPane/dist/
-/Java/PositionPane/build/
-/Java/Calculator/nbproject/private/
-/Java/Calculator/dist/
-/Java/Calculator/build/
-/Java/MiniCalculator/build/
-/Java/MiniCalculator/dist/
-/Java/MiniCalculator/nbproject/private/
-/Java/NumberPad/nbproject/private/
-/Java/NumberPad/dist/
-/Java/NumberPad/build/
-/Java/SlotMachine/nbproject/private/
-/Java/SlotMachine/build/
-/Java/SlotMachine/dist/
-/Java/City/nbproject/private/
-/Java/City/build/
-/Java/City/dist/
-/Java/CerchiERettangoli/nbproject/private/
-/Java/CerchiERettangoli/dist/
-/Java/CerchiERettangoli/build/
-/Java/FigureGeometricheEsame/nbproject/private/
-/Java/FigureGeometricheEsame/build/
-/Java/FigureGeometricheEsame/dist/
-/Java/ToPrint/nbproject/private/
-/Java/ToPrint/build/
-/Java/ToPrint/dist/
-/Java/StageThatTalk/nbproject/private/
-/Java/StageThatTalk/dist/
-/Java/StageThatTalk/build/
-/Java/RectanglesInARow/nbproject/private/
-/Java/RectanglesInARow/dist/
-/Java/RectanglesInARow/build/
-/Java/Sbarramento/nbproject/private/
-/Java/Sbarramento/build/
-/Java/2019-06-17HelloWorld/build/
-/Java/2019-06-17HelloWorld/nbproject/private/
+# settings of VSCode
+.vscode
+# Java build folder
+build
+# Netbeans private folder
+private
+# Compiled code/library
+dist
+# Eclipse folder
+.settings 
+# Java and C excecutable files
+bin 
