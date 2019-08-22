@@ -2,15 +2,17 @@
 *.exe
 # Compiled C/C++ files (Linux)
 *.out
-# settings of VSCode
+# Settings of VSCode folder
 .vscode
 # Java build folder
 build
 # Netbeans private folder
 private
-# Compiled code/library
+# Compiled code/library folder
 dist
 # Eclipse folder
 .settings 
-# Java and C excecutable files
+# Java and C excecutable folder
 bin 
+# Esay c++ projects file (vscode extension)
+Makefile
