@@ -11,6 +11,7 @@ int main() {
   
   // add text inside the matrix
   
+  
   for(int i = 0; i < N_STRINGS; i++) {
     cin >> input;
     dictionary[i] = new char[input.length()];
