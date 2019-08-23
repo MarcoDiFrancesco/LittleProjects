@@ -31,7 +31,7 @@ struct sData
 
   void print() const
   {
-    cout << index << "-" << value << endl;
+    cout << index << "-" << value << "\t";
   }
 
   // Less than function: Compares if the values inside this node is smaller than the value of the given value
@@ -43,7 +43,7 @@ struct sData
     }
     return false;
   }
-  
+
   // Greater than function: Compares if the values inside this node is bigger than the value of the given value
   bool gt(sData _data)
   {
@@ -89,8 +89,12 @@ struct sNode
   {
     data.print();
   }
-};
 
-typedef sNode *nodePointer;
+  // Return the quantity of nodes inside the list
+  int size() const
+  {
+    return 0;
+  }
+};
 
 #endif
