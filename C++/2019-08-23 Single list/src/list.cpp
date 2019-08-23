@@ -56,23 +56,71 @@ sNode *removeLast(sNode *_node)
 sNode *removeSpecific(sNode *_node, sData _data)
 {
   sNode *node = _node;
-  if(node == NULL) {
+  if (node == NULL)
+  {
     return _node;
   }
-  while(node->next != NULL) {
-    if(node->next->data.value == _data.value && node->next->next != NULL){
+  while (node->next != NULL)
+  {
+    if (node->next->data.value == _data.value && node->next->next != NULL)
+    {
       // Found equal data
       sNode *tempNode = node->next;
-      node->next->next;
       delete tempNode;
       return _node;
-    } else if(node->next->data.value == _data.value && node->next->next == NULL) {
+    }
+    else if (node->next->data.value == _data.value && node->next->next == NULL)
+    {
       // Last element of the list
       return removeLast(_node);
     }
     node = node->next;
   }
-  return removeFirst(_node);;
+  return removeFirst(_node);
+}
+
+// Insert data ordered by value
+sNode *insertOrder(sNode *_node, sData _data)
+{
+  sNode *node = _node;
+  sNode *newNode = new sNode(_data);
+  if (node == NULL) // empty list
+  {
+    node = newNode;
+    delete newNode;
+    delete node;
+  }
+  else
+  {
+    while (node->next->next != NULL)
+    {
+      if (node->next->data.value > newNode->data.value)
+      {
+        // Found smaller value
+        newNode->next = node->next;
+        node->next = newNode;
+        return _node;
+      }
+      node = node->next;
+    }
+  }
+  delete newNode;
+  delete node;
+  return _node;
+}
+
+sNode *removeAllSpecific(sNode *_node, sData _data)
+{
+  sNode *node = _node;
+
+  return _node;
+}
+
+sNode *removeCondition(sNode *_node, sData _data)
+{
+  sNode *node = _node;
+
+  return _node;
 }
 
 void print(sNode *_node)
