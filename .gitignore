@@ -14,5 +14,9 @@ dist
 .settings 
 # Java and C excecutable folder
 bin 
-# Esay c++ projects file (vscode extension)
+# Easy C++ projects file (vscode extension)
 Makefile
+# Include folder just for C++ projects
+C++/*/include
+# Libraries folder just for C++ projects
+C++/*/lib
