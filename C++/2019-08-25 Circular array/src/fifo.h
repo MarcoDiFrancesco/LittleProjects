@@ -10,62 +10,75 @@ using namespace std;
 typedef struct Tdato
 {
   int val;
-  
-  Tdato(){
+
+  Tdato()
+  {
     val = 0;
   };
-  
-  Tdato(int _val) {
+
+  Tdato(int _val)
+  {
     val = _val;
   }
-  
-  ~Tdato(){
+
+  ~Tdato()
+  {
     // delete []val;
   }
-  
-  void print() {
+
+  void print()
+  {
     cout << val << "\t";
   }
-}Tdato;
+} Tdato;
 
-typedef struct Tcoda {
-  int n; // Number of elements inside the queue
-  int dim; // Max dimension of the queue
+typedef struct Tcoda
+{
+  int n;    // Number of elements inside the queue
+  int dim;  // Max dimension of the queue
   int head; // Position of the element in the head
   int tail; // Position of the element in the tail
   Tdato *s;
-  
+
   // Default constructor
-  Tcoda() {
+  Tcoda()
+  {
     n = 0;
     dim = 10;
     head = 0;
     tail = 0;
     s = new Tdato[dim];
   }
-  
-  Tcoda(int _dim) {
+
+  Tcoda(int _dim)
+  {
     n = 0;
     dim = _dim;
     head = 0;
     tail = 0;
     s = new Tdato[_dim];
   }
-  
-  ~Tcoda() {
+
+  ~Tcoda()
+  {
     // delete []s;
   }
-  
-  void print() {
-    if(n == 0) {
+
+  void print()
+  {
+    if (n == 0)
+    {
       cout << "Empty" << endl;
-    } else {
+    }
+    else
+    {
       int i = head;
       cout << "List:\t";
-      do {
+      do
+      {
         s[i].print();
-        i = ++i%dim;
-      } while(i != tail);
+        i = ++i % dim;
+      } while (i != tail);
       cout << endl;
     }
   }
@@ -80,7 +93,7 @@ bool cosaIsEmpty(CodaPointer);
 void put(CodaPointer, Dato);
 Tdato get(CodaPointer);
 void print(CodaPointer);
-int random(int,int);
-void scrivi_file(char [], Tdato);
+int random(int, int);
+void scrivi_file(char[], Tdato);
 
 #endif

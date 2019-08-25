@@ -21,19 +21,22 @@ int main()
   put(codaPointer, Dato(7));
   put(codaPointer, Dato(8));
   print(codaPointer);
-  
+
   CodaPointer w = new Tcoda(15);
   int i, k = 40;
-  for(i = 0; i < k; i++) {
+  for (i = 0; i < k; i++)
+  {
     // cin >> randNumber; // Disabled for debugging
-    int randNumber = random(10,99);
-    int ni = random(1,20);
-    if(ni > 10){
+    int randNumber = random(10, 99);
+    int ni = random(1, 20);
+    if (ni > 10)
+    {
       put(w, Tdato(ni));
     }
     print(w);
-    ni = random(1,20);
-    if(ni < 10) {
+    ni = random(1, 20);
+    if (ni < 10)
+    {
       get(w);
     }
     print(w);
@@ -86,12 +89,15 @@ int main()
   }
   for (i = 0; i < 10; i++)
   {
-    Tdato randomDato(random(10,99));
-    int randomInt = random(0,2);
-    if(!codaIsFull(p2[randomInt]))  {
+    Tdato randomDato(random(10, 99));
+    int randomInt = random(0, 2);
+    if (!codaIsFull(p2[randomInt]))
+    {
       put(p2[randomInt], randomDato);
       cout << "Added to " << randomInt << " queue" << endl;
-    } else {
+    }
+    else
+    {
       cout << "Full to " << randomInt << " queue, added to scarti" << endl;
       scrivi_file("scarti.txt", dato);
     }
