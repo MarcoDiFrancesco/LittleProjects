@@ -12,6 +12,12 @@ int main() {
   int i = 0;
   for(i = 0; i < 20; i++) {
     cout << index << " ";
-    index = (++index)%dim; // 
+    index = (++index)%dim;
   }
+  
+  // Check odd or even numbers
+  if(-1%2 == 0)
+    cout << "pari";
+  else
+    cout << "dispari";
 }

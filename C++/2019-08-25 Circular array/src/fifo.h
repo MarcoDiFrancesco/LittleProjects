@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
+#define CODA_SIZE 15
 using namespace std;
 
 typedef struct Tdato
@@ -80,5 +81,6 @@ void put(CodaPointer, Dato);
 Tdato get(CodaPointer);
 void print(CodaPointer);
 int random(int,int);
+void scrivi_file(char [], Tdato);
 
 #endif
