@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1464043228 source:g:\informatica programmi\c++\16-04-14 progetto gestione personale\6 sesto\main.cpp
-	<cstdlib>
-	<iostream>
-	<fstream>
-	<time.h>
-
