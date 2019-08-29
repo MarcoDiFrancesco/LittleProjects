@@ -22,3 +22,5 @@ C++/*/include
 C++/*/lib
 # Netbeans project folder
 nbproject
+# Netbeans configuration folder
+conf
