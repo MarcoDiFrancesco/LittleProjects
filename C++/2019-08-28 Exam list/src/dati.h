@@ -32,8 +32,24 @@ typedef struct Tpozzo
 
   void stampa()
   {
-    cout << zona << " QTA=" << quantita << "(" << tipoEstrazione << ")"
-         << " attivo=" << attivo << endl;
+    cout << zona;
+    cout << " QTA=" << quantita;
+    cout << "(";
+    if(tipoEstrazione == 0){
+      cout << "GAS";
+    } else if(tipoEstrazione == 1){
+      cout << "PETROLIO";
+    } else {
+      cout << "ACQUA";
+    }
+    cout << ")";
+    cout << " attivo=";
+    if(attivo == 0) {
+      cout << "NO";
+    } else {
+      cout << "SI";
+    }
+    cout << endl;
   }
 } Tpozzo;
 
@@ -69,21 +85,45 @@ typedef struct TstackLIFO
 
   void push(Tpozzo p)
   {
+    if (stackIsFull())
+    {
+      cout << "Stack is full, adding Tpozzo to file" << endl;
+      ofstream outFile;
+      outFile.open("noprod.txt", ios::app);
+      outFile << p.zona;
+      outFile << " QTA=";
+      outFile << p.quantita;
+      outFile << " (";
+      outFile << p.tipoEstrazione;
+      outFile << " )";
+      outFile << " attivo=";
+      outFile << p.attivo;
+      outFile << endl;
+      return;
+    }
+    s[N] = p;
+    ++N;
   }
 
   Tpozzo pop()
   {
+    if (stackIsEmpty())
+    {
+      cout << "Stack is empty" << endl;
+      return Tpozzo();
+    }
+    --N;
+    return s[N];
   }
 
   void stampa()
   {
-    if (N == 0)
+    if (stackIsEmpty())
     {
       cout << "Stack is empty" << endl;
       return;
     }
-
-    for (int i = 0; i < dim; i++)
+    for (int i = 0; i < N; i++)
     {
       cout << "s[" << i << "]:";
       s[i].stampa();

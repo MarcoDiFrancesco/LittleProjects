@@ -17,8 +17,9 @@ void creaPozzo(Tpozzo *p)
   }
   do
   {
-    cout << "Quantita (between 100.0 and 800.0): ";
-    cin >> p->quantita;
+    // cout << "Quantita (between 100.0 and 800.0): "; // Disabled for debugging
+    // cin >> p->quantita; // Disabled for debugging
+    p->quantita = randomFloat(100.0, 800.0);
   } while (p->quantita < 100.0 || p->quantita > 800.0);
 
   if (rand() % 2 == 0)
@@ -29,15 +30,15 @@ void creaPozzo(Tpozzo *p)
   {
     p->attivo = false;
   }
-  cout << "Zona (Max 20 char): ";
-  cin >> p->zona;
+  // cout << "Zona (Max 20 char): "; // Disabled for debugging
+  // cin >> p->zona; // Disabled for debugging
+  p->zona[0] = randomInt('a','z');
 }
 
 void addPozzo(TstackLIFO **pozzi, Tpozzo s)
 {
   int randomNumber = randomInt(0, 2);
   pozzi[randomNumber]->push(s);
-  ++pozzi[randomNumber]->N;
 }
 
 void stampaPozzi(TstackLIFO **pozzi)

@@ -11,9 +11,9 @@ private
 # Compiled code/library folder
 dist
 # Eclipse folder
-.settings 
+.settings
 # Java and C excecutable folder
-bin 
+bin
 # Easy C++ projects file (vscode extension)
 Makefile
 # Include folder just for C++ projects
