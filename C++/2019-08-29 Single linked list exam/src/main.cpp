@@ -8,4 +8,8 @@ int main() {
     addVeicolo(p,v);
   }
   stampaVeicolo(p);
+  delAuto(p,2000);
+  creaVeicolo(&v);
+  addVeicolo(p,v);
+  
 }

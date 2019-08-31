@@ -12,6 +12,4 @@ typedef struct Tree
 int main()
 {
   Tree myTree;
-  
-  
 }

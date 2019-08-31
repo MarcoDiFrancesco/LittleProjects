@@ -1,13 +1,13 @@
 #ifndef __DATI__
 #define __DATI__
 
-#include <iostream>
 #include <stdlib.h>
+#include <iostream>
 #include <fstream>
 
 using namespace std;
 
-typedef enum Ttipo {
+typedef enum Ttipo {  
   AUTO,
   MOTO,
   AUTOBUS
@@ -18,8 +18,16 @@ typedef struct Tveicolo {
   int cil;
   float kw;
   Ttipo tipo;
+  
+  Tveicolo() {
+    marca[0] = '\0';
+    cil = 0;
+    kw = 0;
+    tipo = AUTO;
+  }
+  
   void stampa() {
-    cout << marca << " CILINDRATA=" << cil << " KW=" << kw << "Tipo:";
+    cout << marca << " " << cil << " " << kw << " ";
     if(tipo == 0) {
       cout << "AUTO";
     } else if(tipo == 1) {
@@ -28,7 +36,7 @@ typedef struct Tveicolo {
       cout << "AUTOBUS";
     }
     cout << endl;
-  }
+  } 
 } Tveicolo;
 
 typedef struct TcodaFIFO {
@@ -37,43 +45,39 @@ typedef struct TcodaFIFO {
   int head;
   int tail;
   Tveicolo *s;
-  TcodaFIFO(int x){
+  TcodaFIFO(int x) {
     dim = x;
     n = 0;
     head = 0;
     tail = 0;
-    s = new Tveicolo[x];
+    s = new Tveicolo [x];
   }
-  bool isFull(){
+  
+  bool isFull() {
     return n == dim;
   }
+  
+  bool isEmpty() {
+    return n == 0;
+  }
+  
   void stampa() {
     if(n == 0) {
       cout << "Coda is empty" << endl;
     } else {
+      int newTail = tail; // Copy of tail
       for(int i = 0; i < n; i++) {
-        s[i].stampa();
+        s[newTail].stampa();
+        ++newTail%dim;
       }
     }
   }
-  void put(Tveicolo v) {
-    if(!isFull()){
-      s[head] = v;
-      ++n;
-      ++head%dim;
-    }
-  }
-  Tveicolo get() {
-    Tveicolo newVeicolo = s[head];
-    s[head]
-    return newVeicolo;
-  }
 } TcodaFIFO;
 
+void stampaVeicolo(TcodaFIFO *);
 void creaVeicolo(Tveicolo *);
 void addVeicolo(TcodaFIFO *, Tveicolo);
-int randomInt(int, int);
-void stampaVeicolo(TcodaFIFO *);
 void delAuto(TcodaFIFO *, int);
+int random(int, int);
 
 #endif
