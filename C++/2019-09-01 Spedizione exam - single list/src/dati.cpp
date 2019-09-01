@@ -16,8 +16,7 @@ void creaSpedizione(Tspedizione *s) {
   do {
     cout << "Insert peso: ";
     cin >> s->peso;
-  } while(s->peso < 0.0 || s->peso > 5000.0);
-//  } while(s->peso < 200.0 || s->peso > 5000.0);
+  } while(s->peso < 200.0 || s->peso > 5000.0);
   
   if(s->tipoPacco == CELERE || s->tipoPacco == PRIORITY) {
     s->assicurato = true;
