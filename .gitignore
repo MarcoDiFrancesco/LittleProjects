@@ -20,6 +20,8 @@ Makefile
 C++/*/include
 # Libraries folder just for C++ projects
 C++/*/lib
+# Txt files created by programs
+C++/*/*.txt
 # Netbeans project folder
 nbproject
 # Netbeans configuration folder
