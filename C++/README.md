@@ -366,4 +366,19 @@ Ricerca di una chiave
 - Si puo’ dimostrare che i livelli del B-tree sono dati da log m (n) (m il numero di chiavi per nodo ) e quindi la ricerca di una chiave all’interno del B-tree richiede:
 log 2 (m) * log m (n)=log 2 (n)
 
-# Hashing
+## Cose da implementare nel programma
+### Dati.h
+- Default constructor
+  - `dato = Tdato();`
+  - `next = NULL` (pointers)
+- Constructor
+  - `dato = _dato`
+  - `next = _next`
+- Destroy (`~Tdato()`)
+  - `delete pointer`
+- Print with const (`void print() const {}`)
+
+### Main.cpp
+Each pointer (`Tnodo *nodo`) needs to be initialized (`Tnodo *nodo = new Tnodo();`).  
+
+### Dati.cpp

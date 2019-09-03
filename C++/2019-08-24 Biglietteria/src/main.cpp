@@ -1,12 +1,14 @@
-#include "list.h"
-  
+#include "dati.h"
+
 int main() {
   Tbiglietto biglietto;
   Tbiglietteria biglietteria;
-  for(int i = 0; i < 5; i++) {
-    creaBiglietto(&biglietto);
-    inserisciBiglietto(&biglietteria, biglietto);
+  biglietteria.sportello = NULL;
+  for(int i = 0; i < 20; i++) {
+//    creaBiglietto(&biglietto);
+//    inserisciBiglietto(&biglietteria, biglietto);
   }
   biglietteria.stampa();
-  salvaBiglietti(&biglietteria,TRENO);
+  // creaMezzo(biglietteria);
+  // salvaBiglietti
 }
