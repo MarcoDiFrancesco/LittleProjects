@@ -26,3 +26,5 @@ C++/*/*.txt
 nbproject
 # Netbeans configuration folder
 conf
+# Netbeans target folder
+target
