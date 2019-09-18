@@ -1,0 +1,11 @@
+#include <stdlib.h>
+#include <iostream>
+#include <chrono>
+#define SIZE 10
+
+using namespace std;
+
+void randomArray(int *);
+void printArray(int *);
+void efficency1(int *);
+void efficency2(int *);
