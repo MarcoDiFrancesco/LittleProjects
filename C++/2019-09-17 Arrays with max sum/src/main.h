@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <chrono>
-#define SIZE 10
+#define SIZE 100000
 
 using namespace std;
 

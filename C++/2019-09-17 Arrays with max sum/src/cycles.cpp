@@ -34,7 +34,6 @@ void efficency2(int *a)
         firstMax = i;
       } else {
         firstMax = first+1;
-      
       }
       sumMax = sum;
       lastMax = i;
@@ -45,6 +44,5 @@ void efficency2(int *a)
       first = i+1;
     }
   }
-
   cout << sumMax << " - " << firstMax << " - " << lastMax << endl;
 }
