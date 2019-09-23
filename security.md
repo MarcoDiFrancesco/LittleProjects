@@ -56,4 +56,3 @@ Some hash functions:
 ![Assurance levels](https://i.imgur.com/AIUbfyg.png)
 
 **Contextual authentication** is where the context around the user's login are considered and assessed (valutate) to then decide whether the person is who the say they are, is there's a chance they are not, then an appropriate action is taken. For example if I'm logging in a new computer in a place where I've never been, more steps in my authentication needs to be required and a notification should be sent to me.
-
