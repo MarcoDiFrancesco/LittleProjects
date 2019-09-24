@@ -29,7 +29,7 @@ A **conceptual model** is a meaningful rapresentation of the world, described in
 **Model** are *sets of elements* which rapresent the sets of facts (scenes) that we have seen (and are true).
 
 **Interpretation** is a function which associates each and any element of the language to one and only one element of the domain.  
-**Entailment** (aka truth-relation or satisfiability) is a relation which associates what is true in a model with a subset of the sentence of the language.
+**Entailment** (aka truth-relation or satisfiability) is a relation which associates what is true in a model with a subset of the sentence of the language.  
 Note that a sentence can be an element in a theory if and only id its interpretation is true in the model.
 
 ### Logical model
@@ -51,8 +51,8 @@ The **formal semantics** is the relationship between syntactic constructors in a
 
 ### Logic
 A **logic** has three fundamental components:
-- A **formal language** (L) that defines what can correctly be said.
-- An **interpretation function** (I) that defines how the atomic elements of the language are being interpreted in the intended domain and model.
-- An **entailment relation** (⊨) used to define two relations: **satifiability** that is when a formula is true, and **logical consequence** that is when the truth of a formula follows from thr truth of a set of formulas.
+- A **formal language** (L) that defines what can correctly be said
+- An **interpretation function** (I) that defines how the atomic elements of the language are being interpreted in the intended domain and model
+- An **entailment relation** (⊨) used to define two relations: **satifiability** that is when a formula is true, and **logical consequence** that is when the truth of a formula follows from thr truth of a set of formulas
 
 Given L, I and ⊨ a logic allows to define two components: **theory** that is a set of sentences in L which are assumed true in the intended model, and **model** that is the set of facts expressed in the language describing the mental model in a agreement with the theory and the interpretation function.
