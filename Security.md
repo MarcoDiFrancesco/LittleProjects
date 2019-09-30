@@ -56,3 +56,30 @@ Some hash functions:
 ![Assurance levels](https://i.imgur.com/AIUbfyg.png)
 
 **Contextual authentication** is where the context around the user's login are considered and assessed (valutate) to then decide whether the person is who the say they are, is there's a chance they are not, then an appropriate action is taken. For example if I'm logging in a new computer in a place where I've never been, more steps in my authentication needs to be required and a notification should be sent to me.
+
+### Cryptography
+**Cryptograpy** is the science and study of secret writing.  
+**Cryptoanalysis** is the science and study of methods of breaking ciphers.  
+**Cryptography** cryptography and cryptoanalysis.  
+
+Security services provided by cryptographic mechanism are:
+- **Data confidentiality** encryption algorithms hide the content of messages
+- **Data integrity** is a check function that detect whether a document has been changed
+- **Data origin authenitication** is a digital signature algorithms that provides the means to verify the source and integrity of the message
+
+A cryptosystem is a 5-tuple where:
+- **E** is an enctyption algorithm
+- **D** is a decryption algorithm
+- **M** is the set of plaintexts
+- **K** is the set of keys
+- **C** is the set of cyphertexts
+
+So `M x K = C` and `C x K = M`.  
+
+A **key** is an input to a cryptographic algorithm used to obtain confidentiality, integritym authenticity or other proprety over some data. Keys are store in safe places like tmp, secure co-processor, smartcards etc.  
+
+### Key distribution
+The two partied need to share the same key and the key must be protected from access by others, the streanght of any cryptographic system depends on the key distribution technique.  
+A encryption scheme is secure if the cost of breaking the cipher exceeds the value of the encrypted information and the time required to break it exceeds the useful lifetime of the information. It's difficult to estimate the amount of effort required to cryptoanalyze cipthertext successfully.  
+
+11/61
