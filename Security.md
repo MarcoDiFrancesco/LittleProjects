@@ -82,4 +82,28 @@ A **key** is an input to a cryptographic algorithm used to obtain confidentialit
 The two partied need to share the same key and the key must be protected from access by others, the streanght of any cryptographic system depends on the key distribution technique.  
 A encryption scheme is secure if the cost of breaking the cipher exceeds the value of the encrypted information and the time required to break it exceeds the useful lifetime of the information. It's difficult to estimate the amount of effort required to cryptoanalyze cipthertext successfully.  
 
-11/61
+The essence of cryptograpy is to use a public algorithm and a private key.  
+There are two types of tranformation in encryption: the **substitution** in which each element in the plaintext is mapped into another element, and the **trasposition** in which the elements in the plaintext are rearranged.  
+The **Caesar cipher** is the algorithm in using substitution that shifts s fixed number of letter of the alphabet. There are 2 ways to break it: the brute force attack trying all the 25 possibilities or trying to see the distribution of the letters (vocals and consonants) inside the text.  
+
+### Modern encryption
+In the modern era new encryption techniques entered: stream encryption, block encryption and public-key encryption.  
+**Symmetric key** cryptography use the same key to crypt and decrypt: `D(k,E(k,p))=p`.
+
+![Symmetric key](https://i.imgur.com/WbNRmM2.png)
+
+Types of symmetric key crypto:
+**Strean ciphers** encrypt sequences of short data blocks under a changing key system, security relies on design on the key stream generator and typical block lenght is 1 bit/byte.  
+**Block ciphers** encrypt sequences of long data blocks without changing the key, it has a typical lenght of 64/128/256/512 bits. A block cipher breaks the message in successive blocks M1, M2, M3, ..., Mn and enciphers each Mi with the same key k. DES (data encryption standard) and AES (advanced encryption standard) are well known examples of block cipher systems.  
+
+**DES** employ a 56-bit key that operates on 64-but blocks, is a deterministica algorithm operating on a block cipher. DES has 16 rounds. DES has been craked in 1998 with a large number of Deep-Crack chip, taking less than 3 days to find a 56-bit by searching a total of 17,902,806,669,197,312 keys, calculating an average of 88,000,000,000 keys per second.
+
+**AES** uses keys of 128, 192 and 256 bits.
+
+**Public key cryptograpy** uses two different keys: a public key and a private key.
+
+![Asymmetric key](https://i.imgur.com/yEojFdE.png)
+
+The basic idea behind the PKC is that a user has the public key that uses to encrypt a message and another user has a private key that uses to decrypt the message.  
+
+35 of introduction (3)
