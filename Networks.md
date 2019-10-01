@@ -23,7 +23,7 @@ Layer 1: **Physical** is in the bottom of the model. It takes care of transmitti
 Layer 2: **Link** is makes the multiplexing (gathering data togeder, putting a header and sending them as a big packet) and demultiplexing (deviding packets, removing the header and sending to the layer 3), it makes the error discovery and recovery, it makes the medium access control (MAC sublayer).  
 Layer 3: **Network** make routing, forwarding and congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once and used for all packets belonging to a specific host to host communication.  
 Layer 4: **Trasport** performs segmentation and reassempling data, error control, flow control, packet ordering.  
-Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated.  
+Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated. For example if a whatsapp call changes from wifi to cellular the layer manage not to disconnect.  
 Layer 6: **Presentation** makes encryption, encoding and data rappresentation.  
 Layer 7: **Application** provides to the applications the means to communicate and exchange data, e.g. FTP, SSH, POP3, IMAP, SMTP, HTTP.
 
@@ -43,7 +43,7 @@ The ISPs can be devided in categories:
 ### Network architectures
 The **client-server** architecture makes the server always-on host, servers have permanent IP addresses, the clients do not communicate directly with each other.  
 The **P2P** architecture, like torrent, make the end systems communicate directly but the management of the network is complex.  
-The communication client-server and P2P is done with **sockets** that works like doors for the communication.
+The communication client-server and P2P is done with **sockets** that works like doors for the communication. Each layer use sockets to communicate with the layer above and below.
 
 ![Socket management](https://i.imgur.com/EtdWsg7.png)
 
@@ -53,3 +53,13 @@ The **transport service** of an application can require some needs:
 - **Timing** like phone call or gaming requires low latancy, if there is some data lost it's not that big problem
 - **Throughput** like video streaming require large throughput and losing data trading off some data lost
 - **Security** like mails require enctyption and data integrity
+
+There are two main internet transport protocol services TCP and UDP.
+**TCP** makes the connection reliable, manage flow and congestion control (making the connection slower in case the network is full) and does not provide any timing, minimum throghput and security.  
+**UDP** establish an unreliable data tranfer service and does not provide any service of the TPC. The UDP protocol is used for fast connection using a easier interface to IP protocol, because just IP protocol itself does not use any port.  
+TCP and UDP can be encrypted. **SSL** provides encypted TCP connection, data integrity and end-point authetication.
+
+The **web** connetion like HTTP are web pages consisting of objects like HTML files, JPEG images, audio files.  
+The connection in HTTP make a request and receive a response. This connection is manages by the browser. The connection over TCP is initiated creating a socket in the 80 port and communicates over HTTP messages and then it closes the connection. In HTTP the connection does not mantein any information about the previous client requests. The past state must not be maintained and sometimes this might be inconsistent. The HTTP can be non-persistent when it doens't mantein the TCP connection so openening a new request every time it asks for a file or it can be persistent when multple objects can be sent over a single TCP connection.
+
+21 of 03-application
