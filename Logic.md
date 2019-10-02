@@ -41,10 +41,10 @@ Note that a sentence can be an element in a theory if and only id its interpreta
 ## Language
 The **language** is a set of symbols (usually finite) and formation rules to compose "correct sentences". For example:
 - Monkey and GetBanana are symbols (atomic sentences)
-- Menkey ∧ GetBanana is a sentence (rule: A ∧ B)
+- Monkey ∧ GetBanana is a sentence (rule: A ∧ B)
 
 The **syntax** is the way a language is written, it is determined by a set of rules saying how to construct the expressions of the language from the set of atomic tokens (e.g. terms, characters, symbols, letter of the alphabet)  
-The **semantics** is the way a language is interpreted, it determins the meaning of the syntactic constructors.
+The **semantics** is the way a language is interpreted, it determines the meaning of the syntactic constructors.
 
 The **formal syntax** is a finite or infinite alphabet used for building phrases with rules construction.  
 The **formal semantics** is the relationship between syntactic constructors in a language and the elements of a universe of meanings with a mathematical function **Language → Domain**.  
@@ -53,6 +53,6 @@ The **formal semantics** is the relationship between syntactic constructors in a
 A **logic** has three fundamental components:
 - A **formal language** (L) that defines what can correctly be said
 - An **interpretation function** (I) that defines how the atomic elements of the language are being interpreted in the intended domain and model
-- An **entailment relation** (⊨) used to define two relations: **satifiability** that is when a formula is true, and **logical consequence** that is when the truth of a formula follows from thr truth of a set of formulas
+- An **entailment relation** (⊨) used to define two relations: **satifiability** that is when a formula is true, and **logical consequence** that is when the truth of a formula follows from the truth of a set of formulas
 
-Given L, I and ⊨ a logic allows to define two components: **theory** that is a set of sentences in L which are assumed true in the intended model, and **model** that is the set of facts expressed in the language describing the mental model in a agreement with the theory and the interpretation function.
+Given L, I and ⊨ a logic allows to define two components: **theory** that is a set of sentences in L which are assumed true in the intended model, and **model** that is the set of facts expressed in the language describing the mental model in an agreement with the theory and the interpretation function.
