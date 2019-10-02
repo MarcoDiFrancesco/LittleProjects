@@ -14,7 +14,7 @@ A dbms diffentiates a file becuase it:
 
 ![Levels of abstraction](https://i.imgur.com/2qj9ayV.png)
 
-**Views** describe how usesrs see data, or example `Course_info(cid:string,enrollment:integer)`.  
+**Views** describe how users see data, or example `Course_info(cid:string,enrollment:integer)`.  
 **Conceptual schema** defines logical stucture, for example `sid:string`, `name:sting`, `login:sting`, `age:integer`.  
 **Physical schema** describes the files and indexes used, for example index on the first column of `Students`.  
 
