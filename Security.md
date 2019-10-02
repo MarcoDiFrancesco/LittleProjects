@@ -93,10 +93,10 @@ In the modern era new encryption techniques entered: stream encryption, block en
 ![Symmetric key](https://i.imgur.com/WbNRmM2.png)
 
 Types of symmetric key crypto:
-**Strean ciphers** encrypt sequences of short data blocks under a changing key system, security relies on design on the key stream generator and typical block lenght is 1 bit/byte.  
-**Block ciphers** encrypt sequences of long data blocks without changing the key, it has a typical lenght of 64/128/256/512 bits. A block cipher breaks the message in successive blocks M1, M2, M3, ..., Mn and enciphers each Mi with the same key k. DES (data encryption standard) and AES (advanced encryption standard) are well known examples of block cipher systems.  
+**Stream ciphers** encrypt sequences of short data blocks under a changing key system, security relies on design on the key stream generator and typical block length is 1 bit/byte.  
+**Block ciphers** encrypt sequences of long data blocks without changing the key, it has a typical length of 64/128/256/512 bits. A block cipher breaks the message in successive blocks M1, M2, M3, ..., Mn and enciphers each Mi with the same key k. DES (data encryption standard) and AES (advanced encryption standard) are well-known examples of block cipher systems.  
 
-**DES** employ a 56-bit key that operates on 64-but blocks, is a deterministica algorithm operating on a block cipher. DES has 16 rounds. DES has been craked in 1998 with a large number of Deep-Crack chip, taking less than 3 days to find a 56-bit by searching a total of 17,902,806,669,197,312 keys, calculating an average of 88,000,000,000 keys per second.
+**DES** employ a 56-bit key that operates on 64-but blocks, is a deterministic algorithm operating on a block cipher. DES has 16 rounds. DES has been cracked in 1998 with a large number of Deep-Crack chip, taking less than 3 days to find a 56-bit by searching a total of 17,902,806,669,197,312 keys, calculating an average of 88,000,000,000 keys per second.
 
 **AES** uses keys of 128, 192 and 256 bits.
 
