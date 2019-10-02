@@ -31,9 +31,9 @@
 
 ![Risk matrix](https://i.imgur.com/Ikvc01f.png)
 
-Security **Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protectiong the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriete areas. Another example is: Employees need to use a secure password on all systems and these credentials must be unique.  
-Security **Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allowinf access to resource in an information system. Another example is authorization that garants or deniesaccess rights to a user, program or process.  
-Security **Service** is the capability that supports one or more of the security requirements, for example key management, access control and authenitication.
+Security **Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protecting the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriate areas. Another example is: Employees need to use a secure password on all systems and these credentials must be unique.  
+Security **Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allowinf access to resource in an information system. Another example is authorization that grants or denies access rights to a user, program or process.  
+Security **Service** is the capability that supports one or more of the security requirements, for example key management, access control and authentication.
 
 # Authentication
 The **user athentication** is the process of verifying a claimed user identity.  
