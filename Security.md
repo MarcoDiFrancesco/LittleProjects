@@ -31,9 +31,9 @@
 
 ![Risk matrix](https://i.imgur.com/Ikvc01f.png)
 
-Security **Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protectiong the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriete areas. Another example is: Employees need to use a secure password on all systems and these credentials must be unique.  
-Security **Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allowinf access to resource in an information system. Another example is authorization that garants or deniesaccess rights to a user, program or process.  
-Security **Service** is the capability that supports one or more of the security requirements, for example key management, access control and authenitication.
+Security **Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protecting the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriate areas. Another example is: Employees need to use a secure password on all systems and these credentials must be unique.  
+Security **Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allowinf access to resource in an information system. Another example is authorization that grants or denies access rights to a user, program or process.  
+Security **Service** is the capability that supports one or more of the security requirements, for example key management, access control and authentication.
 
 # Authentication
 The **user athentication** is the process of verifying a claimed user identity.  
@@ -93,10 +93,10 @@ In the modern era new encryption techniques entered: stream encryption, block en
 ![Symmetric key](https://i.imgur.com/WbNRmM2.png)
 
 Types of symmetric key crypto:
-**Strean ciphers** encrypt sequences of short data blocks under a changing key system, security relies on design on the key stream generator and typical block lenght is 1 bit/byte.  
-**Block ciphers** encrypt sequences of long data blocks without changing the key, it has a typical lenght of 64/128/256/512 bits. A block cipher breaks the message in successive blocks M1, M2, M3, ..., Mn and enciphers each Mi with the same key k. DES (data encryption standard) and AES (advanced encryption standard) are well known examples of block cipher systems.  
+**Stream ciphers** encrypt sequences of short data blocks under a changing key system, security relies on design on the key stream generator and typical block length is 1 bit/byte.  
+**Block ciphers** encrypt sequences of long data blocks without changing the key, it has a typical length of 64/128/256/512 bits. A block cipher breaks the message in successive blocks M1, M2, M3, ..., Mn and enciphers each Mi with the same key k. DES (data encryption standard) and AES (advanced encryption standard) are well-known examples of block cipher systems.  
 
-**DES** employ a 56-bit key that operates on 64-but blocks, is a deterministica algorithm operating on a block cipher. DES has 16 rounds. DES has been craked in 1998 with a large number of Deep-Crack chip, taking less than 3 days to find a 56-bit by searching a total of 17,902,806,669,197,312 keys, calculating an average of 88,000,000,000 keys per second.
+**DES** employ a 56-bit key that operates on 64-but blocks, is a deterministic algorithm operating on a block cipher. DES has 16 rounds. DES has been cracked in 1998 with a large number of Deep-Crack chip, taking less than 3 days to find a 56-bit by searching a total of 17,902,806,669,197,312 keys, calculating an average of 88,000,000,000 keys per second.
 
 **AES** uses keys of 128, 192 and 256 bits.
 
@@ -104,6 +104,27 @@ Types of symmetric key crypto:
 
 ![Asymmetric key](https://i.imgur.com/yEojFdE.png)
 
-The basic idea behind the PKC is that a user has the public key that uses to encrypt a message and another user has a private key that uses to decrypt the message.  
+The basic idea behind the PKC (Public key cryptograpy) is that a user has the public key that uses to encrypt a message and another user has a private key that uses to decrypt the message.  
+The private and public key encryption can also be used for signatures offering the propreties:
+- **Authentication** because the digital signature says a message is created by a known sender
+- **Non-repudiation** because the sender cannot deny having sent the message
+- **Integrity** beacuse message was not altered while transiting
 
-35 of introduction (3)
+The **RSA** (Rivest, Shamir, Adleman) uses a PKC algorithm for key exchange, digital signature and key encryption of small blocks of data. RSA uses a variable size encryption block and a variable size key. Key-pair is deliverd from a very large number, n, that is the product of two prime numvers chosen according to special rules:
+- Primes may be 100 or more digits in lenght
+- An attacker cannot determine the prime factors of n from this information alone and this is what makes the RSA algorithm so secure
+- If a large number is created from two prime factors that are roughly the same size there is no known factorization algorithm that will solve the problem in a seasonable amount of time
+
+A recent **vulnerability of RSA** has been discovered beacuse chips inside identity cards, programmable smartcards, authentication tokens ecc. were using common software libraries in which was possible to compute the private key of a 1024 and 2048 key lenght. This was possible due to a algorithmic vulnerability characterized by a specific structure of the generated RSA prime numbers. So it was possible to crack a 1024 bits key with $76 and 2048 bits for $40.000.
+
+Another algorithm is **DH** (Diffie-Hellman) used for secret-key key exchange only, not authentication or digital signatures. DH uses the principle that the operation `x -> g^x(mod p)` is easy to compute but difficult to reverse.
+
+![DH algorithm key](https://i.imgur.com/bbBTT5l.png)
+
+### How DH works
+
+![DH overview](https://i.imgur.com/535jhl7.png)
+
+A known **vulnerability of DH** is the middle-in-the-man (MITH) attack
+
+![DH MITM attack](https://i.imgur.com/comKAtO.png)
