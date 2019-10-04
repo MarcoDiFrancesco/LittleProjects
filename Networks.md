@@ -63,3 +63,17 @@ The **web** connetion like HTTP are web pages consisting of objects like HTML fi
 The connection in HTTP make a request and receive a response. This connection is manages by the browser. The connection over TCP is initiated creating a socket in the 80 port and communicates over HTTP messages and then it closes the connection. In HTTP the connection does not mantein any information about the previous client requests. The past state must not be maintained and sometimes this might be inconsistent. The HTTP can be non-persistent when it doens't mantein the TCP connection so openening a new request every time it asks for a file or it can be persistent when multple objects can be sent over a single TCP connection.
 
 21 of 03-application
+
+### HTTP request
+**HTTP** handles two types of messages: requests and responses. The request message is encoded in ASCII so it's human readable. Some of the important lines of a **GET request** are: the host, user-agent (the browser name) the acceped language, acceped encoding, acceped charset, acceped time, connection (persistent or non-pesistent). The HTTP requests can also give data using GET and POST mothods.  
+There are two main versions of HTTP: 1.0 has GET, POST and HEAD (which asks the server to leave requested object out of response). The other version is 1.1 which has GEST, POST, HEAD, PUT (uploads file in entity body to path specific in URL field) and DELETE (which deletes file specified in the URL field).  
+A **POST request** has date, server (e.g. Apache), content lenght, keep-alive, connection type (text/html).
+Some of the HTTPS status codes are:
+- 200 OK
+- 301 Moved permanently
+- 400 Bad request
+- 404 Not fould
+- 505 HTTP version not supported
+
+**Cookies** have 4 components:
+- Cookie header line of HTTP
