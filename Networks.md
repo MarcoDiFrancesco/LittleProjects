@@ -42,7 +42,7 @@ The ISPs can be devided in categories:
 
 ### Network architectures
 The **client-server** architecture makes the server always-on host, servers have permanent IP addresses, the clients do not communicate directly with each other.  
-The **P2P** architecture, like torrent, make the end systems communicate directly but the management of the network is complex.  
+The **P2P** architecture, like torrent, make the end systems communicate directly, the con of the P2P architenture is that the management of the network is complex.  
 The communication client-server and P2P is done with **sockets** that works like doors for the communication. Each layer use sockets to communicate with the layer above and below.
 
 ![Socket management](https://i.imgur.com/EtdWsg7.png)
@@ -51,29 +51,73 @@ App-layer **protocols** like HTTP, SMTP allow types of messages to be exchanged 
 The **transport service** of an application can require some needs:
 - **Data integrity** like a downloaded file requires 100% reliable data transfer
 - **Timing** like phone call or gaming requires low latancy, if there is some data lost it's not that big problem
-- **Throughput** like video streaming require large throughput and losing data trading off some data lost
+- **Throughput** like video streaming requires large throughput, losing data in this case is not a big ploblem
 - **Security** like mails require enctyption and data integrity
 
-There are two main internet transport protocol services TCP and UDP.
-**TCP** makes the connection reliable, manage flow and congestion control (making the connection slower in case the network is full) and does not provide any timing, minimum throghput and security.  
-**UDP** establish an unreliable data tranfer service and does not provide any service of the TPC. The UDP protocol is used for fast connection using a easier interface to IP protocol, because just IP protocol itself does not use any port.  
+There are two main internet transport protocol services TCP and UDP.  
+**TCP** makes the connection reliable, manages flow and congestion control (making the connection slower in case the network is full) and does not provide any timing, minimum throghput and security.  
+**UDP** establish an unreliable data tranfer service and does not provide any service of the TPC. The UDP protocol exists beacause it's not possible to use just IP protocol bacause it doesn't use any port.  
 TCP and UDP can be encrypted. **SSL** provides encypted TCP connection, data integrity and end-point authetication.
 
-The **web** connetion like HTTP are web pages consisting of objects like HTML files, JPEG images, audio files.  
-The connection in HTTP make a request and receive a response. This connection is manages by the browser. The connection over TCP is initiated creating a socket in the 80 port and communicates over HTTP messages and then it closes the connection. In HTTP the connection does not mantein any information about the previous client requests. The past state must not be maintained and sometimes this might be inconsistent. The HTTP can be non-persistent when it doens't mantein the TCP connection so openening a new request every time it asks for a file or it can be persistent when multple objects can be sent over a single TCP connection.
+## HTTP
 
-21 of 03-application
+The **web** connetion like HTTP are web pages consisting of objects like HTML files, JPEG images, audio files. The connection in HTTP make a request and receive a response. This connection is manages by the browser. The connection over TCP is initiated creating a socket in the 80 port and communicates over HTTP messages and then it closes the connection. In HTTP the connection is **state-less**, it does not mantain any information about the previous client requests.  
+The HTTP can be **persistent** ot **non-persistent**: it's non-persistent when it doens't mantain the TCP connection, so when openening a new request every time it asks for a file. It's persistent when multple objects can be sent over a single TCP connection.  
 
-### HTTP request
-**HTTP** handles two types of messages: requests and responses. The request message is encoded in ASCII so it's human readable. Some of the important lines of a **GET request** are: the host, user-agent (the browser name) the acceped language, acceped encoding, acceped charset, acceped time, connection (persistent or non-pesistent). The HTTP requests can also give data using GET and POST mothods.  
-There are two main versions of HTTP: 1.0 has GET, POST and HEAD (which asks the server to leave requested object out of response). The other version is 1.1 which has GEST, POST, HEAD, PUT (uploads file in entity body to path specific in URL field) and DELETE (which deletes file specified in the URL field).  
+**HTTP** handles two types of messages: requests and responses. The request message is encoded in ASCII so it's human readable. Some of the important lines of a **GET request** are: the host, user-agent (the browser name) the acceped language, acceped encoding, acceped charset, acceped time, connection (persistent or non-pesistent). The HTTP requests can make requests using GET and POST mothods.  
 A **POST request** has date, server (e.g. Apache), content lenght, keep-alive, connection type (text/html).
-Some of the HTTPS status codes are:
+### Request
+```
+GET /index.html HTTP/1.1\r\n
+Host: www-net.cs.umass.edu\r\n
+User-Agent: Firefox/3.6.10\r\n
+Accept: text/html,application/xhtml+xml\r\n
+Accept-Language: en-us,en;q=0.5\r\n
+Accept-Encoding: gzip,deflate\r\n
+Accept-Charset: ISO-8859-1,utf-8;q=0.7\r\n
+Keep-Alive: 115\r\n
+Connection: keep-alive\r\n
+\r\n
+```
+
+### Response
+```
+HTTP/1.1 200 OK\r\n
+Date: Sun, 26 Sep 2010 20:09:20 GMT\r\n
+Server: Apache/2.0.52 (CentOS)\r\n
+Last-Modified: Tue, 30 Oct 2007 17:00:02 GMT\r\n
+ETag: "17dc6-a5c-bf716880"\r\n
+Accept-Ranges: bytes\r\n
+Content-Length: 2652\r\n
+Keep-Alive: timeout=10, max=100\r\n
+Connection: Keep-Alive\r\n
+Content-Type: text/html; charset=ISO-8859-1\r\n
+\r\n
+data data data data data ...
+```
+
+
+There are two main **versions of HTTP**: 1.0 has GET, POST and HEAD (which asks the server to leave requested object out of response). The other version is 1.1 which has GET, POST, HEAD, PUT (uploads file in entity body to path specific in URL field) and DELETE (which deletes file specified in the URL field).  
+
+Some of the HTTPS response status codes are:
 - 200 OK
 - 301 Moved permanently
 - 400 Bad request
 - 404 Not fould
 - 505 HTTP version not supported
 
-**Cookies** have 4 components:
-- Cookie header line of HTTP
+### Cookies
+
+The are 4 main types of **Cookies**: cookies header line of HTTP response meassage (Susan always access internt from PC), cookie header line in next HTTP request message (she visits specific e-commerce site fo the first time), cookies file kept on a user's host manages by the browser (to give unique ID in a login so that in refres the browser doesn't log out) and beack-end database at Web site (website tracks the user shopping list).
+
+![Cookies](https://i.imgur.com/DZ42h5b.png)
+
+### Proxy server
+**Proxy servers** are used to cache a certain web page. For example if a user in the university (using the university's proxy server) request a static page from a web server the proxy server saves it, so in case another user request it, the proxy server won't reach it another time.  
+Proxy server acts as both client and server, in the server side a preprocessed page can be given to a user if he requests it in short period of times.
+
+In HTTP there is also the **conditional GET**, it doesn't sent object if cache has up-to-date cached version.
+
+![Conditional GET](https://i.imgur.com/f2VcYzK.png)
+
+### Electionic mail
