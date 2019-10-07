@@ -30,7 +30,7 @@ A **conceptual model** is a meaningful rapresentation of the world, described in
 
 **Interpretation** is a function which associates each and any element of the language to one and only one element of the domain.  
 **Entailment** (aka truth-relation or satisfiability) is a relation which associates what is true in a model with a subset of the sentence of the language.  
-Note that a sentence can be an element in a theory if and only id its interpretation is true in the model.
+Note that a sentence can be an element in a theory if and only if its interpretation is true in the model.
 
 ### Logical model
 ![Logical model](https://i.imgur.com/MBvm6Hf.png)
