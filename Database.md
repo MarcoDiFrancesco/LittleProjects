@@ -37,4 +37,4 @@ The **multiplicity od relationships** is the way how entity sets are rappresente
 
 ![Multiplicity of relationships](https://i.imgur.com/Iy5XnDK.png)
 
-The multi-way relationships is not gerally dufficient to express any possibility. So there can be more ways to write a correct schema.
+The multi-way relationships is not gerally sufficient to express any possibility. So there can be more ways to write a correct schema.
