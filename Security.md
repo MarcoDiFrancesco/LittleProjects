@@ -110,7 +110,7 @@ The private and public key encryption can also be used for signatures offering t
 - **Non-repudiation** because the sender cannot deny having sent the message
 - **Integrity** beacuse message was not altered while transiting
 
-The **RSA** (Rivest, Shamir, Adleman) uses a PKC algorithm for key exchange, digital signature and key encryption of small blocks of data. RSA uses a variable size encryption block and a variable size key. Key-pair is deliverd from a very large number, n, that is the product of two prime numvers chosen according to special rules:
+The **RSA** (Rivest, Shamir, Adleman) uses a PKC algorithm for key exchange, digital signature and key encryption of small blocks of data. RSA uses a variable size encryption block and a variable size key. Key-pair is deliverd from a very large number "n" that is the product of two prime numvers chosen according to special rules:
 - Primes may be 100 or more digits in lenght
 - An attacker cannot determine the prime factors of n from this information alone and this is what makes the RSA algorithm so secure
 - If a large number is created from two prime factors that are roughly the same size there is no known factorization algorithm that will solve the problem in a seasonable amount of time

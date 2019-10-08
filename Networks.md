@@ -108,7 +108,7 @@ Some of the HTTPS response status codes are:
 
 ### Cookies
 
-The are 4 main types of **Cookies**: cookies header line of HTTP response meassage (Susan always access internt from PC), cookie header line in next HTTP request message (she visits specific e-commerce site fo the first time), cookies file kept on a user's host manages by the browser (to give unique ID in a login so that in refres the browser doesn't log out) and beack-end database at Web site (website tracks the user shopping list).
+The are 4 main types of **Cookies**: cookies header line of HTTP response meassage (Susan always access internet from PC), cookie header line in next HTTP request message (she visits specific e-commerce site fo the first time), cookies file kept on a user's host manages by the browser (to give unique ID in a login so that in refres the browser doesn't log out) and beack-end database at Web site (website tracks the user shopping list).
 
 ![Cookies](https://i.imgur.com/DZ42h5b.png)
 
