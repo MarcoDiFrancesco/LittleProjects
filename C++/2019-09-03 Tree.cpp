@@ -15,17 +15,22 @@ int main()
   // cerca(tree)
 }
 
-int cercaBST(tree *root) {
-  if(root->dx != NULL) {
+int cercaBST(tree *root)
+{
+  if (root->dx != NULL)
+  {
     cercaBST(root->dx);
-  } else {
+  }
+  else
+  {
     return root->dato;
   }
 }
 
 int maxDato;
-int cercaNonBST(tree *root) {
-  if(root->sx != NULL) {
-    
+int cercaNonBST(tree *root)
+{
+  if (root->sx != NULL)
+  {
   }
 }
