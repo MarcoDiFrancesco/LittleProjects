@@ -21,4 +21,3 @@ Requisiti funzionali:
 # Sequence diagram
 
 ![Relations](https://i.imgur.com/zWEjdYt.png)
-
