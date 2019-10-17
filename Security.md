@@ -129,3 +129,33 @@ A known **vulnerability of DH** is the middle-in-the-man (MITH) attack
 
 ![DH MITM attack](https://i.imgur.com/comKAtO.png)
 
+---
+
+## Blockchain
+A blockchain is a data structure like linked lists. The blocks are connected each other and each block has the hash of the previous block.  
+The block usually have:
+- index
+- time stamp
+- data like description
+- hash
+- hash of the previous block
+
+The blockchain checks the previous blocks. Anyway everyone could just recompure all the hashes and change all the hashes. The blockchains that are available now a days are public using P2P protocol, so if someone want to modify a block, it's easy to check because everyone has a copy of it and can check the transactions. There is consensus alhorithm that check if more than 50% of the nodes says that a node has been modified.  
+The proof of work (pow) algorithm check each transaction use a lot of prower and are power consuming.  
+
+TBD 10 to 13
+
+In bitcoin there is the smart contract that are pieces of code that are given to the people that certifies the transactions. There have been bugs exploited, in bitcoins an hacker took 184 billion bitcoins and ethereum 541.000 eth.
+In bitcoin there are public and private keys. There is a problem in bitcoin beacuse if a person tries to send 2 or more bitcoin to 2 or more people.
+
+![bitcoin double spending](https://i.imgur.com/VWkEAso.png)
+
+In bitcoin this is solved beacause each person keeps track of the others transaction. 
+
+![bitcoin double spending fix](https://i.imgur.com/9iJbsO6.png)
+
+TBD diffie coso key exchange up to 34
+
+Byzantine generals problem is 
+
+Proof of work is an algorithm that rewards the person that confirms the transaction of the block.

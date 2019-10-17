@@ -16,6 +16,7 @@ int main() {
   for(int i = 0; i < n; i++) {
     in >> a[i];
   }
+  cout << sizeof(a[0]) << "-" << sizeof(a) / sizeof(a[0]) << endl;
   print(a, n);
   mergeSort(a, 0, n-1);
   // print(a, n);
