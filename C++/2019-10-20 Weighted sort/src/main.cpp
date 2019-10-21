@@ -6,19 +6,26 @@ using namespace std;
 void printArray(int *, int);
 void switchCost(int *, int);
 void switchCumulatedCost(int *, int);
+void switchCumulatedCostToOne(int *, int);
 void writeOutput(int);
 
 int main() {
   ifstream in("input.txt");
   int nElem;
   in >> nElem;
-  int numbers[nElem];
+  int numbers1[nElem];
+  int numbers2[nElem];
+  int temp;
   for(int i = 0; i < nElem; i++) {
-    in >> numbers[i];
+    in >> temp;
+    numbers1[i] = temp;
+    numbers2[i] = temp;
   }
-  switchCost(numbers, nElem);
-  switchCumulatedCost(numbers, nElem);
-//  printArray(numbers, nElem);
+  in.close();
+
+  switchCost(numbers1, nElem);
+  // switchCumulatedCost(numbers2, nElem);
+  switchCumulatedCost(numbers2, nElem);
 }
 
 void printArray(int *numbers, int nElem) {
@@ -47,23 +54,46 @@ void switchCost(int *numbers, int nElem) {
       w++;
     } while(found != true);
   }
-  writeOutput(cost);
+
+  ofstream out("output.txt", ios::out | ios::trunc);
+  out << cost << " ";
+  out.close();
 }
 
 void switchCumulatedCost(int *numbers, int nElem) {
   int cost = 0;
-  for(int i = nElem; i > 0; i--) {
+  printArray(numbers, nElem);
+  for(int i = 0; i < nElem; i++) {
     bool found = false;
-    int w = i;
-    do {
-      
-      w--;
-    } while(w != numbers[w-1]);
+    while(numbers[i] != i + 1) { // If number are not in correct position
+      int getElem = numbers[i];
+      int temp = numbers[getElem - 1];
+      numbers[getElem - 1] = getElem;
+      numbers[i] = temp;
+      cost = cost + i + 1 + getElem;
+      cout << "CC" << cost << " C" << i + 1 + getElem << " S" << i+1 << " E" << getElem << endl;
+      printArray(numbers, nElem);
+    }
   }
-  writeOutput(cost);
+  // need to exchange the 1
+  ofstream out("output.txt", ios::app);
+  out << cost;
+  out.close();
 }
 
-void writeOutput(int cost) {
-  ofstream out("output.txt");
-  out << cost << " ";
+void switchCumulatedCostToOne(int *numbers, int nElem) {
+  int cost = 0;
+  printArray(numbers, nElem);
+  for(int i = 0; i < nElem; i++) {
+    bool found = false;
+    int end = nElem;
+    while(numbers[i] != end) { // If number are not in correct position
+      i++;
+    }
+    
+  }
+  // need to exchange the 1
+  ofstream out("output.txt", ios::app);
+  out << cost;
+  out.close();
 }
