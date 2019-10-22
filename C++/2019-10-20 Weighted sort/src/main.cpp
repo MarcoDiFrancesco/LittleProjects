@@ -1,41 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
+#include <map>
 using namespace std;
 
-void printArray(int *, int);
-void switchCost(int *, int);
-void switchCumulatedCost(int *, int);
-void switchCumulatedCostToOne(int *, int);
-void writeOutput(int);
-
-int main() {
-  ifstream in("input.txt");
-  int nElem;
-  in >> nElem;
-  int numbers1[nElem];
-  int numbers2[nElem];
-  int temp;
-  for(int i = 0; i < nElem; i++) {
-    in >> temp;
-    numbers1[i] = temp;
-    numbers2[i] = temp;
-  }
-  in.close();
-
-  switchCost(numbers1, nElem);
-  // switchCumulatedCost(numbers2, nElem);
-  switchCumulatedCost(numbers2, nElem);
-}
-
-void printArray(int *numbers, int nElem) {
-  for(int i = 0; i < nElem; i++) {
-    cout << numbers[i] << " ";
-  }
-  cout << endl;
-}
-
-void switchCost(int *numbers, int nElem) {
+int switchSingleCost(int *numbers, int nElem) {
   int cost = 0;
   for(int i = 1; i < nElem + 1; i++) {
     // printArray(numbers, nElem);
@@ -54,46 +23,59 @@ void switchCost(int *numbers, int nElem) {
       w++;
     } while(found != true);
   }
-
-  ofstream out("output.txt", ios::out | ios::trunc);
-  out << cost << " ";
-  out.close();
+  return cost;
 }
 
-void switchCumulatedCost(int *numbers, int nElem) {
+int switchValueCost(int *numbers) {
   int cost = 0;
-  printArray(numbers, nElem);
-  for(int i = 0; i < nElem; i++) {
-    bool found = false;
-    while(numbers[i] != i + 1) { // If number are not in correct position
-      int getElem = numbers[i];
-      int temp = numbers[getElem - 1];
-      numbers[getElem - 1] = getElem;
-      numbers[i] = temp;
-      cost = cost + i + 1 + getElem;
-      cout << "CC" << cost << " C" << i + 1 + getElem << " S" << i+1 << " E" << getElem << endl;
-      printArray(numbers, nElem);
-    }
-  }
-  // need to exchange the 1
-  ofstream out("output.txt", ios::app);
-  out << cost;
-  out.close();
+  printArray(numbers);
+
+  // get first non-ordered element
+  // get index of it
+  // exchange it with the corresponding index
+  // if same match
+  // call recursivly the function
+  cout << getIndex(numbers, 1) << " ";
+  cout << getValue(numbers, 4) << " ";
+
+  return cost;
 }
 
-void switchCumulatedCostToOne(int *numbers, int nElem) {
-  int cost = 0;
-  printArray(numbers, nElem);
+void printArray(int *numbers, int nElem) {
   for(int i = 0; i < nElem; i++) {
-    bool found = false;
-    int end = nElem;
-    while(numbers[i] != end) { // If number are not in correct position
-      i++;
-    }
-    
+    cout << numbers[i] << " ";
   }
-  // need to exchange the 1
-  ofstream out("output.txt", ios::app);
-  out << cost;
-  out.close();
+  cout << endl;
+}
+
+
+int getIndex(int *numbers, int value) {
+  bool check = false;
+  int i = 0;
+  int index;
+  do {
+    if(numbers[i] == value) {
+      check = true;
+      index = i;
+    }
+    i++;
+  } while(check == false);
+  return index;
+}
+
+int main() {
+  ifstream in("input.txt");
+  int nElem;
+  in >> nElem;
+  int numbers1[nElem];
+  int numbers2[nElem];
+  int temp;
+  for(int i = 0; i < nElem; i++) {
+    in >> temp;
+    numbers1[i] = temp;
+    numbers2[i] = temp;
+  }
+  in.close();
+  int singleCost = switchSingleCost(numbers1, nElem);
+  int valueCost = switchValueCost(numbers2, nElem);
 }
