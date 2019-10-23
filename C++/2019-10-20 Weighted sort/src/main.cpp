@@ -4,6 +4,27 @@
 #include <map>
 using namespace std;
 
+void printArray(int *numbers, int nElem) {
+  for(int i = 0; i < nElem; i++) {
+    cout << numbers[i] << " ";
+  }
+  cout << endl;
+}
+
+int getIndex(int *numbers, int value) {
+  bool check = false;
+  int i = 0;
+  int index;
+  do {
+    if(numbers[i] == value) {
+      check = true;
+      index = i;
+    }
+    i++;
+  } while(check == false);
+  return index;
+}
+
 int switchSingleCost(int *numbers, int nElem) {
   int cost = 0;
   for(int i = 1; i < nElem + 1; i++) {
@@ -26,9 +47,9 @@ int switchSingleCost(int *numbers, int nElem) {
   return cost;
 }
 
-int switchValueCost(int *numbers) {
+int switchValueCost(int *numbers, int nElem) {
   int cost = 0;
-  printArray(numbers);
+  printArray(numbers, nElem);
 
   // get first non-ordered element
   // get index of it
@@ -36,37 +57,15 @@ int switchValueCost(int *numbers) {
   // if same match
   // call recursivly the function
   cout << getIndex(numbers, 1) << " ";
-  cout << getValue(numbers, 4) << " ";
 
   return cost;
-}
-
-void printArray(int *numbers, int nElem) {
-  for(int i = 0; i < nElem; i++) {
-    cout << numbers[i] << " ";
-  }
-  cout << endl;
-}
-
-
-int getIndex(int *numbers, int value) {
-  bool check = false;
-  int i = 0;
-  int index;
-  do {
-    if(numbers[i] == value) {
-      check = true;
-      index = i;
-    }
-    i++;
-  } while(check == false);
-  return index;
 }
 
 int main() {
   ifstream in("input.txt");
   int nElem;
   in >> nElem;
+  // unordered_map<int, int> numbersMap;
   int numbers1[nElem];
   int numbers2[nElem];
   int temp;
