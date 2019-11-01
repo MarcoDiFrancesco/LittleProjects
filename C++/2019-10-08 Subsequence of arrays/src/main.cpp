@@ -28,7 +28,6 @@ int main()
     }
   }
 
-
   cout << sumMax << "\n";
 
   ofstream out;

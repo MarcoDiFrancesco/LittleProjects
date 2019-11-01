@@ -10,6 +10,8 @@ int main() {
   in >> nRows;
   in >> nCols;
   int matrix[nRows][nCols];
+  int matrixV[nRows][nCols]; // Vertical
+  int matrixH[nRows][nCols]; // Horizontal
 
   // Input matrix
   for(int i = 0; i < nRows; i++) {
@@ -17,6 +19,44 @@ int main() {
       in >> matrix[i][w];
     }
   }
+
+  // Vertical sum
+  for(int i = 0; i < nRows; i++) {
+    for(int w = 0; w < nCols; w++) {
+      if(i == 0) {
+        matrixV[i][w] = matrix[i][w];
+      } else {
+        matrixV[i][w] += matrixV[i-1][w];
+      }
+    }
+  }
+
+  // Print default matrix
+  for(int i = 0; i < nRows; i++) {
+    for(int w = 0; w < nCols; w++) {
+      cout << matrix[i][w] << "\t";
+    }
+    cout << endl;
+  }
+  cout << endl << "----";
+
+  // Print vertical matrix
+  for(int i = 0; i < nRows; i++) {
+    for(int w = 0; w < nCols; w++) {
+      cout << matrixV[i][w] << "\t";
+    }
+    cout << endl;
+  }
+  cout << endl << "----";
+
+  // Print horizontal matrix
+  for(int i = 0; i < nRows; i++) {
+    for(int w = 0; w < nCols; w++) {
+      cout << matrixV[i][w] << "\t";
+    }
+    cout << endl;
+  }
+  cout << endl << "----";
 
   int sum = 0, sumMax = 0;
   for(int i = 0; i < nRows; i++) {
@@ -32,16 +72,8 @@ int main() {
       sum = 0;
     }
   }
-
-  // Print
-  for(int i = 0; i < nRows; i++) {
-    for(int w = 0; w < nCols; w++) {
-      cout << matrix[i][w] << "\t";
-    }
-    cout << endl;
-  }
-  cout << endl;
   cout << sumMax;
+
   ofstream out;
   out.open("output.txt");
   out << sumMax;
