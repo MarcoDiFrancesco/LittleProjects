@@ -12,6 +12,7 @@ int main() {
   int matrix[nRows][nCols];
   int matrixV[nRows][nCols]; // Vertical
   int matrixH[nRows][nCols]; // Horizontal
+  int max = INT32_MIN;
 
   // Input matrix
   for(int i = 0; i < nRows; i++) {
@@ -26,7 +27,18 @@ int main() {
       if(i == 0) {
         matrixV[i][w] = matrix[i][w];
       } else {
-        matrixV[i][w] += matrixV[i-1][w];
+        matrixV[i][w] = matrix[i][w] + matrixV[i-1][w];
+      }
+    }
+  }
+
+  // Horizontal sum
+  for(int i = 0; i < nRows; i++) {
+    for(int w = 0; w < nCols; w++) {
+      if(w == 0) {
+        matrixH[i][w] = matrix[i][w];
+      } else {
+        matrixH[i][w] = matrix[i][w] + matrixH[i][w-1];
       }
     }
   }
@@ -38,43 +50,31 @@ int main() {
     }
     cout << endl;
   }
-  cout << endl << "----";
+  cout << "------------------ Vertical" << endl;
 
-  // Print vertical matrix
+  // Print and check vertical matrix
   for(int i = 0; i < nRows; i++) {
     for(int w = 0; w < nCols; w++) {
       cout << matrixV[i][w] << "\t";
-    }
-    cout << endl;
-  }
-  cout << endl << "----";
-
-  // Print horizontal matrix
-  for(int i = 0; i < nRows; i++) {
-    for(int w = 0; w < nCols; w++) {
-      cout << matrixV[i][w] << "\t";
-    }
-    cout << endl;
-  }
-  cout << endl << "----";
-
-  int sum = 0, sumMax = 0;
-  for(int i = 0; i < nRows; i++) {
-    for(int w = 0; w < nCols; w++) {
-      for(int y = i; y < nRows; y++) {
-        for(int z = w; z < nCols; z++) {
-          sum += matrix[y][z];
-          if(sum > sumMax) {
-            sumMax = sum;
-          }
-        }
+      if(matrixV[i][w] > max) {
+        max = matrixV[i][w];
       }
-      sum = 0;
     }
+    cout << endl;
   }
-  cout << sumMax;
+  cout << "------------------ Horizontal" << endl;
 
+  // Print and check horizontal matrix
+  for(int i = 0; i < nRows; i++) {
+    for(int w = 0; w < nCols; w++) {
+      cout << matrixH[i][w] << "\t";
+    }
+    cout << endl;
+  }
+  cout << "------------------" << endl;
+
+  cout << max;
   ofstream out;
   out.open("output.txt");
-  out << sumMax;
+  out << max;
 }
