@@ -54,7 +54,7 @@ int main() {
 
   // Print and check vertical matrix
   for(int i = 0; i < nRows; i++) {
-    for(int w = 0; w < nCols; w++) {
+    for(int w = i; w < nCols; w++) {
       cout << matrixV[i][w] << "\t";
       if(matrixV[i][w] > max) {
         max = matrixV[i][w];
@@ -66,7 +66,7 @@ int main() {
 
   // Print and check horizontal matrix
   for(int i = 0; i < nRows; i++) {
-    for(int w = 0; w < nCols; w++) {
+    for(int w = i; w < nCols; w++) {
       cout << matrixH[i][w] << "\t";
     }
     cout << endl;
