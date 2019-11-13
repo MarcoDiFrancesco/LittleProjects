@@ -35,11 +35,10 @@ void showList(list<int> _list) {
 
 int main(){
   ifstream in("input.txt");
-  int N, M, S;
+  int N, M;
   // N number of nodes
   // M number of arches
-  // S starting node
-  in >> N >> M >> S;
+  in >> N >> M;
   graph.resize(N);
 
   for(int j=0; j<M; j++) {
