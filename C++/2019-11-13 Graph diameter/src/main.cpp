@@ -10,11 +10,12 @@ struct node {
 };
 
 vector<node> graph;
-list<int> connected;
+int maxDiameter = 0;
 
-void checkFriend(int node) {
+void checkDiameter(int node, int diameter) {
   if(graph[node].visited == false) {
     graph[node].visited = true; // Check as visited
+    // 
     connected.push_back(node);
     for(int i:graph[node].connections) {
       checkFriend(i);
@@ -22,15 +23,9 @@ void checkFriend(int node) {
   }
 }
 
-void showList(list<int> _list) {
-  list<int> :: iterator i;
-  int countNodes = 0;
-  for(i = _list.begin(); i != _list.end(); ++i) {
-    cout << *i << "\t";
-    countNodes++;
-  }
+void writeOutput(int _output) {
   ofstream outFile("output.txt");
-  outFile << countNodes;
+  outFile << _output;
 }
 
 int main(){
@@ -45,10 +40,13 @@ int main(){
     int from, to;
     in >> from >> to;
     graph[from].connections.push_back(to);
+    graph[to].connections.push_back(from);
   }
 
-  checkFriend(S);
-  showList(connected);
+  for(int i = 0; i < N; i++) {
+    checkDiameter(i, 0);
+  }
+  writeOutput(maxDiameter);
 /*
   for(int i=0; i<N; i++) {
     cout << "Nodo " << i << " ha " << grafo[i].friends.size() <<" vicini" << endl;
