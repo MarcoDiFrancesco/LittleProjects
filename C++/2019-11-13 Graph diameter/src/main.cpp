@@ -12,15 +12,19 @@ struct node {
 vector<node> graph;
 int maxDiameter = 0;
 
-void checkDiameter(int node, int diameter) {
-  if(graph[node].visited == false) {
-    graph[node].visited = true; // Check as visited
-    // 
-    connected.push_back(node);
-    for(int i:graph[node].connections) {
-      checkFriend(i);
+void checkDiameter(vector<node> _graph, int node, int diameter) {
+  if(_graph[node].visited == false) {
+    cout << "Node " << node << " diameter " << diameter << endl;
+    _graph[node].visited = true; // Check as visited
+    if(maxDiameter < diameter) {
+      maxDiameter = diameter;
+    }
+    diameter++;
+    for(int i:_graph[node].connections) {
+      checkDiameter(_graph, i, diameter);
     }
   }
+  cout << "-" << node << " ";
 }
 
 void writeOutput(int _output) {
@@ -44,7 +48,7 @@ int main(){
   }
 
   for(int i = 0; i < N; i++) {
-    checkDiameter(i, 0);
+    checkDiameter(graph, i, 0);
   }
   writeOutput(maxDiameter);
 /*
