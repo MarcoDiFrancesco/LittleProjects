@@ -6,25 +6,28 @@ using namespace std;
 
 struct node {
   vector<int> connections;
+  int distance;
   bool visited;
 };
 
 vector<node> graph;
-int maxDiameter = 0;
+int maxDistance = 0;
 
-void checkDiameter(vector<node> _graph, int node, int diameter) {
-  if(_graph[node].visited == false) {
-    cout << "Node " << node << " diameter " << diameter << endl;
-    _graph[node].visited = true; // Check as visited
-    if(maxDiameter < diameter) {
-      maxDiameter = diameter;
-    }
-    diameter++;
+void checkDistance(vector<node> _graph, int node, int distance) {
+  cout << "Node " << node << " distance " << distance << endl;
+  if(_graph[node].visited == false) { // If not visited
+    _graph[node].visited = true;
+    _graph[node].distance = distance;
     for(int i:_graph[node].connections) {
-      checkDiameter(_graph, i, diameter);
+      distance++;
+      checkDistance(_graph, i, distance);
+    }
+  } else { // If already visited
+    if(_graph[node].distance > distance){
+      // Check if node distance is smaller than current distance
+      _graph[node].distance = distance;
     }
   }
-  cout << "-" << node << " ";
 }
 
 void writeOutput(int _output) {
@@ -48,9 +51,11 @@ int main(){
   }
 
   for(int i = 0; i < N; i++) {
-    checkDiameter(graph, i, 0);
+    checkDistance(graph, i, 0);
   }
-  writeOutput(maxDiameter);
+
+  
+  writeOutput(maxDistance);
 /*
   for(int i=0; i<N; i++) {
     cout << "Nodo " << i << " ha " << grafo[i].friends.size() <<" vicini" << endl;
