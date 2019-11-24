@@ -4,4 +4,4 @@ WHERE name IN (
 	SELECT beer
     FROM "Likes"
     WHERE drinker = 'Fred'
-)
+);

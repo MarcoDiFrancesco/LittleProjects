@@ -5,4 +5,4 @@ WHERE
 AND
 	"Sells".beer = "Likes".beer
 AND
-	"Frequents".bar = "Sells".bar
+	"Frequents".bar = "Sells".bar;

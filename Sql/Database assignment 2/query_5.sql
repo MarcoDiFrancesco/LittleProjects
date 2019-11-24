@@ -4,4 +4,4 @@ WHERE price >= ALL
 (
     SELECT price
     FROM "Sells"
-)
+);

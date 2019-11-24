@@ -1,3 +1,3 @@
 SELECT name
 FROM "Beers"
-WHERE manf = 'Anheuser-Busch'
+WHERE manf = 'Anheuser-Busch';

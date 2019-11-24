@@ -7,4 +7,4 @@ WHERE NOT EXISTS (
 		beers2.manf = beers1.manf
 	AND
 		beers2.name <> beers1.name
-)
+);

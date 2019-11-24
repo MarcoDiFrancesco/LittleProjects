@@ -3,4 +3,4 @@ FROM "Sells", "Likes"
 WHERE
   "Sells".beer = "Likes".beer
 AND
-  "Likes".drinker = 'Joe'
+  "Likes".drinker = 'Joe';

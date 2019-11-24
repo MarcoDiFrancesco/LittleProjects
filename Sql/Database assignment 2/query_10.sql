@@ -13,4 +13,4 @@ NOT IN (
 		AND
 			"Sells".beer = "Likes".beer
 	)
-)
+);
