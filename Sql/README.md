@@ -43,6 +43,45 @@ The multi-way relationships is not gerally sufficient to express any possibility
 La normalizzazione conclude un database.
 La chiave candidata é un insieme di uno o più attributi che possono diventare chiave primaria, ogni chiave candidata individua in maniera univoca ogni record della mia tabella, e determinano ogni attributo. La chiave primaria è la più piccola tra le chiave candidate. La dipendenza funzionale quando il valore di un insieme degli attributi A determina un singolo valore degli attributi di B. Dipendenza transitiva quando A determina B e B determina C, quindi A determina transitivamente C.
 
+---
+
+![Operators relational algebra](https://i.imgur.com/h8yn9M0.png)
+
+![Projection](https://i.imgur.com/iSYWFNY.png)
+
+![Selection](https://i.imgur.com/uT7MIbz.png)
+
+![Union](https://i.imgur.com/EETC0W5.png)
+
+![Cross-product](https://i.imgur.com/1WEw3Wr.png)
+
+![Joins](https://i.imgur.com/tl1D0GF.png)
+
+![Joins2](https://i.imgur.com/xxWxNHp.png)
+
+![Division](https://i.imgur.com/s3V5qO6.png)
+
+![Division example](https://i.imgur.com/4KFPGhB.png)
+
+![Division 2](https://i.imgur.com/42OYwJ6.png)
+
+![Projection]()
+
+![Projection]()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Comandi SQL
 Seleziona la tabella nomi con almeno 6 lettere
 ```
@@ -413,3 +452,4 @@ gare.descrizione='100m piani'AND
 gareatleti.posizione>=3)
 GROUP BY atleti.nazione
 ```
+
