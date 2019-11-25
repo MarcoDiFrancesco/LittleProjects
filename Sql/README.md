@@ -39,11 +39,13 @@ The **multiplicity od relationships** is the way how entity sets are rappresente
 
 The multi-way relationships is not gerally sufficient to express any possibility. So there can be more ways to write a correct schema.
 
-# Normalizzazione relazionale
+## Normalizzazione relazionale
 La normalizzazione conclude un database.
 La chiave candidata é un insieme di uno o più attributi che possono diventare chiave primaria, ogni chiave candidata individua in maniera univoca ogni record della mia tabella, e determinano ogni attributo. La chiave primaria è la più piccola tra le chiave candidate. La dipendenza funzionale quando il valore di un insieme degli attributi A determina un singolo valore degli attributi di B. Dipendenza transitiva quando A determina B e B determina C, quindi A determina transitivamente C.
 
 ---
+
+# Reletional algebra
 
 ![Operators relational algebra](https://i.imgur.com/h8yn9M0.png)
 
@@ -65,22 +67,7 @@ La chiave candidata é un insieme di uno o più attributi che possono diventare 
 
 ![Division 2](https://i.imgur.com/42OYwJ6.png)
 
-![Projection]()
-
-![Projection]()
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 ### Comandi SQL
 Seleziona la tabella nomi con almeno 6 lettere
