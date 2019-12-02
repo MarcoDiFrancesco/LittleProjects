@@ -7,6 +7,7 @@
 
 import psycopg2
 from time import time_ns
+import sys
 
 def main():
   conn = psycopg2.connect(dbname="db", user="marco")
@@ -27,19 +28,19 @@ def solve(cursor, conn):
   print("Step 3 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task4(cursor, conn)
+#  task4(cursor, conn)
   print("Step 4 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task5(cursor, conn)
+#  task5(cursor, conn)
   print("Step 5 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task6(cursor, conn)
+#  task6(cursor, conn)
   print("Step 6 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task7(cursor, conn)
+#  task7(cursor, conn)
   print("Step 7 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
@@ -62,51 +63,149 @@ def task1(cursor, conn):
 
 def task2(cursor, conn):
   cursor.execute(
-    'CREATE TABLE "Professor"(id integer NOT NULL PRIMARY KEY,' +
-    'name VARCHAR(50) NOT NULL,' +
-    'address VARCHAR(50) NOT NULL,' +
-    'age INTEGER NOT NULL,' +
-    'height FLOAT NOT NULL);'
+    '''
+    CREATE TABLE "Professor" (
+      id integer NOT NULL PRIMARY KEY,
+      name VARCHAR(50) NOT NULL,
+      address VARCHAR(50) NOT NULL,
+      age INTEGER NOT NULL,
+      height FLOAT NOT NULL
+    );
+    '''
   )
   cursor.execute(
-    'CREATE TABLE "Course"(' + 
-    'cid integer NOT NULL PRIMARY KEY,' +
-    'title VARCHAR(50) NOT NULL,' +
-    'area VARCHAR(30) NOT NULL,' +
-    'instructor INTEGER NOT NULL,' +
-    'FOREIGN KEY(instructor) REFERENCES "Professor"(id));'
+    '''
+    CREATE TABLE "Course"(
+      cid integer NOT NULL PRIMARY KEY,
+      title VARCHAR(50) NOT NULL,
+      area VARCHAR(30) NOT NULL,
+      instructor INTEGER NOT NULL,
+      FOREIGN KEY(instructor) REFERENCES "Professor"(id)
+    );
+    '''
   )
   conn.commit()
 
 def task3(cursor, conn):
   # Height between 184 and 100
-  for i in range(1,1000): # Needs to be 999999
-    cursor.execute(
-      'INSERT INTO "Professor" (id, name, address, age, height)' + 
-      'VALUES (' + str(i) + ', \'Professor name\', \'Professor address\', 40, (SELECT RANDOM()*(184-100+1)+100)' + 
-      ');'
-    )
   cursor.execute(
-    'INSERT INTO "Professor" (id, name, address, age, height)' +
-    'VALUES (\'1000000\', \'Professor name\', \'Professor address\', 40, 185);'
+    '''
+    DO
+    $do$
+    BEGIN 
+      FOR i IN 1..999999 LOOP
+        INSERT INTO "Professor" (
+          id,
+          name,
+          address,
+          age,
+          height
+        ) VALUES (
+          i,
+          (SELECT array_to_string(array(select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',((random()*(36-1)+1)::integer),1) from generate_series(1,50)),'')array_to_string ),
+          'Professor address',
+          (SELECT FLOOR(RANDOM()*(80-30+1)+30)),
+          (SELECT RANDOM()*(184-100+1)+184)
+        );
+      END LOOP;
+    END
+    $do$;
+    '''
+  )
+  '''
+  for i in range(1,1000): # From 1 to 1,000,000
+    cursor.execute(
+      
+      
+      INSERT INTO "Professor" (
+        id,
+        name,
+        address,
+        age,
+        height
+      ) VALUES (
+        
+        
+         + str(i) + 
+        
+        ,
+        'Professor name',
+        'Professor address',
+        40,
+        (SELECT RANDOM()*(184-100+1)+100)
+      );
+      
+      
+    )
+  '''
+  cursor.execute(
+    '''
+    INSERT INTO "Professor" (
+      id,
+      name,
+      address,
+      age,
+      height
+    ) VALUES (
+      '1000000', 
+      'Professor name',
+      'Professor address',
+      40,
+      185
+    );
+    '''
   )
   conn.commit()
 
+
+
 def task4(cursor, conn):
-  for i in range(1,1000): # Needs to be 1,000,000
-    cursor.execute(
-      'INSERT INTO "Course" (cid, title, area, instructor)' +
-      'VALUES (' + str(i) + ', \'Course title\', \'Course area\', (SELECT FLOOR(RANDOM()*(1000-1)+1)));'
+  for i in range(1,1000): # From 1 to 1,000,000
+    cursor.execute('''
+      INSERT INTO "Course" (
+        cid,
+        title,
+        area,
+        instructor
+      ) VALUES (
+        ''' + str(i) + ''' ,
+        'Course title',
+        'Course area',
+        (SELECT FLOOR(RANDOM()*(1000-1)+1))
+      );'''
     )
+  conn.commit()
 
 def task5(cursor, conn):
-  a = 0
+  cursor.execute(
+    'SELECT id FROM "Professor";'
+  )
+  conn.commit()
+  idList = cursor.fetchall() # Fetch professor IDs
+  idString = ''.join(str(element) for element in idList) # List to string
+  # sys.stderr.write(idString)
 
 def task6(cursor, conn):
-  a = 0
-
+  cursor.execute(
+    '''
+    UPDATE "Professor"
+    SET height=200
+    WHERE height=185;
+    '''
+  )
+  conn.commit()
 def task7(cursor, conn):
-  a = 0
+  cursor.execute(
+    '''
+    SELECT id, address
+    FROM "Professor" 
+    WHERE height=200;
+    '''
+  )
+  conn.commit()
+  idList = cursor.fetchall() # Fetch professor IDs
+  idString = ''.join(str(element) for element in idList) # List to string
+  sys.stderr.write(idString)
 
 def task8(cursor, conn):
   a = 0
