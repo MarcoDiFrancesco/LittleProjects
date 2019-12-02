@@ -8,6 +8,8 @@
 import psycopg2
 from time import time_ns
 import sys
+import random
+import string
 
 def main():
   conn = psycopg2.connect(dbname="db", user="marco")
@@ -29,19 +31,19 @@ def solve(cursor):
   print("Step 3 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-#  task4(cursor)
+  task4(cursor)
   print("Step 4 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-#  task5(cursor)
+  task5(cursor)
   print("Step 5 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-#  task6(cursor)
+  task6(cursor)
   print("Step 6 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-#  task7(cursor)
+  task7(cursor)
   print("Step 7 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
@@ -56,11 +58,21 @@ def solve(cursor):
   task10(cursor)
   print("Step 10 needs " + str(time_ns() - startTime) + " ns")
 
+  startTime = time_ns()
+  task11(cursor)
+  print("Step 11 needs " + str(time_ns() - startTime) + " ns")
+
+def stringLow(lenght):
+  letters = string.ascii_lowercase
+  return ''.join(random.choice(letters) for i in range(lenght))
+
+def stringUp(lenght):
+  letters = string.ascii_uppercase
+  return ''.join(random.choice(letters) for i in range(lenght))
 
 def task1(cursor):
   cursor.execute('DROP TABLE IF EXISTS "Course";')
   cursor.execute('DROP TABLE IF EXISTS "Professor";')
-  # conn.commit()
 
 def task2(cursor):
   cursor.execute(
@@ -85,39 +97,17 @@ def task2(cursor):
     );
     '''
   )
-  # conn.commit()
 
 def task3(cursor):
-  # Height between 184 and 100
-  cursor.execute(
-    '''
-    DO
-    $do$
-    BEGIN 
-      FOR i IN 1..999999 LOOP
-        INSERT INTO "Professor" (
-          id,
-          name,
-          address,
-          age,
-          height
-        ) VALUES (
-          i,
-          'Id',
-          'Professor address',
-          10,
-          30
-        );
-      END LOOP;
-    END
-    $do$;
-    '''
-  )
-  '''
-  for i in range(1,1000): # From 1 to 1,000,000
+  idList = [i for i in range(1,1000000)]
+  random.shuffle(idList)
+  for i in range(1, len(idList)): # From 1 to 1,000,000
+    # Name has two words cammel case
+    # Address has one word cammel case and a number
+    # Age from 30 to 90
+    # Height from 150 cm to 180 cm
     cursor.execute(
-      
-      
+      '''
       INSERT INTO "Professor" (
         id,
         name,
@@ -125,20 +115,15 @@ def task3(cursor):
         age,
         height
       ) VALUES (
-        
-        
-         + str(i) + 
-        
-        ,
-        'Professor name',
-        'Professor address',
-        40,
-        (SELECT RANDOM()*(184-100+1)+100)
+        ''' + str(idList.pop()) + ''',
+        ' ''' + stringUp(1) + stringLow(random.randint(5,9)) + ' ' + stringUp(1) + stringLow(random.randint(5,9)) + ''' ',
+        ' ''' + stringUp(1) + stringLow(random.randint(6,8)) + ', ' + str(random.randint(1,9)) + ''' ',
+        ''' + str(random.randint(30,90)) + ''',
+        ''' + str(random.random()*(180-150+1)+150) + '''
       );
-      
-      
+      '''
     )
-  '''
+  # Last professor 185 cm tall
   cursor.execute(
     '''
     INSERT INTO "Professor" (
@@ -148,42 +133,42 @@ def task3(cursor):
       age,
       height
     ) VALUES (
-      '1000000', 
-      'Professor name',
-      'Professor address',
-      40,
+      ''' + str(idList.pop()) + ''',
+      ' ''' + stringUp(1) + stringLow(random.randint(5,9)) + ' ' + stringUp(1) + stringLow(random.randint(5,9)) + ''' ',
+      ' ''' + stringUp(1) + stringLow(random.randint(6,8)) + ', ' + str(random.randint(1,9)) + ''' ',
+      ''' + str(random.randint(30,90)) + ''',
       185
     );
     '''
   )
-  # conn.commit()
-
 
 def task4(cursor):
-  for i in range(1,1000): # From 1 to 1,000,000
-    cursor.execute('''
+  idList = [i for i in range(1,1000000)]
+  random.shuffle(idList)
+  for i in range(1, len(idList)): # From 1 to 1,000,000
+    cursor.execute(
+      '''
       INSERT INTO "Course" (
         cid,
         title,
         area,
         instructor
       ) VALUES (
-        ''' + str(i) + ''' ,
-        'Course title',
-        'Course area',
-        (SELECT FLOOR(RANDOM()*(1000-1)+1))
-      );'''
+        ''' + str(idList.pop()) + ''',
+        ' ''' + stringUp(1) + stringLow(random.randint(7,12)) + ''' ',
+        ' ''' + stringUp(1) + stringLow(random.randint(4,8)) + ''' ',
+        ' ''' + str(random.randint(1,len(idList))) + ''' '
+      );
+      '''
     )
-  # conn.commit()
 
 def task5(cursor):
   cursor.execute(
     'SELECT id FROM "Professor";'
   )
-  # conn.commit()
   idList = cursor.fetchall() # Fetch professor IDs
-  idString = ''.join(str(element) for element in idList) # List to string
-  # sys.stderr.write(idString)
+  for element in idList:
+    print(element, file=sys.stderr)
 
 def task6(cursor):
   cursor.execute(
@@ -193,7 +178,7 @@ def task6(cursor):
     WHERE height=185;
     '''
   )
-  # conn.commit()
+
 def task7(cursor):
   cursor.execute(
     '''
@@ -202,19 +187,47 @@ def task7(cursor):
     WHERE height=200;
     '''
   )
-  # conn.commit()
   idList = cursor.fetchall() # Fetch professor IDs
-  idString = ''.join(str(element) for element in idList) # List to string
-  sys.stderr.write(idString)
+  for element in idList:
+    print(element, file=sys.stderr)
 
 def task8(cursor):
-  a = 0
+  cursor.execute(
+    '''
+    CREATE INDEX height_index
+    ON "Professor"(height);
+    '''
+  )
 
 def task9(cursor):
-  a = 0
+  cursor.execute(
+    'SELECT id FROM "Professor";'
+  )
+  idList = cursor.fetchall() # Fetch professor IDs
+  for element in idList:
+    print(element, file=sys.stderr)
 
 def task10(cursor):
-  a = 0
+  # Update height from 200 to 210
+  cursor.execute(
+    '''
+    UPDATE "Professor"
+    SET height=210
+    WHERE height=200;
+    '''
+  )
+
+def task11(cursor):
+  cursor.execute(
+    '''
+    SELECT id, address
+    FROM "Professor"
+    WHERE height=210;
+    '''
+  )
+  idList = cursor.fetchall() # Fetch professor IDs
+  for element in idList:
+    print(element, file=sys.stderr)
 
 if __name__ == "__main__":
   main()
