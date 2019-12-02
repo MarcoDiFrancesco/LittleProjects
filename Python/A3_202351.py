@@ -12,56 +12,57 @@ import sys
 def main():
   conn = psycopg2.connect(dbname="db", user="marco")
   cursor = conn.cursor()
-  solve(cursor, conn)
+  solve(cursor)
+  conn.commit()
 
-def solve(cursor, conn):
+def solve(cursor):
   startTime = time_ns()
-  task1(cursor, conn)
+  task1(cursor)
   print("Step 1 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task2(cursor, conn)
+  task2(cursor)
   print("Step 2 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task3(cursor, conn)
+  task3(cursor)
   print("Step 3 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-#  task4(cursor, conn)
+#  task4(cursor)
   print("Step 4 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-#  task5(cursor, conn)
+#  task5(cursor)
   print("Step 5 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-#  task6(cursor, conn)
+#  task6(cursor)
   print("Step 6 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-#  task7(cursor, conn)
+#  task7(cursor)
   print("Step 7 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task8(cursor, conn)
+  task8(cursor)
   print("Step 8 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task9(cursor, conn)
+  task9(cursor)
   print("Step 9 needs " + str(time_ns() - startTime) + " ns")
 
   startTime = time_ns()
-  task10(cursor, conn)
+  task10(cursor)
   print("Step 10 needs " + str(time_ns() - startTime) + " ns")
 
 
-def task1(cursor, conn):
+def task1(cursor):
   cursor.execute('DROP TABLE IF EXISTS "Course";')
   cursor.execute('DROP TABLE IF EXISTS "Professor";')
-  conn.commit()
+  # conn.commit()
 
-def task2(cursor, conn):
+def task2(cursor):
   cursor.execute(
     '''
     CREATE TABLE "Professor" (
@@ -84,9 +85,9 @@ def task2(cursor, conn):
     );
     '''
   )
-  conn.commit()
+  # conn.commit()
 
-def task3(cursor, conn):
+def task3(cursor):
   # Height between 184 and 100
   cursor.execute(
     '''
@@ -102,10 +103,10 @@ def task3(cursor, conn):
           height
         ) VALUES (
           i,
-          (SELECT array_to_string(array(select substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',((random()*(36-1)+1)::integer),1) from generate_series(1,50)),'')array_to_string ),
+          'Id',
           'Professor address',
-          (SELECT FLOOR(RANDOM()*(80-30+1)+30)),
-          (SELECT RANDOM()*(184-100+1)+184)
+          10,
+          30
         );
       END LOOP;
     END
@@ -155,11 +156,10 @@ def task3(cursor, conn):
     );
     '''
   )
-  conn.commit()
+  # conn.commit()
 
 
-
-def task4(cursor, conn):
+def task4(cursor):
   for i in range(1,1000): # From 1 to 1,000,000
     cursor.execute('''
       INSERT INTO "Course" (
@@ -174,18 +174,18 @@ def task4(cursor, conn):
         (SELECT FLOOR(RANDOM()*(1000-1)+1))
       );'''
     )
-  conn.commit()
+  # conn.commit()
 
-def task5(cursor, conn):
+def task5(cursor):
   cursor.execute(
     'SELECT id FROM "Professor";'
   )
-  conn.commit()
+  # conn.commit()
   idList = cursor.fetchall() # Fetch professor IDs
   idString = ''.join(str(element) for element in idList) # List to string
   # sys.stderr.write(idString)
 
-def task6(cursor, conn):
+def task6(cursor):
   cursor.execute(
     '''
     UPDATE "Professor"
@@ -193,8 +193,8 @@ def task6(cursor, conn):
     WHERE height=185;
     '''
   )
-  conn.commit()
-def task7(cursor, conn):
+  # conn.commit()
+def task7(cursor):
   cursor.execute(
     '''
     SELECT id, address
@@ -202,18 +202,18 @@ def task7(cursor, conn):
     WHERE height=200;
     '''
   )
-  conn.commit()
+  # conn.commit()
   idList = cursor.fetchall() # Fetch professor IDs
   idString = ''.join(str(element) for element in idList) # List to string
   sys.stderr.write(idString)
 
-def task8(cursor, conn):
+def task8(cursor):
   a = 0
 
-def task9(cursor, conn):
+def task9(cursor):
   a = 0
 
-def task10(cursor, conn):
+def task10(cursor):
   a = 0
 
 if __name__ == "__main__":
