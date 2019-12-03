@@ -11,6 +11,8 @@ import sys
 import random
 import string
 
+LIST_SIZE = 1000000
+
 def main():
   conn = psycopg2.connect(dbname="db", user="marco")
   cursor = conn.cursor()
@@ -62,13 +64,28 @@ def solve(cursor):
   task11(cursor)
   print("Step 11 needs " + str(time_ns() - startTime) + " ns")
 
+# Random string lowercase
 def stringLow(lenght):
   letters = string.ascii_lowercase
   return ''.join(random.choice(letters) for i in range(lenght))
 
+# Random string uppercase
 def stringUp(lenght):
   letters = string.ascii_uppercase
   return ''.join(random.choice(letters) for i in range(lenght))
+
+# Return string with giver characters number
+def randWord(min, max):
+  lenght = random.randint(min, max)
+  return stringUp(1) + stringLow(lenght-1)
+
+# Random integer in string format
+def randInt(min, max):
+  return str(random.randint(min,max))
+
+# Random float in string format
+def randFloat(min, max):
+  return str(random.random()*(max-min+1)+min)
 
 def task1(cursor):
   cursor.execute('DROP TABLE IF EXISTS "Course";')
@@ -89,7 +106,7 @@ def task2(cursor):
   cursor.execute(
     '''
     CREATE TABLE "Course"(
-      cid integer NOT NULL PRIMARY KEY,
+      cid VARCHAR(25) NOT NULL PRIMARY KEY,
       title VARCHAR(50) NOT NULL,
       area VARCHAR(30) NOT NULL,
       instructor INTEGER NOT NULL,
@@ -99,9 +116,9 @@ def task2(cursor):
   )
 
 def task3(cursor):
-  idList = [i for i in range(1,1000000)]
+  idList = [i for i in range(1,LIST_SIZE)]
   random.shuffle(idList)
-  for i in range(1, len(idList)): # From 1 to 1,000,000
+  for _ in range(1, len(idList)): # From 1 to 1,000,000
     # Name has two words cammel case
     # Address has one word cammel case and a number
     # Age from 30 to 90
@@ -116,10 +133,10 @@ def task3(cursor):
         height
       ) VALUES (
         ''' + str(idList.pop()) + ''',
-        ' ''' + stringUp(1) + stringLow(random.randint(5,9)) + ' ' + stringUp(1) + stringLow(random.randint(5,9)) + ''' ',
-        ' ''' + stringUp(1) + stringLow(random.randint(6,8)) + ', ' + str(random.randint(1,9)) + ''' ',
-        ''' + str(random.randint(30,90)) + ''',
-        ''' + str(random.random()*(180-150+1)+150) + '''
+        ' ''' + randWord(5,9) + ' ' + randWord(8,11) + ''' ',
+        ' ''' + randWord(6,8) + ', ' + randInt(1,9) + ''' ',
+        ''' + randInt(30,90) + ''',
+        ''' + randFloat(150,180) + '''
       );
       '''
     )
@@ -134,18 +151,18 @@ def task3(cursor):
       height
     ) VALUES (
       ''' + str(idList.pop()) + ''',
-      ' ''' + stringUp(1) + stringLow(random.randint(5,9)) + ' ' + stringUp(1) + stringLow(random.randint(5,9)) + ''' ',
-      ' ''' + stringUp(1) + stringLow(random.randint(6,8)) + ', ' + str(random.randint(1,9)) + ''' ',
-      ''' + str(random.randint(30,90)) + ''',
+      ' ''' + randWord(5,9) + ' ' + randWord(8,11) + ''' ',
+      ' ''' + randWord(6,8) + ', ' + randInt(1,9) + ''' ',
+      ''' + randInt(30,90) + ''',
       185
     );
     '''
   )
 
 def task4(cursor):
-  idList = [i for i in range(1,1000000)]
+  idList = [i for i in range(1,LIST_SIZE)]
   random.shuffle(idList)
-  for i in range(1, len(idList)): # From 1 to 1,000,000
+  for _ in range(1, len(idList)): # From 1 to 1,000,000
     cursor.execute(
       '''
       INSERT INTO "Course" (
@@ -154,10 +171,10 @@ def task4(cursor):
         area,
         instructor
       ) VALUES (
-        ''' + str(idList.pop()) + ''',
-        ' ''' + stringUp(1) + stringLow(random.randint(7,12)) + ''' ',
-        ' ''' + stringUp(1) + stringLow(random.randint(4,8)) + ''' ',
-        ' ''' + str(random.randint(1,len(idList))) + ''' '
+        ' ''' + str(idList.pop()) + ''' ',
+        ' ''' + randWord(7,12) + ''' ',
+        ' ''' + randWord(4,8) + ''' ',
+        ''' + randInt(1,len(idList)) + '''
       );
       '''
     )
