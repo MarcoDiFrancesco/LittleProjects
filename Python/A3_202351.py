@@ -11,7 +11,7 @@ import sys
 import random
 import string
 
-LIST_SIZE = 1000000
+LIST_SIZE = 100000
 
 def main():
   conn = psycopg2.connect(dbname="db", user="marco")
@@ -95,7 +95,7 @@ def task2(cursor):
   cursor.execute(
     '''
     CREATE TABLE "Professor" (
-      id integer NOT NULL PRIMARY KEY,
+      id INTEGER NOT NULL PRIMARY KEY,
       name VARCHAR(50) NOT NULL,
       address VARCHAR(50) NOT NULL,
       age INTEGER NOT NULL,
@@ -116,9 +116,10 @@ def task2(cursor):
   )
 
 def task3(cursor):
-  idList = [i for i in range(1,LIST_SIZE)]
+  # List of IDs from 1 to 1.000.000
+  idList = [i for i in range(1,LIST_SIZE+1)]
   random.shuffle(idList)
-  for _ in range(1, len(idList)): # From 1 to 1,000,000
+  for _ in range(1, LIST_SIZE): # From 1 to 999,999
     # Name has two words cammel case
     # Address has one word cammel case and a number
     # Age from 30 to 90
@@ -160,9 +161,10 @@ def task3(cursor):
   )
 
 def task4(cursor):
-  idList = [i for i in range(1,LIST_SIZE)]
+  # List of IDs from 1 to 1.000.000
+  idList = [i for i in range(1,LIST_SIZE+1)]
   random.shuffle(idList)
-  for _ in range(1, len(idList)): # From 1 to 1,000,000
+  for _ in range(1, LIST_SIZE+1): # From 1 to 1,000,000
     cursor.execute(
       '''
       INSERT INTO "Course" (
@@ -174,7 +176,7 @@ def task4(cursor):
         ' ''' + str(idList.pop()) + ''' ',
         ' ''' + randWord(7,12) + ''' ',
         ' ''' + randWord(4,8) + ''' ',
-        ''' + randInt(1,len(idList)) + '''
+        ''' + randInt(1,LIST_SIZE) + '''
       );
       '''
     )
