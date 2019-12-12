@@ -56,3 +56,8 @@ A **logic** has three fundamental components:
 - An **entailment relation** (⊨) used to define two relations: **satifiability** that is when a formula is true, and **logical consequence** that is when the truth of a formula follows from the truth of a set of formulas
 
 Given L, I and ⊨ a logic allows to define two components: **theory** that is a set of sentences in L which are assumed true in the intended model, and **model** that is the set of facts expressed in the language describing the mental model in an agreement with the theory and the interpretation function.
+
+---
+
+**Funzione di interpretazione** assegna un valore vero o falso a ciascuna variabile.  
+Una funzione di interpretazione è detta **modello** di una funzione φ se le sue assegnazioni rendono il valore della funzione vero. In simboli: I |= φ.  
