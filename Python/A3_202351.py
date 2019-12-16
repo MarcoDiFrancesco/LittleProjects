@@ -11,10 +11,17 @@ import sys
 import random
 import string
 
-LIST_SIZE = 100000
+LIST_SIZE = 100
 
 def main():
-  conn = psycopg2.connect(dbname="db", user="marco")
+  params = {
+    'dbname': 'foemvrne',
+    'user': 'foemvrne',
+    'password': '9n8XxeHymL5mnL8uAEOVPKxQ_Vn86TtT',
+    'host': 'manny.db.elephantsql.com',
+    'port': '5432'
+  }
+  conn = psycopg2.connect(**params)
   cursor = conn.cursor()
   solve(cursor)
   conn.commit()
@@ -214,7 +221,8 @@ def task8(cursor):
   cursor.execute(
     '''
     CREATE INDEX height_index
-    ON "Professor"(height);
+    ON "Professor"
+    USING btree(height);
     '''
   )
 
