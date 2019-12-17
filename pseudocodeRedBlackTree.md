@@ -16,10 +16,6 @@ boolear isRedBlack(Tree T)
       return FALSE
     if(blackHeight(T->left) != blackHeight(T->right))
     
-
-
-
-
     if(isRedBlack(T->left) == TRUE or isRedBlack(T->right) == TRUE)
       return TRUE
     else
