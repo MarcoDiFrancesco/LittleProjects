@@ -1,0 +1,38 @@
+version: "3"
+services:
+
+#  portainer:
+#    container_name: portainer
+#    image: portainer/portainer
+#    restart: unless-stopped
+#    ports: 
+#      - 9000:9000
+
+
+  # https://hub.docker.com/r/diginc/pi-hole/
+  # https://github.com/pi-hole/docker-pi-hole
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+#      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+
+    # https://github.com/pi-hole/docker-pi-hole#environment-variables
+    environment:
+      TZ: 'Europe/Rome'
+
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-resolv.conf:/etc/resolv.conf'
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+
+    # Replaced by copying resolv.conf
+#    dns:
+#      - '127.0.0.1'
+#      - '1.1.1.1'
