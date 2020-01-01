@@ -1,14 +1,5 @@
 version: "3"
 services:
-
-#  portainer:
-#    container_name: portainer
-#    image: portainer/portainer
-#    restart: unless-stopped
-#    ports: 
-#      - 9000:9000
-
-
   # https://hub.docker.com/r/diginc/pi-hole/
   # https://github.com/pi-hole/docker-pi-hole
   pihole:
@@ -25,7 +16,6 @@ services:
     # https://github.com/pi-hole/docker-pi-hole#environment-variables
     environment:
       TZ: 'Europe/Rome'
-
     # Volumes store your data between container upgrades
     volumes:
       - './etc-resolv.conf:/etc/resolv.conf'
