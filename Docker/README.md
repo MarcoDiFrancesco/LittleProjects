@@ -4,5 +4,11 @@ The tests that have been useful have been uploaded in the main repository
 [DockerTools](https://github.com/MarcoDiFrancesco/DockerTools).
 
 ## Docker commands
-`docker image build -t bulletinboard:1.0 /dir`
-`docker container run --publish 8000:8080 --detach --name testBuild test:1.0`
+Build image
+```
+docker image build -t bulletinboard:1.0 /dir
+```
+Run container
+```
+docker container run --publish 8000:8080 --detach --name testBuild test:1.0
+```
