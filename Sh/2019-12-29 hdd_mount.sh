@@ -1,3 +1,4 @@
+# Mount HDD in one command checking if it's already mounted
 MOUNT_DIR="/run/media/hdd"
 DEV_DIR="/dev/sdb1"
 
