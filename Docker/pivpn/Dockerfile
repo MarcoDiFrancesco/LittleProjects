@@ -12,6 +12,5 @@ RUN apt-get install -y iproute2
 RUN apt-get install 
 RUN curl -L https://install.pivpn.dev | bash
 
-
 #CMD [ "npm", "start" ]
 CMD /bin/bash
