@@ -1,0 +1,5 @@
+# Sq lite
+*.sqlite3
+
+migrations
+__pycache__
