@@ -101,56 +101,82 @@ A **key** is an input to a cryptographic algorithm used to obtain confidentialit
 
 ### Key distribution
 The two partied need to share the same key and the key must be protected from access by others, the streanght of any cryptographic system depends on the key distribution technique.  
-A encryption scheme is secure if the cost of breaking the cipher exceeds the value of the encrypted information and the time required to break it exceeds the useful lifetime of the information. It's difficult to estimate the amount of effort required to cryptoanalyze cipthertext successfully.  
+A encryption scheme is secure if the cost of breaking the cipher exceeds the value of the encrypted information and the time required to break it exceeds the useful lifetime of the information. It's difficult to estimate the amount of effort required to cryptoanalyze cipthertext successfully if you are trying with mathematical schemas. With bruteforce in average you try half of the possible combinations.
+
+The essence of encryption is:  
+`Encrypt(key,plaintext)=ciphertext`  
+`Decrypt(key,ciphertext)=plaintext`  
+Algorithm is public, key is private.
 
 The essence of cryptograpy is to use a public algorithm and a private key.  
-There are two types of tranformation in encryption: the **substitution** in which each element in the plaintext is mapped into another element, and the **trasposition** in which the elements in the plaintext are rearranged.  
-The **Caesar cipher** is the algorithm in using substitution that shifts s fixed number of letter of the alphabet. There are 2 ways to break it: the brute force attack trying all the 25 possibilities or trying to see the distribution of the letters (vocals and consonants) inside the text.  
+There are two types of tranformation in encryption: the **substitution** in which each element in the plaintext is mapped into another element, and the **trasposition** in which the elements in the plaintext are rearranged (same letters, different orfer).  
+The **Caesar cipher** is the algorithm in using substitution that shifts a fixed number of letter of the alphabet. There are 2 ways to break it: the brute force attack trying all the 25 possibilities or trying to see the distribution of the letters (vocals and consonants) inside the text.  
 
-### Modern encryption
-In the modern era new encryption techniques entered: stream encryption, block encryption and public-key encryption.  
-**Symmetric key** cryptography use the same key to crypt and decrypt: `D(k,E(k,p))=p`.
+### Symmetric key encription
 
+**Symmetric key** cryptography use the same key to crypt and decrypt: `D(k,E(k,p))=p`.  
 ![Symmetric key](https://i.imgur.com/WbNRmM2.png)
 
-Types of symmetric key crypto:
+The **main problem** of SKC is that both of the parties have the same keys, compared to PKC which doesn't.
+
 **Stream ciphers** encrypt sequences of short data blocks under a changing key system, security relies on design on the key stream generator and typical block length is 1 bit/byte.  
-**Block ciphers** encrypt sequences of long data blocks without changing the key, it has a typical length of 64/128/256/512 bits. A block cipher breaks the message in successive blocks M1, M2, M3, ..., Mn and enciphers each Mi with the same key k. DES (data encryption standard) and AES (advanced encryption standard) are well-known examples of block cipher systems.  
+
+**Block ciphers** encrypt sequences of long data blocks without changing the key, it has a typical length of 64/128/256/512 bits. A block cipher breaks the message in successive blocks M1, M2, M3, ..., Mn and enciphers each Mi with the same key k. DES (data encryption standard) and AES (advanced encryption standard) are well-known examples of block cipher systems.
 
 **DES** employ a 56-bit key that operates on 64-but blocks, is a deterministic algorithm operating on a block cipher. DES has 16 rounds. DES has been cracked in 1998 with a large number of Deep-Crack chip, taking less than 3 days to find a 56-bit by searching a total of 17,902,806,669,197,312 keys, calculating an average of 88,000,000,000 keys per second.
 
-**AES** uses keys of 128, 192 and 256 bits.
+**AES** is the successor of DES, it uses a symmetric key criptography scheme designed for 128, 192 and 256 bits.
 
-**Public key cryptograpy** uses two different keys: a public key and a private key.
+### Public key cryptograpy (PKC)
 
+**Public key cryptograpy** uses two different keys: a public key and a private key.  
 ![Asymmetric key](https://i.imgur.com/yEojFdE.png)
 
 The basic idea behind the PKC (Public key cryptograpy) is that a user has the public key that uses to encrypt a message and another user has a private key that uses to decrypt the message.  
-The private and public key encryption can also be used for signatures offering the propreties:
+An example is:
+- Alice encypt the message using Bob's public key
+- Bob decypt Alice message with his private key
+
+This propreties are offered:
 - **Authentication** because the digital signature says a message is created by a known sender
 - **Non-repudiation** because the sender cannot deny having sent the message
 - **Integrity** beacuse message was not altered while transiting
 
-The **RSA** (Rivest, Shamir, Adleman) uses a PKC algorithm for key exchange, digital signature and key encryption of small blocks of data. RSA uses a variable size encryption block and a variable size key. Key-pair is deliverd from a very large number "n" that is the product of two prime numvers chosen according to special rules:
-- Primes may be 100 or more digits in lenght
-- An attacker cannot determine the prime factors of n from this information alone and this is what makes the RSA algorithm so secure
+### RSA
+The **RSA** (Rivest, Shamir, Adleman) uses a PKC algorithm for key exchange, digital signature and key encryption of small blocks of data.  
+RSA uses a variable size encryption block and a variable size key. Key-pair is deliverd from a very large number `n` that is the product of two prime numbers `primeNumber1*primeNumber2=n` chosen according to special rules:
+- Primes may be 100 or more digits in length
+- An attacker cannot determine the prime factors of `n` from this information alone and this is what makes the RSA algorithm so secure
 - If a large number is created from two prime factors that are roughly the same size there is no known factorization algorithm that will solve the problem in a seasonable amount of time
 
-A recent **vulnerability of RSA** has been discovered beacuse chips inside identity cards, programmable smartcards, authentication tokens ecc. were using common software libraries in which was possible to compute the private key of a 1024 and 2048 key lenght. This was possible due to a algorithmic vulnerability characterized by a specific structure of the generated RSA prime numbers. So it was possible to crack a 1024 bits key with $76 and 2048 bits for $40.000.
+![Factorization difficulty](https://i.imgur.com/3XRlf2Q.png)
 
-Another algorithm is **DH** (Diffie-Hellman) used for secret-key key exchange only, not authentication or digital signatures. DH uses the principle that the operation `x -> g^x(mod p)` is easy to compute but difficult to reverse.
+A recent **vulnerability of RSA** has been discovered beacuse chips inside identity cards, programmable smartcards, authentication tokens ecc. were using common software libraries in which was possible to compute the private key of a 1024 and 2048 key lenght. This was possible due to a algorithmic vulnerability characterized by a specific structure of the generated RSA prime numbers. So it was possible to crack a 1024 bits key with the cost of $76 and $40.000 for 2048 bits.
 
-![DH algorithm key](https://i.imgur.com/bbBTT5l.png)
+### Diffie-Hellman
+**DH** (Diffie-Hellman) is another algorithm that uses PKC used for secret-key key exchange only (not authentication or digital signatures). Diffie-Hellman allows to two parties that have no prior knoledge of each other to generate a private key through an unsecure channel. This key will be used to encrypt subsequent communication using a symmetric key cipher.  
 
-### How DH works
-
+How DH works:  
 ![DH overview](https://i.imgur.com/535jhl7.png)
 
-A known **vulnerability of DH** is the middle-in-the-man (MITH) attack
+**Problem of Diffie-Hellman**: does not provide authentication, because parties do not know who they are establishing a key with, so man in the middle attack is possible.
 
-![DH MITM attack](https://i.imgur.com/comKAtO.png)
-
----
+### Questions
+- What is a cryptosystem?
+- Why key management is crucial for cryptography?
+- What does it mean for a cryptographic technique to be computationally secure?
+- What are substitution and transposition ciphers?  Given an example for each one.
+- What is symmetric cryptography?
+- What are block and stream ciphers?
+- Why is DES deprecated?  Why is AES still used?
+- What is asymmetric (or public key) cryptography?
+- What are the main advantages and disadvantages of symmetric and asymmetric cruptography?
+- What is RSA and for what it can be used? 
+- What is Diffie-Hellman and for what it can be used?
+  - What is a possible attack to Diffie-Hellman?
+- What is a one-way function?
+  - What is the one-way function used in RSA?
+  - What is the one-way function used in Diffie-Hellman?
 
 ## Blockchain
 A blockchain is a data structure like linked lists. The blocks are connected each other and each block has the hash of the previous block.  
