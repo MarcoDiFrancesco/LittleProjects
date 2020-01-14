@@ -43,7 +43,7 @@ Authentication threats:
 - Spoofing: attacker starts a program that presents a fake login screen and leaves the compter
 - Phishing: attacker impersonates the system to trick a user into releasing the password to the attacker
 
-### Protecting the password file
+### Hash functions
 It's possible to protect password with 1-way functions aka hash functions. Given a certain password it's easy to compute the hash but not in the other way.  
 The requerements from an hash function are:
 - **Ease of computetaion**: given a `x` input is easy to compute `f(x)`
@@ -63,6 +63,14 @@ Some hash functions:
 - **SHA-1** collision attacks reported
 - **SHA-256** it's secure for now
 
+A main application of hash functions is IDEA, that is the hash value of a program that is stored in a protected enviroment (for example CD-ROM) and it's used to check if a program has not been modified. To check if a program has been modified we need to recompute the hash and check if it's equal.
+
+A main **con** of the hash functions is the birthday paradox in which given a set of `n` random chosen people will have an exponential probability in having the same birthday:
+- 50% reached with 23 people
+- 99.9% reached with 70 people
+
+The only way to mitigate this attack is to create a large enough output hash so that the birthday attack becomes computationally infeasible.
+
 **Salting** is a technique used to store password where in the (random) password is appended to a string and the password is hashed with that string.
 
 **Single sign on (SSO)** is allows users to access multiple apps throgh a single authentication act. Good factors are usability, because only one password needs to be rememberd, secure because the tokens needs to be complex, usabile because you can get shared sessions. The cons is the security, because only one password need to be compromised.  
@@ -78,10 +86,10 @@ A famouse SSO protocol is SAML 2.0.
 - What is salting?
 - What is a brute force guessing attack? How can it be mitigated?
 
-### Cryptography
-**Cryptograpy** is the science and study of secret writing.  
+## Cryptography
+**Cryptography** is the science and study of secret writing.  
 **Cryptoanalysis** is the science and study of methods of breaking ciphers.  
-**Cryptography** cryptography and cryptoanalysis.  
+**Cryptology** cryptography and cryptoanalysis.  
 
 Security services provided by cryptographic mechanism are:
 - **Data confidentiality** encryption algorithms hide the content of messages
@@ -123,13 +131,14 @@ The **main problem** of SKC is that both of the parties have the same keys, comp
 
 **Block ciphers** encrypt sequences of long data blocks without changing the key, it has a typical length of 64/128/256/512 bits. A block cipher breaks the message in successive blocks M1, M2, M3, ..., Mn and enciphers each Mi with the same key k. DES (data encryption standard) and AES (advanced encryption standard) are well-known examples of block cipher systems.
 
-**DES** employ a 56-bit key that operates on 64-but blocks, is a deterministic algorithm operating on a block cipher. DES has 16 rounds. DES has been cracked in 1998 with a large number of Deep-Crack chip, taking less than 3 days to find a 56-bit by searching a total of 17,902,806,669,197,312 keys, calculating an average of 88,000,000,000 keys per second.
+**DES** employ a 56-bit key that operates on 64-bit blocks, is a deterministic algorithm operating on a block cipher. DES has 16 rounds. DES has been cracked in 1998 with a large number of Deep-Crack chip, taking less than 3 days to find a 56-bit by searching a total of 17,902,806,669,197,312 keys, calculating an average of 88,000,000,000 keys per second.
 
 **AES** is the successor of DES, it uses a symmetric key criptography scheme designed for 128, 192 and 256 bits.
 
 ### Public key cryptograpy (PKC)
 
-**Public key cryptograpy** uses two different keys: a public key and a private key.  
+**Public key cryptograpy** uses two different keys: a 2 public keys and 2 private keys when talking about two clients.  
+
 ![Asymmetric key](https://i.imgur.com/yEojFdE.png)
 
 The basic idea behind the PKC (Public key cryptograpy) is that a user has the public key that uses to encrypt a message and another user has a private key that uses to decrypt the message.  
@@ -141,6 +150,13 @@ This propreties are offered:
 - **Authentication** because the digital signature says a message is created by a known sender
 - **Non-repudiation** because the sender cannot deny having sent the message
 - **Integrity** beacuse message was not altered while transiting
+
+The main **pro** about public key cryptography is that the private key is only know by the owner and does not need to be shared like in Simmetric key encryption.  
+The main **cons** are:
+- the algorithms are 2-3 orders of magnitude slower than those for symmetric key encryption
+- it's not possible to ensure that the we are exchanging the keys with the real person (and man in the middle attacks are possible)
+
+A possible mitigation with this last problem can with the digital signatures ([Digital signatures paragraph](#digital-signatures)).
 
 ### RSA
 The **RSA** (Rivest, Shamir, Adleman) uses a PKC algorithm for key exchange, digital signature and key encryption of small blocks of data.  
@@ -165,7 +181,7 @@ How DH works:
 - What is a cryptosystem?
 - Why key management is crucial for cryptography?
 - What does it mean for a cryptographic technique to be computationally secure?
-- What are substitution and transposition ciphers?  Given an example for each one.
+- What are substitution and transposition ciphers? Given an example for each one.
 - What is symmetric cryptography?
 - What are block and stream ciphers?
 - Why is DES deprecated?  Why is AES still used?
@@ -177,6 +193,24 @@ How DH works:
 - What is a one-way function?
   - What is the one-way function used in RSA?
   - What is the one-way function used in Diffie-Hellman?
+
+## Digital signatures
+The main problem that digital signatures have (with diffie-hellman key exchange) brings is that we are not sure with how we are exchanging they keys with. The solution to this are digital certificates.
+
+### Digital certificates
+A digital certificate is issued and signed by a trusted third party (TTP) than can be rappresented e.g. by a person or a service.
+
+![Certificate schema](https://i.imgur.com/M7Qqbry.png) 
+
+A digital certificate works with the public key infrastructure.  
+The main components of the PKI are:
+- the **root certificate authority** (CA) is the most significat element in the CA hierarchy and authorizes suborfinate CAs
+- the **subordinate CA** is responsible for issuing certificates
+- the **registration authority** (RA) verifies information in a certificate request (does not issue any certificate)
+- the **certificate revocation list** (CRT) is apubblisged list of certificates that have been revoked
+- the **validation authority** can provide an entity information on behalf of the CA
+
+![Digital signature exchange](https://i.imgur.com/aa516QJ.png)
 
 ## Blockchain
 A blockchain is a data structure like linked lists. The blocks are connected each other and each block has the hash of the previous block.  
