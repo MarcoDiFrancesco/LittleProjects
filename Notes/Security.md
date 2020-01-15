@@ -212,6 +212,20 @@ The main components of the PKI are:
 
 ![Digital signature exchange](https://i.imgur.com/aa516QJ.png)
 
+Creation of a digital certificate:
+- User generates a public and private key-pair or it's assigned by an authority
+- User requests the certificate by some authority in their organization
+- CA responds with its certificate (signed by its private key)
+- User gathers all information required by the CA server to ortain its certificate (e.g. mail, password, fingerprint)
+- User sends a certificate request to the CA consisting of her public key and he additional informations
+- CA gets the request, verifies the identity and generates the certificate for User, bindind its identity with its public key
+- CA issues the certificate to User
+
+### SSL and TLS
+**Secure sockets layer** (SSL) now at the version SSLv3 is 
+
+**Transport layer security** (TLS) now at the version 1.3 
+
 ## Blockchain
 A blockchain is a data structure like linked lists. The blocks are connected each other and each block has the hash of the previous block.  
 The block usually have:
