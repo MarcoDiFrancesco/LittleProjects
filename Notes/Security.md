@@ -222,9 +222,61 @@ Creation of a digital certificate:
 - CA issues the certificate to User
 
 ### SSL and TLS
-**Secure sockets layer** (SSL) now at the version SSLv3 is 
+**Secure sockets layer** (SSL) now at the version SSLv3.  
+**Transport layer security** (TLS) now at the version 1.3.
 
-**Transport layer security** (TLS) now at the version 1.3 
+TLS consists of two main protocols: handshake protocol and record protocol.
+
+- **handshake protocol** that uses PKC to establish a shered secret key between the client and the server
+- **record protocol** which uses the private key (provided by the handshake protocol) to protect communication between the client and the server
+
+### Handshake protocol
+
+Handshake protocol work with Diffie-Hellman exchange and the flow is:
+- **Client Hello** contains
+  - the version of the protocol 0the client want to use 
+  - cipher suite (set of algorithms that help secure the connection)
+- **Server Hello** contains
+  - the chosen protocol version (supported by both)
+  - cipher suite (supported by both)
+  - session id: an generated value that will identify the connection
+- Step 3 contains
+  - **certificate** if the client requests a cetificate, server will send a X.509 certificate
+  - **server key exchange** is a key that will be used to generate the master secret key
+  - **certificate request** is a request that the server can make if it requires the client to be authenticated
+- Step 4
+  - **certificate** if the server requests a cetificate, client will send a X.509 certificate
+  - **client key exchange** is a key that will be used to generate the master secret key
+  - **certificate verify** is a message that provides explicit verification of the client certificate
+- Step 5
+  - **change cipher spec** is a message sent by both parties consisting of a byte
+  - **hash generation** of the entire handshake ans sent by both parties
+- Step 6-7 is the exchange encypted messages using shared keys
+
+![handshake protocol](https://i.imgur.com/eO1gM8J.png)
+
+The usage of SSL and TLS ensures **data integrity** if the CiptherSpec in the channel uses a suitable hash algorithm.
+
+There are **security isses** in TLS up to v1.2 which are:
+- **backward compatibily** with the old protocol which uses weak cipther suites and broken hash functions
+- **logical flows** that can be used to trick both client and server
+
+Some TLS attacks are:
+- tree attack
+- **3shake** in which the mallory mediates two handshakes that generate the same master secret
+- **sweet32** is a birthday attack in which an host negotiate a cipher called 3DES which can make a collision happen in `2^32` combination, nowadays fairly easy to generate, fix (TLS v1.3) is to disable 3DES  
+- **CRIME** used deflate compression to injects different characters into the victim’s requests trying to guess the content, fix (TLS v1.3) disable compression
+
+### Questions
+- What are the advantages and disadvantages of Symmetric and Asymmetric Cryptography?
+- How can PKC be used to sign messages?
+- What is the role of hash functions in this process?
+- What is a digital certificate and what are its main components?
+- What is the Public Key Infrastructure (PKI) and which are its main entities?
+- What is SSL/TLS? Where is it used?
+- How does the handshake protocol of TLS work?
+- What is the role of Diffie-Hellman technique?
+- What are the potential security problems of TLS?
 
 ## Blockchain
 A blockchain is a data structure like linked lists. The blocks are connected each other and each block has the hash of the previous block.  
