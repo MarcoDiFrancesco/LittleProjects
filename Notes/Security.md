@@ -206,9 +206,9 @@ A digital certificate works with the public key infrastructure.
 The main components of the PKI are:
 - the **root certificate authority** (CA) is the most significat element in the CA hierarchy and authorizes suborfinate CAs
 - the **subordinate CA** is responsible for issuing certificates
-- the **registration authority** (RA) verifies information in a certificate request (does not issue any certificate)
-- the **certificate revocation list** (CRT) is apubblisged list of certificates that have been revoked
-- the **validation authority** can provide an entity information on behalf of the CA
+- the **registration authority** (RA) is responsible for accepting requests for digital certificates and authenticating the entity (client or server) making the request
+- the **certificate revocation list** (CRT) is pubblished list of certificates that have been revoked
+- the **validation authority** is an entity that provides a service used to verify the validity of a digital certificate
 
 ![Digital signature exchange](https://i.imgur.com/aa516QJ.png)
 
@@ -249,7 +249,7 @@ Handshake protocol work with Diffie-Hellman exchange and the flow is:
   - **client key exchange** is a key that will be used to generate the master secret key
   - **certificate verify** is a message that provides explicit verification of the client certificate
 - Step 5
-  - **change cipher spec** is a message sent by both parties consisting of a byte
+  - **cipher spec** is a message sent by both parties consisting of a byte set to 1
   - **hash generation** of the entire handshake ans sent by both parties
 - Step 6-7 is the exchange encypted messages using shared keys
 
