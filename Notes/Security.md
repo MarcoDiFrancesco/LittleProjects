@@ -1,4 +1,6 @@
 # Security
+
+## What means security
 **Information security** is the practise of preventing unauthorized access, use, disclosure, disruption, modification, recording or destruction od information.  
 **Computer security** is the practise of protecting computer systems and information from theft, and unauthorized use. This practise include protecting hardware (with locks, dors etc.) and protecting software.  
 **Network security** is the practise of taking physical and software preventative measures to protect the networking infrastructure from unauthorized access, malfunction, modification, destruction etc. creating a secure platform for computers, users and programs to perform their permitted functions.
@@ -280,29 +282,86 @@ Some TLS attacks are:
 
 ## Blockchain
 A blockchain is a data structure like linked lists. The blocks are connected each other and each block has the hash of the previous block.  
-The block usually have:
+
+The blocks usually have:
 - index
 - time stamp
 - data like description
 - hash
 - hash of the previous block
 
-The blockchain checks the previous blocks. Anyway everyone could just recompure all the hashes and change all the hashes. The blockchains that are available now a days are public using P2P protocol, so if someone want to modify a block, it's easy to check because everyone has a copy of it and can check the transactions. There is consensus alhorithm that check if more than 50% of the nodes says that a node has been modified.  
-The proof of work (pow) algorithm check each transaction use a lot of prower and are power consuming.  
+![Blockchain structure](https://i.imgur.com/Q3Lzxil.png)
 
-TBD 10 to 13
+The hash of the previous block is kept to garantee the **integrity** of the blockchain. So everyone that is modifying any peace of data in the blockchain will invalidate the chain.  
+Anyway everyone could just recompure all the hashes and change all the hashes to have a valid chain, so to avoid this we need to make the computation very expensive and this computation is called **Proof of work (PoW)**. PoW is an algorithm in which is very expensive to get results but it's easy to verify.  
+An exaple can be find a number that concatenated to a string gives a hash beginning with a sequence of 4 zeros.  
 
-In bitcoin there is the smart contract that are pieces of code that are given to the people that certifies the transactions. There have been bugs exploited, in bitcoins an hacker took 184 billion bitcoins and ethereum 541.000 eth.
+The **blockchain data structure** is not stored in one place, it is distributed without a central authority. And the chain is stored in various places thanks to the consensus algorithms.  
+The **consensus algoritm** is also used to garantee the reliability of nodes that may be unreliable when considered in isolation, it checks if more than 50% of the nodes says a block has been modified.
+
+![Paradigim shift](https://i.imgur.com/jPBbUjF.png)
+
+The differences from financial networks and bitcoin is that the API of the first are closed (trying to keep the bed actors outside) and the API of bitcoin are open. The the financial networks protect their security is by having a model "trust by exclusion" and bitcoin has the model "trust by computation".  
+
+The **API** of bitcoin offers services such as: checking balance in a wallet, creating a transaction, creaing a new wallet etc.
+
+The bitcoin blockchain it's built on a scripting language that defines transactions. Most of the scripts are like "Transfer X from A to B", but the language can create **smart contract**.  
+
+### Blockshain trust
+
+In bitcoin there is the smart contract that are pieces of code that are given to the people that certifies the transactions. There have been bugs exploited, in bitcoins an hacker took 184 billion bitcoins and ethereum 541.000 eth.  
+
+### Double spending problem
+
 In bitcoin there are public and private keys. There is a problem in bitcoin beacuse if a person tries to send 2 or more bitcoin to 2 or more people.
 
 ![bitcoin double spending](https://i.imgur.com/VWkEAso.png)
 
-In bitcoin this is solved beacause each person keeps track of the others transaction. 
+In bitcoin this is solved beacause each person keeps track of the others transaction with an **accouning ledger**.
 
 ![bitcoin double spending fix](https://i.imgur.com/9iJbsO6.png)
 
-TBD diffie coso key exchange up to 34
+But it's not enough to solve that.
+There is a similar problem that's conceptally similar, called Byzantine generals problem.
 
-Byzantine generals problem is 
+![Byzantine problem](https://i.imgur.com/ZmVL4XW.png)
 
-Proof of work is an algorithm that rewards the person that confirms the transaction of the block.
+Simplified version of the Byzantine problem is the Two generals problem: General 1 is the leader, General 2 is the follower. Each general’s army on its own is not enough to defeat the enemy army successfully, thus they need to cooperate and attack at the same time.
+In order for the two generals to communicate and decide:
+- General 1 has to send a messenger across the enemy’s camp that will deliver the time of the attack to General 2
+- There is a possibility that the messenger will get captured by the enemies and thus the message will not be delivered resulting in General 1 attacking while General 2 not
+
+Even if the first message goes through, General 2 has to acknowledge that he received the message, so he sends a messenger back, thus repeating the scenario where the messenger can get caught. This extends to infinite chains of acknowledgements with generals unable to reach agreement.
+
+The byzantine problem is well known on systems inside airplane angine systems, nuclear power and any system whose actions depends on the results of a large number of sensors.
+
+The existing algoritm **solves** the problem under the assumtion that only 1/3 of the nodes involved can be failing.
+
+The byzantine problem is solved by bitcoin using Proof-of-Work.
+
+![Blockchain double spending problem](https://i.imgur.com/2oFgIoy.png)
+
+### Proof-of-work
+
+Since there is not central authorithy in blockchain a ledger is elected to decide the content of the next block to be added to the data structure.
+In the Proof-of-work approach the first one that solves a computationally difficult puzzle will be the ledger, the only way to solve that problem is by bruteforcing the solutions.  
+The main feature of Proof-of-work is that the actor that solves the puzzle first gets rewarded with some currecy (transaction fees or block reward).  
+The other nodes just verify that the hash is correct.
+
+Example:
+
+![Proof of work example](https://i.imgur.com/ewr7SHx.png)
+
+### Distributed ledgers
+
+Because the transactions per second that can be made in bitcoin are only 5 (compared to 1,700 in thr Visa system) there are scalability problems. For this reason the **distributed ledgers** are a solution to this problem.
+
+### Questions
+- Describe the structure of the blockchaindatastructure
+- Why are digital signatures important in blockchain? What kind of problem they solve?
+- What is the double spending problem? How can it be solved?
+- What is the Byzantine General Problems and why is it relevant for the blockchain?
+- What is the Proof-of-Work approach to solving the consensus problem?
+- What is the different between a blockchainand a distributed ledger?
+- Explain the terms public, private, permission-less and permissioned
+
