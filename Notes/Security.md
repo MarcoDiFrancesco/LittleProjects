@@ -119,7 +119,11 @@ SAML is an XML-based framework for communicating user authentication and attribu
 
 ### Single sign on (SSO)
 
+SSO advantages:
 
+- Reducing password fatigue from different user name and password combinations
+- reducing time spent re-entering passwords for the same identitry
+- reducing IT cost due to lower number of calls to help desk about passwords
 
 ## Cryptography
 
