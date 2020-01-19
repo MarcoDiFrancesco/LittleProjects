@@ -1,6 +1,9 @@
 # Security
 
-## What means security
+Security notes.
+
+## Security intro
+
 **Information security** is the practise of preventing unauthorized access, use, disclosure, disruption, modification, recording or destruction od information.  
 **Computer security** is the practise of protecting computer systems and information from theft, and unauthorized use. This practise include protecting hardware (with locks, dors etc.) and protecting software.  
 **Network security** is the practise of taking physical and software preventative measures to protect the networking infrastructure from unauthorized access, malfunction, modification, destruction etc. creating a secure platform for computers, users and programs to perform their permitted functions.
@@ -17,6 +20,7 @@
 **Availability** is a security goal that generates the requirement for protection against intentional or accidental attempts to perform unathorized deletion of data or otherwise cause a denial of service.  
 
 ### Security vs other propreties
+
 **Reliability** addresses the consequences of accidental errors.  
 **Safety** mesures the absence of catastrophic influences on the enviroment in a particular human life.  
 **Dependability** is the property of a computer system such that reliance can be placed on the service it delivers.
@@ -25,6 +29,7 @@
 **Threat** is a circumstance or event with the potential to impact organizational operations or individuals through unauthorized access, destruction, modification of information or denial of service.
 
 **List of threats**:
+
 - Breaking into a computer and impersonate someone I trust
 - DOS attacks
 - Worm is a self-replicating program that dies bit require user action to activate
@@ -40,26 +45,32 @@ Security **Mechianism** is a device or function designed to provide one or more 
 Security **Service** is the capability that supports one or more of the security requirements, for example key management, access control and authentication.
 
 ## Authentication
+
 The **user athentication** is the process of verifying a claimed user identity.  
 Authentication threats:
+
 - Spoofing: attacker starts a program that presents a fake login screen and leaves the compter
 - Phishing: attacker impersonates the system to trick a user into releasing the password to the attacker
 
 ### Hash functions
+
 It's possible to protect password with 1-way functions aka hash functions. Given a certain password it's easy to compute the hash but not in the other way.  
 The requerements from an hash function are:
+
 - **Ease of computetaion**: given a `x` input is easy to compute `f(x)`
 - **Compression**: the hash are stored in a fix lenght of bits
 - **One way**: given an hash `h` is computationally difficult to find an `x` input such that `h = f(x)`
 - **Collision resistance**: is infeasible to find two inputs `x` and `x'`, with `x != x'` such that `f(x)=f(x')`
 
 There are two ways of salting:
+
 - **Basic hash functions** in which there a re wto blocks of data, and return a hash  
 ![Basic hash function](https://i.imgur.com/JnGWIY3.png)
 - **Butterfly effect** are chained basic hash functions  
 ![Butterfly effect function](https://i.imgur.com/ljKzLwc.png)
 
 Some hash functions:
+
 - **MD4** is computationally feasible to find an input given an hash
 - **MD5** has been broken
 - **SHA-1** collision attacks reported
@@ -68,6 +79,7 @@ Some hash functions:
 A main application of hash functions is IDEA, that is the hash value of a program that is stored in a protected enviroment (for example CD-ROM) and it's used to check if a program has not been modified. To check if a program has been modified we need to recompute the hash and check if it's equal.
 
 A main **con** of the hash functions is the birthday paradox in which given a set of `n` random chosen people will have an exponential probability in having the same birthday:
+
 - 50% reached with 23 people
 - 99.9% reached with 70 people
 
@@ -82,23 +94,47 @@ A famouse SSO protocol is SAML 2.0.
 
 **Contextual authentication** is where the context around the user's login are considered and assessed (valutate) to then decide whether the person is who the say they are. If there's a chance they are not, then an appropriate action is taken. For example if I'm logging in a new computer in a place where I've never been, more steps in my authentication needs to be required and a notification should be sent to me.
 
-### Questions
+### Questions authentication
+
 - What is authentication?
 - What is a hash function?
 - What is salting?
 - What is a brute force guessing attack? How can it be mitigated?
 
+## Authentication II
+
+### SAML (Security assertion markup language)
+
+In order to access more than one service providers at a time, an **identity provider** in which the user has more trust can authenticate the user and allow him to use more than one service at a time.
+
+![SAML](https://i.imgur.com/mhjxvDU.png)
+
+SAML is used in the context a a **trust relashionship** between the parties.  
+SAML is an XML-based framework for communicating user authentication and attribute information. The advantages are:
+
+- **platform neutrality** because it abstracts the security framework and it's secure indipendently from the architecture
+- **loose coupling of directories** because it does not require user information to be mantained and syncd between directories
+- **improved online experince for end users** because it enables single sign-on so allowing users to make a single login to an entity provider and then accessing more service providers wihout additional authentication
+- **reduced administrative costs and risks for service provides** because it allows to reuse a single act of authentication multiple times across multiple services and the buden is transferred to the identity provider
+
+### Single sign on (SSO)
+
+
+
 ## Cryptography
+
 **Cryptography** is the science and study of secret writing.  
 **Cryptoanalysis** is the science and study of methods of breaking ciphers.  
 **Cryptology** cryptography and cryptoanalysis.  
 
 Security services provided by cryptographic mechanism are:
+
 - **Data confidentiality** encryption algorithms hide the content of messages
 - **Data integrity** is a check function that detect whether a document has been changed
 - **Data origin authenitication** is a digital signature algorithms that provides the means to verify the source and integrity of the message
 
 A cryptosystem is a 5-tuple where:
+
 - **E** is an enctyption algorithm
 - **D** is a decryption algorithm
 - **M** is the set of plaintexts
@@ -110,6 +146,7 @@ So `M x K = C` and `C x K = M`.
 A **key** is an input to a cryptographic algorithm used to obtain confidentiality, integritym authenticity or other proprety over some data. Keys are store in safe places like tmp, secure co-processor, smartcards etc.  
 
 ### Key distribution
+
 The two partied need to share the same key and the key must be protected from access by others, the streanght of any cryptographic system depends on the key distribution technique.  
 A encryption scheme is secure if the cost of breaking the cipher exceeds the value of the encrypted information and the time required to break it exceeds the useful lifetime of the information. It's difficult to estimate the amount of effort required to cryptoanalyze cipthertext successfully if you are trying with mathematical schemas. With bruteforce in average you try half of the possible combinations.
 
@@ -145,24 +182,29 @@ The **main problem** of SKC is that both of the parties have the same keys, comp
 
 The basic idea behind the PKC (Public key cryptograpy) is that a user has the public key that uses to encrypt a message and another user has a private key that uses to decrypt the message.  
 An example is:
+
 - Alice encypt the message using Bob's public key
 - Bob decypt Alice message with his private key
 
 This propreties are offered:
+
 - **Authentication** because the digital signature says a message is created by a known sender
 - **Non-repudiation** because the sender cannot deny having sent the message
 - **Integrity** beacuse message was not altered while transiting
 
 The main **pro** about public key cryptography is that the private key is only know by the owner and does not need to be shared like in Simmetric key encryption.  
 The main **cons** are:
+
 - the algorithms are 2-3 orders of magnitude slower than those for symmetric key encryption
 - it's not possible to ensure that the we are exchanging the keys with the real person (and man in the middle attacks are possible)
 
 A possible mitigation with this last problem can with the digital signatures ([Digital signatures paragraph](#digital-signatures)).
 
 ### RSA
+
 The **RSA** (Rivest, Shamir, Adleman) uses a PKC algorithm for key exchange, digital signature and key encryption of small blocks of data.  
 RSA uses a variable size encryption block and a variable size key. Key-pair is deliverd from a very large number `n` that is the product of two prime numbers `primeNumber1*primeNumber2=n` chosen according to special rules:
+
 - Primes may be 100 or more digits in length
 - An attacker cannot determine the prime factors of `n` from this information alone and this is what makes the RSA algorithm so secure
 - If a large number is created from two prime factors that are roughly the same size there is no known factorization algorithm that will solve the problem in a seasonable amount of time
@@ -172,6 +214,7 @@ RSA uses a variable size encryption block and a variable size key. Key-pair is d
 A recent **vulnerability of RSA** has been discovered beacuse chips inside identity cards, programmable smartcards, authentication tokens ecc. were using common software libraries in which was possible to compute the private key of a 1024 and 2048 key lenght. This was possible due to a algorithmic vulnerability characterized by a specific structure of the generated RSA prime numbers. So it was possible to crack a 1024 bits key with the cost of $76 and $40.000 for 2048 bits.
 
 ### Diffie-Hellman
+
 **DH** (Diffie-Hellman) is another algorithm that uses PKC used for secret-key key exchange only (not authentication or digital signatures). Diffie-Hellman allows to two parties that have no prior knoledge of each other to generate a private key through an unsecure channel. This key will be used to encrypt subsequent communication using a symmetric key cipher.  
 
 How DH works:  
@@ -179,7 +222,8 @@ How DH works:
 
 **Problem of Diffie-Hellman**: does not provide authentication, because parties do not know who they are establishing a key with, so man in the middle attack is possible.
 
-### Questions
+### Questions RSA
+
 - What is a cryptosystem?
 - Why key management is crucial for cryptography?
 - What does it mean for a cryptographic technique to be computationally secure?
@@ -189,7 +233,7 @@ How DH works:
 - Why is DES deprecated?  Why is AES still used?
 - What is asymmetric (or public key) cryptography?
 - What are the main advantages and disadvantages of symmetric and asymmetric cruptography?
-- What is RSA and for what it can be used? 
+- What is RSA and for what it can be used?
 - What is Diffie-Hellman and for what it can be used?
   - What is a possible attack to Diffie-Hellman?
 - What is a one-way function?
@@ -197,15 +241,18 @@ How DH works:
   - What is the one-way function used in Diffie-Hellman?
 
 ## Digital signatures
+
 The main problem that digital signatures have (with diffie-hellman key exchange) brings is that we are not sure with how we are exchanging they keys with. The solution to this are digital certificates.
 
 ### Digital certificates
+
 A digital certificate is issued and signed by a trusted third party (TTP) than can be rappresented e.g. by a person or a service.
 
-![Certificate schema](https://i.imgur.com/M7Qqbry.png) 
+![Certificate schema](https://i.imgur.com/M7Qqbry.png)
 
 A digital certificate works with the public key infrastructure.  
 The main components of the PKI are:
+
 - the **root certificate authority** (CA) is the most significat element in the CA hierarchy and authorizes suborfinate CAs
 - the **subordinate CA** is responsible for issuing certificates
 - the **registration authority** (RA) is responsible for accepting requests for digital certificates and authenticating the entity (client or server) making the request
@@ -215,6 +262,7 @@ The main components of the PKI are:
 ![Digital signature exchange](https://i.imgur.com/aa516QJ.png)
 
 Creation of a digital certificate:
+
 - User generates a public and private key-pair or it's assigned by an authority
 - User requests the certificate by some authority in their organization
 - CA responds with its certificate (signed by its private key)
@@ -224,6 +272,7 @@ Creation of a digital certificate:
 - CA issues the certificate to User
 
 ### SSL and TLS
+
 **Secure sockets layer** (SSL) now at the version SSLv3.  
 **Transport layer security** (TLS) now at the version 1.3.
 
@@ -235,8 +284,9 @@ TLS consists of two main protocols: handshake protocol and record protocol.
 ### Handshake protocol
 
 Handshake protocol work with Diffie-Hellman exchange and the flow is:
+
 - **Client Hello** contains
-  - the version of the protocol 0the client want to use 
+  - the version of the protocol 0the client want to use
   - cipher suite (set of algorithms that help secure the connection)
 - **Server Hello** contains
   - the chosen protocol version (supported by both)
@@ -260,16 +310,19 @@ Handshake protocol work with Diffie-Hellman exchange and the flow is:
 The usage of SSL and TLS ensures **data integrity** if the CiptherSpec in the channel uses a suitable hash algorithm.
 
 There are **security isses** in TLS up to v1.2 which are:
+
 - **backward compatibily** with the old protocol which uses weak cipther suites and broken hash functions
 - **logical flows** that can be used to trick both client and server
 
 Some TLS attacks are:
+
 - tree attack
 - **3shake** in which the mallory mediates two handshakes that generate the same master secret
 - **sweet32** is a birthday attack in which an host negotiate a cipher called 3DES which can make a collision happen in `2^32` combination, nowadays fairly easy to generate, fix (TLS v1.3) is to disable 3DES  
 - **CRIME** used deflate compression to injects different characters into the victim’s requests trying to guess the content, fix (TLS v1.3) disable compression
 
-### Questions
+### Questions digital signatures
+
 - What are the advantages and disadvantages of Symmetric and Asymmetric Cryptography?
 - How can PKC be used to sign messages?
 - What is the role of hash functions in this process?
@@ -281,9 +334,11 @@ Some TLS attacks are:
 - What are the potential security problems of TLS?
 
 ## Blockchain
+
 A blockchain is a data structure like linked lists. The blocks are connected each other and each block has the hash of the previous block.  
 
 The blocks usually have:
+
 - index
 - time stamp
 - data like description
@@ -328,6 +383,7 @@ There is a similar problem that's conceptally similar, called Byzantine generals
 
 Simplified version of the Byzantine problem is the Two generals problem: General 1 is the leader, General 2 is the follower. Each general’s army on its own is not enough to defeat the enemy army successfully, thus they need to cooperate and attack at the same time.
 In order for the two generals to communicate and decide:
+
 - General 1 has to send a messenger across the enemy’s camp that will deliver the time of the attack to General 2
 - There is a possibility that the messenger will get captured by the enemies and thus the message will not be delivered resulting in General 1 attacking while General 2 not
 
@@ -356,7 +412,8 @@ Example:
 
 Because the transactions per second that can be made in bitcoin are only 5 (compared to 1,700 in thr Visa system) there are scalability problems. For this reason the **distributed ledgers** are a solution to this problem.
 
-### Questions
+### Questions blockchain
+
 - Describe the structure of the blockchaindatastructure
 - Why are digital signatures important in blockchain? What kind of problem they solve?
 - What is the double spending problem? How can it be solved?
@@ -364,4 +421,3 @@ Because the transactions per second that can be made in bitcoin are only 5 (comp
 - What is the Proof-of-Work approach to solving the consensus problem?
 - What is the different between a blockchainand a distributed ledger?
 - Explain the terms public, private, permission-less and permissioned
-
