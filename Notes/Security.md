@@ -94,6 +94,23 @@ A famouse SSO protocol is SAML 2.0.
 
 **Contextual authentication** is where the context around the user's login are considered and assessed (valutate) to then decide whether the person is who the say they are. If there's a chance they are not, then an appropriate action is taken. For example if I'm logging in a new computer in a place where I've never been, more steps in my authentication needs to be required and a notification should be sent to me.
 
+### Single sign on (SSO)
+
+SSO advantages:
+
+- reducing password fatigue from different user name and password combinations
+- reducing time spent re-entering passwords for the same identitry
+- reducing IT cost due to lower number of calls to help desk about passwords
+
+SSO types:
+
+- in a **pseudo-SSO** the client sofware manages the credentials and hides the login from the user
+- in a **proxy-based SSO** there is a proxy in the network that manages user credentials and hides te login details from the client
+- in a **true SSO** the user authenticates to a separate authentication service
+- in a **federated sso** is an authentication between administrative domains
+
+The main **disadvantage** of SSO is the only a password needs to be compromised to get access to serveral apps/services.  
+
 ### Questions authentication
 
 - What is authentication?
@@ -115,15 +132,57 @@ SAML is an XML-based framework for communicating user authentication and attribu
 - **platform neutrality** because it abstracts the security framework and it's secure indipendently from the architecture
 - **loose coupling of directories** because it does not require user information to be mantained and syncd between directories
 - **improved online experince for end users** because it enables single sign-on so allowing users to make a single login to an entity provider and then accessing more service providers wihout additional authentication
-- **reduced administrative costs and risks for service provides** because it allows to reuse a single act of authentication multiple times across multiple services and the buden is transferred to the identity provider
+- **reduced administrative costs and risks for service provides** because it allows to reuse a single act of authentication multiple times across multiple services and the burden is transferred to the identity provider.  
 
-### Single sign on (SSO)
+The goals of SAML are:
 
-SSO advantages:
+- **creation of a trusted security statements** like A address is admin@admin.com and was authenticated using a password so has access to the resurce B
+- **exchange of security statements** A is authenticated and wants to buy B, he shoudn't reauthenticate before buying B
 
-- Reducing password fatigue from different user name and password combinations
-- reducing time spent re-entering passwords for the same identitry
-- reducing IT cost due to lower number of calls to help desk about passwords
+![SAML use case](https://i.imgur.com/yOWoCEF.png)
+
+![SAML with authz](https://i.imgur.com/daBjBpE.png)
+
+### SAML overview
+
+![SAML overview](https://i.imgur.com/jBFIFOx.png)
+
+A **SAML assertion** is a package of informations supplying one or more statements made by a SAML authority, for example authentication, attributes and authorization decisions.  
+A **SAML protocol** specify the request/response protocols. This protocols can for example: requests that an identiry provider authenticate a principal and return corresponding assertion, request than the use of an identifier is terminated, request than a name identifier is registered.  
+A **SAML binidind** is a mapping from SAML to a normal communication protocol for example HTTP.  
+A **SAML profile** defines constrains in support of the standard protocols allowing flexibility, for example it can define how to use the authentication request/response like HTTP redirect, HTTP post etc.
+The **SAML metadata** defines the actors involed in the various profles, for example SSO identiry providers, SSO service providers, SSO attribute authority and SSO requester.  
+The **SAML authentication context** contains details of a additional informations that need to be added to the request, for example a multi-factor authentication can be included.
+
+Another standard is **XACML** (eXtensibleAccess Control Markup Language) which descrives both access control policy language and request/response language.
+
+### Web SSO
+
+![Web SSO](https://i.imgur.com/5s682gn.png)
+
+The two main scenarios of web SSO are identity provider initiated SSO and service provider initiated SSO.
+The **identity provider SSO** works such that the user connects to `idprovider.com`, authenticates and than he's redirected to `serviceprovider.com`.  
+A way more common scenatio is **service provider-initiated SSO** in which the user once is connected to `serviceprovider.com`, than the user get redirected to `useridentity.com`, makes the login and get redirected back.  
+
+![idp initiated SSO](https://i.imgur.com/DX8ULxc.png)
+
+![sp initiated SSO](https://i.imgur.com/UHSrikA.png)
+
+### SAML security
+
+In order to provide security to the connection is strongly suggested to use the PKI from the identity provider to the service provider, in order to avoid man in the middle attacks. So to keep message integrity and confidentiality SSL/TLS is raccommanded.
+
+### Questions authentication II
+
+- What are the goals of SAML?
+- What is the structure of a SAML assertion?
+- What is a SAML profile? Give an example of SAML profile.
+- What is the difference between IdP-Initiated and SP-Initiated Web SSO?
+- What is the flow of an IdP-Initiated Web SSO?
+- What is the flow of an SP-Initiated Web SSO?
+- What are the main security concerns underlying the deployment of SAML? What are the main mitigations measures?
+- What is SPID? What is eIDAS? Is there a relationship between the two?
+- Give an example of scenario in which eIDAS is useful.
 
 ## Cryptography
 
