@@ -575,3 +575,6 @@ Roles are not the same thing as group: the groups are a collection of user, the 
 - What is a trojan?
 - What is a covert channel?  How can a covert channel be created in MAC?
 - How access control can mitigate command injection attacks?
+
+## Access control II
+
