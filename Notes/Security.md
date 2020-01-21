@@ -580,15 +580,75 @@ Roles are not the same thing as group: the groups are a collection of user, the 
 
 ### OAuth 2.0
 
+The **OAuth 2.0** is a delegation protocol that lets users allow applications to access resources on thir behalf.
+
+***From now OAuth refers to Oauth 2.0***
+
 The main problem that OAuth solves is the permissions that you are giving to an external entity is unlimited, with OAuth you can limit it.
 
-The flow of OAuth 2.0 is:
+The **flow of OAuth** is:
 
-- **authentication** when you authenticate to the OAuth provider (not part of OAuth 2.0 protocol)
-- **user consent** when user decides what can be shared with the 3rd party app
+- **authentication** when you authenticate to the OAuth provider (not part of OAuth protocol)
+- **user consent** when user decides what can be shared with the 3rd party app, the OAuth token will be created thanks to that
+- the **OAuth token** will be recevied by the application
+- The service can **access resources** from your profile/account
 
-## Test code
+The **OAuth token** is opaque to clients, for example a token is `92dv2038f06dba95d0c5f1951ac5b5eb`.  
+Along with the token, the first time that the token is generated it's also issued the **refresh token** that is a token used to generate a new token when the one that has been created is released.  
+The OAuth scope contains: the type of actions can do (read, write, delete), resource that can access, time of access in which it will expire.
 
-$$
-(1/2)*(3/4)+infinite
-$$
+The security consideration we need to think about are:
+
+- use short-lived access tokens and long-lived refresh tokens
+- when a token is expiring the the client has to run the reauthorization process again to get a new access token
+- when a token is stolen it cannot be used outside of a certain application
+- when there is not access token a refresh token ask for credentials
+
+OAuth tokens are similar can be managed with DAC and MAC but increasing the size of the users or sesources the operation can become comutationally expensive.  
+It can be solved with RBAC (as Google does) assigning the permissions to roles in the organization instead of directly to users.  
+This approch can be difficult when considering that a metadata of a file cannot be considered inside this schema.  
+For this reason there are the ABAC.
+
+### Attribute based access control (ABAC)
+
+**Attribute based access control** (ABAC) have the possibilities to give access based on:
+
+- user attributes
+  - name
+  - organization
+- attributes associated with the resource to be accessed
+  - title
+  - author
+  - date of creation
+- enviromental condition (one or more)
+  - current date
+  - current hacker activities
+  - network security level
+
+An example is to allow users who `are employees` can access `payroll system` only `during business hours`.
+
+Compared to RBAC examples can be:
+
+- RBAC: give access to all teachers to Google
+- ABAC: give access to all teachers to Google while they are working in school A teaching B
+
+### XACML
+
+The **eXtensibleAccess Control Markup Language** (XACML) language is an XML encoded language that can specify access congtrol policies, access control reqiest and access control decisions.  
+
+The main components of XACML are:
+
+- XACML policy language that specify access control rules
+- XACML request/response protocol used to query a decision
+- XACML reference architectures
+
+XACML can be combined with RBAC and ABAC. The main takeaways of SAML are the attributes that are not taken in consideration. The main takeaways of ABAC are that it can become hard to control and take decisions if there are a lot of clashing attributes.
+
+### Questions access control II
+
+- What is the problem solved by OAuth? Which entities are involved in Oauth?
+- What are the main flows supported by OAuth? In which use case scenarios should they be used?
+- What is an OAuth token? Is it opaque for which entity involved in OAuth?
+- What is ABAC? What is an ABAC policy? What are the advantages of ABAC over RBAC?
+- What is XACML? What is a XACML target, effect, condition, rule policy, and policy set? What are the XACML policy combining algorithms?
+- Describe the XACML architecture
