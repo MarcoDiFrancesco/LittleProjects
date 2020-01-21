@@ -578,3 +578,17 @@ Roles are not the same thing as group: the groups are a collection of user, the 
 
 ## Access control II
 
+### OAuth 2.0
+
+The main problem that OAuth solves is the permissions that you are giving to an external entity is unlimited, with OAuth you can limit it.
+
+The flow of OAuth 2.0 is:
+
+- **authentication** when you authenticate to the OAuth provider (not part of OAuth 2.0 protocol)
+- **user consent** when user decides what can be shared with the 3rd party app
+
+## Test code
+
+$$
+(1/2)*(3/4)+infinite
+$$
