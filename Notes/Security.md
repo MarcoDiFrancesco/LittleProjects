@@ -44,7 +44,7 @@ Security **Policy** is a set of rules and requirements established by an organiz
 Security **Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allowinf access to resource in an information system. Another example is authorization that grants or denies access rights to a user, program or process.  
 Security **Service** is the capability that supports one or more of the security requirements, for example key management, access control and authentication.
 
-## Authentication
+## Authentication I
 
 The **user athentication** is the process of verifying a claimed user identity.  
 Authentication threats:
@@ -484,3 +484,94 @@ Because the transactions per second that can be made in bitcoin are only 5 (comp
 - What is the Proof-of-Work approach to solving the consensus problem?
 - What is the different between a blockchainand a distributed ledger?
 - Explain the terms public, private, permission-less and permissioned
+
+## Access control I
+
+![Access controll](https://i.imgur.com/WzjfpRA.png)
+
+### Least privilege
+
+The **subject** is anyone allowed to access a resource (also a program). A **user** is a human being.  
+In a device or network the user should always have the least priviledges needed.  
+The **principle of least priviledge** says that every subject must be able to access only the information and resources that are necessary for its legitimate purpouse.  
+
+### Access control
+
+Access control is the process of processing requests to access resources and data of a system and determing if a request should be granted or denied.  
+The security of a system is defined in terms of a policy. A **policy** is a set of rules to implement specific security properties, and it is including CIA (confidentiality, integrity, availablibity).
+
+The three main points of access control are:
+
+- **policy** that is a set of rules that control what actions a sucbject can perform
+- **model** is a mathematical rappresentation of the policy
+- **enforcement** is the low level (software and hardware) in which the models are implemented
+
+A **problem with enforcement** was that commands were maximum 256 chars and the rest of the string was executed in the cpu. This was a old problem, but still most of the programmers are careless of the size of the input.
+
+## Access control matrix
+
+The access controll matrix is a matrix that contains the resurces and subjects in the rows and cols, then it each cell contains the access that this subject has: own, read, write.
+
+![Access matrix](https://i.imgur.com/CwmPia7.png)
+
+There are two extensions: acess control list and capabilities.
+
+The **confused deputy** is the privilege escalation attack in which the user that does not have directly access to a certain resource is able to overwrite certain resouces tricking the system.  
+
+### DAC/MAC/RBAC
+
+The **discretionary access control** is the model in which can give rights to other subjectes.  
+The **mandatory access control** enforces mandatory rules.  
+The **role base access control** is considered superior.
+
+### Discretionary access control (DAC)
+
+The **discretionary access control** there is no central entity that can give access to a certain resource, only the owner can give access read/write/... permissions to its own resources. Ususally for this it's used ACLs.  
+The **pros** of discretionary access control is that it's flexible, the implementation is not hard and it is intuitive.  
+The **cons** are that it's vulneravle to trojans and information leakage.  
+
+### Mandatory access control (MAC)
+
+The **mandatory access control** is the opposite, a central authority that decides how a certain resource should be shared.  
+
+In **multi-level security** we are classifing information labeling them in more importance increasing categories. When a resource is added to the system is labled and if a resouce contain both not import and important informations, it's labeled as important (the gighest grade).  
+This organization needs to reflex the **principle of least priviledge** in which every user is given the least permission needed.  
+In multi-level secuity we are following two main properties: **not read up** in which a user that does have the permiossions to read a more important resource, cannot read it and **no write down** in which a user that has the possibility to lower the grade of a resource cannot.  
+
+The **pros** of MAC are: is not vulneravle to trojans beacuse of the no write doen property, it's rigid so it's easy to keep the situation under control.  
+The **cons** is that information leakage are still possible by convert channel (the path of communication between systems).  
+
+Where DAC and MAC are not adequate?
+DAC and MAC are not adequate when talking about repetion of user labels. Here the RBAC comes.
+
+### Role based access control (RBAC)
+
+![RBAC](https://i.imgur.com/dJP9W3R.png)
+
+Roles are not the same thing as group: the groups are a collection of user, the role is a collection of users and a collection of permissions.
+
+![RBAC example](https://i.imgur.com/RFnp5E1.png)
+
+**RBAC pros**:
+
+- it's easy to understand the idea of roles
+- it's easy to tell through roles which user has which role
+
+**RBAC cons**:
+
+- can be difficult to associate users to roles
+- role meaning can change over time and the roles can be not up to date
+
+### Access control I questions
+
+- What is access control and what is its basic architecture?
+- What is an access control matrix? ACLs? Capabilities?
+- What is DAC?
+- What is MAC? Define No Read Up and the No Write Down principles.
+- What are the differences, advantages and disadvantages of DAC and MAC?
+- What is RBAC? How does it simplify administration?
+- Define the Principle of Least Priviledge
+- What is a confused deputy?
+- What is a trojan?
+- What is a covert channel?  How can a covert channel be created in MAC?
+- How access control can mitigate command injection attacks?
