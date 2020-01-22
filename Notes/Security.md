@@ -671,6 +671,7 @@ Because HTTP is stateless, there is the need of **cookies** to keep track of the
 ![Different types of attacks](https://i.imgur.com/pKW1hGa.png)
 
 Some types of web threats are:
+
 - **web atacker** can for example take control of a website
 - **network attacker** can make dns poisoning and wireless eavesdropper
 - **malware attacker** can take control of an OS
@@ -761,3 +762,84 @@ In MQTT the security standards that can be implemented are the credentials and S
 ![MQTT](https://i.imgur.com/GpRzGMF.png)
 
 Some possible attacks can be made like brute force attack because there is no mechanism to stop them.
+
+## Privacy and data protection
+
+The first main definition of privacy is **informational delf-determination** that means that everyone gets to control information about himself or herself.  
+The second definition of privacy is **high-level og difficulty in correlating data and actions** and means to remain anonymous.
+
+**Data anonymization** means to remove personal identifying information like name, phone number and email.
+
+A big data leak was the one when Netflix asking for a better raccomandation algorithm releasead a dataset. This dataset was not containing personal informations, but the university of Texas was anyway able to relate some of this data to the reviews in the website IMDB.
+
+This attack is called **linkage attack** and consist of linking data from different dataset so that it's possible to identify a user.  
+
+A mitigation for this attack is to make the **quasi-identifiers** (that are piece of informations that are not unique themself) difficult to distinguish with **k-anonimity**. K-anonmity is the rule that says an information cannot be distinguished from at least k-1 individuals.
+
+![K-anonimity table](https://i.imgur.com/U7qSmw0.png)
+
+### Linddun
+
+**Linddun** characterization of privacy are the rules:
+
+- **Linkability** that indicates the possibility to correlate 2 items of initerest
+- **Identifiability** that indicates the possibility to identify a user
+- **Non-repudiation** indicates that is not possible to deny a caim
+- **Detectability** detect if a user exsist or not
+- **Disclosure of information** is the violation of confidentiality
+- **Unawareness** is not being aware of the consequences of sharing informations
+- **Non-compliance** means not being compliant with legislation
+
+### GDPR
+
+**General Data Protection Regulation** (GDPR) covers all EU citizens and it includes:
+
+- getting informations of a user without it's express consent
+- notifying people in 72 hours when a data breach is released
+- large businesses need to have an officer that is responsible for the compliance of the company
+- fines reach €20 million or 4% of the previous fiscal year worldwide turnover
+- performing Data Protection Impact Assessment for every data processing activity
+
+One important article is the article 4 with various definitions.
+
+- **Personal data** means data reated to an identity and identifiable as a natural person
+- **Processing** means any operation that is performed on a personal data
+- **Pseudonymisation** means to process a data in a way that personal data can no longer be attributed to a specific subject
+- **Controller** is the entity that control the processing of infotmations
+- **Processor** is the legal person which processes the personal data on behalf of the controller
+- **Consent** means that the data are freely given to a specific subject
+- **Personal data breach** means a breach of personal informations
+
+The **condition for consent** (article 7) states that the controller shall be able to demonstrate that a certain user has given the permission of processing his/her data. This consent needs to be presented in a manner which is clearly distinguishable from the other metters. The data subject shall have the right to withdraw his or the consent in any time.
+
+The **security of processing** (article 32) states that the technical and organizational measures to ensure a level of security appropiate to the risk needs to be calculated.
+
+The **notification of a personal data breach to the supervisory authority** (article 33) states that in the case of a personal data breach shall without delay inform the make aware the users of the data breach.
+
+**Communication of a personal data breach to the data bubject** (article 34) in which it's likely to result in a high rish to the rights and freedom of a natural person needs to be communicated immediatly without delay.
+
+The **data protection impact assessment** (article 35) states that with the new technologies the controller shall, prior to the processing, carry out an assessment of the impact to the risk of the rights and dreedoms of data subjects.
+
+### Risk evaluation
+
+The **problem the risk evaluation** is the accuracy of mesurments, and problems can raise, for example it's difficult to tell the percentage if fullt patched systems and the inconsistrency of mesurment methods can raise, for example the patch status of an application can be different from app to app.
+
+The **definition of risk** is:  
+[likelihood of adverse event] x [impact of the adverse event]
+
+Stochastic models can be used to evaluate the likelihood of an adverse event, and metrics from available vulnerability databases can be used to evaluate the impact of an event.
+
+![Risk matrix](https://i.imgur.com/ebvOP1U.png)
+
+### Privacy and data protection questions
+
+- What is the likelihood of an event? What is the impact of an event?
+  - What is the risk of an event?
+  - What is the risk matrix?
+- Define the notion of privacy. What is k-anonimity?
+- What is data protection? What is LINDDUN?
+- What is the scope of application of the GDPR? Who is the data controller?
+  - Who is the data processort?
+  - What is the Data Protection Impact Assessment?
+  - Why does the GDPR propose a risk-based approach to data protection?
+- What is the difference between the risk evaluated for an organization and the risk of a data processing activity in the GDPR?
