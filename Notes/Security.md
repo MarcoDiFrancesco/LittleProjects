@@ -40,9 +40,9 @@ Security notes.
 
 ![Risk matrix](https://i.imgur.com/Ikvc01f.png)
 
-Security **Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protecting the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriate areas. Another example is: Employees need to use a secure password on all systems and these credentials must be unique.  
-Security **Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allowinf access to resource in an information system. Another example is authorization that grants or denies access rights to a user, program or process.  
-Security **Service** is the capability that supports one or more of the security requirements, for example key management, access control and authentication.
+**Security Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protecting the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriate areas. Another example is: Employees need to use a secure password on all systems and these credentials must be unique.  
+**Security Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allow access to resource in an information system. Another example is authorization that grants or denies access rights to a user, program or process.  
+**Security Service** is the capability that supports one or more of the security requirements, for example key management, access control and authentication.
 
 ## Authentication I
 
@@ -132,7 +132,7 @@ SAML is an XML-based framework for communicating user authentication and attribu
 - **platform neutrality** because it abstracts the security framework and it's secure indipendently from the architecture
 - **loose coupling of directories** because it does not require user information to be mantained and syncd between directories
 - **improved online experince for end users** because it enables single sign-on so allowing users to make a single login to an entity provider and then accessing more service providers wihout additional authentication
-- **reduced administrative costs and risks for service provides** because it allows to reuse a single act of authentication multiple times across multiple services and the burden is transferred to the identity provider.  
+- **reduced administrative costs and risks for service provides** because it allows to reuse a single act of authentication multiple times across multiple services and the burden is transferred to the identity provider
 
 The goals of SAML are:
 
@@ -280,7 +280,8 @@ A recent **vulnerability of RSA** has been discovered beacuse chips inside ident
 
 **DH** (Diffie-Hellman) is another algorithm that uses PKC used for secret-key key exchange only (not authentication or digital signatures). Diffie-Hellman allows to two parties that have no prior knoledge of each other to generate a private key through an unsecure channel. This key will be used to encrypt subsequent communication using a symmetric key cipher.  
 
-How DH works:  
+How DH works:
+
 ![DH overview](https://i.imgur.com/535jhl7.png)
 
 **Problem of Diffie-Hellman**: does not provide authentication, because parties do not know who they are establishing a key with, so man in the middle attack is possible.
@@ -508,13 +509,19 @@ The three main points of access control are:
 
 A **problem with enforcement** was that commands were maximum 256 chars and the rest of the string was executed in the cpu. This was a old problem, but still most of the programmers are careless of the size of the input.
 
-## Access control matrix
+### Access control matrix
 
 The access controll matrix is a matrix that contains the resurces and subjects in the rows and cols, then it each cell contains the access that this subject has: own, read, write.
 
 ![Access matrix](https://i.imgur.com/CwmPia7.png)
 
-There are two extensions: acess control list and capabilities.
+There are two extensions: access control list and capabilities list.
+
+### Capabilities list
+
+**Capabilities list** is a way to store the rights that a user have and stored listing the subjects and attached the resources that he has the possibility to access.
+
+The main cons about this is that changing the status of the rights of a certain resource (for example deny all users the access to this program) can be difficult to find which users have acess to that resorce.
 
 The **confused deputy** is the privilege escalation attack in which the user that does not have directly access to a certain resource is able to overwrite certain resouces tricking the system.  
 
@@ -580,7 +587,7 @@ Roles are not the same thing as group: the groups are a collection of user, the 
 
 ### OAuth 2.0
 
-The **OAuth 2.0** is a delegation protocol that lets users allow applications to access resources on thir behalf.
+The **OAuth 2.0** is a delegation protocol that lets users allow applications to access resources on their behalf.
 
 ***From now OAuth refers to Oauth 2.0***
 
@@ -638,9 +645,9 @@ The **eXtensibleAccess Control Markup Language** (XACML) language is an XML enco
 
 The main components of XACML are:
 
-- XACML policy language that specify access control rules
-- XACML request/response protocol used to query a decision
-- XACML reference architectures
+- **XACML policy language** that specify access control rules
+- **XACML request/response protocol** used to query a decision
+- **XACML reference architectures**
 
 XACML can be combined with RBAC and ABAC. The main takeaways of SAML are the attributes that are not taken in consideration. The main takeaways of ABAC are that it can become hard to control and take decisions if there are a lot of clashing attributes.
 
@@ -701,7 +708,7 @@ One possible way to solve these problem is to check everytime the input that's p
 
 ### Cross-site scripting (XSS)
 
-**Cross-site scripting** enables attacker to inhect client-side scripts into web pages as JavaScript from a site can access that site's cookies.
+**Cross-site scripting** enables attacker to inject client-side scripts into web pages as JavaScript from a website to access that site's cookies.
 
 An example of XSS attack is to make the victim open the link
 
