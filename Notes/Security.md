@@ -136,7 +136,7 @@ SAML is an XML-based framework for communicating user authentication and attribu
 
 The goals of SAML are:
 
-- **creation of a trusted security statements** like A address is admin@admin.com and was authenticated using a password so has access to the resurce B
+- **creation of a trusted security statements** like A address is `admin@admin.com` and was authenticated using a password so has access to the resurce B
 - **exchange of security statements** A is authenticated and wants to buy B, he shoudn't reauthenticate before buying B
 
 ![SAML use case](https://i.imgur.com/yOWoCEF.png)
