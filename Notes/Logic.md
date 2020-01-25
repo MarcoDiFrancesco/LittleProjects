@@ -1,8 +1,10 @@
 # Logic
+
 A **conceptual model** is a meaningful rapresentation of the world, described in a certain **language**.  
 **Conceptual modeling** is the activity of building conceptual models.  
 
-# Mental model
+## Mental model
+
 **World** is what we perceive.  
 **Mental model** is a rappresentation of the world composted in 4 consistuents.  
 **Semantic gap** is the difference between the world and the mental model.  
@@ -12,13 +14,16 @@ A **conceptual model** is a meaningful rapresentation of the world, described in
 **Domain** is formed of "images and pictures" which rappresent atomic elements used to describe what we see.  
 **Model** is formed of "images and pictures" which rapresent the sets of facts (scenes) that we have seen (and are true).
 
-### Menatal model
+Menatal model
+
 ![Menatal model](https://i.imgur.com/J1DJm16.png)
 
-### Mental model rappresentation
+Mental model rappresentation
+
 ![Mental model rappresentation](https://i.imgur.com/EjpqXv8.png)
 
-# Logical model
+Logical model
+
 **World** *same*.  
 **Logical model** *same*.  
 **Semantic gap** *same*.
@@ -32,14 +37,16 @@ A **conceptual model** is a meaningful rapresentation of the world, described in
 **Entailment** (aka truth-relation or satisfiability) is a relation which associates what is true in a model with a subset of the sentence of the language.  
 Note that a sentence can be an element in a theory if and only if its interpretation is true in the model.
 
-### Logical model
 ![Logical model](https://i.imgur.com/MBvm6Hf.png)
 
-### Logical model rappresentation
+Logical model rappresentation
+
 ![Logical model rappresentation](https://i.imgur.com/ijkWOAX.png)
 
-## Language
+### Language
+
 The **language** is a set of symbols (usually finite) and formation rules to compose "correct sentences". For example:
+
 - Monkey and GetBanana are symbols (atomic sentences)
 - Monkey ∧ GetBanana is a sentence (rule: A ∧ B)
 
@@ -49,8 +56,10 @@ The **semantics** is the way a language is interpreted, it determines the meanin
 The **formal syntax** is a finite or infinite alphabet used for building phrases with rules construction.  
 The **formal semantics** is the relationship between syntactic constructors in a language and the elements of a universe of meanings with a mathematical function **Language → Domain**.  
 
-### Logic
+### Logic components
+
 A **logic** has three fundamental components:
+
 - A **formal language** (L) that defines what can correctly be said
 - An **interpretation function** (I) that defines how the atomic elements of the language are being interpreted in the intended domain and model
 - An **entailment relation** (⊨) used to define two relations: **satifiability** that is when a formula is true, and **logical consequence** that is when the truth of a formula follows from the truth of a set of formulas
