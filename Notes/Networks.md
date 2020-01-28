@@ -241,7 +241,7 @@ The sockets are 16 bit integers with values up to 65535.
 
 Is a **best effort service** and secgments may be lost or delivered out of order, there is not reliability on when a datagram is transfered.
 
-UDP makes **checksums** and attack them to the headers to detect errors. 
+UDP makes **checksums** and attack them to the headers to detect errors.
 
 ### ARQ
 
@@ -257,3 +257,69 @@ Some ARQ protocol examples are:
 
 ### Stop and wait
 
+The flow from the **transmitter prospective** is:
+
+- send PDU
+- set timeout
+- wait for acknoledgement
+- if not ack is received
+  - within timeout resend PDU
+- if ack is receided
+  - make checksum
+  - if correct send next PDU
+
+The flow from the **receiver prospective** is:
+
+- make checksum of PDU
+- check sequence number
+- if correct and in order
+  - send ACK
+  - pass SDU to upper layers
+- if checksum or sequence number incorrect
+  - drop PDU
+
+![Stop and wait](https://i.imgur.com/sJREwAr.png)
+
+Example Stop and wait
+
+![Stop and wait example](https://i.imgur.com/QWbfBTE.png)
+
+### Pipelined protocols
+
+Pipelining increases utilization of the bandwidth.
+
+The **transmission windows** (`Wt`) is the number of PDUs that the transmitter is allowed to transmit without receiving an ACK.
+
+`|Wt|` indicates the size of the window.
+
+The receive windows (`Wr`) is the number of PDUs that the receiver is capable to accept and memorize.
+
+In the transmission window Wt the **low pointer** (`Wlow`) is the first packet.
+In the transmission window Wt the **up pointer** (`Wup`) is the last packet.
+
+![transmission and receive windows](https://i.imgur.com/442DBJ5.png)
+
+### Acknoledgements
+
+There are different types of ACKs:
+
+- **individual ACK** that indicates the correct reception of a specific packet `ACK(n)`
+- **cumulative ack** indicates the correct reception of ACKs up to a certain packet. `ACK(n)` means I received everythink up to packet n (not included)
+- **neative ACK** (NACK) request retrasmission of a single packet `NACK(n)`
+- **piggybacking** means inserting ACK data into a packet
+
+Pipelined protocols examples are Go-back-N and Selective repeat.
+
+### Go-back-N
+
+![Go-back-N](https://i.imgur.com/9qs1Jsj.png)
+
+### Selective repeat
+
+![selective repeat](https://i.imgur.com/Ea0v9Gl.png)
+
+The **main difference** between the two protocols is that the first one, if it gets an ack that is not exactly in order, it rejects everything else except the expected packet, and in selective repeat the packets that are not exactly in order, they get accepted anyway (if the receiver window is big enough).
+
+### TCP
+
+Transmission Control Protocol (TCP) 
