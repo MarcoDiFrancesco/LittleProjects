@@ -72,7 +72,7 @@ The **transport service** of an application can require some needs:
 
 There are two main internet transport protocol services TCP and UDP.
 
-### TCP
+### TCP architecture
 
 - makes the **connection reliable**
 - manages flow and **congestion control** (making the connection slower in case the network is full)
@@ -82,7 +82,7 @@ There are two main internet transport protocol services TCP and UDP.
   - minimum throghput
   - security
 
-### UDP
+### UDP architecture
 
 - establish an **unreliable data tranfer** service
 - does **not** provide
@@ -222,3 +222,38 @@ BitTorrent protocol devides into 256Kb the files that want to transmit.
 The **DASH** (Dynamic, Adaptive Streaming over HTTP) streams multimedia so that the server the effort is divided in multiple CNSs.
 
 The server devides video file into multiple chunks, is encoded at different rates, and creates the manifest file contains URLs for the different chunks. The clint checks the bandwidht and consult th emanifest to get the more appropiate chunk. The client can check for the closest CDN and the Resolution wanted.
+
+## Transport Layer Services
+
+The transport layer services are used to proovide a logical communication between processes running on different hosts.
+
+### Multiplexing and demultiplexing
+
+Multiplexing means that the sender handle data from multiple sockets and add the trasport header and demultiplexing at receiver means to use header info to deliver receive regments to correct socket.
+
+Each datagram uses IP addresses and port numbers to direct the segment to the appropriate socket.
+
+The sockets are 16 bit integers with values up to 65535.
+
+![demultiplexing](https://i.imgur.com/mdIMnc7.png)
+
+### User datagram protocol (UDP)
+
+Is a **best effort service** and secgments may be lost or delivered out of order, there is not reliability on when a datagram is transfered.
+
+UDP makes **checksums** and attack them to the headers to detect errors. 
+
+### ARQ
+
+**Automatic Repeat reQuest** (ARQ) is a class of protocols that deals with packet loss, and it's made to notify the transmitter of the reception using acknoledgments.
+
+Some ARQ protocol examples are:
+
+- Stop and wait
+- Go-back-N
+- Selective Repeat
+- TCP
+- WiFi-s MAC protocol
+
+### Stop and wait
+
