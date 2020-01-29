@@ -322,4 +322,20 @@ The **main difference** between the two protocols is that the first one, if it g
 
 ### TCP
 
-Transmission Control Protocol (TCP) 
+Transmission Control Protocol (TCP) is:
+
+- **point-to-point** because there is one sender and one receiver
+- **reliable** because the byte are ordered
+- congestion and flow control **set windows size**
+- **windows sizes** are dynamic
+- **cumulative** ACKs
+- **clogging the network** is avoided thanks to congestion control
+- **bi-directional** data flow
+- sender will **not overwhelm** receiver
+
+### TCP structure
+
+![TCP structure](https://i.imgur.com/lPEgGJq.png)
+
+- RWND is a 16-bit field with max value 65536 bytes
+- 
