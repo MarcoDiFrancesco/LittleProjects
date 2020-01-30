@@ -338,4 +338,3 @@ Transmission Control Protocol (TCP) is:
 ![TCP structure](https://i.imgur.com/lPEgGJq.png)
 
 - RWND is a 16-bit field with max value 65536 bytes
-- 
