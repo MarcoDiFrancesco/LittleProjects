@@ -338,3 +338,110 @@ Transmission Control Protocol (TCP) is:
 ![TCP structure](https://i.imgur.com/lPEgGJq.png)
 
 - RWND is a 16-bit field with max value 65536 bytes
+
+Maximum Transfer Unit
+Default MTU = 1500 bytes
+
+Maximum Segment Size
+Default MSS = 1500 bytes - 40 bytes (MSS - header)
+
+Retrasmission time out (RTO)
+
+### Connection setup
+
+![Connection setup](https://i.imgur.com/LaBzWnQ.png)
+
+### Finish procedure
+
+![FIN procedure](https://i.imgur.com/PtPE3Bi.png)
+
+### Round trip time
+
+Smothed RTT: **SRTT = (1 -alpha)\*SRTT + alpha\*RTT**
+Typical value: alpha = 0.125
+
+![SRTT](https://i.imgur.com/CK4KZ2v.png)
+
+CWND (Congestion) is **upper bounded** by RWND (Receiver)
+|WT| = min(CWND, RWND) (or min(CWND, |Wr|))
+
+### Slow start
+
+For every ACK received increase CWND by one MSS:
+
+- start
+  - CWND = 1 MSS
+  - SSTHRESH = RWND (or RWND/2 depending on the implementation)
+- on valid ACK
+  - CWND = CWND + 1 MSS
+  - move Wlow according to ACK
+  - if CWND >= SSTHRESH -> switch to Congestuib Avoidance
+- on RTO timeout
+  - SSTHRESH = max(CWND/2, 2)
+  - RTO = RTO * 2
+  - CWND = 1
+  - retransmit the missing segment
+
+Example:
+
+- receive ACK after RTT -> CWND = 2 MSS
+- receive 2 ACKs after RTT -> CWND = 4 MSS
+
+![Slow start](https://i.imgur.com/P4nGi3k.png)
+
+### Congestion avoidance
+
+For every valid ACK received:
+
+- CWND = CWND + MSS * MSS / CWND
+- move Wlow according to ACK
+
+On RTO timeout
+
+- switch to slow start
+- SSTHRESH = max(CWIND/2,2)
+- RTO = RTO * 2
+- CWND = 1
+- retransmit missing segment
+
+Basically for every RTT in which CWND ACKs are received increase CWND by MSS
+
+![Congestion avoidance](https://i.imgur.com/L14zVT8.png)
+
+### Fast retransmit and fast recovery
+
+Fast recovery idea is: if the network is working try to contunue transmitting.
+
+On 3rd duplicated ack
+
+- SSTRESH = CWND / 2
+- CWND = SSTRESH + 3 MSS
+  - if CWND allows, send new segments
+- do not move Wlow
+
+On additional duplicated ACK
+
+- CWND = CWND + 1 MSS
+- if CWND allows send new segments
+- do not move Wlow
+
+On new ACK
+
+- CWND = SSTHRESH
+- swith to congestion avoidance
+- move Wlow according to ACK
+
+On partial ACK
+
+- retransmitting first anacknowleged segment
+- SWND = CWND - amount of unacknoledged data +1
+- move Wlow according to ACK
+
+![Fast recovery example](https://i.imgur.com/8bD100W.png)
+
+### Slow start only vs Fast retransmit and recovery
+
+![Slow start only](https://i.imgur.com/d8HFH16.png)
+
+![Fast retransmit and recovery](https://i.imgur.com/ZCEpQ81.png)
+
