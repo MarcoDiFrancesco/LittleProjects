@@ -1,3 +1,5 @@
+sudo systemctl start bluetooth.service
+
 # Unlock id bluetooth card is locked (password requested)
 if [[ $(rfkill -r | grep 'bluetooth hci0 blocked') = *bluetooth\ hci0\ blocked* ]]; then
   sudo rfkill unblock bluetooth
