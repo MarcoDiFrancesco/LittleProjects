@@ -2,6 +2,7 @@
 # MOUNT_DIR set in ~/.zshenv
 
 HDD_MOUNT_DIR="$MOUNT_DIR/HDD"
+DEV_DIR="/dev/sdb1"
 
 if [[ ! -d "${HDD_MOUNT_DIR}" ]]
 then
