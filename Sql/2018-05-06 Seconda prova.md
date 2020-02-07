@@ -1,5 +1,6 @@
-Schema logico:
-```
+# Schema logico
+
+``` SQL
 CREATE TABLE `materie` ( 
 	`idmateria` INT(255) NOT NULL AUTO_INCREMENT , 
 	`materia` INT(255) NOT NULL ,
@@ -7,7 +8,7 @@ CREATE TABLE `materie` (
 );
 ```
 
-```
+``` SQL
 CREATE TABLE `indirizi` ( 
 	`idindirizzo` INT(255) NOT NULL AUTO_INCREMENT , 
 	`indirizzo` VARCHAR(255) NOT NULL ,
@@ -15,7 +16,7 @@ CREATE TABLE `indirizi` (
 );
 ```
 
-```
+``` SQL
 CREATE TABLE `classi` ( 
 	`idclasse` INT(255) NOT NULL AUTO_INCREMENT , 
 	`num` INT(255) NOT NULL , 
@@ -27,7 +28,7 @@ CREATE TABLE `classi` (
 );
 ```
 
-```
+``` SQL
 CREATE TABLE `studenti` ( 
 	`idstudente` INT(255) NOT NULL AUTO_INCREMENT , 
 	`cognome` INT(255) NOT NULL , 
@@ -40,7 +41,7 @@ CREATE TABLE `studenti` (
 );
 ```
 
-```
+``` SQL
 CREATE TABLE `voti` ( 
 	`idvoto` INT(255) NOT NULL AUTO_INCREMENT , 
 	`studenteFK` INT(255) NOT NULL , 
