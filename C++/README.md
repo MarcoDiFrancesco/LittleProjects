@@ -45,7 +45,7 @@ Nella **gestione delle periferiche** la sincronizzazione tra processore e perife
 
 ---
 
-# Switch vs If-Else
+## Switch vs If-Else
 
 L'istruzione switch ha delle differenze dall'if-else, infatti può essere usata solo in alcuni casi dove:
 
@@ -197,7 +197,7 @@ Crea un nuovo tipo che può contenere solo un numero finito e predeterminato di 
 enum giorno {lun, mar, mer, gio, ven, sab, dom};
 enum giorno birth;
 `if(birth == mar)`
-Questi dati sono rappresentati come interi, di conseguenza possono essere eseguite gli operatori di confronto.
+Questi dati sono rappresentati come interi, di conseguenza possono essere eseguite gli operatori di confronto.
 Può essere utilizzata come una struttura:
 `typedef enum {lun, mar, mer, gio, ven, sab, dom} GiornoSettimana;`
 `GiornoSettimana giorno;`
@@ -213,7 +213,7 @@ TipoDato definisce quale tipo di variabile può essere referenziata
 Puntatore è identificatore della variabile puntatore
 “\*” Operatore unario di de-referenziazione (dereference).
 
-# Algoritmi di ordinamento (sort)
+## Algoritmi di ordinamento (sort)
 
 ## Insertion Sort
 
@@ -229,7 +229,7 @@ Puntatore è identificatore della variabile puntatore
 I metodi basati su **confronti e scambio** sul posto ordinano una sequenza di N numeri in `O(N^2)`.  
 Si può dimostrare che tutti i metodi di **ordinamento per confronti** hanno un comportamento ottimale `O(N*logN)`.
 
-# Alberi binari di ricerca
+## Alberi binari di ricerca
 
 Un **albero binario di ricerca** è un albero binario in cui il valore di ogni nodo è maggiore o uguale dei valori dei nodi del suo sottoalbero sinistro e minore o uguale dei valori dei nodi del suo sottoalbero destro.  
 **Altezza di un albero**: lunghezza massima tra radice (nodo senza padre) e foglia di un albero.
@@ -355,19 +355,25 @@ void InsertNodeRic(TreeBPtr *ptr, char info)
 }
 
 ```
+
 ## B-tree
-Altri tipi di alberi sono i `B-tree`, una tipologia di alberi utilizzata per memorizzare grandi quantità di dati. 
+
+Altri tipi di alberi sono i `B-tree`, una tipologia di alberi utilizzata per memorizzare grandi quantità di dati.
 ![B-tree](https://i.imgur.com/TtQFp5T.png)
 
 ## ABR vs B-tree
+
 Ricerca di una chiave
+
 - La ricerca di un nodo in un albero binario di ricerca bilanciato richiede log2 (n) confronti.
 - In contrasto per un B-tree la ricerca richiede il passo di ricerca del nodo all’interno del quale svolgeremo una ricerca tra le chiavi.
 - Si puo’ dimostrare che i livelli del B-tree sono dati da log m (n) (m il numero di chiavi per nodo ) e quindi la ricerca di una chiave all’interno del B-tree richiede:
 log 2 (m) * log m (n)=log 2 (n)
 
 ## Cose da implementare nel programma
+
 ### Dati.h
+
 - Default constructor
   - `dato = Tdato();`
   - `next = NULL` (pointers)
@@ -379,6 +385,7 @@ log 2 (m) * log m (n)=log 2 (n)
 - Print with const (`void print() const {}`)
 
 ### Main.cpp
+
 Each pointer (`Tnodo *nodo`) needs to be initialized (`Tnodo *nodo = new Tnodo();`).  
 
 ### Dati.cpp
