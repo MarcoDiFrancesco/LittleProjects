@@ -444,4 +444,3 @@ On partial ACK
 ![Slow start only](https://i.imgur.com/d8HFH16.png)
 
 ![Fast retransmit and recovery](https://i.imgur.com/ZCEpQ81.png)
-
