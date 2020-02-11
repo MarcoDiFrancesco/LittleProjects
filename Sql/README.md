@@ -1,4 +1,4 @@
-# Database
+# Database notes
 
 ## Database management system
 
@@ -27,6 +27,12 @@ A dbms diffentiates a file becuase it:
 
 A **transaction** is an execution of a database program (reads/writes). Each transaction must leave a database in a consistent state. Before reading and writing the transaction requests a lock on the pbjectm and waits till the dbms gives it the lick.  
 A dbms ensures **atomicity**, so if the system crashes in the middle of a transaction, thanks to a log the bdms is abto to restore the transaction.  
+
+![Trasactions](https://i.imgur.com/myAZJh8.png)
+
+![Trasactions 2](https://i.imgur.com/yHT60Qg.png)
+
+![Trasactions 3](https://i.imgur.com/7uX6twt.png)
 
 ## ER models
 
@@ -77,6 +83,8 @@ La chiave candidata é un insieme di uno o più attributi che possono diventare 
 ![Division 2](https://i.imgur.com/42OYwJ6.png)
 
 ---
+
+## SQL
 
 ### Comandi SQL
 
