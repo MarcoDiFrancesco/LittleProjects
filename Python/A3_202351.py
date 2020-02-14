@@ -13,94 +13,108 @@ import string
 
 LIST_SIZE = 100
 
+
 def main():
-  params = {
-    'dbname': 'foemvrne',
-    'user': 'foemvrne',
-    'password': '9n8XxeHymL5mnL8uAEOVPKxQ_Vn86TtT',
-    'host': 'manny.db.elephantsql.com',
-    'port': '5432'
-  }
-  conn = psycopg2.connect(**params)
-  cursor = conn.cursor()
-  solve(cursor)
-  conn.commit()
+    params = {
+        'dbname': 'foemvrne',
+        'user': 'foemvrne',
+        'password': '9n8XxeHymL5mnL8uAEOVPKxQ_Vn86TtT',
+        'host': 'manny.db.elephantsql.com',
+        'port': '5432'
+    }
+    conn = psycopg2.connect(**params)
+    cursor = conn.cursor()
+    solve(cursor)
+    conn.commit()
+
 
 def solve(cursor):
-  startTime = time_ns()
-  task1(cursor)
-  print("Step 1 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task1(cursor)
+    print("Step 1 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task2(cursor)
-  print("Step 2 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task2(cursor)
+    print("Step 2 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task3(cursor)
-  print("Step 3 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task3(cursor)
+    print("Step 3 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task4(cursor)
-  print("Step 4 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task4(cursor)
+    print("Step 4 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task5(cursor)
-  print("Step 5 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task5(cursor)
+    print("Step 5 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task6(cursor)
-  print("Step 6 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task6(cursor)
+    print("Step 6 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task7(cursor)
-  print("Step 7 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task7(cursor)
+    print("Step 7 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task8(cursor)
-  print("Step 8 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task8(cursor)
+    print("Step 8 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task9(cursor)
-  print("Step 9 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task9(cursor)
+    print("Step 9 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task10(cursor)
-  print("Step 10 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task10(cursor)
+    print("Step 10 needs " + str(time_ns() - start_time) + " ns")
 
-  startTime = time_ns()
-  task11(cursor)
-  print("Step 11 needs " + str(time_ns() - startTime) + " ns")
+    start_time = time_ns()
+    task11(cursor)
+    print("Step 11 needs " + str(time_ns() - start_time) + " ns")
 
 # Random string lowercase
-def stringLow(lenght):
-  letters = string.ascii_lowercase
-  return ''.join(random.choice(letters) for i in range(lenght))
+
+
+def string_low(lenght):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(lenght))
 
 # Random string uppercase
-def stringUp(lenght):
-  letters = string.ascii_uppercase
-  return ''.join(random.choice(letters) for i in range(lenght))
+
+
+def string_up(lenght):
+    letters = string.ascii_uppercase
+    return ''.join(random.choice(letters) for i in range(lenght))
 
 # Return string with giver characters number
+
+
 def randWord(min, max):
-  lenght = random.randint(min, max)
-  return stringUp(1) + stringLow(lenght-1)
+    lenght = random.randint(min, max)
+    return string_up(1) + string_low(lenght-1)
 
 # Random integer in string format
+
+
 def randInt(min, max):
-  return str(random.randint(min,max))
+    return str(random.randint(min, max))
 
 # Random float in string format
-def randFloat(min, max):
-  return str(random.random()*(max-min+1)+min)
+
+
+def rand_float(min, max):
+    return str(random.random()*(max-min+1)+min)
+
 
 def task1(cursor):
-  cursor.execute('DROP TABLE IF EXISTS "Course";')
-  cursor.execute('DROP TABLE IF EXISTS "Professor";')
+    cursor.execute('DROP TABLE IF EXISTS "Course";')
+    cursor.execute('DROP TABLE IF EXISTS "Professor";')
+
 
 def task2(cursor):
-  cursor.execute(
-    '''
+    cursor.execute(
+        '''
     CREATE TABLE "Professor" (
       id INTEGER NOT NULL PRIMARY KEY,
       name VARCHAR(50) NOT NULL,
@@ -109,9 +123,9 @@ def task2(cursor):
       height FLOAT NOT NULL
     );
     '''
-  )
-  cursor.execute(
-    '''
+    )
+    cursor.execute(
+        '''
     CREATE TABLE "Course"(
       cid VARCHAR(25) NOT NULL PRIMARY KEY,
       title VARCHAR(50) NOT NULL,
@@ -120,19 +134,20 @@ def task2(cursor):
       FOREIGN KEY(instructor) REFERENCES "Professor"(id)
     );
     '''
-  )
+    )
+
 
 def task3(cursor):
-  # List of IDs from 1 to 1.000.000
-  idList = [i for i in range(1,LIST_SIZE+1)]
-  random.shuffle(idList)
-  for _ in range(1, LIST_SIZE): # From 1 to 999,999
-    # Name has two words cammel case
-    # Address has one word cammel case and a number
-    # Age from 30 to 90
-    # Height from 150 cm to 180 cm
-    cursor.execute(
-      '''
+    # List of IDs from 1 to 1.000.000
+    id_list = [i for i in range(1, LIST_SIZE+1)]
+    random.shuffle(id_list)
+    for _ in range(1, LIST_SIZE):  # From 1 to 999,999
+        # Name has two words cammel case
+        # Address has one word cammel case and a number
+        # Age from 30 to 90
+        # Height from 150 cm to 180 cm
+        cursor.execute(
+            '''
       INSERT INTO "Professor" (
         id,
         name,
@@ -140,17 +155,17 @@ def task3(cursor):
         age,
         height
       ) VALUES (
-        ''' + str(idList.pop()) + ''',
-        ' ''' + randWord(5,9) + ' ' + randWord(8,11) + ''' ',
-        ' ''' + randWord(6,8) + ', ' + randInt(1,9) + ''' ',
-        ''' + randInt(30,90) + ''',
-        ''' + randFloat(150,180) + '''
+        ''' + str(id_list.pop()) + ''',
+        ' ''' + randWord(5, 9) + ' ' + randWord(8, 11) + ''' ',
+        ' ''' + randWord(6, 8) + ', ' + randInt(1, 9) + ''' ',
+        ''' + randInt(30, 90) + ''',
+        ''' + rand_float(150, 180) + '''
       );
       '''
-    )
-  # Last professor 185 cm tall
-  cursor.execute(
-    '''
+        )
+    # Last professor 185 cm tall
+    cursor.execute(
+        '''
     INSERT INTO "Professor" (
       id,
       name,
@@ -158,103 +173,112 @@ def task3(cursor):
       age,
       height
     ) VALUES (
-      ''' + str(idList.pop()) + ''',
-      ' ''' + randWord(5,9) + ' ' + randWord(8,11) + ''' ',
-      ' ''' + randWord(6,8) + ', ' + randInt(1,9) + ''' ',
-      ''' + randInt(30,90) + ''',
+      ''' + str(id_list.pop()) + ''',
+      ' ''' + randWord(5, 9) + ' ' + randWord(8, 11) + ''' ',
+      ' ''' + randWord(6, 8) + ', ' + randInt(1, 9) + ''' ',
+      ''' + randInt(30, 90) + ''',
       185
     );
     '''
-  )
+    )
+
 
 def task4(cursor):
-  # List of IDs from 1 to 1.000.000
-  idList = [i for i in range(1,LIST_SIZE+1)]
-  random.shuffle(idList)
-  for _ in range(1, LIST_SIZE+1): # From 1 to 1,000,000
-    cursor.execute(
-      '''
+    # List of IDs from 1 to 1.000.000
+    id_list = [i for i in range(1, LIST_SIZE+1)]
+    random.shuffle(id_list)
+    for _ in range(1, LIST_SIZE+1):  # From 1 to 1,000,000
+        cursor.execute(
+            '''
       INSERT INTO "Course" (
         cid,
         title,
         area,
         instructor
       ) VALUES (
-        ' ''' + str(idList.pop()) + ''' ',
-        ' ''' + randWord(7,12) + ''' ',
-        ' ''' + randWord(4,8) + ''' ',
-        ''' + randInt(1,LIST_SIZE) + '''
+        ' ''' + str(id_list.pop()) + ''' ',
+        ' ''' + randWord(7, 12) + ''' ',
+        ' ''' + randWord(4, 8) + ''' ',
+        ''' + randInt(1, LIST_SIZE) + '''
       );
       '''
-    )
+        )
+
 
 def task5(cursor):
-  cursor.execute(
-    'SELECT id FROM "Professor";'
-  )
-  idList = cursor.fetchall() # Fetch professor IDs
-  for element in idList:
-    print(element, file=sys.stderr)
+    cursor.execute(
+        'SELECT id FROM "Professor";'
+    )
+    id_list = cursor.fetchall()  # Fetch professor IDs
+    for element in id_list:
+        print(element, file=sys.stderr)
+
 
 def task6(cursor):
-  cursor.execute(
-    '''
+    cursor.execute(
+        '''
     UPDATE "Professor"
     SET height=200
     WHERE height=185;
     '''
-  )
+    )
+
 
 def task7(cursor):
-  cursor.execute(
-    '''
+    cursor.execute(
+        '''
     SELECT id, address
     FROM "Professor" 
     WHERE height=200;
     '''
-  )
-  idList = cursor.fetchall() # Fetch professor IDs
-  for element in idList:
-    print(element, file=sys.stderr)
+    )
+    id_list = cursor.fetchall()  # Fetch professor IDs
+    for element in id_list:
+        print(element, file=sys.stderr)
+
 
 def task8(cursor):
-  cursor.execute(
-    '''
+    cursor.execute(
+        '''
     CREATE INDEX height_index
     ON "Professor"
     USING btree(height);
     '''
-  )
+    )
+
 
 def task9(cursor):
-  cursor.execute(
-    'SELECT id FROM "Professor";'
-  )
-  idList = cursor.fetchall() # Fetch professor IDs
-  for element in idList:
-    print(element, file=sys.stderr)
+    cursor.execute(
+        'SELECT id FROM "Professor";'
+    )
+    id_list = cursor.fetchall()  # Fetch professor IDs
+    for element in id_list:
+        print(element, file=sys.stderr)
+
 
 def task10(cursor):
-  # Update height from 200 to 210
-  cursor.execute(
-    '''
+    # Update height from 200 to 210
+    cursor.execute(
+        '''
     UPDATE "Professor"
     SET height=210
     WHERE height=200;
     '''
-  )
+    )
+
 
 def task11(cursor):
-  cursor.execute(
-    '''
+    cursor.execute(
+        '''
     SELECT id, address
     FROM "Professor"
     WHERE height=210;
     '''
-  )
-  idList = cursor.fetchall() # Fetch professor IDs
-  for element in idList:
-    print(element, file=sys.stderr)
+    )
+    id_list = cursor.fetchall()  # Fetch professor IDs
+    for element in id_list:
+        print(element, file=sys.stderr)
+
 
 if __name__ == "__main__":
-  main()
+    main()
