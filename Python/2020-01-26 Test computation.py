@@ -1,10 +1,19 @@
 import time
 
-a = 0
-start_time = time.time()
 
-for x in range(0, 100000000):
-    a = a+1
-    a = a-1
+def compute():
+    """
+    Make 10.000.000 cycles
+    """
+    number = 0
+    start_time = time.time()
 
-print("--- %s seconds ---" % (time.time() - start_time))
+    for iterator in range(0, 100000000):
+        number = number+1
+        number = number-1
+
+    print("--- %s seconds ---" % (time.time() - start_time))
+
+
+if __name__ == "__main__":
+    compute()
