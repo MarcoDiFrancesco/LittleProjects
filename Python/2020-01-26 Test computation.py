@@ -1,3 +1,7 @@
+"""
+Computation test
+"""
+
 import time
 
 
@@ -8,11 +12,13 @@ def compute():
     number = 0
     start_time = time.time()
 
-    for iterator in range(0, 100000000):
-        number = number+1
-        number = number-1
+    for _ in range(0, 10000000):
+        number = number + 1
+        number = number - 1
 
-    print("--- %s seconds ---" % (time.time() - start_time))
+    time_difference = time.time() - start_time
+
+    print("--- ", time_difference, " seconds ---")
 
 
 if __name__ == "__main__":
