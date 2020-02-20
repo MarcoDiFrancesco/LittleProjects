@@ -51,10 +51,16 @@ In HTML5 we have not only the `<image>` tag, but also `<figure>`, containing the
 </figure>
 ```
 
-The links in html can be with href and name.
+The links in html can be with href and name:
+
+``` HTML
 <a href="/something">
-<a href="something">
-or 
-<a href="#something">
-with
-<h1 name="something">
+```
+
+goes to root to `something`.
+
+``` HTML
+<a href="page#something">
+```
+
+goes to `page#something`.
