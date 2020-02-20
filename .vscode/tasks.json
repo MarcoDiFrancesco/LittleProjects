@@ -2,49 +2,50 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build C",
-      "type": "shell",
-      "command": "clear; gcc '${fileDirname}/${fileBasename}'; ./a.out;",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Build C++",
-      "type": "shell",
-      "command": "clear; g++ '${fileDirname}/${fileBasename}'; ./a.out;",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Build sml",
-      "type": "shell",
-      "command": "sml '${fileDirname}/${fileBasename}'",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}/Sml"
-      },
-      "problemMatcher": []
-    },
-    // used by the debugger
-    {
-      "type": "shell",
       "label": "g++ build active file",
+      "type": "shell",
       "command": "/bin/g++",
       "args": [
         "-g",
         "${file}",
         "-o",
-        "${workspaceFolder}/a.out"
+        "/tmp/a.out"
       ],
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "showReuseMessage": false,
+        "clear": true
+      },
       "options": {
-        "cwd": "/bin"
-      }
+        "cwd": "${workspaceRoot}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "C/C++ run",
+      "type": "shell",
+      "command": "/tmp/a.out",
+      "presentation": {
+        "echo": false,
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "C++ build and run",
+      "group": "build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "g++ build active file",
+        "C/C++ run"
+      ],
+      "problemMatcher": [],
     }
   ]
 }

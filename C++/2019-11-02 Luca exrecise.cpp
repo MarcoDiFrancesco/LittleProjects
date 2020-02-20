@@ -1,13 +1,15 @@
 #include <iostream>
 #include <cmath>
-struct dupla {
+using namespace std;
+
+struct tupla {
   double a, b;
 };
 
 using namespace std;
 int main() {
   int N = 100;
-  dupla* y = new dupla[N];
+  tupla* y = new tupla[N];
   for(int i = 0; i < 10; i++) {
     y[i].a = i;
     cout << y[i].a << " ";
