@@ -2,6 +2,26 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "gcc build active file",
+      "type": "shell",
+      "command": "/bin/gcc",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "/tmp/a.out"
+      ],
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
       "label": "g++ build active file",
       "type": "shell",
       "command": "/bin/g++",
@@ -16,9 +36,6 @@
         "reveal": "silent",
         "showReuseMessage": false,
         "clear": true
-      },
-      "options": {
-        "cwd": "${workspaceRoot}"
       },
       "problemMatcher": [
         "$gcc"
@@ -45,7 +62,17 @@
         "g++ build active file",
         "C/C++ run"
       ],
-      "problemMatcher": [],
+      "problemMatcher": []
+    },
+    {
+      "label": "C build and run",
+      "group": "build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "gcc build active file",
+        "C/C++ run"
+      ],
+      "problemMatcher": []
     }
   ]
 }
