@@ -1,4 +1,27 @@
-# Programmazione 1
+# C++
+
+## GDB
+
+Open a file: `gdb o.out`  
+Run a program: `run` or `r`  
+See line where you are: `frame` or `f`  
+Print variable value: `print i`
+Print all variable values: `info local`
+Backtrace, list functions from which you are coming from: `backtrace`  
+
+### Navigation
+
+Next, to skip functions: `next`  
+Step, to go inside functions: `step`  or `s`  
+
+### Breakpoints
+
+List breakpoints: `info breakpoints` or `info b`  
+Set breakpoint line: `b 5` or `break 5` (line number)  
+Set breakpoint function: `b main` or `break main` (line number)  
+Delete breakpoint: `delete 1` (numbers from `info breakpoints`)  
+
+## Programmazione 1
 
 Un **algoritmo** è una sequenza precisa di operazione comprensibili ad un esecutore che definisce una sequenza finita di passi che comportano alla realizzazione di un task (compito). Un algorito codificato viene chiamato programma. Le proprietà fondamentali di un algortimo sono correttezza ed efficienza.
 
@@ -387,5 +410,3 @@ log 2 (m) * log m (n)=log 2 (n)
 ### Main.cpp
 
 Each pointer (`Tnodo *nodo`) needs to be initialized (`Tnodo *nodo = new Tnodo();`).  
-
-### Dati.cpp

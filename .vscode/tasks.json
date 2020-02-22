@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "gcc build active file",
+      "label": "gcc build",
       "type": "shell",
       "command": "/bin/gcc",
       "args": [
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "label": "g++ build active file",
+      "label": "g++ build",
       "type": "shell",
       "command": "/bin/g++",
       "args": [
@@ -59,7 +59,7 @@
       "group": "build",
       "dependsOrder": "sequence",
       "dependsOn": [
-        "g++ build active file",
+        "g++ build",
         "C/C++ run"
       ],
       "problemMatcher": []
@@ -69,7 +69,7 @@
       "group": "build",
       "dependsOrder": "sequence",
       "dependsOn": [
-        "gcc build active file",
+        "gcc build",
         "C/C++ run"
       ],
       "problemMatcher": []
