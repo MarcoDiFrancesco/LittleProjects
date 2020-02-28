@@ -1,8 +1,10 @@
 # Little projects
+
 ## This repository contains all the personal little scripts/projects I've been making
+
 The folder are separated by languages or programs used, it starts from the first year of high school (2015).  
 
-## Projects:
+## Projects
 
 * [Algo Built](Algo%20Built)
 * [Arduino](Arduino)
