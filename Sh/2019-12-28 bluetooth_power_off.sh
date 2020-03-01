@@ -8,7 +8,9 @@ fi
 if [[ $(bluetoothctl show | grep 'Powered: yes') = *Powered:\ yes* ]]; then
   # Disable bluetooth card
   bluetoothctl power off
-  sudo systemctl stop bluetooth.service
+
+  # Service now is enabled
+  # sudo systemctl stop bluetooth.service
 else
   echo "Already off"
 fi
