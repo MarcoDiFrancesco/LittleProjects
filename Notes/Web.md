@@ -92,3 +92,20 @@ Inside head there is the meta data in the `<meta>` tags. These tags can contain 
 The viewport makes the browser work in different ways canging the ratio of the screen.
 
 ![Viewport](https://i.imgur.com/8IP1Q9r.png)
+
+---
+
+## Watch last 2 lectures in Piazza
+
+---
+
+## HTTP request
+
+HTTP request are written in ASCII.  
+HTTP can specify gzip or deflate compression so the server can respond with compressed information.  
+URL max size is 2048 characters.  
+[CRLF] stands for Carriage Return (ASCII 13, \r) Line Feed (ASCII 10, \n).  
+
+A save method in HTTP is a method that does not change the state of the server (read only).  
+
+GET vs PUT.
