@@ -12,13 +12,13 @@ do
         [6-9])
           brightness=$((brightness+3))
         ;;
-        [1]*)
+        [1-3]*)
           brightness=$((brightness+5))
         ;;
-        [2-6]*)
+        [4-6]*)
           brightness=$((brightness+10))
         ;;
-        [6-9]*)
+        [7-9]*)
           brightness=$((brightness+20))
         ;;
         *)
@@ -37,13 +37,13 @@ do
         [6-9])
           brightness=$((brightness-3))
         ;;
-        [1]*)
+        [1-3]*)
           brightness=$((brightness-5))
         ;;
-        [2-6]*)
+        [4-6]*)
           brightness=$((brightness-10))
         ;;
-        [6-9]*)
+        [7-9]*)
           brightness=$((brightness-20))
         ;;
         *)
