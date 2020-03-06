@@ -15,11 +15,11 @@ do
         [1-3]*)
           brightness=$((brightness+5))
         ;;
-        [4-6]*)
+        [4-7]*)
           brightness=$((brightness+10))
         ;;
-        [7-9]*)
-          brightness=$((brightness+20))
+        [8-9]*)
+          brightness=$((100))
         ;;
         *)
           echo 'Brightness increase error'
