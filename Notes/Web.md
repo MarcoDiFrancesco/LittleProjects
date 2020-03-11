@@ -93,11 +93,28 @@ The viewport makes the browser work in different ways canging the ratio of the s
 
 ![Viewport](https://i.imgur.com/8IP1Q9r.png)
 
----
+## Protocol
 
-## Watch last 2 lectures in Piazza
+A protocol is a set of rules and regulations that determine how data is transmitted.  
+The protocol contains: format, order and action.
 
----
+URI, URL and URN:
+
+- URI (Uniform Resource Identifier) identifies an abstract or physical location
+- URL (Uniform Resource Location) is a subset of URI and referes to the rappresentation of their primary access mechanism, e.g. their location
+- URN (Uniform Resource Name) is a subset of URI and referes to the rappresentation od a globally unique and persistent location, even when the resource does not exist anymore, e.g. the ISBN of a book
+
+![URN and URL example](https://i.imgur.com/V06J6fW.png)
+
+![URI examples](https://i.imgur.com/DsXi13H.png)
+
+![URI structure](https://i.imgur.com/wOu2lKI.png)
+
+![Phishing](https://i.imgur.com/rMGViHr.png)
+
+## Mime type
+
+![MIME type](https://i.imgur.com/BXg5hOh.png)
 
 ## HTTP request
 
@@ -106,6 +123,12 @@ HTTP can specify gzip or deflate compression so the server can respond with comp
 URL max size is 2048 characters.  
 [CRLF] stands for Carriage Return (ASCII 13, \r) Line Feed (ASCII 10, \n).  
 
+## Safe vs idempotent
+
+**Safe** does not alter the state of the server.  
+**Idempotent** if an identical request can be made once or several times in a row with the same effect while leaving the server in the same state.
+
+![Safe vs idempotent](https://i.imgur.com/3DS4JQ4.png)
 A save method in HTTP is a method that does not change the state of the server (read only).  
 
 GET vs PUT.
