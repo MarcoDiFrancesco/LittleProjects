@@ -104,7 +104,41 @@ URI, URL and URN:
 - URL (Uniform Resource Location) is a subset of URI and referes to the rappresentation of their primary access mechanism, e.g. their location
 - URN (Uniform Resource Name) is a subset of URI and referes to the rappresentation od a globally unique and persistent location, even when the resource does not exist anymore, e.g. the ISBN of a book
 
-![URN and URL example](https://i.imgur.com/V06J6fW.png)
+## URI vs URL vs URN
+
+![URI vs URL vs URN](https://i.imgur.com/MGHNIxc.png)
+
+From [stack overflow](https://stackoverflow.com/a/4913371/7924557):
+
+``` HTML
+Uniform Resource Identifier (URI) is a string of characters used to identify a name or a resource on the Internet
+
+A URI identifies a resource either by location, or a name, or both. A URI has two specializations known as URL and URN.
+
+A Uniform Resource Locator (URL) is a subset of the Uniform Resource Identifier (URI) that specifies where an identified resource is available and the mechanism for retrieving it. A URL defines how the resource can be obtained. It does not have to be HTTP URL (http://), a URL can also be (ftp://) or (smb://).
+
+A Uniform Resource Name (URN) is a Uniform Resource Identifier (URI) that uses the URN scheme, and does not imply availability of the identified resource. Both URNs (names) and URLs (locators) are URIs, and a particular URI may be both a name and a locator at the same time.
+
+The URNs are part of a larger Internet information architecture which is composed of URNs, URCs and URLs.
+
+bar.html is not a URN. A URN is similar to a person's name, while a URL is like a street address. The URN defines something's identity, while the URL provides a location. Essentially, "what" vs. "where". A URN has to be of this form <URN> ::= "urn:" <NID> ":" <NSS> where <NID> is the Namespace Identifier, and <NSS> is the Namespace Specific String.
+
+To put it differently:
+
+A URL is a URI that identifies a resource and also provides the means of locating the resource by describing the way to access it
+A URL is a URI
+A URI is not necessarily a URL
+I'd say the only thing left to make it 100% clear would be to have an example of an URI that is not an URL. We can use the examples in the RFC3986:
+
+URL: ftp://ftp.is.co.za/rfc/rfc1808.txt
+URL: http://www.ietf.org/rfc/rfc2396.txt
+URL: ldap://[2001:db8::7]/c=GB?objectClass?one
+URL: mailto:John.Doe@example.com
+URL: news:comp.infosystems.www.servers.unix
+URL: telnet://192.0.2.16:80/
+URN (not URL): urn:oasis:names:specification:docbook:dtd:xml:4.1.2
+URN (not URL): tel:+1-816-555-1212 (?)
+```
 
 ![URI examples](https://i.imgur.com/DsXi13H.png)
 
