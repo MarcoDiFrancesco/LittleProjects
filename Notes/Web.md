@@ -8,6 +8,14 @@ HTML does not have personalized tags, the language that support them is XML.
 
 An imporant property of HTML is **graceful degradation of presentation**, if there is some mistakes inside the code, the page needs to be shown anyway
 
+HTML is not case sensitive: someting like:
+
+``` HTML
+<h1>Title<H1>
+```
+
+is correctly parsed.
+
 An example is:
 
 ``` HTML
@@ -166,3 +174,49 @@ URL max size is 2048 characters.
 A save method in HTTP is a method that does not change the state of the server (read only).  
 
 GET vs PUT.
+
+## PHP
+
+PHP **is not** case sensitive for functions, but **it is** case sensitive for variables.
+
+PHP can parse string to int:
+
+![String to int](https://i.imgur.com/tlpX4nJ.png)
+
+if you don't want this behaveviour you need to specify it:
+
+![Strict type example](https://i.imgur.com/D1gr9Fp.png)
+
+and this gives error.
+
+## PHP operators
+
+![Operators](https://i.imgur.com/YbOj2Sq.png)
+
+![Identical](https://i.imgur.com/6Yl9BXA.png)
+
+## Spaceship
+
+Not so important for the course.
+
+![Spaceship](https://i.imgur.com/kfHEotU.png)
+
+## Vardump
+
+`var_dunp` prints the variables type and the value.
+
+![var_dump example](https://i.imgur.com/N9vSv8b.png)
+
+## Scope PHP
+
+![Local vs global scope](https://i.imgur.com/IP9mFrE.png)
+
+## Array
+
+![Index and associative array](https://i.imgur.com/as83YHj.png)
+
+![Array operators](https://i.imgur.com/r6d3LVH.png)
+
+## Super global variables
+
+![Super global variables](https://i.imgur.com/MEvtQmB.png)
