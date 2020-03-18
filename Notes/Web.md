@@ -242,3 +242,15 @@ Apache **Tomcat** is a **Java servlet container** and it runs on a **Java Virtua
 Using a **Java servlet container** the server uses instad multi threading, that is way lighter than multi tasking, because it does not start every time a new process.
 
 ![Java servlet container request](https://i.imgur.com/MJAZccQ.png)
+
+## Servlet
+
+### Servlet lifecycle
+
+![Servlet lifecycle](https://i.imgur.com/q0805UZ.png)
+
+In the **servlet lifecycle** the connection are set the fist time with the method `init()` (watch A), then it's called only the method `service()`. If there isn't enough memory the method destroy() is called and this one delete the content in the older one, so there is space for the new one (Servlet 4 replaces Servlet 1).
+
+The method `service()` understand if request is Get, Post, Head etc. and call the right method.
+
+![service method](https://i.imgur.com/qvs8qF1.png)
