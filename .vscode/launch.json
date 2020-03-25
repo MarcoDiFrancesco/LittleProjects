@@ -1,16 +1,15 @@
 {
   "version": "0.2.0",
   "configurations": [
-
     {
       "name": "g++ debug",
       "type": "cppdbg",
       "request": "launch",
       "program": "/tmp/a.out",
       "args": [],
-      "externalConsole": true,
+      "externalConsole": false,
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
+      "cwd": "${fileDirname}", // Workind dir where the file is placed
       "environment": [],
       "MIMode": "gdb",
       "setupCommands": [
@@ -21,7 +20,7 @@
         }
       ],
       "preLaunchTask": "g++ build",
-      "miDebuggerPath": "/bin/gdb"
+      "miDebuggerPath": "/usr/bin/gdb"
     }
   ]
 }

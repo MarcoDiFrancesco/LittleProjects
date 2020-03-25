@@ -40,3 +40,6 @@ Django/**/__pycache__
 Django/**/bin/
 Django/**/lib/
 Django/**/include/
+
+# C++ projects input file
+/input.txt
