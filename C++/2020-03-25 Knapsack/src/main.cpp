@@ -14,4 +14,6 @@ int main() {
         in >> W[i];
         in >> V[i];
     }
+    cout << C << N;
+    in.close();
 }
