@@ -1,0 +1,16 @@
+# Linux
+
+## Commands
+
+`env` to get enviroment variables  
+`$VAR` and `${VAR}` are the same thing, the second one allows things like `${VAR}m`.  
+`${VAR:-PrintThisInCaseIsEmpty}`  
+`PATH=$PATH:/home/dir` to concatenate to a string.  
+`$1` to `$255`, `$@` returns all, `$?` returns code of the function (0 if well corrected), `$$` returns what is running now, `$!` returns last processes that's running in background.
+
+`export VAR` allows the child processes to use that variable.  
+`./script.sh` makes the script run in a children process, `source script.sh` makes it run in the current enviroment, so reading reviroment variables.  
+Normally variables inside funtions are exported also outside the function. Local variables can be created using `local VAR`.
+
+`exit` exit the script (like break in C)
+`return` exit the function (like return in C)

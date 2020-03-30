@@ -77,4 +77,49 @@ The thread has:
 The threads have been created because if a process has a thread blocked, can still run in other threads.  
 The thread have also the memory shared, so the access in memory is faster.
 The context switch is way faster in threads, compared to processes.
-16:40
+For example in Solaris the creation of a process is 30 time slower than the creation of a thread. And the context switch is 5 time slower.
+Another vantage is scalabity, a process is not possible to be scaled and with a thread it is.
+
+### Thread statuses
+
+Threads can be:
+
+- ready
+- in execution
+- waiting
+
+When a process waits it can block the other threads in the process or can make them running, depending on the implementation.
+
+![Kernel](https://i.imgur.com/Z3LFyUE.png)
+
+### Mapping threads user space to kernel space
+
+Threads can be implemented on kernel level or user level.
+All OSs(Linux, Unix, Windows) make a combination of the 2, so some threads are mapped one to one from kernel space to user space, some are mapped such as some threads in user space (for example 3) are mapped to some in kernel space (for example 2). This happens because at kernel space the threads are a fixed number, in user space can possibly be infinite.
+
+Advantages of user-level kernel: faster and no context-switch needed, programmers can work with threads.  
+A disadvantage is that once a kernel in user mode is locked, the process locks (can be solved by programmers), another one is that kkis not possible to use parallelism.  
+Advantages kernel-level thread: if a process blocks it can continue, parallelism is possible.  
+Disadvantage kernel-level thread: low efficiency.
+
+### Inter Process Communication (Communication between processes)
+
+Inter process communication is the technique to make 2 processes communicate. This needs to be fast and secure, the information inside a process needs to be protected.  
+This can be done in a shared space or can be done by the kernel.  
+Memory can be shared between one or more processes.
+General purpouse OSs implements both.  
+
+![Inter process communication](https://i.imgur.com/6WXAmyZ.png)
+
+Advantages of kernel mediation are: more secure because kernel checks everything and in the shared space the processes need to remember that they are working with information that is shared.  
+
+Advantages of shared memory: faster because context switch is easier.
+
+### IPC (Inter Process Communication) message passing
+
+Inter Process Communication message passing make the communication between the processes.  
+**Symmetric** IPC are done through `send(Process1, message)` and `receive(Process2, message)`.  
+**Asymmetric** IPC are done through `send(Process1, message)` and `receive(id, message)`, it's used id because it can receive from more than 2 processes.  
+If you want to send to more than one processes a message, it's convenient to use **mailboxes**. So can be used `send(MailboxA, message)` and `receive(MailboxA, message)`.
+
+Send and receiveive can be **blocking**. If a send is blocking the receiver blocks until the message is received. If a receive is blocking the receiver blocks until the message is available.
