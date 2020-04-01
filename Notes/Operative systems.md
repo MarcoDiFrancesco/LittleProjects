@@ -2,6 +2,8 @@
 
 ## Introduction
 
+[Useful Youtube playlist](https://www.youtube.com/playlist?list=PLEbnTDJUr_IcPtUXFy2b1sGRPsLFMghhS)
+
 ## What is an OS
 
 Un sistema operativo è un insieme di programmi che affisce come intermediario tra hardware e uomo. Il SO offre un ambiente per controllare e coordinare l'utilizzo dell'HW da parte di programmi applcativi. Può rendere efficiente l'utilizzo dell'hardware e gestisce i conflitti (e.g. due utenti accedono alla stessa risorsa).
@@ -123,3 +125,53 @@ Inter Process Communication message passing make the communication between the p
 If you want to send to more than one processes a message, it's convenient to use **mailboxes**. So can be used `send(MailboxA, message)` and `receive(MailboxA, message)`.
 
 Send and receiveive can be **blocking**. If a send is blocking the receiver blocks until the message is received. If a receive is blocking the receiver blocks until the message is available.
+
+## Scheduler
+
+The scheduler assigns the processes to the CPU.  
+The processes, when they are ready, they go into the queue.  
+A process can be waiting for somthing, like waiting for an input or waiting for a device to be plugged in.  
+There are multiple queues of processes, for example for each I/O device there is a different queue. The processes in the queue are attached in head each other.
+
+![Processes queue](https://i.imgur.com/njJCIuU.png)
+
+The scheduler manages these processes.
+
+### Short and long therm schedulers
+
+The long therm scheduler select the processes to be put in the queue.  
+The short  therm scheduler select the processes to be put in the CPU.  
+The short therm scheduler needs to be really fast. Short therm scheduler can be slower.  
+A long therm scheduler needs to mix the I/O bound (short CPU bust) and CPU bound (long CPU bust).  
+The mid term scheduler uses virtual memory, that moves the processes from the RAM in the ready queue to the memory in order to execute other (more important) processes.
+
+![Mid therm scheduler](https://i.imgur.com/TQ6qhLm.png)
+
+### CPU scheduler (short therm scheduler)
+
+This is how CPU distributes the load:
+
+![CPU scheduler](https://i.imgur.com/z5wJerR.png)
+
+### Preemption
+
+**Preemptive shedulers** can force the CPU to leave the process and put it back to queue.  
+**Non-preemptive schedulers** need to wait for the process.
+
+![Preemptive scheduler](https://i.imgur.com/U4G0Lhd.png)
+
+Processes view with swapped processes.
+
+![Processes frow](https://i.imgur.com/d0DhyEi.png)
+
+The schedulers metrics are:
+
+- **use of CPU**, most use of the CPU
+- **throughput**: number of processes for time unit
+- **waiting time**: time spent in queue for a process
+
+## Creation of shared memory
+
+When memory is **shared**, a piece of memory is attached to the heap.
+
+![Attach](https://i.imgur.com/jc2ZxTn.png)

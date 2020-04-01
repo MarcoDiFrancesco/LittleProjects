@@ -14,3 +14,13 @@ Normally variables inside funtions are exported also outside the function. Local
 
 `exit` exit the script (like break in C)
 `return` exit the function (like return in C)
+
+---
+
+### Shared memory
+
+![Shared memory](https://i.imgur.com/05DtMsL.png)
+
+![Shared memory](https://i.imgur.com/3cjTM58.png)
+
+![Shared memory](https://i.imgur.com/3cjTM58.png)
