@@ -9,7 +9,8 @@
 Un sistema operativo è un insieme di programmi che affisce come intermediario tra hardware e uomo. Il SO offre un ambiente per controllare e coordinare l'utilizzo dell'HW da parte di programmi applcativi. Può rendere efficiente l'utilizzo dell'hardware e gestisce i conflitti (e.g. due utenti accedono alla stessa risorsa).
 Il SO facilita l'uso della macchina, facendo l'astrazione del codice scritto.
 Il SO gesisce le risorse HW come dischi e memoria e SW come file e programmi.
-Il sistema operativo si posiziona tra programmi applicativi e hardware.
+Il sistema operativo si posiziona tra programmi applicativi e hardware.  
+The operative system is always on (or at least a part of the kernel), because it needs to have the control over the machine.
 
 ![Sistema operativo](https://i.imgur.com/1xaaJlO.png)
 
@@ -26,12 +27,32 @@ Il SO controlla anche l'efficienza dell'astrazione. Se un programma non ha buone
 
 The problem with spooling is that the disks are sequential, so random access disks are introduced.
 
+### Kernel
+
+The kernel can be executed in 3 different ways:
+
+- kernel executed separately
+- kernel executed on a user process
+- kernel executed as a process
+
+The kernel executed in a **separately enviroment** uses a part of the memoty that is not used by any other process, it is more priviledged than other processes. This was used in momolitic kernel once apon a time.
+
+The kernel executed in **user processes** so each process has the structures to call all functionalities of the kernel (a reference to them). The kernel functionalities are not replicated in each process, they are poining to a process contining all of the functionalities.
+This type of kernel is more performant, because when there is a system call, the switch between user mode and kernel mode is faster making a mod switch because we are in the same process, if we would be in two different processes, we would require to make the context switch.
+
+The kernel stack contain all the processes that are running.  
+The shared address space is shared across all processes.
+
+Kernel as user process:
+
+![Shared kernel model](https://i.imgur.com/AQ1If7H.png)
+
 ## Processes
 
 Program is a **static** instance.  
 Process is a **dynamic** instance.  
 
-Immagine in memoria:
+The image of the memory contains:
 
 - instructions (code)
 - variables
@@ -39,7 +60,7 @@ Immagine in memoria:
 - dyncamic memory
 - attributes (id, state, control)
 
-![Immagine in memoria](https://i.imgur.com/lEF9Kh0.png)
+![Image memory](https://i.imgur.com/lEF9Kh0.png)
 
 ### Process states
 
@@ -169,9 +190,197 @@ The schedulers metrics are:
 - **use of CPU**, most use of the CPU
 - **throughput**: number of processes for time unit
 - **waiting time**: time spent in queue for a process
+- **turnaround time**: time to execute a process from the moment of submission to the moment of completion
+- **response time**: time from the moment a request is submitted to the moment a reponse is received
 
-## Creation of shared memory
+Maximize:
+
+- use of CPU
+- throughput
+
+Minimize:
+
+- waiting time
+- turnaround time
+- response time
+
+Goes to [Scheduling algorithms](#Scheduling-algorithms)
+
+### Creation of shared memory
 
 When memory is **shared**, a piece of memory is attached to the heap.
 
 ![Attach](https://i.imgur.com/jc2ZxTn.png)
+
+This is an example:
+
+``` C
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+
+int main() {
+  key_t key;
+  int   i,a;
+  int  shm, shm1;
+  char *addr, *addr1;
+  struct shmid_ds buf;
+
+  key = ftok("pathname", 3);  
+  printf("key=%d\n",key);
+
+  shm1 = shmget(key, 100, IPC_CREAT+S_IRUSR+S_IWUSR);
+  addr1 = shmat (shm1, NULL, 0);
+
+  addr1 = shmat (shm1, NULL, 0);
+
+  printf("P4: identifier of the shared memory shm1= %d\n", shm1);
+  printf("P4 read from shared memory %s\n", addr1);
+  sprintf(addr1, " P4 wrote on shared memory: bruno crispo");
+  printf("%s\n", addr1);
+
+  shmdt(addr1);
+  shmctl(shm1,IPC_RMID,0);
+ }
+```
+
+## Pipe
+
+Pipes make communicate two processes.
+
+### Ordinary pipe
+
+**Ordinary pipe** have a producer and a cosumer.  
+The producer writes in the write-end.  
+The consumer reads in the read-end.  
+Two processes can be both producer and consumer.  
+To use pipes two processes need to be father and child.
+
+### Pipe with name
+
+**Pipes with name** don't need to be parent and child and more than one process can communicate through this pipe.  
+
+An example of **writer** is:
+
+``` C
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main()
+{
+    int fd;
+    char * myfifo = "./myfifo";
+
+    /* create the FIFO (named pipe) */
+    mkfifo(myfifo, 0666);
+
+    /* write "Hi" to the FIFO */
+    fd = open(myfifo, O_WRONLY);
+    write(fd, "I am your named pipe", sizeof("I am your named pipe"));
+    close(fd);
+
+    /* remove the FIFO */
+    unlink(myfifo);
+
+    return 0;
+}
+```
+
+An example of **reader** is:
+
+``` C
+#include <fcntl.h>
+#include <stdio.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#define MAX_BUF 1024
+
+int main()
+{
+  int fd;
+  char * myfifo = "./myfifo";
+  char buf[MAX_BUF];
+
+  /* open, read, and display the message from the FIFO */
+  fd = open(myfifo, O_RDONLY);
+  read(fd, buf, MAX_BUF);
+  printf("Received: %s\n", buf);
+  close(fd);
+
+  return 0;
+}
+```
+
+## Scheduling algorithms
+
+### First-Come First-Served algorithm
+
+This is a FIFO algorithm.  
+It's really easy to implement.
+
+This is an algorithm without [preemption](#preemption), this mean writing-time(Tw) and response-time (Tr) are always 0.
+
+The problem with this algorithm is that if a process with a large burst is exectured, the writing-time (when all the process started, but still are not done) will be long.
+
+![FCFS algorithm](https://i.imgur.com/kYWkGj7.png)
+
+### Shortest-Job-First
+
+The SJF gives priority to the processes with shortest burst.  
+Of this schema there are two versions: preemptive and not preemtive.  
+The non-preemptive version makes no more than what desctibed above.  
+The preemptive version interrupt the running process if a process with a shorter burst comes, so if a process with remaning burst=8 and a process comes to the queue with a burst=6 the switch is made.
+
+The preemptive version has the **best waiting-time**.  
+
+Non-preemptive example:
+
+![Non-preemptive example](https://i.imgur.com/vkBv98E.png)
+
+Preemptive example (in this example the switch time is not counted):
+
+![Preemptive example](https://i.imgur.com/MlL0Cao.png)
+
+### Time approximation
+
+The problem with the algorithms above is that the CPU burst time is not known, to solve this, an estimation needs to be made with the time burst of the past.
+
+![Time estimation](https://i.imgur.com/w33odLr.png)
+
+### Priority of processes
+
+![Priority](https://i.imgur.com/VPGxDcQ.png)
+
+Priority example:
+
+![Priority example](https://i.imgur.com/o4RXGV1.png)
+
+### Starvation
+
+With the priority comes the problem of **starvation**. This means that if a process has a low priority, the process could never be executed if there is always a process with a higher priority.
+
+A solution to this could be **aging**, this means if I've been waiting for too long I get a higher priority.
+
+### Higher Response Ratio Next
+
+The HRRN is **non-preemptive algorithm** and it uses the aging method.
+
+Is calculated as: `(t_waiting + t_burst)/t_burst` = `1 + (t_waiting/t_burst)`.
+
+The priority could be calculated:
+
+- each time a process finishes (more expensive)
+- each time a process finishes but only if a new process is added (cheaper)
+
+HRRN example calculating each time the priority:
+
+![HRRN example](https://i.imgur.com/vnkQwMt.png)
+
+### Round robin
+
+This is a good algorithm for time sharing, so for a machine with shared user usage because users 
