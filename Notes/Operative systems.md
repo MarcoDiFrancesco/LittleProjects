@@ -342,7 +342,7 @@ Non-preemptive example:
 
 ![Non-preemptive example](https://i.imgur.com/vkBv98E.png)
 
-Preemptive example (in this example the switch time is not counted):
+Preemptive example, aka **Shortest Remaining Time First** (in this example the switch time is not counted):
 
 ![Preemptive example](https://i.imgur.com/MlL0Cao.png)
 
@@ -383,4 +383,23 @@ HRRN example calculating each time the priority:
 
 ### Round robin
 
-This is a good algorithm for time sharing, so for a machine with shared user usage because users 
+The processes are divided by quants, then the round robin algorithm takes one process and execute it for a quant of time, then [preempted](#preemption). The queue is **circular**.  
+The quant varies **from 10 to 100 millisenconds**.  
+If I finish my job (or wait for another process) before the quant finieshes, I leave the CPU before my assigned time terminates. But the next process will have only the usual assigned time, e.g. it takes for me 50ms of burst over 100ms of quant, then the next process won't have 150ms, but just 100.  
+This is a good algorithm for time sharing, so for a machine with **shared user** usage because users.  
+This algorithm is a FCFS.  
+The quant can't be chosen bigger than the burst of all services, because then it would be a FCFS. If it's too small then there will be too many context switches.  
+The quant usually is chosen so 80% of the processes execute before the quant expire.  
+The quant is **chosen dinamically**, so the OS change it on the fly.
+
+Round robin example with quant = 2:
+
+![Round robin](https://i.imgur.com/OcXzpXz.png)
+
+Processes exercises:
+
+![Exercises processes 1](https://i.imgur.com/zcxTZl1.png)
+
+![Exercises processes 2](https://i.imgur.com/j78ZoNn.png)
+
+### Multilevel queue
