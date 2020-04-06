@@ -402,4 +402,93 @@ Processes exercises:
 
 ![Exercises processes 2](https://i.imgur.com/j78ZoNn.png)
 
-### Multilevel queue
+### Multilevel queue without feedback
+
+The algorithm seen before are different from what's used in real life. In real life, different queues are used for diffrent types of processes. For example an algotitm for foreground processes could be round robin and one for background processes could be FCFS.
+
+To manage the various queue there is the sheduling based on time slice. This means for example:
+
+- 80% of time for foreground with RR
+- 20% of time for background with FCFS
+
+and when the CPU finishes the 20% of time (for example 100ms) then it's forced to switch to background processes.
+
+Example priority of queue:
+
+![Example queue](https://i.imgur.com/lNLmeRn.png)
+
+In the static queues the processes are evaluated only the first time I see that process, there it remains until it ends. Here there is the problem that the processes are not evaluated watching the code, if I miss the category, I could have a less performant execution.  
+
+### Multilevel queue with feedback
+
+In real systems there are the **multilevel queue with feedback**, so the process can move between queues depending on characteristics.
+
+![Multilevel queue with feedback example](https://i.imgur.com/VruCjGg.png)
+
+This is the order:
+
+![Multilevel queue with feedback example 2](https://i.imgur.com/1jml5gT.png)
+
+### Fair share
+
+Fair share divides the CPU in more slices and here the processes are ran by app. So if an app have 2 processes and an app have 10, this avoids that the process with the most processes to have priority.
+
+![Fair share example](https://i.imgur.com/VP81fwI.png)
+
+### Models to evalutate an algorithm
+
+**Deterministic algorithm** is the model we made in the previous exercises. So if we know the processes that go into it, we can predict the output. The problem is that if we change processes the output changes.
+
+**Model with network of queues** we can make predictions with distribution of CPU burst and IO burst with the likelyhood that they happen, and we can show in a graph for example the distribution of the processes.
+
+**Model with simulation** uses real patterns (historic data) or the statistic data used before.
+
+**Implementation** tries in real life.
+
+## Sync between processes
+
+Because there are shared resources an algorithm that manages the order of the execution of the processes needs to think also to syncronization of the processes.
+
+Problem of producer and consumer:
+
+- profucer: make the message
+- consumer: uses the message
+
+The execution of these read and write needs to be synced and the buffer used is limited in size.
+
+Buffer used by the processes **is circular**:
+
+- **in** has the first free position
+- **out** has the first busy position
+
+![Buffer](https://i.imgur.com/bbcguZZ.png)
+
+Code:
+
+![Buffer code](https://i.imgur.com/25tnV1a.png)
+
+The problem with this script is that the CPU can stop the process in any time, so for example in the consumer script it could stop the execution before the line `counter++` and this would mean not updating the counter. And this is an example that could happen (counter is shared between processes):
+
+![Buffer code](https://i.imgur.com/Wgepsvb.png)
+
+And this would resolve in inconsistency.
+
+The soulution to this is **critical section**.
+
+### Critical section
+
+Critical section is a piece of code in which we acess a shared resource.
+
+The criteria that critical section needs to respect are:
+
+- **mutex** (mutua esclusione): one process at a time can access resources
+- **progress**: only processes that are entring can decide how enters
+- **bounded waiting**: there must be a max number of times on which the process will wait, so the wait is not infinite
+
+These 3 criateria can be associates with the bathroom:
+
+- only one person can enter
+- only people that are outside the bathroom decide who enters (the person that was inside the bathroom doesn't decide)
+- the people that wait outside have a limited time to wait
+
+Critical section of a program is written by the programmer, the programmer must write only it's critical section, not the one of other programs.
