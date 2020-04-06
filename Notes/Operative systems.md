@@ -492,3 +492,72 @@ These 3 criateria can be associates with the bathroom:
 - the people that wait outside have a limited time to wait
 
 Critical section of a program is written by the programmer, the programmer must write only it's critical section, not the one of other programs.
+
+Algorithm 1, **wrong** algorithm:
+
+![Algorithm 1](https://i.imgur.com/CuC4C8N.png)
+
+The problem with this algorithm is that if a process exits, then the other one wait for him and never enters. For example j terminate, then i wait for ever there. So **progress** is not respected.
+
+Algorithm 2, **wrong** algorithm:
+
+![Algorithm 2](https://i.imgur.com/atbpwPr.png)
+
+The problem of the process waiting forever is solved, because in case one goes away it will have the flag set to false. So process is now respected.
+The problem is that the flag could be set to true before the while is entered (critical section) so there will be a deadlock situation:
+
+![Deadlock](https://i.imgur.com/z27D6m4.png)
+
+Algorithm 3:
+
+![Algorithm 3](https://i.imgur.com/EICjmVo.png)
+
+This algorithm checks both if it's the correct turn and if the process has the key. Now we need to solve the problem for more than one processes.
+
+### Lamport's bakery algorithm
+
+Here we solve the problem of having more than 2 processes.
+
+Algorithm 1, **wrong**:
+
+![Lamport's bakery algorithm 1](https://i.imgur.com/TglFJ93.png)
+
+The problem with this soulution is that the `max(number[0], ... , number[N-1])` is atomic, so it could be calculated and the the context switch made without the `number[i]`.
+
+Algorithm 2, **wrong**:
+
+![Lamport's bakery algorithm 2](https://i.imgur.com/4HqbWCw.png)
+
+What is changing here is that if a process did not finish to choose the number in which it will enter the queue, the processes will not be executed because they wait for everyone to choose it's number.
+
+Algorithm 3, **right**:
+
+![Lamport's bakery algorithm 3](https://i.imgur.com/jzpQAhK.png)
+
+There were the software solution, the problem is that it's really a complex solution and there is a lot of time wasting checking in the while.
+
+### Hardware solutions
+
+A solution is to diable interupt while a shared variable is being accessed, the problem is that then a process can take how much time it wants and possibly blocking the acess to other processes.
+
+One solution is **test and set**:
+
+![Test and set 1](https://i.imgur.com/hAAv0u1.png)
+
+![Test and set 2](https://i.imgur.com/FueM0xu.png)
+
+This test is always atomic. This function allows to set the lock to the processes that are called are return the previous state of them, if it was set to FALSE, so the lock was open then it would enter the critical section.
+
+Onther solution is **swap**:
+
+![Swap 1](https://i.imgur.com/EHKHvYg.png)
+
+![Swap 2](https://i.imgur.com/lNDZ8Lx.png)
+
+The problem with swap and test and set is that a process could always be executed, terminate and come back in the critical section continuously, never leaving time for the other processes to enter.  
+
+Here is the solution to this problem:
+
+![Test and set sol 2](https://i.imgur.com/6tu26mY.png)
+
+This solution allows to set FALSE to the lock only in the case there are no other processes that are waiting to go in the critic section.
