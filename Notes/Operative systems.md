@@ -50,7 +50,7 @@ Kernel as user process:
 ## Processes
 
 Program is a **static** instance.  
-Process is a **dynamic** instance.  
+Process is a **dynamic** instance.
 
 The image of the memory contains:
 
@@ -130,11 +130,11 @@ Disadvantage kernel-level thread: low efficiency.
 Inter process communication is the technique to make 2 processes communicate. This needs to be fast and secure, the information inside a process needs to be protected.  
 This can be done in a shared space or can be done by the kernel.  
 Memory can be shared between one or more processes.
-General purpouse OSs implements both.  
+General purpouse OSs implements both.
 
 ![Inter process communication](https://i.imgur.com/6WXAmyZ.png)
 
-Advantages of kernel mediation are: more secure because kernel checks everything and in the shared space the processes need to remember that they are working with information that is shared.  
+Advantages of kernel mediation are: more secure because kernel checks everything and in the shared space the processes need to remember that they are working with information that is shared.
 
 Advantages of shared memory: faster because context switch is easier.
 
@@ -161,7 +161,7 @@ The scheduler manages these processes.
 ### Short and long therm schedulers
 
 The long therm scheduler select the processes to be put in the queue.  
-The short  therm scheduler select the processes to be put in the CPU.  
+The short therm scheduler select the processes to be put in the CPU.  
 The short therm scheduler needs to be really fast. Short therm scheduler can be slower.  
 A long therm scheduler needs to mix the I/O bound (short CPU bust) and CPU bound (long CPU bust).  
 The mid term scheduler uses virtual memory, that moves the processes from the RAM in the ready queue to the memory in order to execute other (more important) processes.
@@ -214,7 +214,7 @@ When memory is **shared**, a piece of memory is attached to the heap.
 
 This is an example:
 
-``` C
+```C
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
@@ -228,7 +228,7 @@ int main() {
   char *addr, *addr1;
   struct shmid_ds buf;
 
-  key = ftok("pathname", 3);  
+  key = ftok("pathname", 3);
   printf("key=%d\n",key);
 
   shm1 = shmget(key, 100, IPC_CREAT+S_IRUSR+S_IWUSR);
@@ -260,11 +260,11 @@ To use pipes two processes need to be father and child.
 
 ### Pipe with name
 
-**Pipes with name** don't need to be parent and child and more than one process can communicate through this pipe.  
+**Pipes with name** don't need to be parent and child and more than one process can communicate through this pipe.
 
 An example of **writer** is:
 
-``` C
+```C
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -292,7 +292,7 @@ int main()
 
 An example of **reader** is:
 
-``` C
+```C
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/stat.h>
@@ -336,7 +336,7 @@ Of this schema there are two versions: preemptive and not preemtive.
 The non-preemptive version makes no more than what desctibed above.  
 The preemptive version interrupt the running process if a process with a shorter burst comes, so if a process with remaning burst=8 and a process comes to the queue with a burst=6 the switch is made.
 
-The preemptive version has the **best waiting-time**.  
+The preemptive version has the **best waiting-time**.
 
 Non-preemptive example:
 
@@ -417,7 +417,7 @@ Example priority of queue:
 
 ![Example queue](https://i.imgur.com/lNLmeRn.png)
 
-In the static queues the processes are evaluated only the first time I see that process, there it remains until it ends. Here there is the problem that the processes are not evaluated watching the code, if I miss the category, I could have a less performant execution.  
+In the static queues the processes are evaluated only the first time I see that process, there it remains until it ends. Here there is the problem that the processes are not evaluated watching the code, if I miss the category, I could have a less performant execution.
 
 ### Multilevel queue with feedback
 
@@ -554,10 +554,93 @@ Onther solution is **swap**:
 
 ![Swap 2](https://i.imgur.com/lNDZ8Lx.png)
 
-The problem with swap and test and set is that a process could always be executed, terminate and come back in the critical section continuously, never leaving time for the other processes to enter.  
+The problem with swap and test and set is that a process could always be executed, terminate and come back in the critical section continuously, never leaving time for the other processes to enter.
 
 Here is the solution to this problem:
 
 ![Test and set sol 2](https://i.imgur.com/6tu26mY.png)
 
 This solution allows to set FALSE to the lock only in the case there are no other processes that are waiting to go in the critic section.
+
+This solution is not making less complex the system so between hardware and sofware doesn't really metter.  
+The solution to this is using semaphores.
+
+### Semaphores
+
+Semaphores are way reasier than the algorithms seen before.  
+The semaphores are implemented in newer opeative systems.  
+Semaphores reduces complexity, and the busy waiting situation.
+
+Semaphores actions are:
+
+- V that increments S of 1
+- P waits
+  - if S > 0, decrement S of 1
+  - else, needs to wait
+
+Semaphores can be either binary (0 or 1, sometimes True and False) or generic (value int > 0).
+
+Conceptual execution of **binary** semaphores:
+
+![Semaphores](https://i.imgur.com/dcssv4G.png)
+
+Conceptual execution of **generic** semaphores:
+
+![Semaphores](https://i.imgur.com/gEuzSsU.png)
+
+These 2 piece of code are evaluated in one time, so in a atomic trasnsaction.
+
+There are two implementation:
+
+- **with busy waiting**: the process wastes memrory waiting for itself to end
+- **without busy waiting**: the process ends immedialy and switches to the next process immedialy
+
+Busy waiting is also called **spin lock**, spin because of the while (watch next pic), lock because it locks the process.
+
+Implemenation with busy waiting:
+
+![semaphore implementation with busy waiting](https://i.imgur.com/syuoNlm.png)
+
+In this implementation the Swap is a atomic transaction, so it is ensured by the hardware that this transaction cannot be stopped in the middle.
+
+For the implementation with non binary semaphores **with busy waiting**:
+
+![implementation with non binary semaphores](https://i.imgur.com/XWokXUH.png)
+
+Implementation on V **without busy waiting**:
+
+![implementation V no busy waiting](https://i.imgur.com/C8zXRJm.png)
+
+In this implementation there is a list of all the processes (PCB or process control block).  
+In this case the process is appended to the list and it's put into sleep, so it leaves the CPU making other process run. So P(delay) is not run, saving computing time.
+
+Implementation on P **without busy waiting**:
+
+![implementation P no busy waiting](https://i.imgur.com/DqBQM8K.png)
+
+This wakes up the processes in case there are processes that are waiting.  
+The problem with this implemenation is the starvation that could occure if we have a list with priorities, if we have FCFS this doesn't happen.
+
+Usually in the OS the **busy waiting is accepted** and implemented instead of the list of processes.
+
+The execution is normally:
+
+![execution of semaphores](https://i.imgur.com/xwHdt26.png)
+
+Here s could be called in other ways, the important thing is that P and V are called with their names.
+
+### Semaphores exercises
+
+I want to execute before A, then B:
+
+![exerxise 1 semaphores](https://i.imgur.com/ACBNqtS.png)
+
+Processes that wait each other:
+
+![exerise 2 semaphores](https://i.imgur.com/OwS7Wmi.png)
+
+A limitation of the semaphores is the **deadlock**.
+
+![deadlock example](https://i.imgur.com/ztiS9RS.png)
+
+Another problem is **starvation**, for example if I forget a V, then a process is never run.
