@@ -644,3 +644,48 @@ A limitation of the semaphores is the **deadlock**.
 ![deadlock example](https://i.imgur.com/ztiS9RS.png)
 
 Another problem is **starvation**, for example if I forget a V, then a process is never run.
+
+### Producer and consumer problem
+
+The **problem of the producer and consumer** has the buffer of N elements that need to be checked (if there is space to produce or consume) before entering the produce or consume section.  
+We need to introduce **full** and **empty** semaphores.
+
+![producer and consumer problem](https://i.imgur.com/7eCx9yV.png)
+
+### Dinning philosophers problem
+
+![problem](https://i.imgur.com/ZpoKAJv.png)
+
+We can solve this problem trying to take the right and left sticks, then eating.
+
+![sol 1](https://i.imgur.com/rtNDJw1.png)
+
+Here we have the deadlock situation, because if everyone takes the right strick, then no one eats.
+
+Wrong solutions:
+
+![wrong soulutions](https://i.imgur.com/VqUaicU.png)
+
+All of these change what the problem asked, so they are wrong.  
+For example the first one remove one filosopher, but the problem asked for all of them at the same time.  
+Or the third one adds a token, not allowed.  
+
+Soultion:
+
+![solution part1](https://i.imgur.com/IJer85Y.png)
+
+Is this solution is really important to avoid describing the Think() and Eat() because these two do not have problems of concurrecy.
+
+The solution is in testing if the two pilosophers close to me are hungry on not. If they are, I don't take sticks.  
+
+![solution part2](https://i.imgur.com/ZTwQPQT.png)
+
+![solution part3](https://i.imgur.com/eOSecjT.png)
+
+In this part I don't only putj the fork back to available, I also put the philosophers close to me in eating state, in the case they were hungry.  
+This last step **avoid deadlock** but **not starvation** (only in the case of spare number of philosophers).  
+The starvation problem is solved by adding some sort of priority to the solution.
+
+### Sleepy barber problem
+
+![problem](https://i.imgur.com/qWaKOiY.png)
