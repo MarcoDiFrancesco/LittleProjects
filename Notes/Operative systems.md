@@ -35,10 +35,10 @@ The kernel can be executed in 3 different ways:
 - kernel executed on a user process
 - kernel executed as a process
 
-The kernel executed in a **separately enviroment** uses a part of the memoty that is not used by any other process, it is more priviledged than other processes. This was used in momolitic kernel once apon a time.
+The kernel executed in a **separately enviroment** uses a part of the memory that is not used by any other process, it is more priviledged than other processes. This was used in momolitic kernel once apon a time.
 
 The kernel executed in **user processes** so each process has the structures to call all functionalities of the kernel (a reference to them). The kernel functionalities are not replicated in each process, they are poining to a process contining all of the functionalities.
-This type of kernel is more performant, because when there is a system call, the switch between user mode and kernel mode is faster making a mod switch because we are in the same process, if we would be in two different processes, we would require to make the context switch.
+This type of kernel is more performant, because when there is a system call, the switch between user mode and kernel mode is faster than making a mod switch because we are in the same process, if we would be in two different processes, we would require to make the context switch.
 
 The kernel stack contain all the processes that are running.  
 The shared address space is shared across all processes.
@@ -688,4 +688,16 @@ The starvation problem is solved by adding some sort of priority to the solution
 
 ### Sleepy barber problem
 
+Problem:
+
 ![problem](https://i.imgur.com/qWaKOiY.png)
+
+Solution:
+
+![solution](https://i.imgur.com/XTFQnlk.png)
+
+### Limitation of the semaphores
+
+The main problem with semaphores is the raising complexity going up with the complexity of the problem.
+
+There are alternatives to this that are: monitor and java syncronized casses in Java.\

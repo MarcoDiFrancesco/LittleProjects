@@ -24,3 +24,13 @@ Normally variables inside funtions are exported also outside the function. Local
 ![Shared memory](https://i.imgur.com/3cjTM58.png)
 
 ![Shared memory](https://i.imgur.com/3cjTM58.png)
+
+### System calls
+
+When making a system call, the system can return a code between 1 and 255. If the code is -1, this means that the system call failed. System call fail means that the system wasn't able to execute the call, not that for example the proviledges were not high enough.
+
+**We need to check every time if -1 was returned**.
+
+System call examples:
+
+![System call examples](https://i.imgur.com/7NTlVA8.png)
