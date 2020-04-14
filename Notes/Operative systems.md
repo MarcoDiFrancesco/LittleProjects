@@ -700,4 +700,37 @@ Solution:
 
 The main problem with semaphores is the raising complexity going up with the complexity of the problem.
 
-There are alternatives to this that are: monitor and java syncronized casses in Java.\
+There are alternatives to this that are: monitor and java syncronized casses in Java.
+
+## Monitor
+
+The monitor is used as a subsititute to the semaphores. The main difference is that the semaphores are implemented directly by the programmer, and the monitors are implemented through high level programming languages like Java.
+
+The monitors garants mutex, so **only one** shared variable at a time will be accessed, so mutex are not needed.
+
+In monitors there are condition variables, these are used to sync monitors. These conditions can receive `wait()` and `signal()`, that are not the same as P and V of the semaphores. Example: `x.wait()`.
+
+The `wait()` stops the process anyway, in the semaphores the P checks if value is 1 or 0 to stop or not.  
+The `signal()` wakes up a process, also this is different from V because in the semaphores if 2 V consecutive are called, then 2 processes are called, with signal only the first one is, so the second one does not do anything.
+
+Monitor producer and consumer:
+
+![Monitor producer and consumer](https://i.imgur.com/18U8M4m.png)
+
+### Writes and readers problem
+
+Rules:
+
+- readers can only read
+- writers can only write
+- more than one readers can read the same file
+- only one writer can write in a file
+- if a writer is writing, a reader can't read it
+
+Writers solution:
+
+![writers](https://i.imgur.com/FLERJ9u.png)
+
+Readers solution:
+
+![readers](https://i.imgur.com/pqiCrsq.png)
