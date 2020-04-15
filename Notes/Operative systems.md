@@ -782,5 +782,36 @@ What to do when something like this happens? Static prevention; dynamic preventi
 
 ### Static prevention
 
-With hold and wait the process allocate all the resources that it needs to use, then if a context switch comes and another process is waiting for that resource, it won't be able to do anything, so there is a waste of memory.
-30:59
+With hold and wait the process allocate all the resources that it needs to use, then if a context switch comes and another process is waiting for that resource, it won't be able to do anything, so there is a waste of memory. Hold and wait can also cause starvation.
+
+Another possibility to solve the deadlock problem is forcing a process to release all it's resources before locking others.  
+The problem with this solution is that not all the processes can do thing, take for instance a printer, it can't be stopped after printing 3 pages, do something else and then come back doing what it was doing in the other process.
+
+Static prevention in not used in real world applications because of its cost.
+
+### Dynamic prevention
+
+The dynamic prevention requires to know the used resources by the processes. If it doesn't have this information, it will use the maximum possible resources used, and this could lead into resources waste.
+
+This prevention checks if the system is in a safe state, this means no deadlock. The system is in a safe state if using the resources it's possible to allocate in some order the processes available. If there isn't a safe state, then it's unsafe, so a deadlock could occure.
+
+![example](https://i.imgur.com/DNYTO1W.png)
+
+In this example the state is safe in the orfer P1 P0 P2.
+
+The dynamic prevention requires every process that is accessed to be in a safe state.
+
+There are 2 Dynamic prevention algorithms:
+
+- RAG slightly modified
+- Banker's algorithm
+
+RAG example:
+
+![rag example](https://i.imgur.com/yaJ49No.png)
+
+Banker's algorithm:
+
+the idea of this algorighm is that the bank that have 1000 bank accounts with in total 1.000.000 euros, the money that it needs to have available to give back to the users is way lower than the amount of money that the user really have, because cases like all the users come in the same day and closes all the accounts is almost impossible. If a user ask for a small amount of money, the bank gives it immedialy, if requires a big amount, the bank ask him to come back in some days.
+
+The algorithm requires that the processes to know the used resources. If a process ask resources, if the state is still in a safe state without that resources, then the resources are allocated, if not the resources are not allocated.
