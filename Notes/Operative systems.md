@@ -734,3 +734,53 @@ Writers solution:
 Readers solution:
 
 ![readers](https://i.imgur.com/pqiCrsq.png)
+
+The problem with this solution is **starvation**.
+
+## Deadlock
+
+The deadlock happens when processes are waiting for resources to be freed, and these resources are occupied by resources that are waiting for other locked resources.
+
+![deadlock example](https://i.imgur.com/V1S7GjY.png)
+
+The problem above can be solved with preemption of rollback. With preemption we don't allow more than one car at a time in the bridge, with rollback, we make a car go back to it's track, the problem with this is that if there are more than one car to rollback, then there rollback is not light in performances.
+
+Ececution of 2 processes:
+
+![Ececution of 2 processes](https://i.imgur.com/2PqjCEF.png)
+
+Deadlock possibilities:
+
+![Deadlock possibilities](https://i.imgur.com/8PXEu3g.png)
+
+In the execution above, in the 6 possibilities, 2 of them go into a deadlock situation.
+
+The conditions to have a deadlock are:
+
+![conditions to have a deadlock](https://i.imgur.com/UXhzZYi.png)
+
+A model to understand if there are deadlock is RAG.
+
+### RAG - Resouce Allocation Graph
+
+The RAG is:
+
+![rag](https://i.imgur.com/ABF8wFh.png)
+
+Rag example:
+
+![rag example](https://i.imgur.com/IibLWFY.png)
+
+Here we need to check if we have cycles inside:
+
+![cycles check](https://i.imgur.com/wF5BnVx.png)
+
+In this example we have a cycle between P1 and P3.  
+We also have a cycle inside the second exaple, but in the case R1 is locked by P2, when P2 frees up, then P3 is able to run, the same thing with P4. In the first case it isn't the same thing, because both R1 and R2 are waiting for P2, in the case it is blocked, then R2 and R3 are blocked, whitch create a deadlock.
+
+What to do when something like this happens? Static prevention; dynamic prevention; detenction and recovery; not doing anything.
+
+### Static prevention
+
+With hold and wait the process allocate all the resources that it needs to use, then if a context switch comes and another process is waiting for that resource, it won't be able to do anything, so there is a waste of memory.
+30:59
