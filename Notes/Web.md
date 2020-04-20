@@ -2,7 +2,7 @@
 
 Web architectures notes.
 
-## Protocol
+## Web architecture protocols
 
 A protocol is a set of rules and regulations that determine how data is transmitted.  
 The protocol contains: format, order and action.
@@ -150,7 +150,7 @@ Inside head there is the meta data in the `<meta>` tags. These tags can contain 
 ``` HTML
 <meta charset="UTF-8">
 <meta name="description" content="Free tutorial">
-<meta http-quiv="refresh" content="30"> <!-- Rfresh every 30 secs -->
+<meta http-quiv="refresh" content="30"> <!-- Refresh every 30 secs -->
 <meta name="viewport" content="">
 ```
 
@@ -174,6 +174,84 @@ URL max size is 2048 characters.
 A save method in HTTP is a method that does not change the state of the server (read only).  
 
 GET vs PUT.
+
+## CSS
+
+The lenght of the style can be:
+
+- cm, mm
+- in (inch), pt (point), pc (pica)
+- em (height of element font) that goes from the bottom of the letter o in font to the top
+- ex (extended height of element font) that goes from the bottom of the letter f to the top
+
+![font mesures](https://i.imgur.com/gacu04q.png)
+
+Formatting elements:
+
+![Formatting elements](https://i.imgur.com/NHIf16q.png)
+
+There are colors, given in rgb.  
+There are gradients.
+
+Box elements:
+
+![box elements](https://i.imgur.com/bN1lLh3.png)
+
+If I want to specify bottom in border will be `border-bottom-width:`, if not `border-width`.
+
+### Selector
+
+There are different types of selectors:
+
+![css selectors](https://i.imgur.com/AflQQCs.png)
+
+![css secectors 2](https://i.imgur.com/oBuxFq3.png)
+
+![css selectors 3](https://i.imgur.com/xEWJdDQ.png)
+
+Select by attribute:
+
+![select by attribute](https://i.imgur.com/sPrr34O.png)
+
+### Cascading and positioning
+
+The sylesheets are cascading because they enherit the parent's style. So if there is a redefinition of a style, it will win over the old definition.
+
+For example:
+
+![cascading example](https://i.imgur.com/bQUnLVU.png)
+
+There is an exception if there is `!important`, because it wins over the redefinitions.
+
+### Positioning
+
+There is the possibility to choose the position of an element in the following ways:
+
+![positioning](https://i.imgur.com/LCyZszM.png)
+
+If two emements overlap, then you can choose which one goes over the other with a **z-index**:
+
+![z-index](https://i.imgur.com/29pAKD5.png)
+
+Or just clipping it, cutting a piece of one element:
+
+![clip](https://i.imgur.com/uGcGB2V.png)
+
+Positioning example:
+
+![positioning example](https://i.imgur.com/AmQekan.png)
+
+In this example the relative positioning (in apotion) is used to say: stay 30px more left than you were supposed to do.
+
+### Fonts
+
+You can specify more than one font:
+
+![more than one font](https://i.imgur.com/h8x2d78.png)
+
+So if verdana is not available, use helvetica.
+
+Browsers have some default fonts, but it's possible to specify external ones.
 
 ## PHP
 
@@ -203,7 +281,7 @@ Not so important for the course.
 
 ### Vardump
 
-`var_dunp` prints the variables type and the value.
+`var_dump` prints the variables type and the value.
 
 ![var_dump example](https://i.imgur.com/N9vSv8b.png)
 
