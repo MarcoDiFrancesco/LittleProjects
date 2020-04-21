@@ -810,8 +810,38 @@ RAG example:
 
 ![rag example](https://i.imgur.com/yaJ49No.png)
 
-Banker's algorithm:
+**Banker's algorithm**:
 
 the idea of this algorighm is that the bank that have 1000 bank accounts with in total 1.000.000 euros, the money that it needs to have available to give back to the users is way lower than the amount of money that the user really have, because cases like all the users come in the same day and closes all the accounts is almost impossible. If a user ask for a small amount of money, the bank gives it immedialy, if requires a big amount, the bank ask him to come back in some days.
 
 The algorithm requires that the processes to know the used resources. If a process ask resources, if the state is still in a safe state without that resources, then the resources are allocated, if not the resources are not allocated.
+
+The banker algorithm is divided in:
+
+- Allocation algorithm
+- Verification of the status algorithm (complexity of O(m*n^2), so it's really expensive)
+
+Exercise:
+
+At the time t0:
+
+![t0](https://i.imgur.com/GFMuDAo.png)
+
+avail(a) = 10 - (0 + 2 + 3 + 2 + 0) = 3  
+need = max - allocation
+
+A possible safe seqence is:
+
+![safe sequence t0](https://i.imgur.com/2sdf1Y1.png)
+
+Then at time t1:
+
+![p1](https://i.imgur.com/JBIdhU7.png)
+
+check if the request is not bigger than need: so if (1, 2, 2) is bigger than (1, 0, 2) and in this case the ckeck passes.
+
+Then check if (1, 0, 2) is bigger than available (3, 3, 2) and also in this case the check passes.
+
+Now the processes are updated:
+
+![t1 processes](https://i.imgur.com/fkyj0VI.png)
