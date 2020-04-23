@@ -13,6 +13,7 @@ The folder are separated by languages or programs used, it starts from the first
 * [C](C)
 * [C++](C++)
 * [Cryptool](Cryptool)
+* [Django](Django)
 * [Docker](Docker)
 * [HTML](Html)
 * [Inkscape](Inkscape)
