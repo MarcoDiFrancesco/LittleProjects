@@ -332,3 +332,15 @@ In the **servlet lifecycle** the connection are set the fist time with the metho
 The method `service()` understand if request is Get, Post, Head etc. and call the right method.
 
 ![service method](https://i.imgur.com/qvs8qF1.png)
+
+## Session
+
+Sessions solve the problem of cookies. Because we don't have a state of the application we need to save all data inside cookies, and because we could have a lot of data to store, we would need a lot of cookeis. Sessions solve this problem, we store just one cookies as identification, while saving all data server-side.
+
+In java this is done using hashtables. With api we can use HttpSessions.
+
+The sessions in java offer also an approch in case the cookies are not enbled in the browser, it will use **URL rewriting**, like in this example:
+
+![esse3 example](https://i.imgur.com/gWNxqxJ.png)
+
+The file `web.xml` contains what's the timeout of a session. It also contains the links of the servlet to the web pages, from Java 5 these are contained in the annotation of the servlet, so it's useless to use web.xml for these.
