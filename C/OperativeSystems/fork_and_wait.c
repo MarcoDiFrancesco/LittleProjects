@@ -1,7 +1,7 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 int rand_int(int min, int max) {
     srand(time(NULL) + getpid());
@@ -15,7 +15,7 @@ int delay(double delay) {
     time_t current;
     do {
         time(&current);
-    } while(difftime(current, start) < delay);
+    } while (difftime(current, start) < delay);
     return delay;
 }
 
@@ -27,16 +27,16 @@ int main() {
     }
     printf("Forked, pid=%d, ppid=%d\n", getpid(), getppid());
     delay(2);
-    
+
     // Parent
     if (f > 0) {
-        int d = delay(rand_int(1,2));
+        int d = delay(rand_int(1, 2));
         printf("I'm the parent, waited for %d, pid=%d, child=%d\n", d, getpid(), f);
         // Wait for a process (the first that comes)
         wait(NULL);
         printf("Waited, now ending\n");
-    } else { // Child
-        int d = delay(rand_int(3,4));
+    } else {  // Child
+        int d = delay(rand_int(3, 4));
         printf("I'm the child, waited for %d, pid=%d, parent=%d\n", d, getpid(), getppid());
     }
 }
