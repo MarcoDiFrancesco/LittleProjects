@@ -344,3 +344,38 @@ The sessions in java offer also an approch in case the cookies are not enbled in
 ![esse3 example](https://i.imgur.com/gWNxqxJ.png)
 
 The file `web.xml` contains what's the timeout of a session. It also contains the links of the servlet to the web pages, from Java 5 these are contained in the annotation of the servlet, so it's useless to use web.xml for these.
+
+## Java server pages
+
+JSP-CustomTags allow things like `<reverse>this</reverse>`. Now not used anymore.  
+JSP compared to servlets, are useful because they allow to use directly the HTML template, instead of using `out.ptintln("<html>")`.
+
+JSP example:
+
+![JSP](https://i.imgur.com/Ns2p2or.png)
+
+The main difference with PHP is that JSP behind all of this, manages sessions, memory etc. , things that PHP doesn't do by itself.
+
+JSP syntactic elements:
+
+![jsp things](https://i.imgur.com/u2kvMk6.png)
+
+Inside JSP it's possible to use:
+
+- `<%!@ import ... %>` at the beginning of the file
+- `<% ... %>` for things inside the DoGet()
+- `<%! ... %>` for declarations outside of the DoGet()
+
+Directives:
+
+![JSP directives](https://i.imgur.com/yChtzSC.png)
+
+Functions inside jsp:
+
+![functions](https://i.imgur.com/RO4f1mR.png)
+
+Redirect to another page:
+
+![redirect](https://i.imgur.com/BfSmzyv.png)
+
+
