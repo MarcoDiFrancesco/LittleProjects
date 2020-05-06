@@ -377,5 +377,3 @@ Functions inside jsp:
 Redirect to another page:
 
 ![redirect](https://i.imgur.com/BfSmzyv.png)
-
-

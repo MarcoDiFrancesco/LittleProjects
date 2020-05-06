@@ -43,3 +43,6 @@ Django/**/include/
 
 # C++ projects input file
 /input.txt
+
+# Python virual envieroments
+venv/
