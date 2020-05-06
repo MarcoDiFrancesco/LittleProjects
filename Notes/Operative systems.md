@@ -825,3 +825,63 @@ Allocation algorithm:
 Verification algorithm:
 
 ![verification algorithm](https://i.imgur.com/u2zB6ty.png)
+
+Banker's algorithm exercise:
+
+![Banker's algorithm exercise pt1](https://i.imgur.com/7KZPYeB.png)
+
+![Banker's algorithm exercise pt2](https://i.imgur.com/4Rto8bn.png)
+
+### Deadlock & restore
+
+This solution is taken if a process goes in deadlock, and we need to restore from it.
+
+The main **advantage** of this tecnique is that it's not necessary to know before the amount of resources required.
+
+The main **disadvantage** is that there is an high cost to recover.
+
+There are 2 solutions to this:
+
+- Using RAG (sesource allocation graph)
+- Rilevamento using kind of banker's algorithm
+
+Restoring **using RAG**:
+
+![restoring using graph](https://i.imgur.com/h8paGix.png)
+
+The RAG is used removing the resources, and watching the processes.  
+In this case there is a dealock situation because there is a cycle in P2, P3, P4, P1.
+
+Rilevamento **using kind of banker's agorithm**:
+
+It checks only for the safe state, not a possible allocation (like in the banker's algorithm), it is also not called every time a new process is added, it will be called every n processes executed.
+
+The main difference with the banker's algorithm is that there is no computation of the order that the processes need to be executed not to have deadlock, we just know that there is one that works.
+
+Code:
+
+![Deadlock & restore](https://i.imgur.com/HUev0B7.png)
+
+**Rilevamento exercise** part 1 and 2:
+
+![Rilevamento exercise pt1](https://i.imgur.com/0WXL7MF.png)
+
+![Rilevamento exercise pt2](https://i.imgur.com/JzEiTaq.png)
+
+### Restore
+
+To restore from a deadlock the possibilities are 2:
+
+- kill the processes in deadlock
+- preemption of the resources of the locked processes
+
+The soution with **killing the processes** are 2:
+
+- killing all in one
+- killing one by one, the problem that comes is, in what order we do it?
+
+A solution to this can be [aging](#Starvation).
+
+### Conclusion
+
+A good solution for deadlock is a combination of the soulutions OR using the **ostrich** (struzzo) solution, so don't handle the deadlocks.
