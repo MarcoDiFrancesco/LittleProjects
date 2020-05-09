@@ -46,3 +46,4 @@ Django/**/include/
 
 # Python virual envieroments
 venv/
+.venv/

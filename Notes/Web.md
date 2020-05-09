@@ -377,3 +377,21 @@ Functions inside jsp:
 Redirect to another page:
 
 ![redirect](https://i.imgur.com/BfSmzyv.png)
+
+## Reactive Web Disign
+
+**Reactive Web Deisign** is a set of techniques that are used to build sites that fells responsive. Reactive programming uses **asynchronous data stream**.
+
+One framework used today is **React**.
+
+**Responsive design** is used to make pages that fit all types of screens, also vertial and horizontal. This is done using CSS.
+
+XMLHttpRequest properities:
+
+![XMLHttpRequest properities](https://i.imgur.com/vHJK6FC.png)
+
+Example:
+
+here the variable `this` equals the obect of the function, in this case it is `xhttp`.
+
+![example](https://i.imgur.com/OPWkZZ7.png)
