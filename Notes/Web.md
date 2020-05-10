@@ -321,6 +321,10 @@ Using a **Java servlet container** the server uses instad multi threading, that 
 
 ![Java servlet container request](https://i.imgur.com/MJAZccQ.png)
 
+Java servlet context is a serie of Java servlet containers:
+
+![java servlet context](https://i.imgur.com/jDDzOhN.png)
+
 ## Servlet
 
 ### Servlet lifecycle
@@ -395,3 +399,69 @@ Example:
 here the variable `this` equals the obect of the function, in this case it is `xhttp`.
 
 ![example](https://i.imgur.com/OPWkZZ7.png)
+
+### Cross-Origin Resource Sharing
+
+Ajax can also request resources from outside the server with Cross-Origin Resource Sharing using XMLHttpRequest:
+
+![Example](https://i.imgur.com/XhJCxaB.png)
+
+The apache server needs to be configured such as it can accept connections from outside:
+
+![Example](https://i.imgur.com/9Je0UxQ.png)
+
+Ajax can use either JSON or XML to tranfer data. In both cases, in the clint sides there needs to be an XML parser or JSON parser.
+
+![xml vs json](https://i.imgur.com/q3of6JY.png)
+
+## JSON
+
+![JSON example](https://i.imgur.com/1WVMli4.png)
+
+### AJAJ
+
+AJAJ is the AJAX version based on JSON.
+
+AJAJ example:
+
+![AJAJ example](https://i.imgur.com/lq1RXek.png)
+
+If we put responseType = "json" we don't need to parse the element from plaintext to json object, so we can do directly something like `hello = my_JSON_object.squadName;` without parsing. If we don't use that line we need to make `JSON.parse(text)` or JSON to string is `JSON.stringify`.
+
+JSON parse example:
+
+![JSON parse example](https://i.imgur.com/ojoOggS.png)
+
+There is also a `reviver` option, that taken a JSON object it decides to parse if as a string or something else. In this example it checks if the key is birthDate, if so it parse that to a date object insted of a string.
+
+![JSON parse with reviver example](https://i.imgur.com/88HzJv5.png)
+
+JSON stringify example:
+
+![JSON stringify example](https://i.imgur.com/LRtpt2Z.png)
+
+## AOP
+
+Aspect-oriented programming (AOP) is a conceptual way of writing code. In AOP we modularize the code like so that we solve problems, more or less like what we do normally in function, calling one function in different part of the program.
+
+AOP are specialized in logging and authorization.
+
+### Filter
+
+Filters are classes that works on AOP. All servlet containers use one filter that is in common and can control:
+
+![filters](https://i.imgur.com/1RXdzWI.png)
+
+The main use of filter is done for authentication, for example for a bunch of servlet that need the user login to acess, a filter is added to check if the user is logged, if not it's redirected to the filter.
+
+The filters are added in the `map.xml`, the first that comes in the mapping is the first that is executed, so in this example Uncompressed is executed before authenticate.
+
+![filters mapping](https://i.imgur.com/aVJxf6D.png)
+
+Parameters in filter can be specified in `map.xml`:
+
+![map](https://i.imgur.com/3kRjekQ.png)
+
+## Database in Java
+
+The JDBC is the driver that connect with the database using it's API.

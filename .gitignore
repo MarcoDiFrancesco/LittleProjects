@@ -47,3 +47,9 @@ Django/**/include/
 # Python virual envieroments
 venv/
 .venv/
+
+# Java web
+*.dat
+*.log
+*.lck
+*.ctrl
