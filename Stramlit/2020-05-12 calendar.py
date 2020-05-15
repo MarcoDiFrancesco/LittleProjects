@@ -3,6 +3,7 @@ import os
 import uuid
 
 import jicson
+import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 import streamlit as st
@@ -40,7 +41,13 @@ data = get_data(CAL_LINK)
 data = date_edit(data)
 
 
-df = pd.DataFrame(data, columns=["DTSTART"])
+df = pd.DataFrame(data, columns=["DTSTART", "SUMMARY"])
+df = df[df["SUMMARY"] == "Breakfast"]
+hour = df["DTSTART"].dt.hour
+minute = df["DTSTART"].dt.minute
+minute = hour * 60 + minute
+df["value"] = minute
+df.set_index("DTSTART")
 print(df)
 df
 st.line_chart(df)
