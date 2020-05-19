@@ -53,3 +53,7 @@ venv/
 *.log
 *.lck
 *.ctrl
+
+# Stramlit calendars
+Streamlit/calendars.json
+
