@@ -253,6 +253,12 @@ So if verdana is not available, use helvetica.
 
 Browsers have some default fonts, but it's possible to specify external ones.
 
+## Javascript
+
+Javascript make the browser smart, so the name **smart browser** was invented.
+
+![Javascript example](https://i.imgur.com/iOg6M32.png)
+
 ## PHP
 
 PHP **is not** case sensitive for functions, but **it is** case sensitive for variables.
