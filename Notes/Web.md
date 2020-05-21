@@ -259,6 +259,20 @@ Javascript make the browser smart, so the name **smart browser** was invented.
 
 ![Javascript example](https://i.imgur.com/iOg6M32.png)
 
+TBD
+
+## jQuery
+
+jQuery is a library written in JavaScript used to simplify the javascript code.
+
+jQuery sytax:
+
+![jQuery example](https://i.imgur.com/gibPdvN.png)
+
+jQuery makes the life way easier when using ajax, it adds get and post method to send data, and load method to load data inside a selector:
+
+![ajax in jQuery](https://i.imgur.com/gf74ZUo.png)
+
 ## PHP
 
 PHP **is not** case sensitive for functions, but **it is** case sensitive for variables.
