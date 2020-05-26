@@ -54,6 +54,3 @@ venv/
 *.lck
 *.ctrl
 
-# Stramlit calendars
-Streamlit/calendars.json
-
