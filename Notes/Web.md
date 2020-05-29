@@ -253,6 +253,14 @@ So if verdana is not available, use helvetica.
 
 Browsers have some default fonts, but it's possible to specify external ones.
 
+## Bootstrap
+
+Bootstap is a framework used to write interfaceces in a easier way.
+
+Bootstrap example in exercises.
+
+![Carousel example](https://i.imgur.com/J6Ri3vW.png)
+
 ## Javascript
 
 Javascript make the browser smart, so the name **smart browser** was invented.
@@ -344,6 +352,24 @@ Using a **Java servlet container** the server uses instad multi threading, that 
 Java servlet context is a serie of Java servlet containers:
 
 ![java servlet context](https://i.imgur.com/jDDzOhN.png)
+
+## MV*
+
+MV stands for Model View, and there are diffent types of Model View models. Some of them are:
+
+- Model View Controller (MVC)
+- Model View Presenter (MVP)
+- Model View View Model (MVVP)
+
+### Model View Controller
+
+Model View Controller (MVC) makes the model connecting on the view.
+
+![MVC](https://i.imgur.com/9QObvdn.png)
+
+![MVP](https://i.imgur.com/Q39WuHP.png)
+
+![MVVM](https://i.imgur.com/EJFpyp7.png)
 
 ## Servlet
 
