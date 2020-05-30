@@ -885,3 +885,70 @@ A solution to this can be [aging](#Starvation).
 ### Conclusion
 
 A good solution for deadlock is a combination of the soulutions OR using the **ostrich** (struzzo) solution, so don't handle the deadlocks.
+
+## Memory
+
+Something is a process only if some **central memory is assigned to it**. The program to be executed must be in the central memory. For example a process loaded in memory writes some variables in the memory, than when context switch happens, the results are written in memory. Than when a process terminates, the memory need to be released.
+
+The transformation between program memory written in the disk, to memory allocation that is located in the main memory. This takes place through:
+
+- Compiler
+- Linker
+- Loader
+
+Translation process:
+
+![Translation process](https://i.imgur.com/5yvFtzV.png)
+
+The binding process can be at:
+
+- Compile time
+- Load time
+- Run time
+
+Description:
+
+![Binding process description](https://i.imgur.com/VdszfNa.png)
+
+Example:
+
+![Binding process example](https://i.imgur.com/MYAy5Kg.png)
+
+At runtime the address (1000) is loaded from the hardware, this could change with a context switch, for example 1000 becomes 2000, then all the adresses need to be calculated again.
+
+### Linking
+
+Linking can be static or dynamic:
+
+- Static means the libraries are copied into the executable.
+- Dynamic means the libraries are taken at runtime (lighter executable) (for example DDL libraries)
+
+Loading can be static or dyncamic:
+
+- Static: all code is loaded in memory
+- Dynamic: code is splited and if there are piece of code not needed, they are not loaded
+
+### Spazi di indirizzamento
+
+The **address space** can be logical or physical. The difference is that the at compile or load time, the logical and physical adresses coincide, at run time, it's likely that they are different:
+
+![static and dynamic binding](https://i.imgur.com/fStzLp9.png)
+
+The **Memory Management Unit** (MMU) is the thing that at run time gives the assign the addresses. For example a logical process says it has the memory between 0 and 20K, and the MMU assign the physical address between 50K and 70K (at run time).
+
+The binding in new computer is always dynamic, because it can't be possible to predict which part of the memory is going to be used by a program. This is possible to make it only in embedded system, because it's possible to predict all the memory that will be allocated.
+
+## Memory management
+
+Here we see how the memory is assigned to a process.
+
+### Fixed partition technique
+
+The fixed partition technique works in dividing the mameory in partitions. This works allocation the memory required to the partition that are available and the partition that can fit the memory required.
+
+The disadvantages are:
+
+- there is a lot of waste of memory, if a process that is 1M
+- if a process is bigger than the biggest size of the biggest segment, than that process will never be executed. For example one process is 18M, and the segmentations are 16M, 8M, 4M; than there won't be the possiblity to execute it.
+
+![static and dynamic binding](https://i.imgur.com/6XlPIcX.png)
