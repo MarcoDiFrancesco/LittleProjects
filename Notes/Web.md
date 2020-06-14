@@ -511,3 +511,12 @@ Parameters in filter can be specified in `map.xml`:
 ## Database in Java
 
 The JDBC is the driver that connect with the database using it's API.
+
+## Typescript
+
+Typescript is a language that makes JavaScript closer to Java.
+
+Javascript has the problem that if the version of Javascript I'm using is not supported by my browser, I won't be able to run it.
+
+There are 2 possible solutions to this: polyfiling and tanspiling. The **polyfiller** understand if the intrpreter is not able to run newer version of the language, and in that case, it sends libraries to the interpreter to understand the newer code.  
+The **transpiler** changes the code syntax, to be accepted by the older version of the language.
