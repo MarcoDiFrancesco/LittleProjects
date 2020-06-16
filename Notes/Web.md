@@ -518,5 +518,52 @@ Typescript is a language that makes JavaScript closer to Java.
 
 Javascript has the problem that if the version of Javascript I'm using is not supported by my browser, I won't be able to run it.
 
-There are 2 possible solutions to this: polyfiling and tanspiling. The **polyfiller** understand if the intrpreter is not able to run newer version of the language, and in that case, it sends libraries to the interpreter to understand the newer code.  
-The **transpiler** changes the code syntax, to be accepted by the older version of the language.
+There are 2 possible solutions to this: polyfiling and tanspiling. The **polyfiller** understand if the intrpreter is not able to run newer version of the language, and in that case, it sends libraries to the interpreter to understand the newer code. The **transpiler** changes the code syntax, to be accepted by the older version of the language.
+
+Typescript needs to be compiled in Javascript code before running into a browser. Typescript it's possible to tranpile code in older versions of JavaScript, for example it's possible to compile into ES3 so it's userstood by interet explorer.
+
+One feature of Typescript is the variable definition:
+
+![variable definition](https://i.imgur.com/fvgDhz8.png)
+
+This is really useful when compiling code, because it tells you if you made any mistake (about variables) when compiling the code.
+
+Another example where typescript can help is arguments in functions:
+
+![arguments in function errors](https://i.imgur.com/4WtYhh8.png)
+
+This can be fixed with an optional argument:
+
+![arguments in function fix](https://i.imgur.com/L3Akzaw.png)
+
+Or with a default value:
+
+![arguments in function with default value](https://i.imgur.com/zKEqpMm.png)
+
+Dynamic typing is considered as an error, also if in JavaScript is possible:
+
+![arguments in function with default value](https://i.imgur.com/xbmV9Tf.png)
+
+and this can be fixed with the type: `any`
+
+![any type](https://i.imgur.com/Uv8TZSv.png)
+
+In typescript it's possible to write cast like in Java. This is only considered by TypeScript because in JavaSctipt the cast declaration is not needed:
+
+![cast declaration](https://i.imgur.com/YO0YH9k.png)
+
+In typescript it's possible to have multiple inheritance:
+
+![multiple inheritance](https://i.imgur.com/MEaSb8z.png)
+
+It's possible also to have duck inheritance, that is: if a class has ALL the methods required by the function (in this case the method `run()` is in both classes) and ALL the variables, then it's possible also to call runTask with Vehicle:
+
+![duck inheritance](https://i.imgur.com/y491hDU.png)
+
+And the following will give an error, because x is not declared:
+
+![not respecing duck inheritance](https://i.imgur.com/q69FoLv.png)
+
+Also if `x`and `s` are different, then it's error:
+
+![not respecing duck inheritance 2](https://i.imgur.com/rqbx5uB.png)

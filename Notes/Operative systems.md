@@ -888,12 +888,12 @@ A good solution for deadlock is a combination of the soulutions OR using the **o
 
 ## Memory
 
-Something is a process only if some **central memory is assigned to it**. The program to be executed must be in the central memory. For example a process loaded in memory writes some variables in the memory, than when context switch happens, the results are written in memory. Than when a process terminates, the memory need to be released.
+Something is a process only if some **central memory is assigned to it**. The program to be executed must be in the central memory. For example a process loaded in memory writes some variables in the memory, then when context switch happens, the results are written in memory. Then when a process terminates, the memory need to be released.
 
 The transformation between program memory written in the disk, to memory allocation that is located in the main memory. This takes place through:
 
 - Compiler
-- Linker
+- Linke
 - Loader
 
 Translation process:
@@ -930,7 +930,7 @@ Loading can be static or dyncamic:
 
 ### Spazi di indirizzamento
 
-The **address space** can be logical or physical. The difference is that the at compile or load time, the logical and physical adresses coincide, at run time, it's likely that they are different:
+The **address space** can be logical or physical. The difference is that at compile or load time, the logical and physical adresses coincide, at run time, it's likely that they are different:
 
 ![static and dynamic binding](https://i.imgur.com/fStzLp9.png)
 
@@ -944,11 +944,36 @@ Here we see how the memory is assigned to a process.
 
 ### Fixed partition technique
 
-The fixed partition technique works in dividing the mameory in partitions. This works allocation the memory required to the partition that are available and the partition that can fit the memory required.
+The **fixed partition technique** works in dividing the memory in partitions. This works allocating the memory required to the partition that are available and the partition that can fit the memory required.
 
-The disadvantages are:
+It can work in different ways. For example with FCFS the processes wait in queue until the memory that they need is free. The problem with this is that if there are 2 memory blocks of 16MB, then the second one needs to wait unitl the first one is done, also if there were some blocks (for example 1MB) that had the possibility to go without waiting for the 16MB block.
 
-- there is a lot of waste of memory, if a process that is 1M
-- if a process is bigger than the biggest size of the biggest segment, than that process will never be executed. For example one process is 18M, and the segmentations are 16M, 8M, 4M; than there won't be the possiblity to execute it.
+Another way is First Available Fit, that says fit the block also if it's smaller. Better than FCFS.
+
+So the disadvantages are:
+
+- this type of segmentation needs to set a fixed value for each memory block, wasting space if it's not used, and also it's not possible to resize the blocks on the fly
+- there is a lot of waste of memory, if a process is 1M and the smallest block is 4MB, then the 4MB is used with a memory waste
+- if a process is bigger than the biggest size of the biggest segment, than that process will never be executed. For example one process is 18M, and the segmentations are 16M, 8M, 4M; than there won't be the possiblity to execute it
 
 ![static and dynamic binding](https://i.imgur.com/6XlPIcX.png)
+
+**Internal fragmentation** when the process is smaller than the assigned memory block, so there is a waste o memory.
+
+**External fragmentation** when the process is too big and it's not fitting in the available memory block.
+
+### Dynamic partition technique
+
+This technique has the possibility not to say how big are the memory blocks, so there is only one big partition that is splitted in more smaller memory blocks on the fly.
+
+When the memory is assigned it looks like this:
+
+![memory assignment](https://i.imgur.com/VcPp8Qz.png)
+
+Here we can decide how to allocate new incoming memory blocks: with best fit we can fit the incoming process in the smallest memory block that we have, where that block fit, the problem with this is that it's almost sure that the memory block remaining (if the memory block wasn't exactly the size available) no other process will fit.
+
+Another possibility is to fit the the memory block is the biggest memory block available, so we solve the previous problem. Here we have the problem that we need to scan the entire list to understand what block to chose.
+
+Another possibility is to fit the block in the first available memory block, and it's proven to be the best (in real world applications) because is way faster than the other 2.
+
+18:10
