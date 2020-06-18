@@ -177,7 +177,7 @@ GET vs PUT.
 
 ## CSS
 
-The lenght of the style can be:
+The lenght of the style can be specified as:
 
 - cm, mm
 - in (inch), pt (point), pc (pica)
@@ -203,7 +203,7 @@ If I want to specify bottom in border will be `border-bottom-width:`, if not `bo
 
 There are different types of selectors:
 
-![css selectors](https://i.imgur.com/AflQQCs.png)
+![css selectors 1](https://i.imgur.com/AflQQCs.png)
 
 ![css secectors 2](https://i.imgur.com/oBuxFq3.png)
 
@@ -261,19 +261,67 @@ Bootstrap example in exercises.
 
 ![Carousel example](https://i.imgur.com/J6Ri3vW.png)
 
-## Javascript
+## JavaScript
 
-Javascript make the browser smart, so the name **smart browser** was invented.
+JavaScript make the browser smart, so the name **smart browser** was invented.
 
-![Javascript example](https://i.imgur.com/iOg6M32.png)
+![JavaScript example](https://i.imgur.com/iOg6M32.png)
 
-TBD
+With JavaScript we can specify to print in different ways:
+
+![JavaScript text](https://i.imgur.com/QjO3Lk0.png)
+
+Operators:
+
+![JavaScript operators](https://i.imgur.com/vJIScgf.png)
+
+In JavaScript if 2 strings are compared: `a < b` then it's considered the alpabetic order.
+
+Rules about + in JavaScript:
+
+![+ opeator in JavaScript](https://i.imgur.com/YiLj49D.png)
+
+Examples:
+
+![example 1](https://i.imgur.com/URhDQJ3.png)
+
+![example 2](https://i.imgur.com/emqBCET.png)
+
+The `+` before a string transform the string to an integer.
+
+So it's possible to do something like `(+x) + (+y)` to transform before x and y in integers and then sum them. If strings are not transformable into numbers, the NaN is returned.
+
+![example 3](https://i.imgur.com/h8RKhY2.png)
+
+Calling the function in the wrong way JavaScript:
+
+![call function](https://i.imgur.com/bO2RIoC.png)
+
+Recursive function:
+
+![function](https://i.imgur.com/niu7g3X.png)
+
+### Hoisting
+
+Thanks to hoisting all the functions and variables are decleared before everything, this means that in whatever point of the document I'm in, the varaible is already declared, by if a value is assigned below, it won't contain any value. Here is an example where the variable is declared, but the value has not been assigned:
+
+![hoisting example](https://i.imgur.com/bdm27F8.png)
+
+Mapping and filtering in an array is possible using `.map` and `.filter` passing a function.
+
+![mapping and filtering](https://i.imgur.com/yRVnTe6.png)
+
+### Scope
+
+There are different ways to declare variables:
+
+![variables scope]()
 
 ## jQuery
 
-jQuery is a library written in JavaScript used to simplify the javascript code.
+jQuery is a library written in JavaScript used to simplify the JavaScript code.
 
-jQuery sytax:
+jQuery sytax:3
 
 ![jQuery example](https://i.imgur.com/gibPdvN.png)
 
@@ -516,11 +564,11 @@ The JDBC is the driver that connect with the database using it's API.
 
 Typescript is a language that makes JavaScript closer to Java.
 
-Javascript has the problem that if the version of Javascript I'm using is not supported by my browser, I won't be able to run it.
+JavaScript has the problem that if the version of JavaScript I'm using is not supported by my browser, I won't be able to run it.
 
 There are 2 possible solutions to this: polyfiling and tanspiling. The **polyfiller** understand if the intrpreter is not able to run newer version of the language, and in that case, it sends libraries to the interpreter to understand the newer code. The **transpiler** changes the code syntax, to be accepted by the older version of the language.
 
-Typescript needs to be compiled in Javascript code before running into a browser. Typescript it's possible to tranpile code in older versions of JavaScript, for example it's possible to compile into ES3 so it's userstood by interet explorer.
+Typescript needs to be compiled in JavaScript code before running into a browser. Typescript it's possible to tranpile code in older versions of JavaScript, for example it's possible to compile into ES3 so it's userstood by interet explorer.
 
 One feature of Typescript is the variable definition:
 
