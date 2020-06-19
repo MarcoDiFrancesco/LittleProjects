@@ -19,7 +19,7 @@ URI, URL and URN:
 
 From [stack overflow](https://stackoverflow.com/a/4913371/7924557):
 
-``` HTML
+```HTML
 Uniform Resource Identifier (URI) is a string of characters used to identify a name or a resource on the Internet
 
 A URI identifies a resource either by location, or a name, or both. A URI has two specializations known as URL and URN.
@@ -67,7 +67,7 @@ An imporant property of HTML is **graceful degradation of presentation**, if the
 
 HTML is not case sensitive: someting like:
 
-``` HTML
+```HTML
 <h1>Title<H1>
 ```
 
@@ -75,7 +75,7 @@ is correctly parsed.
 
 An example is:
 
-``` HTML
+```HTML
 <audio src="something">
   <a src="something">Download</a>
 </audio>
@@ -97,19 +97,19 @@ HTML is not case sensitive. It also does not count tabs and multiple spaces. You
 
 It's legal in HTML and XHTML to make:
 
-``` HTML
+```HTML
 <i><b>This is bold</b> and this is italic</i>
 ```
 
 This is legal in HTML, but not XHTML
 
-``` HTML
+```HTML
 <i>This is italic, <b>this is bold and italic</i> this is only bold</b>
 ```
 
 In HTML5 we have not only the `<image>` tag, but also `<figure>`, containing the tag `<figcaption>`
 
-``` HTML
+```HTML
 <figure>
   <img src="link" alt="description"/>
   <figcaption>This is read by search engines and blind people</figcaption>
@@ -118,13 +118,13 @@ In HTML5 we have not only the `<image>` tag, but also `<figure>`, containing the
 
 The links in html can be with href and name:
 
-``` HTML
+```HTML
 <a href="/something">
 ```
 
 goes to root to `something`.
 
-``` HTML
+```HTML
 <a href="page#something">
 ```
 
@@ -132,7 +132,7 @@ goes to `page#something`.
 
 ### IFrame
 
-With `iframe` we can create a page with inside another page.  
+With `iframe` we can create a page with inside another page.
 
 In links we can put target containing `_blank` in case we want to open it in onther page or `iframe_a` in case we want to open it in a specific iframe.
 
@@ -141,13 +141,13 @@ In links we can put target containing `_blank` in case we want to open it in ont
 **ASCII** (pronounced ASKI): 128 characters  
 **ISO-8859-1**: 256 characters  
 **Ansi**: ISO-8859-1 + 32 characters  
-**UTF-8** (Unicode): default in HTML5  
+**UTF-8** (Unicode): default in HTML5
 
 If you want to write in a pagagrapg something like `this is the tag bold <bold>` you need to write the entity name: `this is the tag bold &ltbold&gt`.
 
-Inside head there is the meta data in the `<meta>` tags. These tags can contain charset, descriptions, css and js files, refresh rate, and viewport.  
+Inside head there is the meta data in the `<meta>` tags. These tags can contain charset, descriptions, css and js files, refresh rate, and viewport.
 
-``` HTML
+```HTML
 <meta charset="UTF-8">
 <meta name="description" content="Free tutorial">
 <meta http-quiv="refresh" content="30"> <!-- Refresh every 30 secs -->
@@ -163,7 +163,7 @@ The viewport makes the browser work in different ways canging the ratio of the s
 HTTP request are written in ASCII.  
 HTTP can specify gzip or deflate compression so the server can respond with compressed information.  
 URL max size is 2048 characters.  
-[CRLF] stands for Carriage Return (ASCII 13, \r) Line Feed (ASCII 10, \n).  
+[CRLF] stands for Carriage Return (ASCII 13, \r) Line Feed (ASCII 10, \n).
 
 ### Safe vs idempotent
 
@@ -171,7 +171,7 @@ URL max size is 2048 characters.
 **Idempotent** if an identical request can be made once or several times in a row with the same effect while leaving the server in the same state.
 
 ![Safe vs idempotent](https://i.imgur.com/3DS4JQ4.png)
-A save method in HTTP is a method that does not change the state of the server (read only).  
+A save method in HTTP is a method that does not change the state of the server (read only).
 
 GET vs PUT.
 
@@ -303,7 +303,7 @@ Recursive function:
 
 ### Hoisting
 
-Thanks to hoisting all the functions and variables are decleared before everything, this means that in whatever point of the document I'm in, the varaible is already declared, by if a value is assigned below, it won't contain any value. Here is an example where the variable is declared, but the value has not been assigned:
+Thanks to hoisting all the functions and variables with VAR (no global) are decleared before everything, this means that in whatever point of the document I'm in, the varaible is already declared, by if a value is assigned below, it won't contain any value. Here is an example where the variable is declared, but the value has not been assigned:
 
 ![hoisting example](https://i.imgur.com/bdm27F8.png)
 
@@ -311,17 +311,195 @@ Mapping and filtering in an array is possible using `.map` and `.filter` passing
 
 ![mapping and filtering](https://i.imgur.com/yRVnTe6.png)
 
-### Scope
+### JavaScript Scope
+
+Possible errors in JavaScript:
+
+- `x is not defined` if variable is not defined
+- `undefined` if variable is defined, but value is not
 
 There are different ways to declare variables:
 
-![variables scope]()
+![variables](https://i.imgur.com/3daAJQ6.png)
+
+Example:
+
+![example 1](https://i.imgur.com/HdzTgq1.png)
+
+In `t0` it's possible to see that hoisting is working:
+
+![example 2](https://i.imgur.com/3nDYnab.png)
+
+Example:
+
+![example 3](https://i.imgur.com/CkGvHcN.png)
+
+Variable redefinition:
+
+![example](https://i.imgur.com/IhQkNxK.png)
+
+Some examples of scope:
+
+```JavaScript
+p1 = (n) => document.write("<p>" + n + "</p>");
+p2 = (n, s) => document.write("<p>" + n + ": " + s + "</p>");
+
+function example1() {
+    p1("<h4>Example 1</h4>");
+    try {
+        function f() {
+            var carName = "Volvo";
+            p1(carName);
+        }
+        f();
+        p1(carName); // carName is not defined
+    } catch (err) {
+        p2("Error", err.message);
+    }
+}
+
+function example2() {
+    p1("<h4>Example 2</h4>");
+    try {
+        function f() {
+            a = 20;
+            var b = 100;
+        }
+        f();
+        p1(a);
+        p1(b); // b is not defined
+    } catch (err) {
+        p2("Error", err.message);
+    }
+}
+
+function example3() {
+    p1("<h4>Example 3</h4>");
+    try {
+        function f() {
+            p1(a); // a is not defined
+            a = 20;
+        }
+        f();
+    } catch (err) {
+        p2("Error", err.message);
+    }
+}
+
+function example4() {
+    p1("<h4>Example 4</h4>");
+    try {
+        function f() {
+            p1(b);
+            a = 20;
+            var b = 100; // undefined
+        }
+        f();
+    } catch (err) {
+        p2("Error", err.message);
+    }
+}
+
+function example5() {
+    p1("<h4>Example 5</h4>");
+    try {
+        p1(b); // b is not defined
+        function f() {
+            a = 20;
+            var b = 100;
+        }
+        f();
+    } catch (err) {
+        p2("Error", err.message);
+    }
+}
+
+// Example 6 is below
+
+function example7() {
+    p1("<h4>Example 7</h4>");
+    /*
+     * With let and const it's not possible to redeclare a value.
+     * The errors are the same also when going in other blocks like in this example.
+     * Some example are:
+     * x = 1; x = 1;       // No error
+     * x = 1; var x = 1;   // No error
+     * x = 1; let x = 1;   // Error: can't access lexical declaration `x' before initialization
+     * x = 1; const x = 1; // Error: can't access lexical declaration `x' before initialization
+     *
+     * let x = 1; x = 1;       // No error
+     * let x = 1; var x = 1;   // Error: redeclaration of let x
+     * let x = 1; let x = 1;   // Error: redeclaration of let x
+     * let x = 1; const x = 1; // Error: redeclaration of let x
+     *
+     * const x = 1; x = 1;       // Error: invalid assignment to const `x'
+     * const x = 1; var x = 1;   // Error: redeclaration of let x
+     * const x = 1; let x = 1;   // Error: redeclaration of let x
+     * const x = 1; const x = 1; // Error: redeclaration of let x
+     */
+    try {
+
+        function f() {
+            x = 1;
+            p2(1, x); // 1: A
+            {
+                p2(2, x); // 2: A
+                let x = 1; // Error: can't access lexical declaration `x' before initialization
+            }
+            p2(3, x); // 3: A
+        }
+        f();
+    } catch (err) {
+        p2("Error", err.message);
+    }
+}
+
+function example8() {
+    try {
+        function f() {
+            const x = 1;
+            p2(1, x); // 1: A
+            {
+                p2(2, x); // 2: A
+                x = 1;
+            }
+            p2(3, x); // 3: A
+        }
+        f();
+    } catch (err) {
+        p2("Error", err.message);
+    }
+}
+```
+
+In example 6 there are different possibilities for each combination:
+
+```JavaScript
+function example6() {
+    p1("<h4>Example 6</h4>");
+    x = null; // DEF 1
+    function f() {
+        var x = "A"; // DEF 2
+        p2(2, x);
+        {
+            x = 1; // DEF 3
+            p2(3, x);
+        }
+        p2(4, x);
+    }
+    p2(1, x);
+    f();
+    p2(5, x);
+}
+```
+
+![example 6 solutions](https://i.imgur.com/NVoCqFK.png)
 
 ## jQuery
 
 jQuery is a library written in JavaScript used to simplify the JavaScript code.
 
-jQuery sytax:3
+jQuery sytax:
 
 ![jQuery example](https://i.imgur.com/gibPdvN.png)
 
@@ -361,7 +539,7 @@ Not so important for the course.
 
 ![var_dump example](https://i.imgur.com/N9vSv8b.png)
 
-### Scope
+### PHP Scope
 
 ![Local vs global scope](https://i.imgur.com/IP9mFrE.png)
 
@@ -401,7 +579,7 @@ Java servlet context is a serie of Java servlet containers:
 
 ![java servlet context](https://i.imgur.com/jDDzOhN.png)
 
-## MV*
+## MV\*
 
 MV stands for Model View, and there are diffent types of Model View models. Some of them are:
 
