@@ -497,6 +497,35 @@ function example6() {
 
 ![example 6 solutions](https://i.imgur.com/NVoCqFK.png)
 
+### Objects
+
+In JavaScript there are objects that can contain values and methods:
+
+![JavaScirpt objects examples](https://i.imgur.com/mZNjxtf.png)
+
+It's possible to access a variable in one of the following ways:
+
+![accessing objects](https://i.imgur.com/Mxs1ZQs.png)
+
+Add and remove variables from objects:
+
+![add and remove variables](https://i.imgur.com/faHBKSc.png)
+
+In JavaScipt objects are not like in Java. The objects here can be changed (in Java it's not possible) and an object is not really an instance of a class, but it's rather a collection of variables.
+
+The declaration of an object is possible in the following ways:
+
+- `var object1 = new Object();`
+- `var object1 = {};`
+
+Or with a more elablorated way, specifying also if the object is writable (failing silently in case):
+
+![object declaration](https://i.imgur.com/tvmNUuC.png)
+
+JavaScript function's constructors look like this:
+
+![constructors](https://i.imgur.com/YJIqCRZ.png)
+
 ## jQuery
 
 jQuery is a library written in JavaScript used to simplify the JavaScript code.
