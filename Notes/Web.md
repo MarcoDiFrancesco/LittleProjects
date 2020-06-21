@@ -338,6 +338,8 @@ Variable redefinition:
 
 ![example](https://i.imgur.com/IhQkNxK.png)
 
+### Scope and hoisting examples
+
 Some examples of scope:
 
 ```JavaScript
