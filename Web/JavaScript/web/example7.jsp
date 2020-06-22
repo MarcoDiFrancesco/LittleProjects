@@ -35,6 +35,7 @@
                 writable: true // It can be changed
             });
             let athlete1 = new Athlete('Mario', 'Rossi', 'Football');
+            // fistName and lastName are enherited without needing to specify it
             console.log(athlete1.firstName + " " + athlete1.lastName);
             console.log(athlete1.fullName() + " " + athlete1.sport);
         </script>

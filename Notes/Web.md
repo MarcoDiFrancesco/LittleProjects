@@ -293,6 +293,12 @@ So it's possible to do something like `(+x) + (+y)` to transform before x and y 
 
 ![example 3](https://i.imgur.com/h8RKhY2.png)
 
+How does the + oprator works:
+
+![+ operator](https://i.imgur.com/e7JlaFT.png)
+
+### Function
+
 Calling the function in the wrong way JavaScript:
 
 ![call function](https://i.imgur.com/bO2RIoC.png)
@@ -557,6 +563,43 @@ Person.prototype.fullname = function () { // It's not possible to use arrow func
     return this.firstName + " " + this.lastName;
 }
 ```
+
+### Enheritance
+
+In JavaScript the enheritance works like in Java.  
+If `myAthlete.fullName()` is called then the first thing it does is looking inside `Athlete`, then `Person`, then `Athlete prototype`, then `Person prototype`, the `Object`, then `Object prototype`, then `null`:
+
+![Enheritance](https://i.imgur.com/Me1L633.png)
+
+Enheritance example:
+
+![Enheritance example](https://i.imgur.com/1IEwdcR.png)
+
+In this example we do not see the **Object prototypes** because there is an `enumerable: false`, so they don't apper in the loop.
+
+### Class
+
+Classes are just sintactic sugar, they have been added in Ecma 2015 but it was possible to make them also before that JS version.
+
+Classes do not have hoisting, this means that it's possible to used them only after you declare them (not like functions).
+
+In the classes it's not possible to add variables ouside the constructor:
+
+![variables outside the constructor](https://i.imgur.com/A9vQdMY.png)
+
+It's possible to add static methods:
+
+![static](https://i.imgur.com/3TsPgRe.png)
+
+It's possible to call static methods only inside the class. (?)
+
+### Array
+
+In JavaScript it's possible to add whatever type you want inside the array.
+
+Example:
+
+![array example](https://i.imgur.com/3TsPgRe.png)
 
 ## jQuery
 
