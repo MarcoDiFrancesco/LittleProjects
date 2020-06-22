@@ -526,6 +526,38 @@ JavaScript function's constructors look like this:
 
 ![constructors](https://i.imgur.com/YJIqCRZ.png)
 
+In JavaScript if you edit an object, only that object will have that field edit:
+
+![objects edit](https://i.imgur.com/8x1qzZh.png)
+
+Prototype functions are used in order not to be edited after the function. In objects it's possible to edit the functions inside them, with prototype it's not possible:
+
+![prototypes](https://i.imgur.com/A12BlLD.png)
+
+So something like this:
+
+```JavaScript
+function Person(first, last) {
+    this.name = {
+        'first': first,
+        'last': last
+    };
+    this.fullname = () => this.name.first + " " + this.name.last;
+}
+```
+
+becomes:
+
+```JavaScript
+function Person(first, last) {
+    this.firstName = first;
+    this.lastName = last;
+}
+Person.prototype.fullname = function () { // It's not possible to use arrow functions
+    return this.firstName + " " + this.lastName;
+}
+```
+
 ## jQuery
 
 jQuery is a library written in JavaScript used to simplify the JavaScript code.
