@@ -14,27 +14,32 @@ import javax.servlet.http.HttpSession;
  *
  * @author marco
  */
-@WebServlet(name = "RememberMe", urlPatterns = {"/RememberMe"})
-public class RememberMe extends HttpServlet {
+@WebServlet(name = "Session", urlPatterns = {"/Session"})
+public class Session extends HttpServlet {
 
     PrintWriter out = null;
 
-    private void p(String s) {
-        out.println(s);
+    /**
+     * Function to print
+     *
+     * @param s
+     */
+    private void p(String string) {
+        out.println(string);
     }
 
     private void startHtml() {
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>title</title>");
-        out.println("</head>");
-        out.println("<body>");
+        p("<!DOCTYPE html>");
+        p("<html>");
+        p("<head>");
+        p("<title>title</title>");
+        p("</head>");
+        p("<body>");
     }
 
     private void endHtml() {
-        out.println("</body>");
-        out.println("</html>");
+        p("</body>");
+        p("</html>");
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, HttpSession session, int accessCounter)
@@ -42,7 +47,7 @@ public class RememberMe extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             startHtml();
-            p("Session is new? "+session.isNew());
+            p("Session is new? " + session.isNew());
             p("<h2>You accessed this site " + accessCounter + " times in this session.</h2>");
             p("<ul><li>Your session ID is " + session.getId() + "</li>");
             p("<li>Session creation time is " + new Date(session.getCreationTime()) + "</li>");
@@ -51,8 +56,8 @@ public class RememberMe extends HttpServlet {
             p("<p><a href='" + request.getRequestURI() + "'>Refresh</a>");
             p("<p><a href='" + response.encodeURL(request.getRequestURI()) + "'>Refresh with  URL rewriting</a>\n");
             p("<form method=\"GET\" action=\"endSession\">\n"
-               +"<input type=\"submit\" value=\"End Session\">\n"
-               +"</form>");
+                    + "<input type=\"submit\" value=\"End Session\">\n"
+                    + "</form>");
             endHtml();
         } finally {
             out.close();
@@ -68,7 +73,7 @@ public class RememberMe extends HttpServlet {
         HttpSession session = request.getSession();
         Integer accessCounter;
 
-        // syncronized allows to access this part one at a time
+        // syncronized allows to access this block onece at a time
         synchronized (session) {
             accessCounter = (Integer) session.getAttribute("accessCount");
             if (accessCounter == null) {
@@ -81,15 +86,4 @@ public class RememberMe extends HttpServlet {
 
         processRequest(request, response, session, accessCounter);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }

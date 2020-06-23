@@ -30,7 +30,7 @@ This number is just guessed.
 
 The error is calculated as `expected_value-real_value`.
 
-A loss function is an avarage of the errors to compute a loss number to understand how well an algorithm is performing.
+A loss function is an avarage of the errors to compute a loss number to understand how well an algorithm is performing.  
 A common loss function is MSE (mean sqared error).
 
 The training sets are:

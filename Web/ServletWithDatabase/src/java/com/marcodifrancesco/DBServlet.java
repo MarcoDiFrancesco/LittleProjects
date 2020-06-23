@@ -2,6 +2,7 @@ package com.marcodifrancesco;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,9 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "DBServlet", urlPatterns = {"/DBServlet"})
 public class DBServlet extends HttpServlet {
 
-    String dbURL = "jdbc:derby://localhost:1527/mydb";
-    String username = "mydb";
-    String password = "mydb";
+    String dbURL = "jdbc:derby://localhost:1527/example";
+    String username = "marco";
+    String password = "marco";
     Connection conn = null;
 
     @Override
@@ -40,21 +41,28 @@ public class DBServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        StringBuilder dbOutput = new StringBuilder("<h1>");
+        StringBuilder dbOutput = new StringBuilder();
         try {
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM PICTURE FETCH FIRST 100 ROWS ONLY;";
+            String sql = "SELECT * FROM PEOPLE FETCH FIRST 100 ROWS ONLY";
             ResultSet results = stm.executeQuery(sql);
             while (results.next()) {
-                dbOutput.append(results.getString(1)).append(" - ");
-                dbOutput.append(results.getString(2)).append(" - ");
-                dbOutput.append(results.getString(3)).append("</h1>");
+                dbOutput.append("<p>");
+                dbOutput.append(results.getString(1));
+                dbOutput.append(" - ");
+                dbOutput.append(results.getString(2));
+                dbOutput.append(" - ");
+                dbOutput.append(results.getString(3));
+                dbOutput.append("</p>");
             }
         } catch (SQLException ex) {
-            dbOutput.append(ex.toString()).append("</h1>");
+            dbOutput.append("<p>");
+            dbOutput.append(ex.toString());
+            dbOutput.append("</p>");
         }
+
         try (PrintWriter out = response.getWriter()) {
-            out.println("<h1>Servlet DBServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet connection with database</h1>");
             out.println(dbOutput.toString());
         }
     }
@@ -70,10 +78,4 @@ public class DBServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }

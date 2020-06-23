@@ -729,7 +729,7 @@ The file `web.xml` contains what's the timeout of a session. It also contains th
 ## Java server pages
 
 JSP-CustomTags allow things like `<reverse>this</reverse>`. Now not used anymore.  
-JSP compared to servlets, are useful because they allow to use directly the HTML template, instead of using `out.ptintln("<html>")`.
+JSP compared to servlets, are useful because they allow to use directly the HTML template, instead of using `out.println("<html>")`.
 
 JSP example:
 
