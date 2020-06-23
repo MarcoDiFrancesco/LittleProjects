@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <style>
+            .row {
+                width: 300px;
+                height: 100px;
+            }
+            .cell {
+                height: 100%;
+                width: 100px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            lastClicked = "";
+            $(document).ready(function () {
+                $(".cell").click(function () {
+                    if ($(this).text() !== "X" && $(this).text() !== "O") {
+                        if (lastClicked === "") {
+                            $(this).text("X");
+                            lastClicked = "X";
+                        } else if (lastClicked === "X") {
+                            $(this).text("O");
+                            lastClicked = "O";
+                        } else if (lastClicked === "O") {
+                            $(this).text("X");
+                            lastClicked = "X";
+                        }
+                    }
+                    getWin();
+                });
+            });
+
+            let won;
+
+            function getWin() {
+                getWinCells("#cell-11", "#cell-12", "#cell-13");
+                getWinCells("#cell-21", "#cell-22", "#cell-23");
+                getWinCells("#cell-31", "#cell-32", "#cell-33");
+
+                getWinCells("#cell-11", "#cell-21", "#cell-31");
+                getWinCells("#cell-12", "#cell-22", "#cell-32");
+                getWinCells("#cell-13", "#cell-23", "#cell-33");
+
+                getWinCells("#cell-11", "#cell-22", "#cell-33");
+                getWinCells("#cell-31", "#cell-22", "#cell-13");
+
+                if (won === "X") {
+                    $("#turnText").text("X WON");
+                } else if (won === "O") {
+                    $("#turnText").text("O WON");
+                }
+            }
+
+            function getWinCells(cell1, cell2, cell3) {
+                if ($(cell1).text() === "X" && $(cell2).text() === "X" && $(cell3).text() === "X") {
+                    colorCells(cell1, cell2, cell3, "X");
+                    disableButtons();
+                    won = "X";
+                } else if ($(cell1).text() === "O" && $(cell2).text() === "O" && $(cell3).text() === "O") {
+                    colorCells(cell1, cell2, cell3, "O");
+                    disableButtons();
+                    won = "O";
+                }
+            }
+
+            function colorCells(cell1, cell2, cell3, type) {
+                if (type === "O")
+                    $(cell1 + ", " + cell2 + ", " + cell3).addClass("btn-outline-danger");
+                else if (type === "X")
+                    $(cell1 + ", " + cell2 + ", " + cell3).addClass("btn-outline-primary");
+            }
+
+            function disableButtons() {
+                $("#cell-11, #cell-12, #cell-13, #cell-21, #cell-22, #cell-23, #cell-31, #cell-32, #cell-33").prop("disabled", true);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Tic Tac Toe</h1>
+        <p>This is a really basic Tic Tac Toe is JavaScript.</p>
+        <p id="turnText">Now it's the turn of: X</p>
+        <div class="container">
+            <div class="row">
+                <button type="button" class="cell" id="cell-11"></button>
+                <button type="button" class="cell" id="cell-12"></button>
+                <button type="button" class="cell" id="cell-13"></button>
+            </div>
+            <div class="row">
+                <button type="button" class="cell" id="cell-21"></button>
+                <button type="button" class="cell" id="cell-22"></button>
+                <button type="button" class="cell" id="cell-23"></button>
+            </div>
+            <div class="row">
+                <button type="button" class="cell" id="cell-31"></button>
+                <button type="button" class="cell" id="cell-32"></button>
+                <button type="button" class="cell" id="cell-33"></button>
+            </div>
+        </div>
+    </body>
+</html>

@@ -446,7 +446,6 @@ function example7() {
      * const x = 1; const x = 1; // Error: redeclaration of let x
      */
     try {
-
         function f() {
             x = 1;
             p2(1, x); // 1: A
@@ -593,7 +592,7 @@ It's possible to add static methods:
 
 It's possible to call static methods only inside the class. (?)
 
-### Array
+### Array JS
 
 In JavaScript it's possible to add whatever type you want inside the array.
 
@@ -649,7 +648,7 @@ Not so important for the course.
 
 ![Local vs global scope](https://i.imgur.com/IP9mFrE.png)
 
-### Array
+### Array PHP
 
 ![Index and associative array](https://i.imgur.com/as83YHj.png)
 
