@@ -73,7 +73,7 @@ public class Session extends HttpServlet {
         HttpSession session = request.getSession();
         Integer accessCounter;
 
-        // syncronized allows to access this block onece at a time
+        // syncronized allows to access this block once at a time
         synchronized (session) {
             accessCounter = (Integer) session.getAttribute("accessCount");
             if (accessCounter == null) {

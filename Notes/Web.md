@@ -427,34 +427,34 @@ function example5() {
 function example7() {
     p1("<h4>Example 7</h4>");
     /*
-        * With let and const it's not possible to redeclare a value.
-        * The errors are the same also when going in other blocks like in this example.
-        *
-        * DEF 1         DEF 2         RESULT
-        * ------------  ------------  ----------
-        * x = 1;        x = 2;        1-1-2 (no error)
-        * x = 1;        var x = 2;    1-1-2 (no error)
-        * x = 1;        let x = 2;    Error: Cannot access 'x' before initialization
-        * x = 1;        const x = 2;  Error: Cannot access 'x' before initialization
-        *
-        * var x = 1;    x = 2;        1-1-2 (no error)
-        * var x = 1;    var x = 2;    1-1-2 (no error)
-        * var x = 1;    let x = 2;    Error: Cannot access 'x' before initialization
-        * var x = 1;    const x = 2;  Error: Cannot access 'x' before initialization
-        *
-        * let x = 1;    x = 2;        1-1-2 (no error)
-        * let x = 1;    var x = 2;    Error: Identifier 'x' has already been declared
-        * let x = 1;    let x = 2;    Error: Cannot access 'x' before initialization
-        * let x = 1;    const x = 2;  Error: Cannot access 'x' before initialization
-        *
-        * const x = 1;  x = 2;        Error: Assignment to constant variable.
-        * const x = 1;  var x = 2;    Error: Identifier 'x' has already been declared
-        * const x = 1;  let x = 2;    Error: Cannot access 'x' before initialization
-        * const x = 1;  const x = 2;  Error: Cannot access 'x' before initialization
-        *
-        * p.s. "Cannot access 'x' before initialization" and "redeclaration of let x"
-        * are the same error, one in console, one in try catch output.
-        */
+    * With let and const it's not possible to redeclare a value.
+    * The errors are the same also when going in other blocks like in this example.
+    *
+    * DEF 1         DEF 2         RESULT
+    * ------------  ------------  ----------
+    * x = 1;        x = 2;        1-1-2 (no error)
+    * x = 1;        var x = 2;    1-1-2 (no error)
+    * x = 1;        let x = 2;    Error: Cannot access 'x' before initialization
+    * x = 1;        const x = 2;  Error: Cannot access 'x' before initialization
+    *
+    * var x = 1;    x = 2;        1-1-2 (no error)
+    * var x = 1;    var x = 2;    1-1-2 (no error)
+    * var x = 1;    let x = 2;    Error: Cannot access 'x' before initialization
+    * var x = 1;    const x = 2;  Error: Cannot access 'x' before initialization
+    *
+    * let x = 1;    x = 2;        1-1-2 (no error)
+    * let x = 1;    var x = 2;    Error: Identifier 'x' has already been declared
+    * let x = 1;    let x = 2;    Error: Cannot access 'x' before initialization
+    * let x = 1;    const x = 2;  Error: Cannot access 'x' before initialization
+    *
+    * const x = 1;  x = 2;        Error: Assignment to constant variable.
+    * const x = 1;  var x = 2;    Error: Identifier 'x' has already been declared
+    * const x = 1;  let x = 2;    Error: Cannot access 'x' before initialization
+    * const x = 1;  const x = 2;  Error: Cannot access 'x' before initialization
+    *
+    * p.s. "Cannot access 'x' before initialization" and "redeclaration of let x"
+    * are the same error, one in console, one in try catch output.
+    */
     try {
         function f() {
             x = 1; // DEF 1

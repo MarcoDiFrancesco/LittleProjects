@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author marco
  */
-@WebServlet(name = "welcome", urlPatterns = {"/welcome"})
-public class welcome extends HttpServlet {
-    
+@WebServlet(name = "Welcome", urlPatterns = {"/Welcome"})
+public class Welcome extends HttpServlet {
+
     String message;
     boolean isInitialIteration;
-   
+
     private void invalidCookie() {
         message = "This is not a valid cookies";
         isInitialIteration = true;
@@ -29,22 +29,22 @@ public class welcome extends HttpServlet {
             throws ServletException, IOException {
         isInitialIteration = false;
         String person_name = request.getParameter("person_name");
-        if (person_name != null && ! person_name.equals("")) {
+        if (person_name != null && !person_name.equals("")) {
             log("Person name is not null");
             Cookie person_name_cookie = new Cookie("person_name", person_name);
             response.addCookie(person_name_cookie);
             message = "Nice to meet you " + person_name;
-            Cookie counter_cookie = new Cookie("counter", "0");            
+            Cookie counter_cookie = new Cookie("counter", "0");
             response.addCookie(counter_cookie);
         } else {
             Cookie cookies[] = request.getCookies();
             // Check if cookie is valid
-            if(cookies == null || cookies.length == 0) {
+            if (cookies == null || cookies.length == 0) {
                 invalidCookie();
             } else {
                 Cookie person_name_cookie = null;
                 Cookie counter_cookie = null;
-                for (Cookie c:cookies) {
+                for (Cookie c : cookies) {
                     String cookie_name = c.getName();
                     if (cookie_name.equals("person_name")) {
                         person_name_cookie = c;
@@ -64,13 +64,13 @@ public class welcome extends HttpServlet {
                 }
             }
         }
-        
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>title</title>");            
+            out.println("<title>title</title>");
             out.println("</head>");
             out.println("<body>");
             out.println(message);
