@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author marco
  */
 public class GetPicture extends HttpServlet {
+
     String dbURL = "jdbc:derby://localhost:1527/RandomPictures";
     String username = "marco";
     String password = "2212";
@@ -36,12 +37,11 @@ public class GetPicture extends HttpServlet {
             Logger.getLogger(GetPicture.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         String picture = request.getParameter("q");
         List<String> list = new ArrayList<>();
-        
         try {
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM PICTURE WHERE CAST(SHORTDESCRIPTION AS VARCHAR(128)) = '" + picture + "'";
@@ -54,23 +54,23 @@ public class GetPicture extends HttpServlet {
         } catch (SQLException ex) {
             log("error");
         }
-        
+
         String json = new Gson().toJson(list);
-        
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
-    } 
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -78,5 +78,4 @@ public class GetPicture extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-
 }

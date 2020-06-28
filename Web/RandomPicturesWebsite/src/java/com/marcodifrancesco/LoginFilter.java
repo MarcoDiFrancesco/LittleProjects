@@ -15,6 +15,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -25,22 +26,18 @@ public class LoginFilter implements Filter {
 
     private FilterConfig filterConfig = null;
 
-    
     private boolean userIsAuthenticated(String email) {
         return true;
     }
 
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain)
-            throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest hreq = (HttpServletRequest) request;
 
         String email = request.getParameter("email");
         if (userIsAuthenticated(email)) {
-
             chain.doFilter(request, response);
         }
         // response.sendError(javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED);
-        
     }
 
     public void destroy() {
