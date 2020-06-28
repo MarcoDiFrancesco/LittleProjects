@@ -63,7 +63,7 @@ URN (not URL): tel:+1-816-555-1212 (?)
 
 HTML does not have personalized tags, the language that support them is XML.
 
-An imporant property of HTML is **graceful degradation of presentation**, if there is some mistakes inside the code, the page needs to be shown anyway
+An imporant property of HTML is **graceful degradation of presentation**, if there is some mistakes inside the code, the page needs to be shown anyway.
 
 HTML is not case sensitive: someting like:
 
@@ -93,7 +93,7 @@ The HTML page is devided in HEAD and BODY:
 - **Body** contains:
   - Things
 
-HTML is not case sensitive. It also does not count tabs and multiple spaces. You can make the browser indent as it is written with the tag `<pre>`.
+HTML does not count tabs and multiple spaces. You can make the browser indent as it is written with the tag `<pre>`.
 
 It's legal in HTML and XHTML to make:
 
@@ -309,7 +309,7 @@ Recursive function:
 
 ### Hoisting
 
-Thanks to hoisting all the functions and variables with VAR (no global) are decleared before everything, this means that in whatever point of the document I'm in, the varaible is already declared, by if a value is assigned below, it won't contain any value. Here is an example where the variable is declared, but the value has not been assigned:
+Thanks to hoisting all the functions and variables with VAR (no global) are decleared at the top of the function they are called in, this means that in whatever point of the document I'm in, the varaible is already declared. But the value is assigned below, so in some part of the code could be undefined. Here is an example where the variable is declared, but the value has not been assigned:
 
 ![hoisting example](https://i.imgur.com/bdm27F8.png)
 

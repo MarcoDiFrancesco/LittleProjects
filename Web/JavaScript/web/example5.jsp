@@ -88,7 +88,7 @@
                 p1("<h4>Example 6</h4>");
                 x = null; // DEF 1
                 function f() {
-                    var x = "A"; // DEF 2
+                    x = "A"; // DEF 2
                     p2(2, x);
                     {
                         x = 1; // DEF 3
@@ -111,23 +111,31 @@
                  * ------------  ------------  ----------
                  * x = 1;        x = 2;        1-1-2 (no error)
                  * x = 1;        var x = 2;    1-1-2 (no error)
+                 *     In diffent blocks does not give error
                  * x = 1;        let x = 2;    Error: Cannot access 'x' before initialization
+                 *     In diffent blocks does not give error
                  * x = 1;        const x = 2;  Error: Cannot access 'x' before initialization
                  *
                  * var x = 1;    x = 2;        1-1-2 (no error)
                  * var x = 1;    var x = 2;    1-1-2 (no error)
                  * var x = 1;    let x = 2;    Error: Cannot access 'x' before initialization
+                 *     In diffent blocks does not give error
                  * var x = 1;    const x = 2;  Error: Cannot access 'x' before initialization
+                 *     In diffent blocks does not give error
                  *
                  * let x = 1;    x = 2;        1-1-2 (no error)
                  * let x = 1;    var x = 2;    Error: Identifier 'x' has already been declared
                  * let x = 1;    let x = 2;    Error: Cannot access 'x' before initialization
+                 *     In diffent blocks does not give error
                  * let x = 1;    const x = 2;  Error: Cannot access 'x' before initialization
+                 *     In diffent blocks does not give error
                  *
                  * const x = 1;  x = 2;        Error: Assignment to constant variable.
                  * const x = 1;  var x = 2;    Error: Identifier 'x' has already been declared
                  * const x = 1;  let x = 2;    Error: Cannot access 'x' before initialization
+                 *     In diffent blocks does not give error
                  * const x = 1;  const x = 2;  Error: Cannot access 'x' before initialization
+                 *     In diffent blocks does not give error
                  *
                  * p.s. "Cannot access 'x' before initialization" and "redeclaration of let x"
                  * are the same error, one in console, one in try catch output.
