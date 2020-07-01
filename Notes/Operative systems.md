@@ -2,6 +2,8 @@
 
 ## Introduction
 
+Moved to [notion](https://www.notion.so/603b9c92188c400cbeb4819ac5bbda16).
+
 [Useful Youtube playlist](https://www.youtube.com/playlist?list=PLEbnTDJUr_IcPtUXFy2b1sGRPsLFMghhS)
 
 ## What is an OS
