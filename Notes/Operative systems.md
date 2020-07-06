@@ -1,11 +1,5 @@
 # Operative systems
 
-## Introduction
-
-Moved to [notion](https://www.notion.so/603b9c92188c400cbeb4819ac5bbda16).
-
-[Useful Youtube playlist](https://www.youtube.com/playlist?list=PLEbnTDJUr_IcPtUXFy2b1sGRPsLFMghhS)
-
 ## What is an OS
 
 Un sistema operativo è un insieme di programmi che affisce come intermediario tra hardware e uomo. Il SO offre un ambiente per controllare e coordinare l'utilizzo dell'HW da parte di programmi applcativi. Può rendere efficiente l'utilizzo dell'hardware e gestisce i conflitti (e.g. due utenti accedono alla stessa risorsa).
@@ -322,51 +316,59 @@ int main()
 
 ### First-Come First-Served algorithm
 
-This is a FIFO algorithm.  
-It's really easy to implement.
+This is a FIFO algorithm. It’s really easy to implement.
 
-This is an algorithm without [preemption](#preemption), this mean writing-time(Tw) and response-time (Tr) are always 0.
+This is an algorithm without [preemption](about:blank#preemption), this mean writing-time(Tw) and response-time (Tr) are always 0.
 
 The problem with this algorithm is that if a process with a large burst is exectured, the writing-time (when all the process started, but still are not done) will be long.
 
-![FCFS algorithm](https://i.imgur.com/kYWkGj7.png)
+![https://i.imgur.com/kYWkGj7.png](https://i.imgur.com/kYWkGj7.png)
+
+FCFS algorithm
 
 ### Shortest-Job-First
 
-The SJF gives priority to the processes with shortest burst.  
-Of this schema there are two versions: preemptive and not preemtive.  
-The non-preemptive version makes no more than what desctibed above.  
-The preemptive version interrupt the running process if a process with a shorter burst comes, so if a process with remaning burst=8 and a process comes to the queue with a burst=6 the switch is made.
+The SJF gives priority to the processes with shortest burst. Of this schema there are two versions: preemptive and not preemtive. The non-preemptive version makes no more than what desctibed above. The preemptive version interrupt the running process if a process with a shorter burst comes, so if a process with remaning burst=8 and a process comes to the queue with a burst=6 the switch is made.
 
 The preemptive version has the **best waiting-time**.
 
 Non-preemptive example:
 
-![Non-preemptive example](https://i.imgur.com/vkBv98E.png)
+![https://i.imgur.com/vkBv98E.png](https://i.imgur.com/vkBv98E.png)
+
+Non-preemptive example
 
 Preemptive example, aka **Shortest Remaining Time First** (in this example the switch time is not counted):
 
-![Preemptive example](https://i.imgur.com/MlL0Cao.png)
+![https://i.imgur.com/MlL0Cao.png](https://i.imgur.com/MlL0Cao.png)
+
+Preemptive example
 
 ### Time approximation
 
 The problem with the algorithms above is that the CPU burst time is not known, to solve this, an estimation needs to be made with the time burst of the past.
 
-![Time estimation](https://i.imgur.com/w33odLr.png)
+![https://i.imgur.com/w33odLr.png](https://i.imgur.com/w33odLr.png)
+
+Time estimation
 
 ### Priority of processes
 
-![Priority](https://i.imgur.com/VPGxDcQ.png)
+![https://i.imgur.com/VPGxDcQ.png](https://i.imgur.com/VPGxDcQ.png)
+
+Priority
 
 Priority example:
 
-![Priority example](https://i.imgur.com/o4RXGV1.png)
+![https://i.imgur.com/o4RXGV1.png](https://i.imgur.com/o4RXGV1.png)
+
+Priority example
 
 ### Starvation
 
 With the priority comes the problem of **starvation**. This means that if a process has a low priority, the process could never be executed if there is always a process with a higher priority.
 
-A solution to this could be **aging**, this means if I've been waiting for too long I get a higher priority.
+A solution to this could be **aging**, this means if I’ve been waiting for too long I get a higher priority.
 
 ### Higher Response Ratio Next
 
@@ -381,43 +383,46 @@ The priority could be calculated:
 
 HRRN example calculating each time the priority:
 
-![HRRN example](https://i.imgur.com/vnkQwMt.png)
+![https://i.imgur.com/vnkQwMt.png](https://i.imgur.com/vnkQwMt.png)
+
+HRRN example
 
 ### Round robin
 
-The processes are divided by quants, then the round robin algorithm takes one process and execute it for a quant of time, then [preempted](#preemption). The queue is **circular**.  
-The quant varies **from 10 to 100 millisenconds**.  
-If I finish my job (or wait for another process) before the quant finieshes, I leave the CPU before my assigned time terminates. But the next process will have only the usual assigned time, e.g. it takes for me 50ms of burst over 100ms of quant, then the next process won't have 150ms, but just 100.  
-This is a good algorithm for time sharing, so for a machine with **shared user** usage because users.  
-This algorithm is a FCFS.  
-The quant can't be chosen bigger than the burst of all services, because then it would be a FCFS. If it's too small then there will be too many context switches.  
-The quant usually is chosen so 80% of the processes execute before the quant expire.  
-The quant is **chosen dinamically**, so the OS change it on the fly.
+The processes are divided by quants, then the round robin algorithm takes one process and execute it for a quant of time, then [preempted](about:blank#preemption). The queue is **circular**. The quant varies **from 10 to 100 millisenconds**. If I finish my job (or wait for another process) before the quant finieshes, I leave the CPU before my assigned time terminates. But the next process will have only the usual assigned time, e.g. it takes for me 50ms of burst over 100ms of quant, then the next process won’t have 150ms, but just 100. This is a good algorithm for time sharing, so for a machine with **shared user** usage because users. This algorithm is a FCFS. The quant can’t be chosen bigger than the burst of all services, because then it would be a FCFS. If it’s too small then there will be too many context switches. The quant usually is chosen so 80% of the processes execute before the quant expire. The quant is **chosen dinamically**, so the OS change it on the fly.
 
 Round robin example with quant = 2:
 
-![Round robin](https://i.imgur.com/OcXzpXz.png)
+![https://i.imgur.com/OcXzpXz.png](https://i.imgur.com/OcXzpXz.png)
+
+Round robin
 
 Processes exercises:
 
-![Exercises processes 1](https://i.imgur.com/zcxTZl1.png)
+![https://i.imgur.com/zcxTZl1.png](https://i.imgur.com/zcxTZl1.png)
 
-![Exercises processes 2](https://i.imgur.com/j78ZoNn.png)
+Exercises processes 1
+
+![https://i.imgur.com/j78ZoNn.png](https://i.imgur.com/j78ZoNn.png)
+
+Exercises processes 2
 
 ### Multilevel queue without feedback
 
-The algorithm seen before are different from what's used in real life. In real life, different queues are used for diffrent types of processes. For example an algotitm for foreground processes could be round robin and one for background processes could be FCFS.
+The algorithm seen before are different from what’s used in real life. In real life, different queues are used for diffrent types of processes. For example an algotitm for foreground processes could be round robin and one for background processes could be FCFS.
 
 To manage the various queue there is the sheduling based on time slice. This means for example:
 
 - 80% of time for foreground with RR
 - 20% of time for background with FCFS
 
-and when the CPU finishes the 20% of time (for example 100ms) then it's forced to switch to background processes.
+and when the CPU finishes the 20% of time (for example 100ms) then it’s forced to switch to background processes.
 
 Example priority of queue:
 
-![Example queue](https://i.imgur.com/lNLmeRn.png)
+![https://i.imgur.com/lNLmeRn.png](https://i.imgur.com/lNLmeRn.png)
+
+Example queue
 
 In the static queues the processes are evaluated only the first time I see that process, there it remains until it ends. Here there is the problem that the processes are not evaluated watching the code, if I miss the category, I could have a less performant execution.
 
@@ -425,17 +430,23 @@ In the static queues the processes are evaluated only the first time I see that 
 
 In real systems there are the **multilevel queue with feedback**, so the process can move between queues depending on characteristics.
 
-![Multilevel queue with feedback example](https://i.imgur.com/VruCjGg.png)
+![https://i.imgur.com/VruCjGg.png](https://i.imgur.com/VruCjGg.png)
+
+Multilevel queue with feedback example
 
 This is the order:
 
-![Multilevel queue with feedback example 2](https://i.imgur.com/1jml5gT.png)
+![https://i.imgur.com/1jml5gT.png](https://i.imgur.com/1jml5gT.png)
+
+Multilevel queue with feedback example 2
 
 ### Fair share
 
 Fair share divides the CPU in more slices and here the processes are ran by app. So if an app have 2 processes and an app have 10, this avoids that the process with the most processes to have priority.
 
-![Fair share example](https://i.imgur.com/VP81fwI.png)
+![https://i.imgur.com/VP81fwI.png](https://i.imgur.com/VP81fwI.png)
+
+Fair share example
 
 ### Models to evalutate an algorithm
 
@@ -463,15 +474,21 @@ Buffer used by the processes **is circular**:
 - **in** has the first free position
 - **out** has the first busy position
 
-![Buffer](https://i.imgur.com/bbcguZZ.png)
+![https://i.imgur.com/bbcguZZ.png](https://i.imgur.com/bbcguZZ.png)
+
+Buffer
 
 Code:
 
-![Buffer code](https://i.imgur.com/25tnV1a.png)
+![https://i.imgur.com/25tnV1a.png](https://i.imgur.com/25tnV1a.png)
+
+Buffer code
 
 The problem with this script is that the CPU can stop the process in any time, so for example in the consumer script it could stop the execution before the line `counter++` and this would mean not updating the counter. And this is an example that could happen (counter is shared between processes):
 
-![Buffer code](https://i.imgur.com/Wgepsvb.png)
+![https://i.imgur.com/Wgepsvb.png](https://i.imgur.com/Wgepsvb.png)
+
+Buffer code
 
 And this would resolve in inconsistency.
 
@@ -490,53 +507,66 @@ The criteria that critical section needs to respect are:
 These 3 criateria can be associates with the bathroom:
 
 - only one person can enter
-- only people that are outside the bathroom decide who enters (the person that was inside the bathroom doesn't decide)
+- only people that are outside the bathroom decide who enters (the person that was inside the bathroom doesn’t decide)
 - the people that wait outside have a limited time to wait
 
-Critical section of a program is written by the programmer, the programmer must write only it's critical section, not the one of other programs.
+Critical section of a program is written by the programmer, the programmer must write only it’s critical section, not the one of other programs.
 
 Algorithm 1, **wrong** algorithm:
 
-![Algorithm 1](https://i.imgur.com/CuC4C8N.png)
+![https://i.imgur.com/CuC4C8N.png](https://i.imgur.com/CuC4C8N.png)
+
+Algorithm 1
 
 The problem with this algorithm is that if a process exits, then the other one wait for him and never enters. For example j terminate, then i wait for ever there. So **progress** is not respected.
 
 Algorithm 2, **wrong** algorithm:
 
-![Algorithm 2](https://i.imgur.com/atbpwPr.png)
+![https://i.imgur.com/atbpwPr.png](https://i.imgur.com/atbpwPr.png)
 
-The problem of the process waiting forever is solved, because in case one goes away it will have the flag set to false. So process is now respected.
-The problem is that the flag could be set to true before the while is entered (critical section) so there will be a deadlock situation:
+Algorithm 2
 
-![Deadlock](https://i.imgur.com/z27D6m4.png)
+The problem of the process waiting forever is solved, because in case one goes away it will have the flag set to false. So process is now respected. The problem is that the flag could be set to true before the while is entered (critical section) so there will be a deadlock situation:
+
+![https://i.imgur.com/z27D6m4.png](https://i.imgur.com/z27D6m4.png)
+
+Deadlock
 
 Algorithm 3:
 
-![Algorithm 3](https://i.imgur.com/EICjmVo.png)
+![https://i.imgur.com/EICjmVo.png](https://i.imgur.com/EICjmVo.png)
 
-This algorithm checks both if it's the correct turn and if the process has the key. Now we need to solve the problem for more than one processes.
+Algorithm 3
 
-### Lamport's bakery algorithm
+This algorithm checks both if it’s the correct turn and if the process has the key. Now we need to solve the problem for more than one processes.
+
+### Lamport’s bakery algorithm
 
 Here we solve the problem of having more than 2 processes.
 
 Algorithm 1, **wrong**:
 
-![Lamport's bakery algorithm 1](https://i.imgur.com/TglFJ93.png)
+![https://i.imgur.com/TglFJ93.png](https://i.imgur.com/TglFJ93.png)
+
+Lamport’s bakery algorithm 1
 
 The problem with this soulution is that the `max(number[0], ... , number[N-1])` is atomic, so it could be calculated and the the context switch made without the `number[i]`.
 
 Algorithm 2, **wrong**:
 
-![Lamport's bakery algorithm 2](https://i.imgur.com/4HqbWCw.png)
+![https://i.imgur.com/4HqbWCw.png](https://i.imgur.com/4HqbWCw.png)
 
-What is changing here is that if a process did not finish to choose the number in which it will enter the queue, the processes will not be executed because they wait for everyone to choose it's number.
+Lamport’s bakery algorithm 2
+
+What is changing here is that if a process did not finish to choose the number in which it will enter the queue, the processes will not be executed because they wait for everyone to choose it’s number.
 
 Algorithm 3, **right**:
 
-![Lamport's bakery algorithm 3](https://i.imgur.com/jzpQAhK.png)
+![https://i.imgur.com/jzpQAhK.png](https://i.imgur.com/jzpQAhK.png)
 
-There were the software solution, the problem is that it's really a complex solution and there is a lot of time wasting checking in the while.
+Lamport’s bakery algorithm 3
+
+There were the software solution, the problem is that it’s really a complex solution and there is a lot of time wasting checking in the while.
 
 ### Hardware solutions
 
@@ -544,51 +574,62 @@ A solution is to diable interupt while a shared variable is being accessed, the 
 
 One solution is **test and set**:
 
-![Test and set 1](https://i.imgur.com/hAAv0u1.png)
+![https://i.imgur.com/hAAv0u1.png](https://i.imgur.com/hAAv0u1.png)
 
-![Test and set 2](https://i.imgur.com/FueM0xu.png)
+Test and set 1
+
+![https://i.imgur.com/FueM0xu.png](https://i.imgur.com/FueM0xu.png)
+
+Test and set 2
 
 This test is always atomic. This function allows to set the lock to the processes that are called are return the previous state of them, if it was set to FALSE, so the lock was open then it would enter the critical section.
 
 Onther solution is **swap**:
 
-![Swap 1](https://i.imgur.com/EHKHvYg.png)
+![https://i.imgur.com/EHKHvYg.png](https://i.imgur.com/EHKHvYg.png)
 
-![Swap 2](https://i.imgur.com/lNDZ8Lx.png)
+Swap 1
+
+![https://i.imgur.com/lNDZ8Lx.png](https://i.imgur.com/lNDZ8Lx.png)
+
+Swap 2
 
 The problem with swap and test and set is that a process could always be executed, terminate and come back in the critical section continuously, never leaving time for the other processes to enter.
 
 Here is the solution to this problem:
 
-![Test and set sol 2](https://i.imgur.com/6tu26mY.png)
+![https://i.imgur.com/6tu26mY.png](https://i.imgur.com/6tu26mY.png)
+
+Test and set sol 2
 
 This solution allows to set FALSE to the lock only in the case there are no other processes that are waiting to go in the critic section.
 
-This solution is not making less complex the system so between hardware and sofware doesn't really metter.  
-The solution to this is using semaphores.
+This solution is not making less complex the system so between hardware and sofware doesn’t really metter. The solution to this is using semaphores.
 
 ### Semaphores
 
-Semaphores are way reasier than the algorithms seen before.  
-The semaphores are implemented in newer opeative systems.  
-Semaphores reduces complexity, and the busy waiting situation.
+Semaphores are way reasier than the algorithms seen before. The semaphores are implemented in newer opeative systems. Semaphores reduces complexity, and the busy waiting situation.
 
 Semaphores actions are:
 
 - V that increments S of 1
 - P waits
-  - if S > 0, decrement S of 1
-  - else, needs to wait
+    - if S > 0, decrement S of 1
+    - else, needs to wait
 
 Semaphores can be either binary (0 or 1, sometimes True and False) or generic (value int > 0).
 
 Conceptual execution of **binary** semaphores:
 
-![Semaphores](https://i.imgur.com/dcssv4G.png)
+![https://i.imgur.com/dcssv4G.png](https://i.imgur.com/dcssv4G.png)
+
+Semaphores
 
 Conceptual execution of **generic** semaphores:
 
-![Semaphores](https://i.imgur.com/gEuzSsU.png)
+![https://i.imgur.com/gEuzSsU.png](https://i.imgur.com/gEuzSsU.png)
+
+Semaphores
 
 These 2 piece of code are evaluated in one time, so in a atomic trasnsaction.
 
@@ -601,33 +642,41 @@ Busy waiting is also called **spin lock**, spin because of the while (watch next
 
 Implemenation with busy waiting:
 
-![semaphore implementation with busy waiting](https://i.imgur.com/syuoNlm.png)
+![https://i.imgur.com/syuoNlm.png](https://i.imgur.com/syuoNlm.png)
+
+semaphore implementation with busy waiting
 
 In this implementation the Swap is a atomic transaction, so it is ensured by the hardware that this transaction cannot be stopped in the middle.
 
 For the implementation with non binary semaphores **with busy waiting**:
 
-![implementation with non binary semaphores](https://i.imgur.com/XWokXUH.png)
+![https://i.imgur.com/XWokXUH.png](https://i.imgur.com/XWokXUH.png)
+
+implementation with non binary semaphores
 
 Implementation on V **without busy waiting**:
 
-![implementation V no busy waiting](https://i.imgur.com/C8zXRJm.png)
+![https://i.imgur.com/C8zXRJm.png](https://i.imgur.com/C8zXRJm.png)
 
-In this implementation there is a list of all the processes (PCB or process control block).  
-In this case the process is appended to the list and it's put into sleep, so it leaves the CPU making other process run. So P(delay) is not run, saving computing time.
+implementation V no busy waiting
+
+In this implementation there is a list of all the processes (PCB or process control block). In this case the process is appended to the list and it’s put into sleep, so it leaves the CPU making other process run. So P(delay) is not run, saving computing time.
 
 Implementation on P **without busy waiting**:
 
-![implementation P no busy waiting](https://i.imgur.com/DqBQM8K.png)
+![https://i.imgur.com/DqBQM8K.png](https://i.imgur.com/DqBQM8K.png)
 
-This wakes up the processes in case there are processes that are waiting.  
-The problem with this implemenation is the starvation that could occure if we have a list with priorities, if we have FCFS this doesn't happen.
+implementation P no busy waiting
+
+This wakes up the processes in case there are processes that are waiting. The problem with this implemenation is the starvation that could occure if we have a list with priorities, if we have FCFS this doesn’t happen.
 
 Usually in the OS the **busy waiting is accepted** and implemented instead of the list of processes.
 
 The execution is normally:
 
-![execution of semaphores](https://i.imgur.com/xwHdt26.png)
+![https://i.imgur.com/xwHdt26.png](https://i.imgur.com/xwHdt26.png)
+
+execution of semaphores
 
 Here s could be called in other ways, the important thing is that P and V are called with their names.
 
@@ -635,68 +684,83 @@ Here s could be called in other ways, the important thing is that P and V are ca
 
 I want to execute before A, then B:
 
-![exerxise 1 semaphores](https://i.imgur.com/ACBNqtS.png)
+![https://i.imgur.com/ACBNqtS.png](https://i.imgur.com/ACBNqtS.png)
+
+exerxise 1 semaphores
 
 Processes that wait each other:
 
-![exerise 2 semaphores](https://i.imgur.com/OwS7Wmi.png)
+![https://i.imgur.com/OwS7Wmi.png](https://i.imgur.com/OwS7Wmi.png)
+
+exerise 2 semaphores
 
 A limitation of the semaphores is the **deadlock**.
 
-![deadlock example](https://i.imgur.com/ztiS9RS.png)
+![https://i.imgur.com/ztiS9RS.png](https://i.imgur.com/ztiS9RS.png)
+
+deadlock example
 
 Another problem is **starvation**, for example if I forget a V, then a process is never run.
 
 ### Producer and consumer problem
 
-The **problem of the producer and consumer** has the buffer of N elements that need to be checked (if there is space to produce or consume) before entering the produce or consume section.  
-We need to introduce **full** and **empty** semaphores.
+The **problem of the producer and consumer** has the buffer of N elements that need to be checked (if there is space to produce or consume) before entering the produce or consume section. We need to introduce **full** and **empty** semaphores.
 
-![producer and consumer problem](https://i.imgur.com/7eCx9yV.png)
+![https://i.imgur.com/7eCx9yV.png](https://i.imgur.com/7eCx9yV.png)
+
+producer and consumer problem
 
 ### Dinning philosophers problem
 
-![problem](https://i.imgur.com/ZpoKAJv.png)
+![https://i.imgur.com/ZpoKAJv.png](https://i.imgur.com/ZpoKAJv.png)
+
+problem
 
 We can solve this problem trying to take the right and left sticks, then eating.
 
-![sol 1](https://i.imgur.com/rtNDJw1.png)
+![https://i.imgur.com/rtNDJw1.png](https://i.imgur.com/rtNDJw1.png)
+
+sol 1
 
 Here we have the deadlock situation, because if everyone takes the right strick, then no one eats.
 
 Wrong solutions:
 
-![wrong soulutions](https://i.imgur.com/VqUaicU.png)
+![https://i.imgur.com/VqUaicU.png](https://i.imgur.com/VqUaicU.png)
 
-All of these change what the problem asked, so they are wrong.  
-For example the first one remove one filosopher, but the problem asked for all of them at the same time.  
-Or the third one adds a token, not allowed.  
+wrong soulutions
+
+All of these change what the problem asked, so they are wrong. For example the first one remove one filosopher, but the problem asked for all of them at the same time. Or the third one adds a token, not allowed.
 
 Soultion:
 
-![solution part1](https://i.imgur.com/IJer85Y.png)
+![https://i.imgur.com/IJer85Y.png](https://i.imgur.com/IJer85Y.png)
+
+solution part1
 
 Is this solution is really important to avoid describing the Think() and Eat() because these two do not have problems of concurrecy.
 
-The solution is in testing if the two pilosophers close to me are hungry on not. If they are, I don't take sticks.  
+The solution is in testing if the two pilosophers close to me are hungry on not. If they are, I don’t take sticks.
 
-![solution part2](https://i.imgur.com/ZTwQPQT.png)
+![https://i.imgur.com/ZTwQPQT.png](https://i.imgur.com/ZTwQPQT.png)
 
-![solution part3](https://i.imgur.com/eOSecjT.png)
+solution part2
 
-In this part I don't only putj the fork back to available, I also put the philosophers close to me in eating state, in the case they were hungry.  
-This last step **avoid deadlock** but **not starvation** (only in the case of spare number of philosophers).  
-The starvation problem is solved by adding some sort of priority to the solution.
+![https://i.imgur.com/eOSecjT.png](https://i.imgur.com/eOSecjT.png)
+
+solution part3
+
+In this part I don’t only putj the fork back to available, I also put the philosophers close to me in eating state, in the case they were hungry. This last step **avoid deadlock** but **not starvation** (only in the case of spare number of philosophers). The starvation problem is solved by adding some sort of priority to the solution.
 
 ### Sleepy barber problem
 
-Problem:
+![https://i.imgur.com/qWaKOiY.png](https://i.imgur.com/qWaKOiY.png)
 
-![problem](https://i.imgur.com/qWaKOiY.png)
+*Problem*
 
-Solution:
+![https://i.imgur.com/XTFQnlk.png](https://i.imgur.com/XTFQnlk.png)
 
-![solution](https://i.imgur.com/XTFQnlk.png)
+*Solution*
 
 ### Limitation of the semaphores
 
@@ -712,12 +776,13 @@ The monitors garants mutex, so **only one** shared variable at a time will be ac
 
 In monitors there are condition variables, these are used to sync monitors. These conditions can receive `wait()` and `signal()`, that are not the same as P and V of the semaphores. Example: `x.wait()`.
 
-The `wait()` stops the process anyway, in the semaphores the P checks if value is 1 or 0 to stop or not.  
-The `signal()` wakes up a process, also this is different from V because in the semaphores if 2 V consecutive are called, then 2 processes are called, with signal only the first one is, so the second one does not do anything.
+The `wait()` stops the process anyway, in the semaphores the P checks if value is 1 or 0 to stop or not. The `signal()` wakes up a process, also this is different from V because in the semaphores if 2 V consecutive are called, then 2 processes are called, with signal only the first one is, so the second one does not do anything.
 
 Monitor producer and consumer:
 
-![Monitor producer and consumer](https://i.imgur.com/18U8M4m.png)
+![https://i.imgur.com/18U8M4m.png](https://i.imgur.com/18U8M4m.png)
+
+***Monitor producer and consumer***
 
 ### Writes and readers problem
 
@@ -727,15 +792,19 @@ Rules:
 - writers can only write
 - more than one readers can read the same file
 - only one writer can write in a file
-- if a writer is writing, a reader can't read it
+- if a writer is writing, a reader can’t read it
 
 Writers solution:
 
-![writers](https://i.imgur.com/FLERJ9u.png)
+![https://i.imgur.com/FLERJ9u.png](https://i.imgur.com/FLERJ9u.png)
+
+***Writers***
 
 Readers solution:
 
-![readers](https://i.imgur.com/pqiCrsq.png)
+![https://i.imgur.com/pqiCrsq.png](https://i.imgur.com/pqiCrsq.png)
+
+***Readers***
 
 The problem with this solution is **starvation**.
 
@@ -743,23 +812,31 @@ The problem with this solution is **starvation**.
 
 The deadlock happens when processes are waiting for resources to be freed, and these resources are occupied by resources that are waiting for other locked resources.
 
-![deadlock example](https://i.imgur.com/V1S7GjY.png)
+![https://i.imgur.com/V1S7GjY.png](https://i.imgur.com/V1S7GjY.png)
 
-The problem above can be solved with preemption of rollback. With preemption we don't allow more than one car at a time in the bridge, with rollback, we make a car go back to it's track, the problem with this is that if there are more than one car to rollback, then there rollback is not light in performances.
+Deadlock example
+
+The problem above can be solved with preemption of rollback. With preemption we don’t allow more than one car at a time in the bridge, with rollback, we make a car go back to it’s track, the problem with this is that if there are more than one car to rollback, then there rollback is not light in performances.
 
 Ececution of 2 processes:
 
-![Ececution of 2 processes](https://i.imgur.com/2PqjCEF.png)
+![https://i.imgur.com/2PqjCEF.png](https://i.imgur.com/2PqjCEF.png)
+
+Ececution of 2 processes
 
 Deadlock possibilities:
 
-![Deadlock possibilities](https://i.imgur.com/8PXEu3g.png)
+![https://i.imgur.com/8PXEu3g.png](https://i.imgur.com/8PXEu3g.png)
+
+Deadlock possibilities
 
 In the execution above, in the 6 possibilities, 2 of them go into a deadlock situation.
 
 The conditions to have a deadlock are:
 
-![conditions to have a deadlock](https://i.imgur.com/UXhzZYi.png)
+![https://i.imgur.com/UXhzZYi.png](https://i.imgur.com/UXhzZYi.png)
+
+conditions to have a deadlock
 
 A model to understand if there are deadlock is RAG.
 
@@ -767,37 +844,43 @@ A model to understand if there are deadlock is RAG.
 
 The RAG is:
 
-![rag](https://i.imgur.com/ABF8wFh.png)
+![https://i.imgur.com/ABF8wFh.png](https://i.imgur.com/ABF8wFh.png)
+
+Rag
 
 Rag example:
 
-![rag example](https://i.imgur.com/IibLWFY.png)
+![https://i.imgur.com/IibLWFY.png](https://i.imgur.com/IibLWFY.png)
+
+Rag example
 
 Here we need to check if we have cycles inside:
 
-![cycles check](https://i.imgur.com/wF5BnVx.png)
+![https://i.imgur.com/wF5BnVx.png](https://i.imgur.com/wF5BnVx.png)
 
-In this example we have a cycle between P1 and P3.  
-We also have a cycle inside the second exaple, but in the case R1 is locked by P2, when P2 frees up, then P3 is able to run, the same thing with P4. In the first case it isn't the same thing, because both R1 and R2 are waiting for P2, in the case it is blocked, then R2 and R3 are blocked, whitch create a deadlock.
+Cycles check
+
+In this example we have a cycle between P1 and P3. We also have a cycle inside the second exaple, but in the case R1 is locked by P2, when P2 frees up, then P3 is able to run, the same thing with P4. In the first case it isn’t the same thing, because both R1 and R2 are waiting for P2, in the case it is blocked, then R2 and R3 are blocked, whitch create a deadlock.
 
 What to do when something like this happens? Static prevention; dynamic prevention; detenction and recovery; not doing anything.
 
 ### Static prevention
 
-With hold and wait the process allocate all the resources that it needs to use, then if a context switch comes and another process is waiting for that resource, it won't be able to do anything, so there is a waste of memory. Hold and wait can also cause starvation.
+With hold and wait the process allocate all the resources that it needs to use, then if a context switch comes and another process is waiting for that resource, it won’t be able to do anything, so there is a waste of memory. Hold and wait can also cause starvation.
 
-Another possibility to solve the deadlock problem is forcing a process to release all it's resources before locking others.  
-The problem with this solution is that not all the processes can do thing, take for instance a printer, it can't be stopped after printing 3 pages, do something else and then come back doing what it was doing in the other process.
+Another possibility to solve the deadlock problem is forcing a process to release all it’s resources before locking others. The problem with this solution is that not all the processes can do thing, take for instance a printer, it can’t be stopped after printing 3 pages, do something else and then come back doing what it was doing in the other process.
 
 Static prevention in not used in real world applications because of its cost.
 
 ### Dynamic prevention
 
-The dynamic prevention requires to know the used resources by the processes. If it doesn't have this information, it will use the maximum possible resources used, and this could lead into resources waste.
+The dynamic prevention requires to know the used resources by the processes. If it doesn’t have this information, it will use the maximum possible resources used, and this could lead into resources waste.
 
-This prevention checks if the system is in a safe state, this means no deadlock. The system is in a safe state if using the resources it's possible to allocate in some order the processes available. If there isn't a safe state, then it's unsafe, so a deadlock could occure.
+This prevention checks if the system is in a safe state, this means no deadlock. The system is in a safe state if using the resources it’s possible to allocate in some order the processes available. If there isn’t a safe state, then it’s unsafe, so a deadlock could occure.
 
-![example](https://i.imgur.com/DNYTO1W.png)
+![https://i.imgur.com/DNYTO1W.png](https://i.imgur.com/DNYTO1W.png)
+
+example
 
 In this example the state is safe in the orfer P1 P0 P2.
 
@@ -810,9 +893,11 @@ There are 2 Dynamic prevention algorithms:
 
 RAG example:
 
-![rag example](https://i.imgur.com/yaJ49No.png)
+![https://i.imgur.com/yaJ49No.png](https://i.imgur.com/yaJ49No.png)
 
-### Banker's algorithm
+rag example
+
+### Banker’s algorithm
 
 the idea of this algorighm is that the bank that have 1000 bank accounts with in total 1.000.000 euros, the money that it needs to have available to give back to the users is way lower than the amount of money that the user really have, because cases like all the users come in the same day and closes all the accounts is almost impossible. If a user ask for a small amount of money, the bank gives it immedialy, if requires a big amount, the bank ask him to come back in some days.
 
@@ -822,53 +907,68 @@ The banker algorithm is divided in 2 algorithms:
 
 Allocation algorithm:
 
-![allocation algorithm](https://i.imgur.com/LYQ6Erc.png)
+![https://i.imgur.com/LYQ6Erc.png](https://i.imgur.com/LYQ6Erc.png)
+
+allocation algorithm
 
 Verification algorithm:
 
-![verification algorithm](https://i.imgur.com/u2zB6ty.png)
+![https://i.imgur.com/u2zB6ty.png](https://i.imgur.com/u2zB6ty.png)
 
-Banker's algorithm exercise:
+verification algorithm
 
-![Banker's algorithm exercise pt1](https://i.imgur.com/7KZPYeB.png)
+Banker’s algorithm exercise:
 
-![Banker's algorithm exercise pt2](https://i.imgur.com/4Rto8bn.png)
+![https://i.imgur.com/7KZPYeB.png](https://i.imgur.com/7KZPYeB.png)
+
+Banker’s algorithm exercise pt1
+
+![https://i.imgur.com/4Rto8bn.png](https://i.imgur.com/4Rto8bn.png)
+
+Banker’s algorithm exercise pt2
 
 ### Deadlock & restore
 
 This solution is taken if a process goes in deadlock, and we need to restore from it.
 
-The main **advantage** of this tecnique is that it's not necessary to know before the amount of resources required.
+The main **advantage** of this tecnique is that it’s not necessary to know before the amount of resources required.
 
 The main **disadvantage** is that there is an high cost to recover.
 
 There are 2 solutions to this:
 
 - Using RAG (sesource allocation graph)
-- Rilevamento using kind of banker's algorithm
+- Rilevamento using kind of banker’s algorithm
 
 Restoring **using RAG**:
 
-![restoring using graph](https://i.imgur.com/h8paGix.png)
+![https://i.imgur.com/h8paGix.png](https://i.imgur.com/h8paGix.png)
 
-The RAG is used removing the resources, and watching the processes.  
-In this case there is a dealock situation because there is a cycle in P2, P3, P4, P1.
+restoring using graph
 
-Rilevamento **using kind of banker's agorithm**:
+The RAG is used removing the resources, and watching the processes. In this case there is a dealock situation because there is a cycle in P2, P3, P4, P1.
 
-It checks only for the safe state, not a possible allocation (like in the banker's algorithm), it is also not called every time a new process is added, it will be called every n processes executed.
+Rilevamento **using kind of banker’s agorithm**:
 
-The main difference with the banker's algorithm is that there is no computation of the order that the processes need to be executed not to have deadlock, we just know that there is one that works.
+It checks only for the safe state, not a possible allocation (like in the banker’s algorithm), it is also not called every time a new process is added, it will be called every n processes executed.
+
+The main difference with the banker’s algorithm is that there is no computation of the order that the processes need to be executed not to have deadlock, we just know that there is one that works.
 
 Code:
 
-![Deadlock & restore](https://i.imgur.com/HUev0B7.png)
+![https://i.imgur.com/HUev0B7.png](https://i.imgur.com/HUev0B7.png)
+
+Deadlock & restore
 
 **Rilevamento exercise** part 1 and 2:
 
-![Rilevamento exercise pt1](https://i.imgur.com/0WXL7MF.png)
+![https://i.imgur.com/0WXL7MF.png](https://i.imgur.com/0WXL7MF.png)
 
-![Rilevamento exercise pt2](https://i.imgur.com/JzEiTaq.png)
+Rilevamento exercise pt1
+
+![https://i.imgur.com/JzEiTaq.png](https://i.imgur.com/JzEiTaq.png)
+
+Rilevamento exercise pt2
 
 ### Restore
 
@@ -882,14 +982,13 @@ The soution with **killing the processes** are 2:
 - killing all in one
 - killing one by one, the problem that comes is, in what order we do it?
 
-A solution to this can be [aging](#Starvation).
+A solution to this can be [aging](about:blank#Starvation).
 
 ### Conclusion
 
-A good solution for deadlock is a combination of the soulutions OR using the **ostrich** (struzzo) solution, so don't handle the deadlocks.
+A good solution for deadlock is a combination of the soulutions OR using the **ostrich** (struzzo) solution, so don’t handle the deadlocks.
 
 ## Memory
-
 Something is a process only if some **central memory is assigned to it**. The program to be executed must be in the central memory. For example a process loaded in memory writes some variables in the memory, then when context switch happens, the results are written in memory. Then when a process terminates, the memory need to be released.
 
 The transformation between program memory written in the disk, to memory allocation that is located in the main memory. This takes place through:
@@ -900,7 +999,9 @@ The transformation between program memory written in the disk, to memory allocat
 
 Translation process:
 
-![Translation process](https://i.imgur.com/5yvFtzV.png)
+![https://i.imgur.com/5yvFtzV.png](https://i.imgur.com/5yvFtzV.png)
+
+Translation process
 
 The binding process can be at:
 
@@ -910,11 +1011,15 @@ The binding process can be at:
 
 Description:
 
-![Binding process description](https://i.imgur.com/VdszfNa.png)
+![https://i.imgur.com/VdszfNa.png](https://i.imgur.com/VdszfNa.png)
+
+Binding process description
 
 Example:
 
-![Binding process example](https://i.imgur.com/MYAy5Kg.png)
+![https://i.imgur.com/MYAy5Kg.png](https://i.imgur.com/MYAy5Kg.png)
+
+Binding process example
 
 At runtime the address (1000) is loaded from the hardware, this could change with a context switch, for example 1000 becomes 2000, then all the adresses need to be calculated again.
 
@@ -932,13 +1037,15 @@ Loading can be static or dyncamic:
 
 ### Spazi di indirizzamento
 
-The **address space** can be logical or physical. The difference is that at compile or load time, the logical and physical adresses coincide, at run time, it's likely that they are different:
+The **address space** can be logical or physical. The difference is that at compile or load time, the logical and physical adresses coincide, at run time, it’s likely that they are different:
 
-![static and dynamic binding](https://i.imgur.com/fStzLp9.png)
+![https://i.imgur.com/fStzLp9.png](https://i.imgur.com/fStzLp9.png)
+
+Static and dynamic binding
 
 The **Memory Management Unit** (MMU) is the thing that at run time gives the assign the addresses. For example a logical process says it has the memory between 0 and 20K, and the MMU assign the physical address between 50K and 70K (at run time).
 
-The binding in new computer is always dynamic, because it can't be possible to predict which part of the memory is going to be used by a program. This is possible to make it only in embedded system, because it's possible to predict all the memory that will be allocated.
+The binding in new computer is always dynamic, because it can’t be possible to predict which part of the memory is going to be used by a program. This is possible to make it only in embedded system, because it’s possible to predict all the memory that will be allocated.
 
 ## Memory management
 
@@ -948,34 +1055,103 @@ Here we see how the memory is assigned to a process.
 
 The **fixed partition technique** works in dividing the memory in partitions. This works allocating the memory required to the partition that are available and the partition that can fit the memory required.
 
-It can work in different ways. For example with FCFS the processes wait in queue until the memory that they need is free. The problem with this is that if there are 2 memory blocks of 16MB, then the second one needs to wait unitl the first one is done, also if there were some blocks (for example 1MB) that had the possibility to go without waiting for the 16MB block.
+It can work in different ways. For example with **FCFS** (first come first served) the processes waits in queue until the memory that they need is free. The problem with this is that if there are 2 memory blocks of 16MB, then the second one needs to wait for the first one, also if there were some blocks (for example 1MB) that had the possibility to go without waiting for the 16MB block.
 
-Another way is First Available Fit, that says fit the block also if it's smaller. Better than FCFS.
+Another way is **First Available Fit**, that says fit the block also if it’s smaller. Better than FCFS.
 
-So the disadvantages are:
+So the disadvantages of First Available Fit are:
 
-- this type of segmentation needs to set a fixed value for each memory block, wasting space if it's not used, and also it's not possible to resize the blocks on the fly
-- there is a lot of waste of memory, if a process is 1M and the smallest block is 4MB, then the 4MB is used with a memory waste
-- if a process is bigger than the biggest size of the biggest segment, than that process will never be executed. For example one process is 18M, and the segmentations are 16M, 8M, 4M; than there won't be the possiblity to execute it
+- this type of segmentation needs to set a fixed value for each memory block, wasting space if it’s not used, and also it’s not possible to resize the blocks on the fly
+- there is a lot of waste of memory, if a process is 1M and the smallest block is 4MB, then the 4MB is used with a memory waste of 3MB
+- if a process is bigger than the biggest size of the biggest segment, than that process will never be executed. For example one process is 18M, and the segmentations are 16M, 8M, 4M; then there won’t be the possiblity to execute it
 
-![static and dynamic binding](https://i.imgur.com/6XlPIcX.png)
+![https://i.imgur.com/6XlPIcX.png](https://i.imgur.com/6XlPIcX.png)
 
-**Internal fragmentation** when the process is smaller than the assigned memory block, so there is a waste o memory.
+Static and dynamic binding
 
-**External fragmentation** when the process is too big and it's not fitting in the available memory block.
+2 problems of these solutions are:
+
+- **Internal fragmentation** when the process is smaller than the assigned memory block, so there is a waste of memory.
+- **External fragmentation** when the process is too big and it’s not fitting in the available memory block.
 
 ### Dynamic partition technique
 
-This technique has the possibility not to say how big are the memory blocks, so there is only one big partition that is splitted in more smaller memory blocks on the fly.
+This technique there is no fixed size of memory blocks, so there is only one big partition that is splitted in smaller memory blocks on the fly.
 
 When the memory is assigned it looks like this:
 
-![memory assignment](https://i.imgur.com/VcPp8Qz.png)
+![https://i.imgur.com/VcPp8Qz.png](https://i.imgur.com/VcPp8Qz.png)
 
-Here we can decide how to allocate new incoming memory blocks: with best fit we can fit the incoming process in the smallest memory block that we have, where that block fit, the problem with this is that it's almost sure that the memory block remaining (if the memory block wasn't exactly the size available) no other process will fit.
+Memory assignment with only one partition
 
-Another possibility is to fit the the memory block is the biggest memory block available, so we solve the previous problem. Here we have the problem that we need to scan the entire list to understand what block to chose.
+Here we can decide how to allocate new incoming memory blocks: with **best fit** we can fit the incoming process in the smallest memory block that we have, where that block fits, the problem with this is that it’s almost sure that the memory block remaining (if the memory block wasn’t exactly the size available) no other process will fit.
 
-Another possibility is to fit the block in the first available memory block, and it's proven to be the best (in real world applications) because is way faster than the other 2.
+Another possibility is to fit the the memory block that is the **biggest memory block** available, so we solve the previous problem. Here we have the problem that we need to scan the entire list to understand what block to chose.
 
-18:10
+Another possibility is to fit the block in the **first available memory block**, and it’s proven to be the best (in real world applications) because is way faster than the other 2.
+
+Here we solved the problem of internal fragmentation, but we still have the problem of external fragmentation. We can solve this problem making the reallocation of the memory but this reallocation is really expensive.
+
+### Buddy system
+
+There is also a technique called **buddy system** trying always to split in 2 the memory until we find the space in which fits.
+
+![https://i.imgur.com/XLQgfhs.png](https://i.imgur.com/XLQgfhs.png)
+
+Buddy system
+
+In this system we still have the problem of internal fragmentation but we have the advantage that when 2 blocks of 256KB close, they form a 512KB, that is different from the fixed size blocks.
+
+### Pagination
+
+The problem we want to solve is the internal and external fragmentation. For example in the buddy system if we fragment the blocks and we have 2 different blocks that are not closed by, we won't be able to use those 2 blocks for one process.
+
+![https://i.imgur.com/l3zYMrN.png](https://i.imgur.com/l3zYMrN.png)
+
+Pagination example
+
+With pagination if the dimention of a page is 1KB and the program requires 2.3KB, then 3 pages will be used. With this solution there is still a little bit of memory waste, but not a lot.
+
+![https://i.imgur.com/qp4nJEJ.png](https://i.imgur.com/qp4nJEJ.png)
+
+How memory gets divided
+
+In pagination we also have a more difficult translation in addressing space MMU.
+
+![https://i.imgur.com/KjSCb8p.png](https://i.imgur.com/KjSCb8p.png)
+
+![https://i.imgur.com/YWkrUsJ.png](https://i.imgur.com/YWkrUsJ.png)
+
+Translation example
+
+This addresses are written in the **page table** that sits in memory. We can find the page table adress in the registers of the CPU, the adress and the lenght. The problem with this solution is that the memory needs to be accessed 2 times in order to be used.
+
+We solve this with the **translation look-aside buffer** (TLB) that is a small accociative memory that contains a small amount memory addresses. So we first check the TLB, if there is a miss, then we look in the memory (as explained above) taking more time. The TLB is useful only if there is a low miss rate.
+
+![https://i.imgur.com/Q7rDMBa.png](https://i.imgur.com/Q7rDMBa.png)
+
+MMU in case of TLB
+
+Because the TLB is really costy because we need to clear it each time there is a context switch, so we can't keep all the adresses in the TLB.
+
+We also have protection inside this table:
+
+![https://i.imgur.com/eGFH5PZ.png](https://i.imgur.com/eGFH5PZ.png)
+
+With pagination we have a big advantage: we can use one page for more than one processes. For example we can set two processes to read one page in read-only mode, so saving space because we don't need to write 2 different pages.
+
+The **problem with bare pagination** is that in a page you can put code (that can be read by one ore more process) and data (that is specific for a process) in the same page. This means that, that page can't be share with more than one process.
+
+We solve this problem with **segmentation** (not the one we talked before). With this solution we separate the data in more categories: main, function, procedures, variables, stack, vectors, etc. . These segments are contained in the same memory block:
+
+![https://i.imgur.com/KlJDZWS.png](https://i.imgur.com/KlJDZWS.png)
+
+These segmentation is stored in a TLB using the segment-table base register STBR and segmente-table lenght register STLR. When we look at the adress we also need to check if there actually is a memory segment or not.
+
+A problem with the segmentation is that we could have **external fragmentation**.
+
+### Segmented pagination
+
+In segmented pagination there is a **page table for each segment**. In phisical memory there is only the concept of frame, not the one of segments. The concept of segments it's inside each frame.
+
+One OSs that use segmented pagination are MULTICS and ARMv7a.
