@@ -756,11 +756,11 @@ In this part I don’t only putj the fork back to available, I also put the phil
 
 ![https://i.imgur.com/qWaKOiY.png](https://i.imgur.com/qWaKOiY.png)
 
-*Problem*
+***Problem***
 
 ![https://i.imgur.com/XTFQnlk.png](https://i.imgur.com/XTFQnlk.png)
 
-*Solution*
+***Solution***
 
 ### Limitation of the semaphores
 
@@ -989,6 +989,7 @@ A solution to this can be [aging](about:blank#Starvation).
 A good solution for deadlock is a combination of the soulutions OR using the **ostrich** (struzzo) solution, so don’t handle the deadlocks.
 
 ## Memory
+
 Something is a process only if some **central memory is assigned to it**. The program to be executed must be in the central memory. For example a process loaded in memory writes some variables in the memory, then when context switch happens, the results are written in memory. Then when a process terminates, the memory need to be released.
 
 The transformation between program memory written in the disk, to memory allocation that is located in the main memory. This takes place through:
