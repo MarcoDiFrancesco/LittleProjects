@@ -318,17 +318,17 @@ int main()
 
 This is a FIFO algorithm. It’s really easy to implement.
 
-This is an algorithm without [preemption](about:blank#preemption), this mean writing-time(Tw) and response-time (Tr) are always 0.
+This is an algorithm without [preemption](#preemption), this mean waiting-time(Tw) and response-time (Tr) are always 0.
 
 The problem with this algorithm is that if a process with a large burst is exectured, the writing-time (when all the process started, but still are not done) will be long.
 
 ![https://i.imgur.com/kYWkGj7.png](https://i.imgur.com/kYWkGj7.png)
 
-FCFS algorithm
+***FCFS algorithm***
 
 ### Shortest-Job-First
 
-The SJF gives priority to the processes with shortest burst. Of this schema there are two versions: preemptive and not preemtive. The non-preemptive version makes no more than what desctibed above. The preemptive version interrupt the running process if a process with a shorter burst comes, so if a process with remaning burst=8 and a process comes to the queue with a burst=6 the switch is made.
+The SJF gives priority to the processes with shortest burst. Of this schema there are two versions: preemptive and not preemtive. The non-preemptive version makes no more than what described above. The preemptive version interrupt the running process if a process with a shorter burst comes, so if a process with remaning burst=8 and a process comes to the queue with a burst=6 the switch is made.
 
 The preemptive version has the **best waiting-time**.
 
@@ -336,13 +336,13 @@ Non-preemptive example:
 
 ![https://i.imgur.com/vkBv98E.png](https://i.imgur.com/vkBv98E.png)
 
-Non-preemptive example
+***Non-preemptive example***
 
 Preemptive example, aka **Shortest Remaining Time First** (in this example the switch time is not counted):
 
 ![https://i.imgur.com/MlL0Cao.png](https://i.imgur.com/MlL0Cao.png)
 
-Preemptive example
+***Preemptive example***
 
 ### Time approximation
 
@@ -389,7 +389,7 @@ HRRN example
 
 ### Round robin
 
-The processes are divided by quants, then the round robin algorithm takes one process and execute it for a quant of time, then [preempted](about:blank#preemption). The queue is **circular**. The quant varies **from 10 to 100 millisenconds**. If I finish my job (or wait for another process) before the quant finieshes, I leave the CPU before my assigned time terminates. But the next process will have only the usual assigned time, e.g. it takes for me 50ms of burst over 100ms of quant, then the next process won’t have 150ms, but just 100. This is a good algorithm for time sharing, so for a machine with **shared user** usage because users. This algorithm is a FCFS. The quant can’t be chosen bigger than the burst of all services, because then it would be a FCFS. If it’s too small then there will be too many context switches. The quant usually is chosen so 80% of the processes execute before the quant expire. The quant is **chosen dinamically**, so the OS change it on the fly.
+The processes are divided by quants, then the round robin algorithm takes one process and execute it for a quant of time, then [preempted](#preemption). The queue is **circular**. The quant varies **from 10 to 100 millisenconds**. If I finish my job (or wait for another process) before the quant finieshes, I leave the CPU before my assigned time terminates. But the next process will have only the usual assigned time, e.g. it takes for me 50ms of burst over 100ms of quant, then the next process won’t have 150ms, but just 100. This is a good algorithm for time sharing, so for a machine with **shared user** usage because users. This algorithm is a FCFS. The quant can’t be chosen bigger than the burst of all services, because then it would be a FCFS. If it’s too small then there will be too many context switches. The quant usually is chosen so 80% of the processes execute before the quant expire. The quant is **chosen dinamically**, so the OS change it on the fly.
 
 Round robin example with quant = 2:
 
@@ -982,7 +982,7 @@ The soution with **killing the processes** are 2:
 - killing all in one
 - killing one by one, the problem that comes is, in what order we do it?
 
-A solution to this can be [aging](about:blank#Starvation).
+A solution to this can be [aging](#Starvation).
 
 ### Conclusion
 
