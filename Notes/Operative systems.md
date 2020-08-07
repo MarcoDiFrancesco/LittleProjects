@@ -614,8 +614,8 @@ Semaphores actions are:
 
 - V that increments S of 1
 - P waits
-    - if S > 0, decrement S of 1
-    - else, needs to wait
+  - if S > 0, decrement S of 1
+  - else, needs to wait
 
 Semaphores can be either binary (0 or 1, sometimes True and False) or generic (value int > 0).
 
