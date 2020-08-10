@@ -10,25 +10,27 @@ The **components of a protocol** are:
 - semantics: meaning of the messages
 - temporization: timeouts fot acknowledgements
 
-ADSL: asymmetric digital subscriber line
+**ADSL**: asymmetric digital subscriber line
 
-Throughput: rate (bits/time unit) at which bits transferred between sender/receiver, this is limited to the slower link capacity (bottleneck).
+**Throughput**: rate (bits/time unit) at which bits transferred between sender/receiver, this is limited to the slower link capacity (bottleneck).
 
-## Architecture
+The **protocols** are used make a logical and physical connection between architectures. The protocols are devided in layers, so complex systems can be splitted in more simple system's pieces so it makes the update easier.
 
-ISO/OSI is an abstract model.
-TCP/IP is the architecture used in the internet.
+**Protocol stack** is a collection of protocols and of their relationships defining a logical and pysical communication architecture.
 
-The **protocols** are used make a logical and physical connection between architectures. The protocols are devided in layers, so complex systems can be splitted in more simple system's pieces so it makes the update easier.  
-The layers are connected using **service access points** (SAP). These are the "API" of the stack, in which layers communicate. Layer N+1 only knows that lower layers offer an N-service and what is below it, is a black box.
+Every **layer** of a protocol stack is composed by 2 sub-systems, every **sub-system** is composed by **entities**.
 
-![N+1 service](https://i.imgur.com/FxKEVwd.png)
+![https://i.imgur.com/jDRKccf.png](https://i.imgur.com/jDRKccf.png)
 
-- The **service data units** (SDU) in a system is the "packed" piece of data recived from the layer above.  
-- The **protocol control information** (PCI or M-PCI when talking about the M layer) is the piece of data attached to the SDU.  
-- The **protocol data unit** (PDU) is crated by SDU + PCI, and it is passed to the layer below.
+Every layer provides services to the **upper layer** throgh a **Service Access Points**. A SAP is the "API" of the stack, in which layers communicate. Layer N+1 only knows that lower layers offer an N-service and what is below it, is a black box.
 
-![PDI and PCI](https://i.imgur.com/PUFMoZg.png)
+![https://i.imgur.com/RD39eed.png](https://i.imgur.com/RD39eed.png)
+
+In a system with M layers:
+
+- The **service data unit** (SDU) is the "packed" piece of data recived from the layer above
+- The **protocol control information** (PCI) is the piece of data attached to the SDU containing the receiver and sender addresses
+- The **protocol data unit** (PDU) is the result of SDU + PCI, and it is passed to the layer below
 
 The PDU can be:
 
@@ -37,6 +39,8 @@ The PDU can be:
 - **re-assembled** after the sagmented blocks have been received
 
 ### ISO/OSI
+
+The **International Organization for Standardization** created the **Open System Interconnection** (ISO/OSI) that is an abstract model.
 
 ![ISO/OSI](https://i.imgur.com/c5rDXCK.png)
 
@@ -53,6 +57,10 @@ Layer 5: **Session** Manages data exchange so this can be paused, restared and t
 Layer 6: **Presentation** makes encryption, encoding and data rappresentation.  
 
 Layer 7: **Application** provides to the applications the means to communicate and exchange data, e.g. FTP, SSH, POP3, IMAP, SMTP, HTTP.
+
+### TCP/IP
+
+The Internet protocol suite is the conceptual model and set of communication protocols used in the internet. It's known as TPC/IP because the of its fundamental protocols: **Transmission Control Protocol** (TCP) and **Internet Protocol** (IP).
 
 ### Structure of the internet
 
