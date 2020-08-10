@@ -1,9 +1,23 @@
 # Networks
 
+## Introduction
+
+What's a protocol? Protocols define format, order of msgs sent and received among network entities, and actions taken on msg transmission, receipt.
+
+The **components of a protocol** are:
+
+- syntax: format of the protocol messages
+- semantics: meaning of the messages
+- temporization: timeouts fot acknowledgements
+
+ADSL: asymmetric digital subscriber line
+
+Throughput: rate (bits/time unit) at which bits transferred between sender/receiver, this is limited to the slower link capacity (bottleneck).
+
 ## Architecture
 
-ISO/OSI is an abstract model
-TCP/IP is the architecture used in the internet
+ISO/OSI is an abstract model.
+TCP/IP is the architecture used in the internet.
 
 The **protocols** are used make a logical and physical connection between architectures. The protocols are devided in layers, so complex systems can be splitted in more simple system's pieces so it makes the update easier.  
 The layers are connected using **service access points** (SAP). These are the "API" of the stack, in which layers communicate. Layer N+1 only knows that lower layers offer an N-service and what is below it, is a black box.
