@@ -1,6 +1,6 @@
 # Networks
 
-## Introduction
+## Protocol
 
 What's a protocol? Protocols define format, order of msgs sent and received among network entities, and actions taken on msg transmission, receipt.
 
@@ -32,37 +32,45 @@ In a system with M layers:
 - The **protocol control information** (PCI) is the piece of data attached to the SDU containing the receiver and sender addresses
 - The **protocol data unit** (PDU) is the result of SDU + PCI, and it is passed to the layer below
 
+### Segmentation and reassembling
+
 The PDU can be:
 
 - **segmented** when the block is too large to be transported
 - **assembled** when the blocks are too small to be transported, so they are bundled togeder
 - **re-assembled** after the sagmented blocks have been received
 
-### ISO/OSI
+## Internet protocols
 
-The **International Organization for Standardization** created the **Open System Interconnection** (ISO/OSI) that is an abstract model.
+ISO/OSI vs TCP/IP:
 
-![ISO/OSI](https://i.imgur.com/c5rDXCK.png)
-
-Layer 1: **Physical** is in the bottom of the model. It takes care of transmitting raw bits on the interface via electrical, electro-magnetic, light, sound ways. It defines encoding, voltages, modulations.
-
-Layer 2: **Link** is makes the multiplexing (gathering data togeder, putting a header and sending them as a big packet) and demultiplexing (deviding packets, removing the header and sending to the layer 3), it makes the error discovery and recovery, it makes the medium access control (MAC sublayer).
-
-Layer 3: **Network** make routing, forwarding and congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once and used for all packets belonging to a specific host to host communication.
-
-Layer 4: **Trasport** performs segmentation and reassempling data, error control, flow control, packet ordering.  
-
-Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated. For example if a whatsapp call changes from wifi to cellular the layer manage not to disconnect.  
-
-Layer 6: **Presentation** makes encryption, encoding and data rappresentation.  
-
-Layer 7: **Application** provides to the applications the means to communicate and exchange data, e.g. FTP, SSH, POP3, IMAP, SMTP, HTTP.
-
-### TCP/IP
+The **International Organization for Standardization** created the **Open System Interconnection** model (ISO/OSI), it is an abstract model.
 
 The Internet protocol suite is the conceptual model and set of communication protocols used in the internet. It's known as TPC/IP because the of its fundamental protocols: **Transmission Control Protocol** (TCP) and **Internet Protocol** (IP).
 
-### Structure of the internet
+![https://i.imgur.com/4nM12CK.png](https://i.imgur.com/4nM12CK.png)
+
+![https://i.imgur.com/RAbVT6O.png](https://i.imgur.com/RAbVT6O.png)
+
+ISO/OSI procols:
+
+![ISO/OSI](https://i.imgur.com/c5rDXCK.png)
+
+Layer 1: **Physical** is in the bottom of the model. It takes care of transmitting raw bits on the interface via electrical, electro-magnetic, light, sound ways signals. It defines encoding, voltages, modulations.
+
+Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11, Ethernet. Here packets are called frames.
+
+Layer 3: **Network** (OSI) or **Internet** (TCP/IP) makes routing and forwarding, congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once, and used for all packets belonging to a specific host to host communication. Some example procols are: IP, ICMP. Here packets are called packets or datagrams.
+
+Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#multiplexing-and-demultiplexing), performs [segmentation and reassembles](#segmentation-and-reassembling) data, error control, flow control, packet ordering. Some example protocols are: TCP, UDP. Here packets are called datagrams or segments.
+
+Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated. For example if a whatsapp call changes from wifi to cellular the layer manage not to disconnect.  
+
+Layer 6: **Presentation** makes encryption, data rappresentation (encoding).  
+
+Layer 7: **Application** provides to the applications the means to communicate and exchange data, e.g. FTP, SSH, POP3, IMAP, SMTP, HTTP, DNS, SSH .
+
+## Structure of the internet
 
 **ISP** (internet service provider) connects the end systems to internet. The ISPs are interconnected so that and two hosts can send packets to each other.
 The ISPs can be devided in categories:
@@ -250,6 +258,10 @@ The server devides video file into multiple chunks, is encoded at different rate
 The transport layer services are used to proovide a logical communication between processes running on different hosts.
 
 ### Multiplexing and demultiplexing
+
+**Multiplexing**: gathering data from multiple application processes of sender, enveloping that data with header and sending them as a whole to the intended receiver.
+
+**Demultiplexig**: delivering received segments at receiver side to the correct app layer processes
 
 Multiplexing means that the sender handle data from multiple sockets and add the trasport header and demultiplexing at receiver means to use header info to deliver receive regments to correct socket.
 
