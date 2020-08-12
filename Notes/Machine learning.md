@@ -1,6 +1,14 @@
-# Deep learning
+# Machine learning
 
-Deep learning is a branch of machine learning. Deep leaning is the technique used to perfor machine learning.
+The **difference between classical programing and machine learning** is that instead of writing down every little detail into the program and request it to compute it all, you set up an automated system to test the effectiveness of weight assignment in terms of actial performance, and provide a mechanism for altering the weight assignment so as to maximize the performance.
+
+The **model** is the thing that is used in machine learning to keep all weights.
+
+The **stochastic gradient decent** is general thing that updates the weights inside a neural network.
+
+The **loss** is a function that computes how good the prediction of a neural network are so then it's possible to other functions to update the weights.
+
+Deep learning is a branch of machine learning. Deep leaning is the technique used to perform machine learning.
 
 In the neural netowork there are 3 types of layer:
 
@@ -41,6 +49,10 @@ The training sets are:
 
 **Overfitting** is the problem that comes when the model is able to perform really well in training data, but when going in validation data it performs really bad.
 
+Overfitting can be fixed using a proper validation set.
+
+![https://i.imgur.com/uBdSS2e.png](https://i.imgur.com/uBdSS2e.png)
+
 ## Convolutional Neural Network
 
 A Convolutional Neural Network (or CNN) is used to detect patterns in an image.
@@ -59,6 +71,6 @@ With this result we can then detect more advance things, like in this example:
 
 ![edge example](https://i.imgur.com/liBn1e1.png)
 
-**Dilated convolutional network** is a technique in combo with CNN with the differnce that the kernel pixels is not one after the other, but rather there is distance between the 2:
+**Dilated convolutional neural network** is a technique in combo with CNN with the differnce that the kernel pixels is not one after the other, but rather there is distance between the 2:
 
-![Dilated convolutional network](https://i.imgur.com/lAUdDiR.png)
+![https://i.imgur.com/lAUdDiR.png](https://i.imgur.com/lAUdDiR.png)
