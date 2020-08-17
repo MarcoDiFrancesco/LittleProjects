@@ -16,6 +16,8 @@ The **components of a protocol** are:
 
 The **protocols** are used make a logical and physical connection between architectures. The protocols are devided in layers, so complex systems can be splitted in more simple system's pieces so it makes the update easier.
 
+App-layer **protocols** (e.g HTTP, SMTP) allow types of messages to be exchanged with a specific semantic. Rules are specidied for each protocol. Protocols can be open like HTTP, SMTP or proprietary like Skype.
+
 **Protocol stack** is a collection of protocols and of their relationships defining a logical and pysical communication architecture.
 
 Every **layer** of a protocol stack is composed by 2 sub-systems, every **sub-system** is composed by **entities**.
@@ -48,7 +50,7 @@ The **International Organization for Standardization** created the **Open System
 
 The Internet protocol suite is the conceptual model and set of communication protocols used in the internet. It's known as TPC/IP because the of its fundamental protocols: **Transmission Control Protocol** (TCP) and **Internet Protocol** (IP).
 
-![https://i.imgur.com/4nM12CK.png](https://i.imgur.com/4nM12CK.png)
+![https://i.imgur.com/3JxVCxD.png](https://i.imgur.com/3JxVCxD.png)
 
 ![https://i.imgur.com/RAbVT6O.png](https://i.imgur.com/RAbVT6O.png)
 
@@ -56,29 +58,30 @@ ISO/OSI procols:
 
 ![ISO/OSI](https://i.imgur.com/c5rDXCK.png)
 
-Layer 1: **Physical** is in the bottom of the model. It takes care of transmitting raw bits on the interface via electrical, electro-magnetic, light, sound ways signals. It defines encoding, voltages, modulations.
+Layer 7: **Application** provides to the applications the means to communicate and exchange data, e.g. FTP, SSH, POP3, IMAP, SMTP, HTTP, DNS, SSH .
 
-Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11, Ethernet. Here packets are called frames.
-
-Layer 3: **Network** (OSI) or **Internet** (TCP/IP) makes routing and forwarding, congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once, and used for all packets belonging to a specific host to host communication. Some example procols are: IP, ICMP. Here packets are called packets or datagrams.
-
-Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#multiplexing-and-demultiplexing), performs [segmentation and reassembles](#segmentation-and-reassembling) data, error control, flow control, packet ordering. Some example protocols are: TCP, UDP. Here packets are called datagrams or segments.
+Layer 6: **Presentation** makes encryption, data rappresentation (encoding). Some procols are: MIME, ASCII.
 
 Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated. For example if a whatsapp call changes from wifi to cellular the layer manage not to disconnect.  
 
-Layer 6: **Presentation** makes encryption, data rappresentation (encoding).  
+Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#multiplexing-and-demultiplexing), performs [segmentation and reassembles](#segmentation-and-reassembling) data, error control, flow control, packet ordering. Some example protocols are: TCP, UDP. Here packets are called datagrams or segments.
 
-Layer 7: **Application** provides to the applications the means to communicate and exchange data, e.g. FTP, SSH, POP3, IMAP, SMTP, HTTP, DNS, SSH .
+Layer 3: **Network** (OSI) or **Internet** (TCP/IP) makes routing and forwarding, congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once, and used for all packets belonging to a specific host to host communication. Some example procols are: IP (IPv4, IPv6), ICMP. Here packets are called packets or datagrams.
+
+Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11, Ethernet. Here packets are called frames.
+
+Layer 1: **Physical** is in the bottom of the model. It takes care of transmitting raw bits on the interface via electrical, electro-magnetic, light, sound ways signals. It defines encoding, voltages, modulations.
 
 ## Structure of the internet
 
 **ISP** (internet service provider) connects the end systems to internet. The ISPs are interconnected so that and two hosts can send packets to each other.
 The ISPs can be devided in categories:
 
-- **Tier-1** networks like AT&T connect distant networks, like networks located in different continents
-- **Content provider** networks like Google, Microsoft run their (private) network to bring their services close to the end user
-- **Regional** networks like Tim, Telecom, Vodafone are connected to one or more Tier-1 ISPs and internet exchange points (IXPs)
-- **Access ISP** make the last mile communication
+- **Tier-3**: **Access ISP** make the last mile communication (ADSL providers)
+- **Tier-2**: **Regional** networks like Telecom, Vodafone are connected to one or more Tier-1 ISPs and **internet exchange points** (IXPs)
+- **Tier-1**: networks like AT&T connect distant networks, like networks located in different continents
+
+In Tier-1 there can also be **content provider** networks like Google and Microsoft, which run their (private) network to bring their services close to the end user.
 
 ![ISP networks](https://i.imgur.com/cQf9Ke6.png)
 
@@ -87,11 +90,13 @@ The ISPs can be devided in categories:
 The **client-server** architecture makes the server always-on host, servers have permanent IP addresses, the clients do not communicate directly with each other.
 
 The **P2P** architecture, like torrent, make the end systems communicate directly, the con of the P2P architenture is that the management of the network is complex.  
-The communication client-server and P2P is done with **sockets** that works like doors for the communication. Each layer use sockets to communicate with the layer above and below.
+The communication client-server and P2P is done through **sockets** that works like doors. Each layer use sockets to communicate with the layer above and below.
 
-![Socket management](https://i.imgur.com/EtdWsg7.png)
+The P2P architecture works with communication between peers. Known examples are Skype and BitTorrent. BitTorrent protocol devides packets with size from 32 kB up to 16 MB the files that want to transmit. The IP list can be asked to the neighborns and the available chunks they have.
 
-App-layer **protocols** like HTTP, SMTP allow types of messages to be exchanged with a specific semantic. Rules are specidied for each protocol. Protocols can be open like HTTP, SMTP or proprietary like Skype.
+**Process** is a program running within a host. **Inter process commnication** the fact of exchanging messages.
+
+![https://i.imgur.com/EtdWsg7.png](https://i.imgur.com/EtdWsg7.png)
 
 The **transport service** of an application can require some needs:
 
@@ -102,17 +107,17 @@ The **transport service** of an application can require some needs:
 
 There are two main internet transport protocol services TCP and UDP.
 
-### TCP architecture
+## TCP architecture
 
 - makes the **connection reliable**
-- manages flow and **congestion control** (making the connection slower in case the network is full)
-- it's **connection-oriented**
+- manages **flow and congestion control** making the connection slower in case the network is full
+- it's **connection-oriented** so a setup between two hosts is required
 - does **not** provide
   - timing
   - minimum throghput
   - security
 
-### UDP architecture
+## UDP architecture
 
 - establish an **unreliable data tranfer** service
 - does **not** provide
@@ -126,44 +131,34 @@ There are two main internet transport protocol services TCP and UDP.
 
 The UDP protocol exists beacause it's not possible to use just IP protocol bacause it doesn't use any port.
 
-TCP and UDP **can be encrypted**. SSL provides encypted TCP connection, **data integrity** and **end-point authetication**.
+TCP and UDP **can be encrypted**. SSL and TLS provides encypted TCP connection, **data integrity** and **end-point authetication**.
 
-### HTTP
+## HTTP
 
-The **web** connetion like HTTP are web pages consisting of objects like HTML files, JPEG images, audio files. The connection in HTTP make a request and receive a response. This connection is manages by the browser. The connection over TCP is initiated creating a socket in the 80 port and communicates over HTTP messages and then it closes the connection.
+The **web** procol HTTP allows exchange of pages consisting of objects like HTML files, JPEG images, audio files. The connection in HTTP make a request and receive a response. This connection is manages by the browser. The connection over TCP is initiated creating a socket in the 80 port and communicates over HTTP messages and then it closes the connection.
 
 In HTTP the connection is **state-less**, it does not mantain any information about the previous client requests.
 
 The HTTP can be **persistent** ot **non-persistent**: it's non-persistent when it doens't mantain the TCP connection, so when openening a new request every time it asks for a file. It's persistent when multple objects can be sent over a single TCP connection.
 
-**HTTP** handles two types of messages: requests and responses. The request message is encoded in ASCII so it's human readable. Some of the important lines of a **GET request** are:
+**Round Tript Time** (RTT) is the time to travel from client to server and back (does not count file transmission time). Non-persistent HTTP response time = 2*RTT + file transmission time.
 
-- the host
-- user-agent (the browser name)
-- the acceped language
-- acceped encoding
-- acceped charset
-- acceped time
-- connection (persistent or non-pesistent)
-
-The HTTP requests can make requests using GET and POST mothods.  
-
-### HTTP GET Request
+**HTTP** handles two types of messages: requests and responses. The request message is encoded in ASCII so it's human readable. An example of a **GET Request**:
 
 ``` HTTP
 GET /index.html HTTP/1.1\r\n
 Host: www-net.cs.umass.edu\r\n
-User-Agent: Firefox/3.6.10\r\n
+User-Agent: Firefox/3.6.10\r\n               # Browser
 Accept: text/html,application/xhtml+xml\r\n
 Accept-Language: en-us,en;q=0.5\r\n
 Accept-Encoding: gzip,deflate\r\n
 Accept-Charset: ISO-8859-1,utf-8;q=0.7\r\n
 Keep-Alive: 115\r\n
-Connection: keep-alive\r\n
+Connection: keep-alive\r\n                   # Persistent or non-persistent
 \r\n
 ```
 
-### HTTP Response
+An example of a **GET Response**:
 
 ``` HTTP
 HTTP/1.1 200 OK\r\n
@@ -184,25 +179,25 @@ The version 1.1 of HTTP has:
 
 - GET
 - POST
-- HEAD asks server to leave requested object out of response
+- HEAD asks server only the head
 - PUT uploads file in entity body to path specific in URL field
 - DELETE which deletes file specified in the URL field
 
 Some of the HTTPS response status codes are:
 
 - 200 OK
-- 301 Moved permanently
+- 301 Permanently moved
 - 400 Bad request
-- 404 Not fould
+- 404 Not found
 - 505 HTTP version not supported
 
-### Cookies
+## Cookies
 
 The are 4 main types of **Cookies**: cookies header line of HTTP response meassage (Susan always access internet from PC), cookie header line in next HTTP request message (she visits specific e-commerce site fo the first time), cookies file kept on a user's host manages by the browser (to give unique ID in a login so that in refres the browser doesn't log out) and back-end database at Web site (website tracks the user shopping list).
 
 ![Cookies](https://i.imgur.com/DZ42h5b.png)
 
-### Proxy server
+## Proxy server
 
 **Proxy servers** are used to cache a certain web page. For example if a user in the university (using the university's proxy server) request a static page from a web server the proxy server saves it, so in case another user request it, the proxy server won't reach it another time.  
 Proxy server acts as both client and server, in the server side a preprocessed page can be given to a user if he requests it in short period of times.
@@ -211,19 +206,19 @@ In HTTP there is also the **conditional GET**, it doesn't sent object if cache h
 
 ![Conditional GET](https://i.imgur.com/f2VcYzK.png)
 
-### Electionic mail
+## Electionic mail
 
-**SMTP** uses TCP to transer email messages through port 25, it uses persistent connections.
+**SMTP** (Simple Mail Transfer Protocol) uses TCP to transer email messages through port 25 with persistent connections.
 
-**IMAP** is Internet Mail Access Protocol stores the email in the mail servers (for example gmail).
+**POP** (Post Office Protocol) is stateless across sessions and has 2 modes "downloads and delete" (by default) and "download and keep" emails.
+
+**IMAP** (Internet Mail Access Protocol) stores the email always in a mail server. IMAP support also Multimedia messages (MIME) in the body of the message.
 
 ![IMAP](https://i.imgur.com/dtiVb7r.png)
 
-**POP3** is stateless across sessions and by default it "downloads and delete" emails.
+## DNS
 
-### DNS
-
-DNS makes the translation from hostname to IP address. A problem of DNS is that has a single point of failure so does not scale.
+DNS (Domain Name System) makes the translation from hostname to IP address. A problem of DNS is that has a single point of failure so does not scale.
 
 ![DNS](https://i.imgur.com/ScGAE4J.png)
 
@@ -235,23 +230,17 @@ The **local DNS** is owned by the ISP and it's the first DNS contacted by a user
 
 The DNS can cache the recods with a TTL so the TLD are not so often visited.
 
-### Lightweight directory access protocol (LDAP)
+## LDAP
 
-LDAP is used to store DNS recors. The LDAP can be query with a directory information base (DIB) and can contain wildcards.
+LDAP (Lightweight directory access protocol) is used to store recors (like DNS) and is meant to be easy to query.
 
 ![LDAP](https://i.imgur.com/aqrgh7L.png)
 
-### P2P applications
+## CDN
 
-The P2P architecture works with communication between peers. Known examples are Skype and BitTorrent.
+The **content distribution network** are used to scale the availability of data to more servers.
 
-BitTorrent protocol devides into 256Kb the files that want to transmit.
-
-### CDN
-
-The **DASH** (Dynamic, Adaptive Streaming over HTTP) streams multimedia so that the server the effort is divided in multiple CNSs.
-
-The server devides video file into multiple chunks, is encoded at different rates, and creates the manifest file contains URLs for the different chunks. The clint checks the bandwidht and consult th emanifest to get the more appropiate chunk. The client can check for the closest CDN and the Resolution wanted.
+The **DASH** (Dynamic, Adaptive Streaming over HTTP) streams multimedia so that the server the effort is divided in multiple CNSs. The server devides video file into multiple chunks, is encoded at different rates, and creates the manifest file contains URLs for the different chunks. The clint checks the bandwidht and consult the manifest to get the more appropiate chunk. The client can check for the closest CDN and the resolution wanted.
 
 ## Transport Layer Services
 
