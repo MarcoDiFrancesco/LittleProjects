@@ -34,7 +34,7 @@ In a system with M layers:
 - The **protocol control information** (PCI) is the piece of data attached to the SDU containing the receiver and sender addresses
 - The **protocol data unit** (PDU) is the result of SDU + PCI, and it is passed to the layer below
 
-### Segmentation and reassembling
+## Segmentation and reassembling
 
 The PDU can be:
 
@@ -100,38 +100,10 @@ The P2P architecture works with communication between peers. Known examples are 
 
 The **transport service** of an application can require some needs:
 
-- **Data integrity** like a downloaded file requires 100% reliable data transfer
-- **Timing** like phone call or gaming requires low latancy, if there is some data lost it's not that big problem
-- **Throughput** like video streaming requires large throughput, losing data in this case is not a big ploblem
-- **Security** like mails require enctyption and data integrity
-
-There are two main internet transport protocol services TCP and UDP.
-
-## TCP architecture
-
-- makes the **connection reliable**
-- manages **flow and congestion control** making the connection slower in case the network is full
-- it's **connection-oriented** so a setup between two hosts is required
-- does **not** provide
-  - timing
-  - minimum throghput
-  - security
-
-## UDP architecture
-
-- establish an **unreliable data tranfer** service
-- does **not** provide
-  - reliability
-  - flow control
-  - congestion control
-  - timing
-  - throughput guarantee
-  - security
-  - connection setup
-
-The UDP protocol exists beacause it's not possible to use just IP protocol bacause it doesn't use any port.
-
-TCP and UDP **can be encrypted**. SSL and TLS provides encypted TCP connection, **data integrity** and **end-point authetication**.
+- **Data integrity**: a downloaded file requires 100% reliable data transfer
+- **Timing**: phone call or gaming requires low latancy, if there is some data lost it's not that big problem
+- **Throughput**: video streaming requires large throughput, losing data in this case is not a big ploblem
+- **Security**: emails require enctyption and data integrity
 
 ## HTTP
 
@@ -141,7 +113,7 @@ In HTTP the connection is **state-less**, it does not mantain any information ab
 
 The HTTP can be **persistent** ot **non-persistent**: it's non-persistent when it doens't mantain the TCP connection, so when openening a new request every time it asks for a file. It's persistent when multple objects can be sent over a single TCP connection.
 
-**Round Tript Time** (RTT) is the time to travel from client to server and back (does not count file transmission time). Non-persistent HTTP response time = 2*RTT + file transmission time.
+Non-persistent HTTP response time = 2*[RTT](#RTT) + file transmission time.
 
 **HTTP** handles two types of messages: requests and responses. The request message is encoded in ASCII so it's human readable. An example of a **GET Request**:
 
@@ -206,7 +178,7 @@ In HTTP there is also the **conditional GET**, it doesn't sent object if cache h
 
 ![Conditional GET](https://i.imgur.com/f2VcYzK.png)
 
-## Electionic mail
+## Email protocols
 
 **SMTP** (Simple Mail Transfer Protocol) uses TCP to transer email messages through port 25 with persistent connections.
 
@@ -242,31 +214,59 @@ The **content distribution network** are used to scale the availability of data 
 
 The **DASH** (Dynamic, Adaptive Streaming over HTTP) streams multimedia so that the server the effort is divided in multiple CNSs. The server devides video file into multiple chunks, is encoded at different rates, and creates the manifest file contains URLs for the different chunks. The clint checks the bandwidht and consult the manifest to get the more appropiate chunk. The client can check for the closest CDN and the resolution wanted.
 
-## Transport Layer Services
+## Transport layer protocols
 
-The transport layer services are used to proovide a logical communication between processes running on different hosts.
+There are two main internet transport protocol services TCP and UDP.
 
-### Multiplexing and demultiplexing
+TCP architecture:
 
-**Multiplexing**: gathering data from multiple application processes of sender, enveloping that data with header and sending them as a whole to the intended receiver.
+- **in-order delivery**
+- makes the **connection reliable**
+- manages **flow and congestion control** making the connection slower in case the network is full
+- it's **connection-oriented** so a setup between two hosts is required
+- does **not** provide
+  - timing
+  - minimum throghput
+  - security
 
-**Demultiplexig**: delivering received segments at receiver side to the correct app layer processes
+UDP (User datagram protocol) architecture:
 
-Multiplexing means that the sender handle data from multiple sockets and add the trasport header and demultiplexing at receiver means to use header info to deliver receive regments to correct socket.
+- **unordered delivery** so the packeckes may be out of order
+- no handshake between sender and receiver
+- establish an **unreliable data tranfer** service
+- does **not** provide
+  - reliability (packets may be **lost**)
+  - flow control
+  - congestion control
+  - timing
+  - throughput guarantee
+  - security
+  - connection setup
 
-Each datagram uses IP addresses and port numbers to direct the segment to the appropriate socket.
+The UDP protocol exists beacause it's not possible to use just IP protocol bacause it doesn't use any port.
 
-The sockets are 16 bit integers with values up to 65535.
+**UDP checksum** allows the error detection of packets making the checksum at sender side and check it at receiver side.
+
+UDP is a **best effort** service, this means that segments may be lost or delivered out of order, there is not reliability on when a datagram is transfered.
+
+TCP and UDP **can be encrypted** using SSL/TLS to ensure **data integrity** and **end-point authetication**.
+
+## Multiplexing and demultiplexing
+
+**Multiplexing**: gathering data from multiple sockets (sent by processes), add the port to the transport header, enveloping header and packet togheder and sending them as a whole to the intended receiver.
+
+**Demultiplexig**: watch the transport header to understand to which app layer processes the packet needs to be sent and delivering it there.
 
 ![demultiplexing](https://i.imgur.com/mdIMnc7.png)
 
-### User datagram protocol (UDP)
+***TCP/UDP segment format***
 
-Is a **best effort service** and secgments may be lost or delivered out of order, there is not reliability on when a datagram is transfered.
+The ports in the segment are 16 bit integers, with well defined ports up to 1024 and non standard ports up to 65535. Ports are of 2 types:
 
-UDP makes **checksums** and attack them to the headers to detect errors.
+- **static** associated with standard applications (emails, web, DNS)
+- **dynamic** assigned by the operating system when opening a connection or creating a socket
 
-### ARQ
+## ARQ
 
 **Automatic Repeat reQuest** (ARQ) is a class of protocols that deals with packet loss, and it's made to notify the transmitter of the reception using acknoledgments.
 
@@ -278,7 +278,11 @@ Some ARQ protocol examples are:
 - TCP
 - WiFi-s MAC protocol
 
-### Stop and wait
+## RTT
+
+**Round Tript Time** (RTT) is the time to travel from client to server and back (does not count file transmission time).
+
+## Stop and wait
 
 The flow from the **transmitter prospective** is:
 
@@ -301,24 +305,30 @@ The flow from the **receiver prospective** is:
 - if checksum or sequence number incorrect
   - drop PDU
 
-![Stop and wait](https://i.imgur.com/sJREwAr.png)
+![https://i.imgur.com/sJREwAr.png](https://i.imgur.com/sJREwAr.png)
 
-Example Stop and wait
+***Stop and wait example***
 
-![Stop and wait example](https://i.imgur.com/QWbfBTE.png)
+Using stop and wait there will be the following efficiency:
 
-### Pipelined protocols
+![https://i.imgur.com/QWbfBTE.png](https://i.imgur.com/QWbfBTE.png)
 
-Pipelining increases utilization of the bandwidth.
+## Pipelined protocols
 
-The **transmission windows** (`Wt`) is the number of PDUs that the transmitter is allowed to transmit without receiving an ACK.
+Pipelining increases utilization of the bandwidth. So instead of sending 1 at a time like Stop and wait, multiple packets are sent before receiving the ACK.
 
-`|Wt|` indicates the size of the window.
+`L` is the **packet size**
 
-The receive windows (`Wr`) is the number of PDUs that the receiver is capable to accept and memorize.
+`N` is the **window**, the number of packets that is possible to send per [RTT](#RTT)
 
-In the transmission window Wt the **low pointer** (`Wlow`) is the first packet.
-In the transmission window Wt the **up pointer** (`Wup`) is the last packet.
+`Wt` is the **transmission windows**, the number of PDUs that the transmitter is allowed to transmit without receiving an ACK, the Wt has also the following:
+
+- `Wlow` is the **low pointer**, the first packet
+- `Wup` is the **up pointer**, the last packet
+
+`|Wt|` is the **size of the window**.
+
+`Wr` is the **receive windows**, the number of PDUs that the receiver is capable to accept and memorize.
 
 ![transmission and receive windows](https://i.imgur.com/442DBJ5.png)
 
