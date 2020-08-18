@@ -332,7 +332,7 @@ Pipelining increases utilization of the bandwidth. So instead of sending 1 at a 
 
 ![transmission and receive windows](https://i.imgur.com/442DBJ5.png)
 
-### Acknoledgements
+## Acknoledgements
 
 There are different types of ACKs:
 
@@ -343,17 +343,17 @@ There are different types of ACKs:
 
 Pipelined protocols examples are Go-back-N and Selective repeat.
 
-### Go-back-N
+## Go-back-N
 
 ![Go-back-N](https://i.imgur.com/9qs1Jsj.png)
 
-### Selective repeat
+## Selective repeat
 
 ![selective repeat](https://i.imgur.com/Ea0v9Gl.png)
 
 The **main difference** between the two protocols is that the first one, if it gets an ack that is not exactly in order, it rejects everything else except the expected packet, and in selective repeat the packets that are not exactly in order, they get accepted anyway (if the receiver window is big enough).
 
-### TCP
+## TCP
 
 Transmission Control Protocol (TCP) is:
 
@@ -366,7 +366,7 @@ Transmission Control Protocol (TCP) is:
 - **bi-directional** data flow
 - sender will **not overwhelm** receiver
 
-### TCP structure
+## TCP structure
 
 ![TCP structure](https://i.imgur.com/lPEgGJq.png)
 
@@ -380,15 +380,15 @@ Default MSS = 1500 bytes - 40 bytes (MSS - header)
 
 Retrasmission time out (RTO)
 
-### Connection setup
+## Connection setup
 
 ![Connection setup](https://i.imgur.com/LaBzWnQ.png)
 
-### Finish procedure
+## Finish procedure
 
 ![FIN procedure](https://i.imgur.com/PtPE3Bi.png)
 
-### Round trip time
+## Round trip time
 
 Smothed RTT: **SRTT = (1 -alpha)\*SRTT + alpha\*RTT**
 Typical value: alpha = 0.125
@@ -398,7 +398,7 @@ Typical value: alpha = 0.125
 CWND (Congestion) is **upper bounded** by RWND (Receiver)
 |WT| = min(CWND, RWND) (or min(CWND, |Wr|))
 
-### Slow start
+## Slow start
 
 For every ACK received increase CWND by one MSS:
 
@@ -422,7 +422,7 @@ Example:
 
 ![Slow start](https://i.imgur.com/P4nGi3k.png)
 
-### Congestion avoidance
+## Congestion avoidance
 
 For every valid ACK received:
 
@@ -441,7 +441,7 @@ Basically for every RTT in which CWND ACKs are received increase CWND by MSS
 
 ![Congestion avoidance](https://i.imgur.com/L14zVT8.png)
 
-### Fast retransmit and fast recovery
+## Fast retransmit and fast recovery
 
 Fast recovery idea is: if the network is working try to contunue transmitting.
 
@@ -472,7 +472,7 @@ On partial ACK
 
 ![Fast recovery example](https://i.imgur.com/8bD100W.png)
 
-### Slow start only vs Fast retransmit and recovery
+## Slow start only vs Fast retransmit and recovery
 
 ![Slow start only](https://i.imgur.com/d8HFH16.png)
 
