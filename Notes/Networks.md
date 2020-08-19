@@ -62,7 +62,7 @@ Layer 7: **Application** provides to the applications the means to communicate a
 
 Layer 6: **Presentation** makes encryption, data rappresentation (encoding). Some procols are: MIME, ASCII.
 
-Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated. For example if a whatsapp call changes from wifi to cellular the layer manage not to disconnect.  
+Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated. For example if a whatsapp call changes from wifi to cellular the layer manage not to disconnect.
 
 Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#multiplexing-and-demultiplexing), performs [segmentation and reassembles](#segmentation-and-reassembling) data, error control, flow control, packet ordering. Some example protocols are: TCP, UDP. Here packets are called datagrams or segments.
 
@@ -113,11 +113,11 @@ In HTTP the connection is **state-less**, it does not mantain any information ab
 
 The HTTP can be **persistent** ot **non-persistent**: it's non-persistent when it doens't mantain the TCP connection, so when openening a new request every time it asks for a file. It's persistent when multple objects can be sent over a single TCP connection.
 
-Non-persistent HTTP response time = 2*[RTT](#RTT) + file transmission time.
+Non-persistent HTTP response time = 2\*RTT + file transmission time.
 
 **HTTP** handles two types of messages: requests and responses. The request message is encoded in ASCII so it's human readable. An example of a **GET Request**:
 
-``` HTTP
+```HTTP
 GET /index.html HTTP/1.1\r\n
 Host: www-net.cs.umass.edu\r\n
 User-Agent: Firefox/3.6.10\r\n               # Browser
@@ -132,7 +132,7 @@ Connection: keep-alive\r\n                   # Persistent or non-persistent
 
 An example of a **GET Response**:
 
-``` HTTP
+```HTTP
 HTTP/1.1 200 OK\r\n
 Date: Sun, 26 Sep 2010 20:09:20 GMT\r\n
 Server: Apache/2.0.52 (CentOS)\r\n
@@ -218,16 +218,23 @@ The **DASH** (Dynamic, Adaptive Streaming over HTTP) streams multimedia so that 
 
 There are two main internet transport protocol services TCP and UDP.
 
-TCP architecture:
+TCP (Transmission Control Protocol) architecture:
 
+- **point-to-point** because there is one sender and one receiver
 - **in-order delivery**
-- makes the **connection reliable**
-- manages **flow and congestion control** making the connection slower in case the network is full
+- makes the **connection reliable** because the byte are ordered
+- manages **flow and congestion control** adapting the transmission rate depending on the newtork conditions (is sets dinamically the window size)
+- **clogging the network** is avoided thanks to congestion control
+- sender will **not overwhelm** receiver
 - it's **connection-oriented** so a setup between two hosts is required
+- **cumulative** ACKs
+- **bi-directional** data flow
 - does **not** provide
   - timing
   - minimum throghput
   - security
+
+The UDP protocol exists beacause it's not possible to use just IP protocol bacause it doesn't use any port.
 
 UDP (User datagram protocol) architecture:
 
@@ -243,8 +250,6 @@ UDP (User datagram protocol) architecture:
   - security
   - connection setup
 
-The UDP protocol exists beacause it's not possible to use just IP protocol bacause it doesn't use any port.
-
 **UDP checksum** allows the error detection of packets making the checksum at sender side and check it at receiver side.
 
 UDP is a **best effort** service, this means that segments may be lost or delivered out of order, there is not reliability on when a datagram is transfered.
@@ -259,7 +264,7 @@ TCP and UDP **can be encrypted** using SSL/TLS to ensure **data integrity** and 
 
 ![demultiplexing](https://i.imgur.com/mdIMnc7.png)
 
-***TCP/UDP segment format***
+**_TCP/UDP segment format_**
 
 The ports in the segment are 16 bit integers, with well defined ports up to 1024 and non standard ports up to 65535. Ports are of 2 types:
 
@@ -277,10 +282,6 @@ Some ARQ protocol examples are:
 - Selective Repeat
 - TCP
 - WiFi-s MAC protocol
-
-## RTT
-
-**Round Tript Time** (RTT) is the time to travel from client to server and back (does not count file transmission time).
 
 ## Stop and wait
 
@@ -307,7 +308,7 @@ The flow from the **receiver prospective** is:
 
 ![https://i.imgur.com/sJREwAr.png](https://i.imgur.com/sJREwAr.png)
 
-***Stop and wait example***
+**_Stop and wait example_**
 
 Using stop and wait there will be the following efficiency:
 
@@ -317,14 +318,22 @@ Using stop and wait there will be the following efficiency:
 
 Pipelining increases utilization of the bandwidth. So instead of sending 1 at a time like Stop and wait, multiple packets are sent before receiving the ACK.
 
+Legend:
+
+`RTT` is the **Round Tript Time**, the time to travel from client to server and back (does not count file transmission time from the sender, so time starts when the packet has been uploaded).
+
 `L` is the **packet size**
 
-`N` is the **window**, the number of packets that is possible to send per [RTT](#RTT)
+![https://i.imgur.com/Tf0ZtYC.png](https://i.imgur.com/Tf0ZtYC.png)
+
+Here `thoughput = 3 x L / RTT`, generally `throughput = N x L / RTT`
+
+`N` is the **window**, the number of packets that is possible to send per RTT.
 
 `Wt` is the **transmission windows**, the number of PDUs that the transmitter is allowed to transmit without receiving an ACK, the Wt has also the following:
 
-- `Wlow` is the **low pointer**, the first packet
-- `Wup` is the **up pointer**, the last packet
+- `Wlow` is the **low pointer**, the first packet in the transmission window
+- `Wup` is the **up pointer**, the last packet in the transmission window
 
 `|Wt|` is the **size of the window**.
 
@@ -343,105 +352,148 @@ There are different types of ACKs:
 
 Pipelined protocols examples are Go-back-N and Selective repeat.
 
-## Go-back-N
+## Go-back-N and Selective repeat
 
-![Go-back-N](https://i.imgur.com/9qs1Jsj.png)
+The main difference between the two protocols is that the first one, if it gets an ACK that is not exactly in order, it rejects everything else except the expected packet, and in selective repeat the packets that are not exactly in order, they get accepted anyway (if the receiver window is big enough).
 
-## Selective repeat
+**Go-back-N**: if a packet fails the sender will send continuously the previous arrived ACK and receiver will wait for timeout of the missed packet.  
+`|Wr| = 1`
 
-![selective repeat](https://i.imgur.com/Ea0v9Gl.png)
+![https://i.imgur.com/9qs1Jsj.png](https://i.imgur.com/9qs1Jsj.png)
 
-The **main difference** between the two protocols is that the first one, if it gets an ack that is not exactly in order, it rejects everything else except the expected packet, and in selective repeat the packets that are not exactly in order, they get accepted anyway (if the receiver window is big enough).
+**Selective repeat**: if a packet failes the sender will send anyway the ACK for received packets and receiver will wait for timeout of the missed packet.  
+`|Wr| = 4`
+
+![https://i.imgur.com/Ea0v9Gl.png](https://i.imgur.com/Ea0v9Gl.png)
+
+The **main problem** with these 2 protocols is that if the receiver gets the packet and the send does not receive the ACK, when there will be a timeout the sender will send the packet and the receiver will accept it as a new packet.
+
+![https://i.imgur.com/Fn4bvVA.png](https://i.imgur.com/Fn4bvVA.png)
 
 ## TCP
 
-Transmission Control Protocol (TCP) is:
+**Wr** is a 16-bit field with max value 65536 bytes  
+Default **MTU** (Maximum Transfer Unit) = 1500 bytes  
+Default **MSS** (Maximum Segment Size) = 1500 bytes - 40 bytes (MSS - header)  
+Retrasmission time out (RTO)
 
-- **point-to-point** because there is one sender and one receiver
-- **reliable** because the byte are ordered
-- congestion and flow control **set windows size**
-- **windows sizes** are dynamic
-- **cumulative** ACKs
-- **clogging the network** is avoided thanks to congestion control
-- **bi-directional** data flow
-- sender will **not overwhelm** receiver
+Some important flags are:
 
-## TCP structure
+- **SYN** flag synchronizes sequence numbers to initiate a TCP connection
+- **FIN** flag indicates the end of data transmission to finish a TCP connection
+- **RST** flag to close connection immediately
 
 ![TCP structure](https://i.imgur.com/lPEgGJq.png)
 
-- RWND is a 16-bit field with max value 65536 bytes
+**TCP connection setup** is called "three-way handshake".
 
-Maximum Transfer Unit
-Default MTU = 1500 bytes
+Sequence:
 
-Maximum Segment Size
-Default MSS = 1500 bytes - 40 bytes (MSS - header)
+- host A sends SYN (with port A, port B and initial sequence number x).
+- host B sends SYN + ACK (with port B, port A and initial sequence number y).
+- host A sends segment (with ACK with port A, port B).
 
-Retrasmission time out (RTO)
+Connection setup:
 
-## Connection setup
+![https://i.imgur.com/LaBzWnQ.png](https://i.imgur.com/LaBzWnQ.png)
 
-![Connection setup](https://i.imgur.com/LaBzWnQ.png)
+TCP doesn't send single byte (if not forced), it tries to send segments as large as MSS. The MSS is chosen with "Trial and error" mechanism.
 
-## Finish procedure
+The **default MSS** = 1460 bytes (1550 MTU - 40 header)  
+The **minimum MSS** = 536 bytes (given by IP protocol)
 
-![FIN procedure](https://i.imgur.com/PtPE3Bi.png)
+**TCP finishing procedure polite way**:
+
+- A sends FIN (ask to finish), B sends FINACK (understood that you want to finish)
+- B can still send data to A
+- B sends FIN (ask to finish), A sends FINACK (understood that you want to finish)
+
+![https://i.imgur.com/PtPE3Bi.png](https://i.imgur.com/PtPE3Bi.png)
+
+**TCP finishing procedure rude way**: one party sends RST flag, the other one does not respond.
 
 ## Round trip time
 
-Smothed RTT: **SRTT = (1 -alpha)\*SRTT + alpha\*RTT**
+In TCP to calculate the timeout the RTT must be known. In fact `RTT < Timeout`.
+
+**Smothed RTT** makes an average of the previous RTTs.
+
+`SRTT = ( previous SRTT ) + alpha * RTT`  
+`SRTT = (1 - alpha) *SRTT + alpha * RTT`
+
 Typical value: alpha = 0.125
 
 ![SRTT](https://i.imgur.com/CK4KZ2v.png)
 
-CWND (Congestion) is **upper bounded** by RWND (Receiver)
-|WT| = min(CWND, RWND) (or min(CWND, |Wr|))
+**Retrasmission timeout** is calculated as: `RTO = SRTT + (safety margin)`
 
-## Slow start
+**TCP flow control**: receiver “advertises” free buffer space by including RWND value in TCP header so sender limits amount of unacked(“in-flight”) data to receiver’s RWND value.
 
-For every ACK received increase CWND by one MSS:
+## Congestion control
+
+**TCP congestion control** means "too many sources sending too much data too fast for network to handle". To deal with congestion control multiple algoritmhs have been proposed over the years, there isn't only one TCP impelementation.
+
+**AIMD** is one implementation of congestion control. The approch: sender increases transmission rate (window size by 1 MSS every RTT), until loss occurs (cut window in half). For example:
+
+![https://i.imgur.com/JVFEH2r.png](https://i.imgur.com/JVFEH2r.png)
+
+AIMD allows fairness in the connection. For a bandwidth R and K sessions there is an average rate of `R/K`.
+
+The CWND (congestion window) in TCP is the number of bytes the transmitter is allowed to inject in the network. There are multiple ways of setting the CWND:
+
+- in absence of losses: slow start, congestion avoidance
+- in case of losses: fast retransmit, fast recovery
+
+In all cases CWND (Congestion) is **upper bounded** by the Wr. `|WT| = min(CWND, |Wr|)`
+
+## Slow start with Congestion avoidance
+
+**Slow start** to start the connection, when CWND reaches SSTHREASH (slow start threshold) switch to congestion avoidance. Slow start implementation:
 
 - start
   - CWND = 1 MSS
-  - SSTHRESH = RWND (or RWND/2 depending on the implementation)
+  - SSTHRESH = RWND
 - on valid ACK
   - CWND = CWND + 1 MSS
   - move Wlow according to ACK
-  - if CWND >= SSTHRESH -> switch to Congestuib Avoidance
+  - if CWND >= SSTHRESH -> switch to Congestion Avoidance
 - on RTO timeout
   - SSTHRESH = max(CWND/2, 2)
-  - RTO = RTO * 2
+  - RTO = RTO \* 2
   - CWND = 1
   - retransmit the missing segment
 
-Example:
+Slow start example:
 
 - receive ACK after RTT -> CWND = 2 MSS
 - receive 2 ACKs after RTT -> CWND = 4 MSS
 
 ![Slow start](https://i.imgur.com/P4nGi3k.png)
 
-## Congestion avoidance
+**Congestion avoidance** is used once CWND reaches SSTHREASH. Basically, for every RTT in which CWND ACKs are received, increase CWND by MSS.
 
 For every valid ACK received:
 
-- CWND = CWND + MSS * MSS / CWND
+- CWND = CWND + MSS \* MSS / CWND
 - move Wlow according to ACK
 
-On RTO timeout
+On RTO timeout:
 
 - switch to slow start
 - SSTHRESH = max(CWIND/2,2)
-- RTO = RTO * 2
+- RTO = RTO \* 2
 - CWND = 1
 - retransmit missing segment
 
-Basically for every RTT in which CWND ACKs are received increase CWND by MSS
+Basically for every RTT in which CWND ACKs are received increase CWND by 1 MSS
 
 ![Congestion avoidance](https://i.imgur.com/L14zVT8.png)
 
-## Fast retransmit and fast recovery
+With slow start and congestion avoidance only, the performance looks like this:
+
+![https://i.imgur.com/f9pr7vm.png](https://i.imgur.com/f9pr7vm.png)
+
+## Slow start with Fast retransmit and fast recovery
 
 Fast recovery idea is: if the network is working try to contunue transmitting.
 
@@ -472,8 +524,28 @@ On partial ACK
 
 ![Fast recovery example](https://i.imgur.com/8bD100W.png)
 
-## Slow start only vs Fast retransmit and recovery
+## Slow start only vs Fast retransmit and Fast recovery
 
-![Slow start only](https://i.imgur.com/d8HFH16.png)
+Slow start only:
 
-![Fast retransmit and recovery](https://i.imgur.com/ZCEpQ81.png)
+![https://i.imgur.com/d8HFH16.png](https://i.imgur.com/d8HFH16.png)
+
+Fast retransmit and recovery:
+
+![https://i.imgur.com/ZCEpQ81.png](https://i.imgur.com/ZCEpQ81.png)
+
+UDP vs TCP fairness is not balanced. UDP does not have congestion control e.g. for multimedia. TCP having congestion control allows multiple parallel connection between two hosts.
+
+## Network layer
+
+There are 2 different logics for the networking layer:
+
+- **data plane** determines how datagram arriving on a router input port is forwarded to router output port, works in hardware of routers in nanoseconds.
+- **control plane** determines how datagram is routed among routers along end-end path from source host to destination host, works in software of router in milliseconds.
+
+**Switching fabrics** allows to transfer packet from input buffer to appropriate output buffer.  
+**Switching rate**: rate at which packets can be transfer from inputs to outputs.
+
+Different types of swiching fabrics:
+
+![https://i.imgur.com/lIZEWAz.png](https://i.imgur.com/lIZEWAz.png)
