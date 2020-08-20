@@ -64,13 +64,13 @@ Layer 6: **Presentation** makes encryption, data rappresentation (encoding). Som
 
 Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated. For example if a whatsapp call changes from wifi to cellular the layer manage not to disconnect.
 
-Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#multiplexing-and-demultiplexing), performs [segmentation and reassembles](#segmentation-and-reassembling) data, error control, flow control, packet ordering. Some example protocols are: TCP, UDP. Here packets are called datagrams or segments.
+Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#multiplexing-and-demultiplexing), performs [segmentation and reassembles](#segmentation-and-reassembling) data, error control, flow control, packet ordering. Some example protocols are: TCP, UDP. Here packets are called **datagrams or segments**.
 
-Layer 3: **Network** (OSI) or **Internet** (TCP/IP) makes routing and forwarding, congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once, and used for all packets belonging to a specific host to host communication. Some example procols are: IP (IPv4, IPv6), ICMP. Here packets are called packets or datagrams.
+Layer 3: **Network** (OSI) or **Internet** (TCP/IP) makes routing and forwarding, congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once, and used for all packets belonging to a specific host to host communication. Some example procols are: IP (IPv4, IPv6), ICMP. Here packets are called **packets or datagrams**.
 
-Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11, Ethernet. Here packets are called frames.
+Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11, Ethernet, ARP. Here packets are called **frames**.
 
-Layer 1: **Physical** is in the bottom of the model. It takes care of transmitting raw bits on the interface via electrical, electro-magnetic, light, sound ways signals. It defines encoding, voltages, modulations.
+Layer 1: **Physical** is in the bottom of the model. It takes care of transmitting raw bits on the interface via electrical, electro-magnetic, light, sound ways signals. It defines encoding, voltages, modulations. Here packets are **bits**.
 
 ## Structure of the internet
 
@@ -549,3 +549,221 @@ There are 2 different logics for the networking layer:
 Different types of swiching fabrics:
 
 ![https://i.imgur.com/lIZEWAz.png](https://i.imgur.com/lIZEWAz.png)
+
+In network layer there is the important choice to make on **network neutrality**. If in a router for the packets there is a queue, then a choice to process a packet before another can be made. This raises the problem that if a company is capable of paying the ISP more than another, this company will have access to faster connections. Normally the **scheduling algorighm** should be FIFO, but in real world there is a priority queue.
+
+## IP
+
+**IP** (Internet Protocol)
+
+The IP datagram contains:
+
+- **Total lenght** 16-bit integer that specifies the total number of bytes including header and the data
+- **Identification** 16-bit sequential number used for reassemly
+- **TTL** (Time To Live) 8-bit integer initiliazed by the sender, when is 0 the datagram is discarded
+- **Header checksum** 16-bit ones-complement checksum of header fields
+- **Source Ip Address** 32-bit Internet address of the original sender
+- **Source Ip Address** 32-bit Internet address of the ultmate destination
+- **Is fragmented** 1-bit that says if a datagram is fragmented
+- **Fragmented Offset** specifies where in the original datagram the fragment belongs
+
+## IP fragmentation
+
+**MTU** (Maximum Transmission Unit) maximum amount of data that a frame can carry given by the hardware technology.
+
+In a network where there are 2 different MTUs, if a sender has an MTU of 1500 octects and the receiver 1000, then the datagram fragmentation can split the datagram to work with the receiver network.
+
+Reassembling a datagram example:
+
+- packets sent from H1 to H2: if host H1 sends a 1500-octet datagram to host H2, router R1 will divide the datagram into two fragments, which it will forward to R2
+- Router R2 does not reassemble the fragments: it uses the destination address in a fragment to forward the fragment as usual
+- The ultimate destination host, H2, collects the fragments and reassembles them
+
+![https://i.imgur.com/IQstOCs.png](https://i.imgur.com/IQstOCs.png)
+
+This has some implications: by postponing reassembly until the ultimate destination IP is free to pass some fragments from a datagram along different routes than other fragments; reduces the amount of state information in routers, a router does not need to know whether the datagram is a fragment or a complete datagram. But if the receiver loses a fragment of a datagram (or expires), this will be discarded.
+
+IP fragmentation is anyway **mostly disabled** for the reasons: firewalling requiring TCP/UDP header inspection, overlapping fragment offset attacks in stateless firewalls, memory exhaustion attacks (DDoS) by intentionally omitting fragments, bad implementations of the reassembly procedure exploited for buffer overflows that means remote code execution attacks.
+
+## IPv4
+
+When sending a packet across the Internet, sender’s protocol software must specify: its own 32-bit IP address and the address of the intended recipient. Routers only use the destination address for forwarding and routing.
+
+**Dotted decimal addresses** range 0.0.0.0 through 255.255.255.255.
+
+IPv4 class addressing, the green part in the prefix, the red part the suffix:
+
+![https://i.imgur.com/hK6wXvi.png](https://i.imgur.com/hK6wXvi.png)
+
+A **subnet mask** example:
+
+![https://i.imgur.com/6rFe1qu.png](https://i.imgur.com/6rFe1qu.png)
+
+Private IPs:
+
+- 10.0.0.0 to 10.255.255.255 (10.0.0.0/8)
+- 172.16.0.0 to 172.31.255.255 (172.16.0.0/12)
+- 192.168.0.0 to 192.168.255.255 (192.168.0.0/16)
+
+## CIDR
+
+**CIDR** (Classless Inter-Domain Routing) is used to devide the network not following classes convention. An exmaple is: suppose the ISP has 2 customers, one customer needs 12 IP addresses and the other needs 9. The ISP can assign:
+
+- customer1 CIDR: 128.211.0.16/28
+- customer2 CIDR: 128.211.0.32/28
+- both customers have the same mask size (28 bits), the prefixes differ
+
+One problem can araise with multiple entries match: router has 2 netmasks, so it performs 2 matches
+
+- 200.23.19.7 & 255.255.240.0 (/20) = 200.23.16.0 so MATCH
+- 200.23.19.7 & 255.255.254.0 (/23) = 200.23.18.0 so MATCH!
+
+In this case the longest prefix match is taken, so /23 is taken.
+
+If there is no match with all the masks, the match is done with 0.0.0.0 at the end of the table.
+
+![https://i.imgur.com/Uj9mVV6.png](https://i.imgur.com/Uj9mVV6.png)
+
+## NAT
+
+NAT (Network Address Translation)
+
+## Special network addresses
+
+**Network**: all zeros after mask (e.g. 128.211.0.16/28 = 10000000 11010011 00000000 0001***0000***)  
+
+**Broadcasting** that means send to all, all 1s are used (e.g. 10000000   11010011   00000000   0001***1111***)
+
+**Limited broadcast** refers to a broadcast on a directly-connected network. It is used during system startup by a computer that does not yet know the network number. Informally, we say that the broadcast is limited to a “single LAN” meaning that it will never be forwarded by a router. All 32 bits are 1s: ***11111111 11111111 11111111 11111111***.
+
+TCP/IP contains protocols a computer can use to obtain its IP address automatically when the computer boots... but the startup protocols also use an IP to communicate, this is all 0s ***00000000 00000000 00000000 00000000***.
+
+**Loopback address** used to test network applications. e.g., for preliminary debugging after a network application has been created. A programmer must have two application programs that are intended to communicate across a network, instead of executing each program on a separate computer the programmer runs both programs on a single computer and instructs them to use a loopback address when communicating. During loopback testing no packets ever leave a computer, the IP software forwards packets from one application to another. IP serverves the network prefix 127/8 (so 01111111 ***00000000 00000000 00000000***).
+
+**Multicast address** means send a packet to a group of hosts, in internet multicast is notmally blocked. In IPv4 they start with 1110, so 224.0.0.0 to 239.255.255.255 (1110***0000 00000000 00000000 00000000***).
+
+Subnet reserved to enable local communication when hosts **cannot find an IP** address: 169.254.0.0/16. Each host randomly chooses one IP from that subnet.
+
+## ARP
+
+In link layer there is **ARP** (Address Resolution Protocol). A host can resolve addresses of the same physical network only. ARP example: suppose B needs to resolve the IP address of C, B broadcasts a request that says: “I'm looking for the MAC address of a host that has IP address C”. An ARP request message reaches all computers on a network, when C receives a copy of the request it sends a directed reply back to B that says: “I'm the computer with IP address C, and my MAC address is M”:
+
+![https://i.imgur.com/ZBVMweO.png](https://i.imgur.com/ZBVMweO.png)
+
+## ICMP
+
+**ICMP** (Internet Control Message Protocol) is used to report errors back to the original source. IP and ICPM are co-dependent, IP depends on ICMP to report errors, ICMP uses IP to carry error messages. When a router wants to send an ICMP message, creates an IP datagram and encapsulates the ICMP message in it. ICMP messages do not have special priority. If an ICMP error message causes an error, no error message is sent.
+
+**Traceroute command** send IP datagrams with increasing TTL (1, 2, 3, ...), with TTL = 1 the first router changes the TTL to 0, datagram gets dropped, router (should) sends a Time Exceeded message back with own IP address. With TTL = 2, first router changes the TTL to 1, second router to 0, repeat until destination reached, used to understand the path traveled.
+
+## DHCP
+
+DHCP (Dynamic Host Configuration Protocol) dynamically assigns IP by a server when joining and allows re-use of addresses. This is the scenario of a request:
+
+![https://i.imgur.com/yTOCMAa.png](https://i.imgur.com/yTOCMAa.png)
+
+DHCP issues a lease on the address for a finite period, the use of leases allows a DHCP server to reclaim addresses. When the lease expires the server places the address to the pool of available addresses. When a lease expires, a host can choose to relinquish the address or renegotiate with DHCP to extend the lease, negotiation occurs concurrent with other activity.
+
+DHCP can return: address of first-hop router for client, name and IP address of DNS server, network mask.
+
+If no DHCP is set up, then link-local address can be used and manual IP configuration is required.
+
+## IPv6
+
+IPv6 has an address of 128 bits, 16 bits blocks, colon separated (e.g. 2a03:2880:f108:0083:face:b00c:0000:25d). The changes from IPv4 are:
+
+- no fragmentation allowed
+- checksum: removed entirely to reduce processing time at each hop
+- ARP is provided by Neighbor Discovery Protocol
+
+Not all routers can be upgraded simultaneously, no “flag days” how will network operate with mixed IPv4 and IPv6 routers? This is done through tunneling: IPv6 datagram carried as payload in IPv4 datagram among IPv4 routers:
+
+![https://i.imgur.com/t1iR9MS.png](https://i.imgur.com/t1iR9MS.png)
+
+## Network paths
+
+**Graph**: G = (N, E)  
+**Nodes** (router): N = {u, v, w, x, y, z}  
+**Links**: E = {(u,v), (u,x), (v,x), (v,w), (x,w), (x,y), (w,y), (w,z), (y,z)}  
+**Cost**: c(w, z) = 5  
+**Path cost**: cost (x1, x2, ..., xp) = c(x1, x2) + c(x2, x3) + ... + c(xp-1, xp)
+
+![https://i.imgur.com/1l8PvOX.png](https://i.imgur.com/1l8PvOX.png)
+
+## Dijkstra
+
+One link-state routing algorithm is **Dijkstra**. Legend: cost is D(v), predecessor node is p(v). An example is:
+
+![https://i.imgur.com/b5UwM5T.png](https://i.imgur.com/b5UwM5T.png)
+
+Dikestra algoritms costs O(n^2).
+
+One problem of Djkestra can raise with network oscilalations, for example:
+
+![https://i.imgur.com/KqDtd94.png](https://i.imgur.com/KqDtd94.png)
+
+## OSPF
+
+OSPF (Open Shortest Path First) is a link-state routing protocol, topology known by all nodes, routes are computed using Dijkstra's algorithm. An AS (Autonomous system) is a serie of routers that are bundled togheder. Routers use flooding for link-state advertisements to all other routers within the AS.
+
+OSPF implements three procedures:
+
+- **Hello protocol** periodic messages to check for working links (maintain neighbors)
+- **Exchange protocol** used to exchange the known network topology between neighbors that just discovered each other
+- **Flooding protocol** used to inform all routers in the AS of a link state change
+
+OSPF has an hierarchy and link-state advertisement is done only in the area:
+
+![https://i.imgur.com/KRbCNkL.png](https://i.imgur.com/KRbCNkL.png)
+
+## Distance vector routing
+
+In Distance vector, the routing algorith is distributed, No knowledge of the whole network, Knowledge of direct neighbors.
+
+## Bellaman ford
+
+Bellaman ford is a basic Distance vector algorithm. Some caracteristics are: each router knows networks directly attached to it, routers advertise IP addresses, we use router IDs as destinations, but in reality you have addresses.
+
+## Routing Information Protocol
+
+The Routing Information Protocol (RIP) is a simple intradomain protocol implementing distance vector routing, some downsides: slow convergence,  limited network size; strengths: simple to implement, simple to manage.
+
+## Link state vs Distance vector
+
+Message complexity:
+
+- LS: with n nodes, E links, O(nE) msgssent
+- DV: exchange between neighbors only, convergence time varies
+
+Speed of convergence:
+
+- LS: O(n^2) algorithm requires O(nE) msgs, may have oscillations
+- DV: convergence time varies, may be routing loops, count-to-infinity problem
+
+Robustness: what happens if router malfunctions?
+
+- LS: node can advertise incorrect link cost, each node computes only its own table
+- DV: DV node can advertise incorrect path cost, each node’s table used by others, error propagate thru network
+
+## Inter-AS routing: BGP
+
+So far we studied how routing is performed within one AS. How about routing outside the AS, e.g., between different ISPs? This is done using **Border Gateway Protocol**.
+
+Border Gateway Protocol provides each AS:
+
+- eBGP(exterior): obtain subnet reachability information from neighboring autonomous systems
+- iBGP(interior): propagate reachability information to all AS-internal routers
+- determine "good" routes to other networks based on reachability information and policy
+- allows subnet to advertise its existence to the rest of the Internet: "I am here"
+
+![https://i.imgur.com/9ASOo7K.png](https://i.imgur.com/9ASOo7K.png)
+
+How it works the BGP session: two BGP routers (“peers”) exchange BGP messages over semi-permanent TCP connection advertising paths to different destination network prefixes (BGP is a “path vector” protocol).
+
+BGP achieving policy problem: Suppose an ISP only wants to route traffic to/from its customers (doesn't want to carry transit traffic between other ISPs):
+
+- A advertises path Aw to B and to C
+- B chooses not to advertise BAwto C:  B gets no “revenue” for routing CBAw, since none of  C, A, w are B’s customers, C does not learn about CBAw path.
+- C will route CAw (not using B) to get to w
+
+Why are Intra-AS and Inter-AS routing different? Performance: intra-AS can focus on performance, inter-AS policy may dominate over performance.
