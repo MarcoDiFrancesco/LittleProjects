@@ -31,3 +31,12 @@ The folders are separated by programming language or program used, it starts fro
 * [Sql](Sql)
 * [Uml](Uml)
 * [Xlsx](Xlsx)
+
+## Notes
+
+This folder contains all the notes not related to a specific programming language.
+
+* [Logic](Notes/Logic)
+* [Networks](Notes/Networks)
+* [Security](Notes/Security)
+* [Software engineering](Notes/Software%20engineering)
