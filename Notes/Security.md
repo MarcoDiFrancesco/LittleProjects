@@ -1,7 +1,5 @@
 # Security
 
-Security notes.
-
 ## Security intro
 
 **Information security** is the practise of preventing unauthorized access, use, disclosure, disruption, modification, recording or destruction od information.  

@@ -64,11 +64,11 @@ Layer 6: **Presentation** makes encryption, data rappresentation (encoding). Som
 
 Layer 5: **Session** Manages data exchange so this can be paused, restared and terinated. For example if a whatsapp call changes from wifi to cellular the layer manage not to disconnect.
 
-Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#multiplexing-and-demultiplexing), performs [segmentation and reassembles](#segmentation-and-reassembling) data, error control, flow control, packet ordering. Some example protocols are: TCP, UDP. Here packets are called **datagrams or segments**.
+Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#multiplexing-and-demultiplexing), performs [segmentation and reassembles](#segmentation-and-reassembling) data, error control, flow control, packet ordering. Some example protocols are: TCP, UDP. Here packets are called **datagrams** (and rarely segments).
 
-Layer 3: **Network** (OSI) or **Internet** (TCP/IP) makes routing and forwarding, congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once, and used for all packets belonging to a specific host to host communication. Some example procols are: IP (IPv4, IPv6), ICMP. Here packets are called **packets or datagrams**.
+Layer 3: **Network** (OSI) or **Internet** (TCP/IP) makes routing and forwarding, congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once, and used for all packets belonging to a specific host to host communication. Some example procols are: IP (IPv4, IPv6), [ICMP](#ICMP). Here packets are called **datagrams** (and rarely packets).
 
-Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11, Ethernet, ARP. Here packets are called **frames**.
+Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11, Ethernet, [ARP](#ARP). Here packets are called **frames**.
 
 Layer 1: **Physical** is in the bottom of the model. It takes care of transmitting raw bits on the interface via electrical, electro-magnetic, light, sound ways signals. It defines encoding, voltages, modulations. Here packets are **bits**.
 
@@ -767,3 +767,129 @@ BGP achieving policy problem: Suppose an ISP only wants to route traffic to/from
 - C will route CAw (not using B) to get to w
 
 Why are Intra-AS and Inter-AS routing different? Performance: intra-AS can focus on performance, inter-AS policy may dominate over performance.
+
+## Data Link and Ethernet
+
+Data-link layer has responsibility of transferring datagrams from one node to physically adjacent node over a link. In data-link layer error detection is used in low bit-error link (fiber, some twisted pair), it's used for high error rates links like wireless.
+
+In data link layer the sending side encapsulates datagram in frame and adds error checking bits, rdt, flow control and the receiving side looks for errors, rdt, flow control and extracts datagram, passes to upper layer at receiving side.
+
+In **EDC** (Error Detection and Correction bits) the error detection not 100% reliable, protocol may miss some errors, but rarely, larger EDC field yields better detection and correction.
+
+## CRC
+
+CRC (Cyclic redundancy check) is used for detecting an n-bit data block of arbitrary length, it will detect any single error burst not longer than n bits, and the fraction of all longer error bursts that it will detect is (1 − 2−n).
+
+## Multiple access protocols
+
+Two or more simultaneous transmissions by nodes: collision if node receives two or more signals at the same time. Multiple access protocol is a distributed algorithm that determines how nodes share channel, i.e., determine when node can transmit.
+
+What it does is: when M nodes want to transmit at R rate, each can send at average rate R/M. This has the pro to be fully decentralized, so no special node to coordinate transmissions and no synchronization of clocks.
+
+This has Three broad classes:
+
+- channel partitioning: divide channel into smaller “pieces” (time slots, frequency, code)
+- random access: channel not divided, allow collisions and “recover” from collisions
+- “taking turns”: nodes take turns, but nodes with more to send can take longer turns
+
+## Channel partitioning
+
+For **channel partitioning** there are different protocols.
+
+One of them is **TDMA** (time division multiple access) protocol: each station gets fixed length slot (length = packet transmission time) in each round, unused slots go idle:
+
+![https://i.imgur.com/s77qubO.png](https://i.imgur.com/s77qubO.png)
+
+**FDMA** (frequency division multiple access): frequency division multiple access, each station assigned fixed frequency band, unused transmission time in frequency bands go idle:
+
+![https://i.imgur.com/BS6kiYq.png](https://i.imgur.com/BS6kiYq.png)
+
+## Random access protocols
+
+Random access protocols work in this way: When node has packet to send transmit at full channel data rate R without a priori coordination among nodes, if two or more are transmitting there is a collision.
+
+**Random access MAC** protocol specifies: how to detect collisions and how to recover from collisions. Some example of Random access MAC protocols are: slotted ALOHA, ALOHA, CSMA, CSMA/CD and CSMA/CA.
+
+## Slotted ALOHA
+
+In Slotted ALOHA all frames same size, time is divided into equal size slots (time to transmit 1 frame), nodes start to transmit only at slot beginning, nodes are synchronized, if 2 or more nodes transmit in slot, all nodes detect collision.
+
+Pros: single active node can continuously transmit at full rate of channel and it's highly decentralized: only slots in nodes need to be in sync. Cons: collisions, wasting slots, needs clock synchronization.
+
+![https://i.imgur.com/AqgcGJy.png](https://i.imgur.com/AqgcGJy.png)
+
+## ALOHA
+
+The **Pure (unslotted) ALOHA** is simpler and doesn't require synchronization, When frame first arrives transmit immediately, Collision probability increases.
+
+![https://i.imgur.com/L5KI9Uk.png](https://i.imgur.com/L5KI9Uk.png)
+
+The comparison with ALOHA vs Slotted ALOHA:
+
+![https://i.imgur.com/srIMgM0.png](https://i.imgur.com/srIMgM0.png)
+
+## CSMA
+
+**CSMA** (carrier sense multiple access) works on listening before transmitting. And there are 2 variations: in non-persistent (0-persistent) if channel is busy, then defer transmission by a random time much larger than the transmission time, in 1-persistent if channel is busy wait for channel to become free (at the end of current transmission). Both in case of collision (both cases) wait a random time and then try again following the same procedure.
+
+With **CSMA p-persistent** when station ready to send a frame, if channel is BUSY wait for channel to become free (end of current transmission), then with probability p transmit frame, with probability 1–p defer transmission by a random time much larger than the transmission time.
+
+One problem with CSMA is that there is a **vulnerable period**: if a station starts to transmit but the signal has not reached all stations, other stations might start transmitting. And another one is that of two nodes may not hear each other's transmission.
+
+![https://i.imgur.com/dBGY6C7.png](https://i.imgur.com/dBGY6C7.png)
+
+## CSMA/CD
+
+CSMA with collision detection works that when transmitting a packet, the senders listen to the network and in case there is any problem. This is easy in wired LANs and difficult in wireless LANs.
+
+Works in this way: If NIC senses channel idle, starts frame transmission, if NIC senses channel busy, waits until channel idle, then transmits, if NIC transmits entire frame without detecting another transmission, NIC is done with frame! If NIC detects another transmission while transmitting,  aborts and sends jam signal
+
+![https://i.imgur.com/btaluYF.png](https://i.imgur.com/btaluYF.png)
+
+## CSMA/CA
+
+CSMA with collision avoidance is used when it is not possible to detect collisions. CA means to behave in a p-persistent manner, with p being adapted to network conditions, p decreases at each retransmission attempt.
+
+## “Taking turns” MAC protocols
+
+**Polling**: master node “invites” slave nodes to transmit in turn, typically used with “dumb” slave devices. The problems are: polling overhead, latency, single point of failure (master).
+
+![https://i.imgur.com/08DDbfZ.png](https://i.imgur.com/08DDbfZ.png)
+
+**Token passing**: control token passed from one node to next sequentially. Problems: token overhead, latency, single point of failure (token).
+
+![https://i.imgur.com/edFAiiA.png](https://i.imgur.com/edFAiiA.png)
+
+## Switch
+
+The **switch** is a device, where each link is its own collision domain. Switches know where to send packets because they have something like a routing table. Switch learns which hosts can be reached through which interfaces when frame received, switch “learns” location of sender.
+
+When frame received at switch: Record incoming link, MAC address of sending host, Index switch table using MAC destination address, If entry found for destination then: forward frame on interface indicated by entry, else flood (forward on all interfaces except arriving interface).
+
+The same works with switches interconnected to other switches.
+
+![https://i.imgur.com/5XlO88p.png](https://i.imgur.com/5XlO88p.png)
+
+## Switch vs Router vs Hubs
+
+Store-and-forward and Forwarding tables comparison.
+
+- routers
+  - network-layer devices (examine network-layer headers)
+  - compute tables using routing algorithms, IP addresses
+- switches
+  - link-layer devices (examine link-layer headers)
+  - learn forwarding table using flooding, learning, MAC addresses
+- hubs
+  - simply repeat signal
+  - no forwarding table
+
+**Collision domain** is a portion of the network in which, whenever two or more stations transmit simultaneously, a collision occurs.
+
+**Broadcast domain** is a portion of the network that can be reached via a layer-2 broadcast
+
+Orange Broadcast domain, blue Collision domain.
+
+![https://i.imgur.com/YJ3DW96.png](https://i.imgur.com/YJ3DW96.png)
+
+## WiFi
