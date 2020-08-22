@@ -324,10 +324,6 @@ Legend:
 
 `L` is the **packet size**
 
-![https://i.imgur.com/Tf0ZtYC.png](https://i.imgur.com/Tf0ZtYC.png)
-
-Here `thoughput = 3 x L / RTT`, generally `throughput = N x L / RTT`
-
 `N` is the **window**, the number of packets that is possible to send per RTT.
 
 `Wt` is the **transmission windows**, the number of PDUs that the transmitter is allowed to transmit without receiving an ACK, the Wt has also the following:
@@ -339,7 +335,9 @@ Here `thoughput = 3 x L / RTT`, generally `throughput = N x L / RTT`
 
 `Wr` is the **receive windows**, the number of PDUs that the receiver is capable to accept and memorize.
 
-![transmission and receive windows](https://i.imgur.com/442DBJ5.png)
+Here `thoughput = 3 x L / RTT`, generally `throughput = N x L / RTT`:
+
+![https://i.imgur.com/Tf0ZtYC.png](https://i.imgur.com/Tf0ZtYC.png)
 
 ## Acknoledgements
 
@@ -441,8 +439,8 @@ AIMD allows fairness in the connection. For a bandwidth R and K sessions there i
 
 The CWND (congestion window) in TCP is the number of bytes the transmitter is allowed to inject in the network. There are multiple ways of setting the CWND:
 
-- in absence of losses: slow start, congestion avoidance
-- in case of losses: fast retransmit, fast recovery
+- **slow start, congestion avoidance** in case of few losses
+- **fast retransmit, fast recovery** to increase efficience in case of losses
 
 In all cases CWND (Congestion) is **upper bounded** by the Wr. `|WT| = min(CWND, |Wr|)`
 
@@ -452,75 +450,63 @@ In all cases CWND (Congestion) is **upper bounded** by the Wr. `|WT| = min(CWND,
 
 - start
   - CWND = 1 MSS
-  - SSTHRESH = RWND
 - on valid ACK
-  - CWND = CWND + 1 MSS
-  - move Wlow according to ACK
+  - CWND = CWND \* 2
   - if CWND >= SSTHRESH -> switch to Congestion Avoidance
 - on RTO timeout
+  - retransmit the missing segment (in slow start) with CWND not counted in the following step
+  - CWND = 1 MSS
   - SSTHRESH = max(CWND/2, 2)
   - RTO = RTO \* 2
-  - CWND = 1
-  - retransmit the missing segment
+  - restart in slow start
 
 Slow start example:
 
-- receive ACK after RTT -> CWND = 2 MSS
-- receive 2 ACKs after RTT -> CWND = 4 MSS
+![https://i.imgur.com/P4nGi3k.png](https://i.imgur.com/P4nGi3k.png)
 
-![Slow start](https://i.imgur.com/P4nGi3k.png)
-
-**Congestion avoidance** is used once CWND reaches SSTHREASH. Basically, for every RTT in which CWND ACKs are received, increase CWND by MSS.
+**Congestion avoidance** is used once CWND reaches SSTHREASH. Basically, for every RTT in which CWND ACKs are received, increase CWND by 1 MSS.
 
 For every valid ACK received:
 
-- CWND = CWND + MSS \* MSS / CWND
-- move Wlow according to ACK
+- CWND = CWND + 1 MSS
+- Send min(CWND, |Tw|)
 
 On RTO timeout:
 
-- switch to slow start
-- SSTHRESH = max(CWIND/2,2)
-- RTO = RTO \* 2
-- CWND = 1
-- retransmit missing segment
+- slow start RTO timeout
 
 Basically for every RTT in which CWND ACKs are received increase CWND by 1 MSS
 
-![Congestion avoidance](https://i.imgur.com/L14zVT8.png)
+Congestion avoidance example:
 
-With slow start and congestion avoidance only, the performance looks like this:
+![https://i.imgur.com/L14zVT8.png](https://i.imgur.com/L14zVT8.png)
 
-![https://i.imgur.com/f9pr7vm.png](https://i.imgur.com/f9pr7vm.png)
+With slow start and congestion avoidance only, the performance looks like: watch comparison below.
 
-## Slow start with Fast retransmit and fast recovery
+## Fast retransmit and fast recovery
 
 Fast recovery idea is: if the network is working try to contunue transmitting.
 
-On 3rd duplicated ack
+On 3rd duplicated ack:
 
+- Send missing pachket
 - SSTRESH = CWND / 2
 - CWND = SSTRESH + 3 MSS
-  - if CWND allows, send new segments
-- do not move Wlow
 
 On additional duplicated ACK
 
 - CWND = CWND + 1 MSS
 - if CWND allows send new segments
-- do not move Wlow
 
 On new ACK
 
 - CWND = SSTHRESH
 - swith to congestion avoidance
-- move Wlow according to ACK
 
 On partial ACK
 
 - retransmitting first anacknowleged segment
 - SWND = CWND - amount of unacknoledged data +1
-- move Wlow according to ACK
 
 ![Fast recovery example](https://i.imgur.com/8bD100W.png)
 
@@ -630,17 +616,17 @@ NAT (Network Address Translation)
 
 ## Special network addresses
 
-**Network**: all zeros after mask (e.g. 128.211.0.16/28 = 10000000 11010011 00000000 0001***0000***)  
+**Network**: all zeros after mask (e.g. 128.211.0.16/28 = 10000000 11010011 00000000 0001**_0000_**)
 
-**Broadcasting** that means send to all, all 1s are used (e.g. 10000000   11010011   00000000   0001***1111***)
+**Broadcasting** that means send to all, all 1s are used (e.g. 10000000 11010011 00000000 0001**_1111_**)
 
-**Limited broadcast** refers to a broadcast on a directly-connected network. It is used during system startup by a computer that does not yet know the network number. Informally, we say that the broadcast is limited to a “single LAN” meaning that it will never be forwarded by a router. All 32 bits are 1s: ***11111111 11111111 11111111 11111111***.
+**Limited broadcast** refers to a broadcast on a directly-connected network. It is used during system startup by a computer that does not yet know the network number. Informally, we say that the broadcast is limited to a “single LAN” meaning that it will never be forwarded by a router. All 32 bits are 1s: **_11111111 11111111 11111111 11111111_**.
 
-TCP/IP contains protocols a computer can use to obtain its IP address automatically when the computer boots... but the startup protocols also use an IP to communicate, this is all 0s ***00000000 00000000 00000000 00000000***.
+TCP/IP contains protocols a computer can use to obtain its IP address automatically when the computer boots... but the startup protocols also use an IP to communicate, this is all 0s **_00000000 00000000 00000000 00000000_**.
 
-**Loopback address** used to test network applications. e.g., for preliminary debugging after a network application has been created. A programmer must have two application programs that are intended to communicate across a network, instead of executing each program on a separate computer the programmer runs both programs on a single computer and instructs them to use a loopback address when communicating. During loopback testing no packets ever leave a computer, the IP software forwards packets from one application to another. IP serverves the network prefix 127/8 (so 01111111 ***00000000 00000000 00000000***).
+**Loopback address** used to test network applications. e.g., for preliminary debugging after a network application has been created. A programmer must have two application programs that are intended to communicate across a network, instead of executing each program on a separate computer the programmer runs both programs on a single computer and instructs them to use a loopback address when communicating. During loopback testing no packets ever leave a computer, the IP software forwards packets from one application to another. IP serverves the network prefix 127/8 (so 01111111 **_00000000 00000000 00000000_**).
 
-**Multicast address** means send a packet to a group of hosts, in internet multicast is notmally blocked. In IPv4 they start with 1110, so 224.0.0.0 to 239.255.255.255 (1110***0000 00000000 00000000 00000000***).
+**Multicast address** means send a packet to a group of hosts, in internet multicast is notmally blocked. In IPv4 they start with 1110, so 224.0.0.0 to 239.255.255.255 (1110**_0000 00000000 00000000 00000000_**).
 
 Subnet reserved to enable local communication when hosts **cannot find an IP** address: 169.254.0.0/16. Each host randomly chooses one IP from that subnet.
 
@@ -726,7 +712,7 @@ Bellaman ford is a basic Distance vector algorithm. Some caracteristics are: eac
 
 ## Routing Information Protocol
 
-The Routing Information Protocol (RIP) is a simple intradomain protocol implementing distance vector routing, some downsides: slow convergence,  limited network size; strengths: simple to implement, simple to manage.
+The Routing Information Protocol (RIP) is a simple intradomain protocol implementing distance vector routing, some downsides: slow convergence, limited network size; strengths: simple to implement, simple to manage.
 
 ## Link state vs Distance vector
 
@@ -763,7 +749,7 @@ How it works the BGP session: two BGP routers (“peers”) exchange BGP message
 BGP achieving policy problem: Suppose an ISP only wants to route traffic to/from its customers (doesn't want to carry transit traffic between other ISPs):
 
 - A advertises path Aw to B and to C
-- B chooses not to advertise BAwto C:  B gets no “revenue” for routing CBAw, since none of  C, A, w are B’s customers, C does not learn about CBAw path.
+- B chooses not to advertise BAwto C: B gets no “revenue” for routing CBAw, since none of C, A, w are B’s customers, C does not learn about CBAw path.
 - C will route CAw (not using B) to get to w
 
 Why are Intra-AS and Inter-AS routing different? Performance: intra-AS can focus on performance, inter-AS policy may dominate over performance.
@@ -842,7 +828,7 @@ One problem with CSMA is that there is a **vulnerable period**: if a station sta
 
 CSMA with collision detection works that when transmitting a packet, the senders listen to the network and in case there is any problem. This is easy in wired LANs and difficult in wireless LANs.
 
-Works in this way: If NIC senses channel idle, starts frame transmission, if NIC senses channel busy, waits until channel idle, then transmits, if NIC transmits entire frame without detecting another transmission, NIC is done with frame! If NIC detects another transmission while transmitting,  aborts and sends jam signal
+Works in this way: If NIC senses channel idle, starts frame transmission, if NIC senses channel busy, waits until channel idle, then transmits, if NIC transmits entire frame without detecting another transmission, NIC is done with frame! If NIC detects another transmission while transmitting, aborts and sends jam signal
 
 ![https://i.imgur.com/btaluYF.png](https://i.imgur.com/btaluYF.png)
 
@@ -891,5 +877,3 @@ Store-and-forward and Forwarding tables comparison.
 Orange Broadcast domain, blue Collision domain.
 
 ![https://i.imgur.com/YJ3DW96.png](https://i.imgur.com/YJ3DW96.png)
-
-## WiFi
