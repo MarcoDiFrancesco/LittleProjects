@@ -68,7 +68,7 @@ Layer 4: **Trasport** makes the application [multiplexing and demultiplexing](#m
 
 Layer 3: **Network** (OSI) or **Internet** (TCP/IP) makes routing and forwarding, congestion control. It can make the routing in two ways: connection-less in which each packet is sent indipendently, and connection-oriented in which the route is establiched once, and used for all packets belonging to a specific host to host communication. Some example procols are: IP (IPv4, IPv6), [ICMP](#ICMP). Here packets are called **datagrams** (and rarely packets).
 
-Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11, Ethernet, [ARP](#ARP). Here packets are called **frames**.
+Layer 2: **Data link** (OSI) or **Link** (TCP/IP) makes the [multiplexing and demultiplexing](#multiplexing-and-demultiplexing) of layer 3 protocols, error discovery and recovery, medium access control (MAC sublayer). Some example protocols are: DSL, 802.11 (Wireless), 802.3 (Ethernet), [ARP](#ARP). Here packets are called **frames**. Exaplained in details [below](#data-link)
 
 Layer 1: **Physical** is in the bottom of the model. It takes care of transmitting raw bits on the interface via electrical, electro-magnetic, light, sound ways signals. It defines encoding, voltages, modulations. Here packets are **bits**.
 
@@ -180,11 +180,11 @@ In HTTP there is also the **conditional GET**, it doesn't sent object if cache h
 
 ## Email protocols
 
-**SMTP** (Simple Mail Transfer Protocol) uses TCP to transer email messages through port 25 with persistent connections.
+**SMTP** (Simple Mail Transfer Protocol) is mostly used for sending out email from an email client (e.g. Microsoft Outlook, Thunderbird or Apple Mail) to an email server. It's also used for relaying or forwarding mail messages from one mail server to another. TCP to transer email messages through port 25 with persistent connections, 587 and port 465.
 
-**POP** (Post Office Protocol) is stateless across sessions and has 2 modes "downloads and delete" (by default) and "download and keep" emails.
+**POP3** (Post Office Protocol) is stateless across sessions and has 2 modes "downloads and delete" (by default) and "download and keep" emails (not used because there is IMAP).
 
-**IMAP** (Internet Mail Access Protocol) stores the email always in a mail server. IMAP support also Multimedia messages (MIME) in the body of the message.
+**IMAP** (Internet Mail Access Protocol) stores the email always in a mail server, it allows users to group related messages and place them in folders, which can in turn be arranged hierarchically. It's also equipped with message flags that indicate whether a message has been read, deleted, or replied to. It even allows users to carry out searches against the server mailboxes.
 
 ![IMAP](https://i.imgur.com/dtiVb7r.png)
 
@@ -198,7 +198,7 @@ The **DNS root name** servers are 13 in all the world and return the mapping to 
 
 The **Top-Level Domain** (TLD) servers are responsible for com, org, net, edu, aero, jobs, museums, and all top-level country domains, e.g.: uk, fr, ca, jp.
 
-The **local DNS** is owned by the ISP and it's the first DNS contacted by a user.
+The **local DNS** is owned by the ISP and it's the first DNS contacted by a user. Local DNSs do not belong to hierarchy.
 
 The DNS can cache the recods with a TTL so the TLD are not so often visited.
 
@@ -218,41 +218,44 @@ The **DASH** (Dynamic, Adaptive Streaming over HTTP) streams multimedia so that 
 
 There are two main internet transport protocol services TCP and UDP.
 
-TCP (Transmission Control Protocol) architecture:
+TCP (Transmission Control Protocol) architecture is reliable. It is **connection-oriented** so a setup between two hosts is required:
 
+Provides:
+
+- multiplexing and demuliplexing
+- incapsulation at application level
 - **point-to-point** because there is one sender and one receiver
 - **in-order delivery**
-- makes the **connection reliable** because the byte are ordered
-- manages **flow and congestion control** adapting the transmission rate depending on the newtork conditions (is sets dinamically the window size)
-- **clogging the network** is avoided thanks to congestion control
-- sender will **not overwhelm** receiver
-- it's **connection-oriented** so a setup between two hosts is required
-- **cumulative** ACKs
+- **congestion control** adapting the transmission rate depending on the newtork conditions
+- **flow control**
 - **bi-directional** data flow
-- does **not** provide
-  - timing
-  - minimum throghput
-  - security
 
-The UDP protocol exists beacause it's not possible to use just IP protocol bacause it doesn't use any port.
+Does **not** provide:
 
-UDP (User datagram protocol) architecture:
+- timing
+- minimum throghput
+- security
 
-- **unordered delivery** so the packeckes may be out of order
-- no handshake between sender and receiver
-- establish an **unreliable data tranfer** service
-- does **not** provide
-  - reliability (packets may be **lost**)
-  - flow control
-  - congestion control
-  - timing
-  - throughput guarantee
-  - security
-  - connection setup
+The UDP protocol exists beacause it's not possible to use just IP protocol bacause it doesn't use any port. UDP is a **best effort**, this means it establishes an **unreliable data tranfer** service, so segments may be lost or delivered out of order. UDP (User datagram protocol) architecture:
 
-**UDP checksum** allows the error detection of packets making the checksum at sender side and check it at receiver side.
+Provides:
 
-UDP is a **best effort** service, this means that segments may be lost or delivered out of order, there is not reliability on when a datagram is transfered.
+- multiplexing and demuliplexing
+- incapsulation at application level
+- **checksum** allows the error detection of packets
+
+Does **not** provide:
+
+- **ordered delivery** so the packeckes may be out of order
+- **handshake** between sender and receiver
+- reliability (packets may be **lost**)
+- flow control
+- congestion control
+- timing
+- minimum throghput
+- security
+
+UDP , this means that segments may be lost or delivered out of order, there is not reliability on when a datagram is transfered.
 
 TCP and UDP **can be encrypted** using SSL/TLS to ensure **data integrity** and **end-point authetication**.
 
@@ -262,9 +265,7 @@ TCP and UDP **can be encrypted** using SSL/TLS to ensure **data integrity** and 
 
 **Demultiplexig**: watch the transport header to understand to which app layer processes the packet needs to be sent and delivering it there.
 
-![demultiplexing](https://i.imgur.com/mdIMnc7.png)
-
-**_TCP/UDP segment format_**
+![https://i.imgur.com/mdIMnc7.png](https://i.imgur.com/mdIMnc7.png)
 
 The ports in the segment are 16 bit integers, with well defined ports up to 1024 and non standard ports up to 65535. Ports are of 2 types:
 
@@ -624,7 +625,9 @@ If there is no match with all the masks, the match is done with 0.0.0.0 at the e
 
 ## NAT
 
-NAT (Network Address Translation)
+NAT (Network Address Translation) uses a 16-bit port number field to store outside connections. When a user inside a network request an outside connection the NAT adds a record to the table with the incoming request port and the outside port. If a user wants to skip NAT the procolo UPnP or port forwarding needs to be set.
+
+![https://i.imgur.com/YdOgw5n.png](https://i.imgur.com/YdOgw5n.png)
 
 ## ARP
 
@@ -738,9 +741,9 @@ Robustness: what happens if router malfunctions?
 - LS: node can advertise incorrect link cost, each node computes only its own table
 - DV: node can advertise incorrect path cost, each node’s table used by others, **error propagate** thru network
 
-## Inter-AS routing: BGP
+## BGP
 
-So far we studied how routing is performed within one AS. How about routing outside the AS, e.g., between different ISPs? This is done using **Border Gateway Protocol**.
+So far we studied how routing is performed within one AS. How about routing outside the AS, e.g., between different ISPs? This is done using **Border Gateway Protocol** using a technique called Inter-AS routing.
 
 Border Gateway Protocol provides each AS:
 
@@ -761,17 +764,15 @@ BGP achieving policy problem: Suppose an ISP only wants to route traffic to/from
 
 Why are Intra-AS and Inter-AS routing different? Performance: intra-AS can focus on performance, inter-AS policy may dominate over performance.
 
-## Data Link and Ethernet
+## Data Link
 
 Data-link layer has responsibility of transferring datagrams from one node to physically adjacent node over a link. In data-link layer error detection is used in low bit-error link (fiber, some twisted pair), it's used for high error rates links like wireless.
 
-In data link layer the sending side encapsulates datagram in frame and adds error checking bits, rdt, flow control and the receiving side looks for errors, rdt, flow control and extracts datagram, passes to upper layer at receiving side.
+In data link layer the sending side encapsulates datagram in frame and adds error checking bits, and the receiving side looks for errors, extracts datagram and passes to upper layer at receiving side.
 
-In **EDC** (Error Detection and Correction bits) the error detection not 100% reliable, protocol may miss some errors, but rarely, larger EDC field yields better detection and correction.
+In **EDC** (Error Detection and Correction bits) the error detection not 100% reliable, protocol may miss some errors, but rarely, larger EDC field yields better detection and correction. One protcol is CRC.
 
-## CRC
-
-CRC (Cyclic redundancy check) is used for detecting an n-bit data block of arbitrary length, it will detect any single error burst not longer than n bits, and the fraction of all longer error bursts that it will detect is (1 − 2−n).
+**CRC** (Cyclic redundancy check) is used for detecting an n-bit data block of arbitrary length, it will detect any single error burst not longer than n bits, and the fraction of all longer error bursts that it will detect is (1 − 2^−n).
 
 ## Multiple access protocols
 
@@ -781,8 +782,8 @@ What it does is: when M nodes want to transmit at R rate, each can send at avera
 
 This has Three broad classes:
 
-- channel partitioning: divide channel into smaller “pieces” (time slots, frequency, code)
-- random access: channel not divided, allow collisions and “recover” from collisions
+- **channel partitioning**: divide channel into smaller “pieces” and a frame is sent every n-frames
+- **random access**: channel not divided, allow collisions and “recover” from collisions
 - “taking turns”: nodes take turns, but nodes with more to send can take longer turns
 
 ## Channel partitioning
@@ -799,13 +800,13 @@ One of them is **TDMA** (time division multiple access) protocol: each station g
 
 ## Random access protocols
 
-Random access protocols work in this way: When node has packet to send transmit at full channel data rate R without a priori coordination among nodes, if two or more are transmitting there is a collision.
+Random access protocols work in this way: when node has packet to send transmit at full channel data rate R without a priori coordination among nodes, if two or more are transmitting there is a collision.
 
 **Random access MAC** protocol specifies: how to detect collisions and how to recover from collisions. Some example of Random access MAC protocols are: slotted ALOHA, ALOHA, CSMA, CSMA/CD and CSMA/CA.
 
 ## Slotted ALOHA
 
-In Slotted ALOHA all frames same size, time is divided into equal size slots (time to transmit 1 frame), nodes start to transmit only at slot beginning, nodes are synchronized, if 2 or more nodes transmit in slot, all nodes detect collision.
+In **Slotted ALOHA** all frames same size, time is divided into equal size slots (time to transmit 1 frame), nodes start to transmit only at slot beginning, nodes are synchronized, if 2 or more nodes transmit in slot, all nodes detect collision, in that case retransmit after n random frames.
 
 Pros: single active node can continuously transmit at full rate of channel and it's highly decentralized: only slots in nodes need to be in sync. Cons: collisions, wasting slots, needs clock synchronization.
 
@@ -817,15 +818,16 @@ The **Pure (unslotted) ALOHA** is simpler and doesn't require synchronization, W
 
 ![https://i.imgur.com/L5KI9Uk.png](https://i.imgur.com/L5KI9Uk.png)
 
-The comparison with ALOHA vs Slotted ALOHA:
-
-![https://i.imgur.com/srIMgM0.png](https://i.imgur.com/srIMgM0.png)
-
 ## CSMA
 
-**CSMA** (carrier sense multiple access) works on listening before transmitting. And there are 2 variations: in non-persistent (0-persistent) if channel is busy, then defer transmission by a random time much larger than the transmission time, in 1-persistent if channel is busy wait for channel to become free (at the end of current transmission). Both in case of collision (both cases) wait a random time and then try again following the same procedure.
+**CSMA** (carrier sense multiple access) works on listening before transmitting. Transmitting packages works in this way:
 
-With **CSMA p-persistent** when station ready to send a frame, if channel is BUSY wait for channel to become free (end of current transmission), then with probability p transmit frame, with probability 1–p defer transmission by a random time much larger than the transmission time.
+- **if channel is busy** then wait to become free
+- **if channel is free**:
+  - with probability p: trasmit frame
+  - with probability 1-p: defer transmission by a random time much larger than the transmission time, after defer time, repeat procedure
+
+So with 0-persistent transmit immediatly, with 1-persistent always transmit after delay.
 
 One problem with CSMA is that there is a **vulnerable period**: if a station starts to transmit but the signal has not reached all stations, other stations might start transmitting. And another one is that of two nodes may not hear each other's transmission.
 
@@ -833,7 +835,7 @@ One problem with CSMA is that there is a **vulnerable period**: if a station sta
 
 ## CSMA/CD
 
-CSMA with collision detection works that when transmitting a packet, the senders listen to the network and in case there is any problem. This is easy in wired LANs and difficult in wireless LANs.
+**CSMA with collision detection** works that when transmitting a packet, the senders listen to the network and in case there is any problem. This is easy in wired LANs and difficult in wireless LANs.
 
 Works in this way: If NIC senses channel idle, starts frame transmission, if NIC senses channel busy, waits until channel idle, then transmits, if NIC transmits entire frame without detecting another transmission, NIC is done with frame! If NIC detects another transmission while transmitting, aborts and sends jam signal
 
@@ -841,7 +843,7 @@ Works in this way: If NIC senses channel idle, starts frame transmission, if NIC
 
 ## CSMA/CA
 
-CSMA with collision avoidance is used when it is not possible to detect collisions. CA means to behave in a p-persistent manner, with p being adapted to network conditions, p decreases at each retransmission attempt.
+**CSMA with collision avoidance** is used when it is not possible to detect collisions. CA means to behave in a p-persistent manner, with p being adapted to network conditions, p decreases at each retransmission attempt. Using CSMA 1-persistent is not convenient because collisions can't be detected.
 
 ## “Taking turns” MAC protocols
 
