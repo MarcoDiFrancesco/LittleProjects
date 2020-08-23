@@ -559,11 +559,7 @@ The IP datagram contains:
 
 In a network where there are 2 different MTUs, if a sender has an MTU of 1500 octects and the receiver 1000, then the datagram fragmentation can split the datagram to work with the receiver network.
 
-Reassembling a datagram example:
-
-- packets sent from H1 to H2: if host H1 sends a 1500-octet datagram to host H2, router R1 will divide the datagram into two fragments, which it will forward to R2
-- Router R2 does not reassemble the fragments: it uses the destination address in a fragment to forward the fragment as usual
-- The ultimate destination host, H2, collects the fragments and reassembles them
+Reassembling a datagram example with packets sent from H1 to H2 (picture below): if host H1 sends a 1500-octet datagram to host H2, router R1 will divide the datagram into two fragments, which it will forward to R2, router R2 does not reassemble the fragments, it uses the destination address in a fragment to forward the fragment as usual, the ultimate destination host, H2, collects the fragments and reassembles them.
 
 ![https://i.imgur.com/IQstOCs.png](https://i.imgur.com/IQstOCs.png)
 
@@ -591,6 +587,22 @@ Private IPs:
 - 172.16.0.0 to 172.31.255.255 (172.16.0.0/12)
 - 192.168.0.0 to 192.168.255.255 (192.168.0.0/16)
 
+## Special network addresses
+
+**Network**: all zeros after mask (e.g. 128.211.0.16/28 = 10000000 11010011 00000000 0001**_0000_**)
+
+**Broadcasting** that means send to all, all 1s are used (e.g. 10000000 11010011 00000000 0001**_1111_**)
+
+**Limited broadcast** refers to a broadcast on a directly-connected network. It is used during system startup by a computer that does not yet know the network number. Informally, we say that the broadcast is limited to a “single LAN” meaning that it will never be forwarded by a router. All 32 bits are 1s: **_11111111 11111111 11111111 11111111_**.
+
+TCP/IP contains protocols a computer can use to obtain its IP address automatically when the computer boots... but the startup protocols also use an IP to communicate, this is all 0s **_00000000 00000000 00000000 00000000_**.
+
+**Loopback address** used to test network applications. e.g., for preliminary debugging after a network application has been created. A programmer must have two application programs that are intended to communicate across a network, instead of executing each program on a separate computer the programmer runs both programs on a single computer and instructs them to use a loopback address when communicating. During loopback testing no packets ever leave a computer, the IP software forwards packets from one application to another. IP serverves the network prefix 127/8 (so 01111111 **_00000000 00000000 00000000_**).
+
+**Multicast address** means send a packet to a group of hosts, in internet multicast is notmally blocked. In IPv4 they start with 1110, so 224.0.0.0 to 239.255.255.255 (1110**0000 00000000 00000000 00000000**).
+
+Subnet reserved to enable local communication when hosts **cannot find an IP** address: 169.254.0.0/16. Each host randomly chooses one IP from that subnet.
+
 ## CIDR
 
 **CIDR** (Classless Inter-Domain Routing) is used to devide the network not following classes convention. An exmaple is: suppose the ISP has 2 customers, one customer needs 12 IP addresses and the other needs 9. The ISP can assign:
@@ -614,25 +626,9 @@ If there is no match with all the masks, the match is done with 0.0.0.0 at the e
 
 NAT (Network Address Translation)
 
-## Special network addresses
-
-**Network**: all zeros after mask (e.g. 128.211.0.16/28 = 10000000 11010011 00000000 0001**_0000_**)
-
-**Broadcasting** that means send to all, all 1s are used (e.g. 10000000 11010011 00000000 0001**_1111_**)
-
-**Limited broadcast** refers to a broadcast on a directly-connected network. It is used during system startup by a computer that does not yet know the network number. Informally, we say that the broadcast is limited to a “single LAN” meaning that it will never be forwarded by a router. All 32 bits are 1s: **_11111111 11111111 11111111 11111111_**.
-
-TCP/IP contains protocols a computer can use to obtain its IP address automatically when the computer boots... but the startup protocols also use an IP to communicate, this is all 0s **_00000000 00000000 00000000 00000000_**.
-
-**Loopback address** used to test network applications. e.g., for preliminary debugging after a network application has been created. A programmer must have two application programs that are intended to communicate across a network, instead of executing each program on a separate computer the programmer runs both programs on a single computer and instructs them to use a loopback address when communicating. During loopback testing no packets ever leave a computer, the IP software forwards packets from one application to another. IP serverves the network prefix 127/8 (so 01111111 **_00000000 00000000 00000000_**).
-
-**Multicast address** means send a packet to a group of hosts, in internet multicast is notmally blocked. In IPv4 they start with 1110, so 224.0.0.0 to 239.255.255.255 (1110**_0000 00000000 00000000 00000000_**).
-
-Subnet reserved to enable local communication when hosts **cannot find an IP** address: 169.254.0.0/16. Each host randomly chooses one IP from that subnet.
-
 ## ARP
 
-In link layer there is **ARP** (Address Resolution Protocol). A host can resolve addresses of the same physical network only. ARP example: suppose B needs to resolve the IP address of C, B broadcasts a request that says: “I'm looking for the MAC address of a host that has IP address C”. An ARP request message reaches all computers on a network, when C receives a copy of the request it sends a directed reply back to B that says: “I'm the computer with IP address C, and my MAC address is M”:
+**ARP** (Address Resolution Protocol) is a link layer protocol that allows a host to resolve addresses in the same physical network. ARP example: suppose B needs to resolve the IP address of C, B broadcasts a request that says: “I'm looking for the MAC address of a host that has IP address C”. An ARP request message reaches all computers on a network, when C receives a copy of the request it sends a directed reply back to B that says: “I'm the computer with IP address C, and my MAC address is M”:
 
 ![https://i.imgur.com/ZBVMweO.png](https://i.imgur.com/ZBVMweO.png)
 
@@ -644,19 +640,15 @@ In link layer there is **ARP** (Address Resolution Protocol). A host can resolve
 
 ## DHCP
 
-DHCP (Dynamic Host Configuration Protocol) dynamically assigns IP by a server when joining and allows re-use of addresses. This is the scenario of a request:
+**DHCP** (Dynamic Host Configuration Protocol) dynamically assigns IP by a server when joining and allows re-use of addresses.
 
-![https://i.imgur.com/yTOCMAa.png](https://i.imgur.com/yTOCMAa.png)
+DHCP **issues a lease** on the address for a finite period. The use of leases allows a DHCP server to reclaim addresses. When the lease expires the server places the address to the pool of available addresses. When a lease expires, a host can choose to relinquish the address or renegotiate with DHCP to extend the lease, negotiation occurs concurrent with other activity.
 
-DHCP issues a lease on the address for a finite period, the use of leases allows a DHCP server to reclaim addresses. When the lease expires the server places the address to the pool of available addresses. When a lease expires, a host can choose to relinquish the address or renegotiate with DHCP to extend the lease, negotiation occurs concurrent with other activity.
-
-DHCP can return: address of first-hop router for client, name and IP address of DNS server, network mask.
-
-If no DHCP is set up, then link-local address can be used and manual IP configuration is required.
+DHCP can **return**: address of first-hop router for client, name and IP address of DNS server, network mask. If no DHCP is set up, then link-local address can be used and manual IP configuration is required.
 
 ## IPv6
 
-IPv6 has an address of 128 bits, 16 bits blocks, colon separated (e.g. 2a03:2880:f108:0083:face:b00c:0000:25d). The changes from IPv4 are:
+IPv6 has an address of 128 bits, 16 bits blocks, colon separated (e.g. **2a03:2880:f108:0083:face:b00c:0000:25d**). The changes from IPv4 are:
 
 - no fragmentation allowed
 - checksum: removed entirely to reduce processing time at each hop
@@ -670,27 +662,27 @@ Not all routers can be upgraded simultaneously, no “flag days” how will netw
 
 **Graph**: G = (N, E)  
 **Nodes** (router): N = {u, v, w, x, y, z}  
-**Links**: E = {(u,v), (u,x), (v,x), (v,w), (x,w), (x,y), (w,y), (w,z), (y,z)}  
+**Links**: E = {(u,v), (u,x)}  
 **Cost**: c(w, z) = 5  
 **Path cost**: cost (x1, x2, ..., xp) = c(x1, x2) + c(x2, x3) + ... + c(xp-1, xp)
 
 ![https://i.imgur.com/1l8PvOX.png](https://i.imgur.com/1l8PvOX.png)
 
-## Dijkstra
+## Link-state algorithms
 
-One link-state routing algorithm is **Dijkstra**. Legend: cost is D(v), predecessor node is p(v). An example is:
+**Dijkstra** is a link-state routing algorithm, it has a costs of O(n^2). Legend: cost is D(v), predecessor node is p(v). An example is:
 
 ![https://i.imgur.com/b5UwM5T.png](https://i.imgur.com/b5UwM5T.png)
 
-Dikestra algoritms costs O(n^2).
+With a restulting **forwarding table**:
+
+![https://i.imgur.com/PRn20QU.png](https://i.imgur.com/PRn20QU.png)
 
 One problem of Djkestra can raise with network oscilalations, for example:
 
 ![https://i.imgur.com/KqDtd94.png](https://i.imgur.com/KqDtd94.png)
 
-## OSPF
-
-OSPF (Open Shortest Path First) is a link-state routing protocol, topology known by all nodes, routes are computed using Dijkstra's algorithm. An AS (Autonomous system) is a serie of routers that are bundled togheder. Routers use flooding for link-state advertisements to all other routers within the AS.
+**OSPF** (Open Shortest Path First) is another link-state routing protocol, topology known by all nodes, routes are computed using Dijkstra's algorithm. An AS (Autonomous system) is a serie of routers that are bundled togheder. Within the AS, routers use flooding advertisement to all other routers.
 
 OSPF implements three procedures:
 
@@ -698,23 +690,38 @@ OSPF implements three procedures:
 - **Exchange protocol** used to exchange the known network topology between neighbors that just discovered each other
 - **Flooding protocol** used to inform all routers in the AS of a link state change
 
-OSPF has an hierarchy and link-state advertisement is done only in the area:
+OSPF has an hierarchy, link-state advertisement is done only in the AS:
 
 ![https://i.imgur.com/KRbCNkL.png](https://i.imgur.com/KRbCNkL.png)
 
 ## Distance vector routing
 
-In Distance vector, the routing algorith is distributed, No knowledge of the whole network, Knowledge of direct neighbors.
+**Distance Vector** (DV) algorithms are distributed routing algorithm where there is no knowledge of the whole network, but only the knowledge of direct neighbors.
 
-## Bellaman ford
+**Bellman Ford** is a basic Distance Vector algorithm. Some caracteristics are: each router knows networks directly attached to it, routers advertise IP addresses, we use router IDs as destinations (but in reality you have addresses).
 
-Bellaman ford is a basic Distance vector algorithm. Some caracteristics are: each router knows networks directly attached to it, routers advertise IP addresses, we use router IDs as destinations, but in reality you have addresses.
+That's how the Distance Vector (using Bellman Ford) algoritm works:
 
-## Routing Information Protocol
+- Initialize the routing tables of routers by filling them only with their direct neighborns
+- Following the order of routers:
 
-The Routing Information Protocol (RIP) is a simple intradomain protocol implementing distance vector routing, some downsides: slow convergence, limited network size; strengths: simple to implement, simple to manage.
+  - Send to each neighborn its DV
+  - Update the nightborn routing table if DVe[A].cost + c(A, E) < RA[A].cost
+  - Repeate until we finish the neighborns
+
+**Count to infinity** is a problem concerning DV alorithm.
+
+![https://i.imgur.com/Wec3VSy.png](https://i.imgur.com/Wec3VSy.png)
+
+One solution to this problem is solved by setting a maximum number of hops bounded to 15. Another solution is **Split Horizon** where an extra link is added:
+
+![https://i.imgur.com/XMUK0QE.png](https://i.imgur.com/XMUK0QE.png)
+
+**Routing Information Protocol** (RIP) is a simple intradomain protocol implementing distance vector routing. The downsides of RIP are: slow convergence, limited network size; strengths: simple to implement, simple to manage.
 
 ## Link state vs Distance vector
+
+Link state algorithms have knoledge of the whole network, Distance Vecor algorithms know only of the nighborns.
 
 Message complexity:
 
@@ -729,7 +736,7 @@ Speed of convergence:
 Robustness: what happens if router malfunctions?
 
 - LS: node can advertise incorrect link cost, each node computes only its own table
-- DV: DV node can advertise incorrect path cost, each node’s table used by others, error propagate thru network
+- DV: node can advertise incorrect path cost, each node’s table used by others, **error propagate** thru network
 
 ## Inter-AS routing: BGP
 
