@@ -96,8 +96,6 @@ The P2P architecture works with communication between peers. Known examples are 
 
 **Process** is a program running within a host. **Inter process commnication** the fact of exchanging messages.
 
-![https://i.imgur.com/EtdWsg7.png](https://i.imgur.com/EtdWsg7.png)
-
 The **transport service** of an application can require some needs:
 
 - **Data integrity**: a downloaded file requires 100% reliable data transfer
@@ -202,6 +200,8 @@ The **local DNS** is owned by the ISP and it's the first DNS contacted by a user
 
 The DNS can cache the recods with a TTL so the TLD are not so often visited.
 
+Some types of domains are: A (normal), CNAME (alias), NS (domain name), MX (mail server).
+
 ## LDAP
 
 LDAP (Lightweight directory access protocol) is used to store recors (like DNS) and is meant to be easy to query.
@@ -242,7 +242,6 @@ Provides:
 
 - multiplexing and demuliplexing
 - incapsulation at application level
-- **checksum** allows the error detection of packets
 
 Does **not** provide:
 
@@ -265,12 +264,14 @@ TCP and UDP **can be encrypted** using SSL/TLS to ensure **data integrity** and 
 
 **Demultiplexig**: watch the transport header to understand to which app layer processes the packet needs to be sent and delivering it there.
 
-![https://i.imgur.com/mdIMnc7.png](https://i.imgur.com/mdIMnc7.png)
-
 The ports in the segment are 16 bit integers, with well defined ports up to 1024 and non standard ports up to 65535. Ports are of 2 types:
 
 - **static** associated with standard applications (emails, web, DNS)
 - **dynamic** assigned by the operating system when opening a connection or creating a socket
+
+![https://i.imgur.com/mdIMnc7.png](https://i.imgur.com/mdIMnc7.png)
+
+![https://i.imgur.com/EtdWsg7.png](https://i.imgur.com/EtdWsg7.png)
 
 ## ARQ
 
@@ -309,7 +310,7 @@ The flow from the **receiver prospective** is:
 
 ![https://i.imgur.com/sJREwAr.png](https://i.imgur.com/sJREwAr.png)
 
-**_Stop and wait example_**
+Stop and wait example:
 
 Using stop and wait there will be the following efficiency:
 
@@ -482,8 +483,6 @@ Congestion avoidance example:
 
 ![https://i.imgur.com/L14zVT8.png](https://i.imgur.com/L14zVT8.png)
 
-With slow start and congestion avoidance only, the performance looks like: watch comparison below.
-
 ## Fast retransmit and fast recovery
 
 Fast recovery idea is: if the network is working try to contunue transmitting.
@@ -547,7 +546,7 @@ The IP datagram contains:
 
 - **Total lenght** 16-bit integer that specifies the total number of bytes including header and the data
 - **Identification** 16-bit sequential number used for reassemly
-- **TTL** (Time To Live) 8-bit integer initiliazed by the sender, when is 0 the datagram is discarded
+- **TTL** (Time To Live) 8-bit integer initiliazed by the sender (max 256 hops), when is 0 the datagram is discarded
 - **Header checksum** 16-bit ones-complement checksum of header fields
 - **Source Ip Address** 32-bit Internet address of the original sender
 - **Source Ip Address** 32-bit Internet address of the ultmate destination
@@ -574,11 +573,11 @@ When sending a packet across the Internet, sender’s protocol software must spe
 
 **Dotted decimal addresses** range 0.0.0.0 through 255.255.255.255.
 
-IPv4 class addressing, the green part in the prefix, the red part the suffix:
+IPv4 class addressing, the green part is the prefix, the red part is the suffix:
 
 ![https://i.imgur.com/hK6wXvi.png](https://i.imgur.com/hK6wXvi.png)
 
-A **subnet mask** example:
+The **subnet mask** is used to make the operation efficient:
 
 ![https://i.imgur.com/6rFe1qu.png](https://i.imgur.com/6rFe1qu.png)
 
@@ -590,17 +589,17 @@ Private IPs:
 
 ## Special network addresses
 
-**Network**: all zeros after mask (e.g. 128.211.0.16/28 = 10000000 11010011 00000000 0001**_0000_**)
+**Network**: all zeros after mask (e.g. 128.211.0.16/28 = 10000000 11010011 00000000 0001**0000**)
 
-**Broadcasting** that means send to all, all 1s are used (e.g. 10000000 11010011 00000000 0001**_1111_**)
+**Broadcasting** that means send to all, all 1s are used (e.g. 10000000 11010011 00000000 0001**1111**)
 
-**Limited broadcast** refers to a broadcast on a directly-connected network. It is used during system startup by a computer that does not yet know the network number. Informally, we say that the broadcast is limited to a “single LAN” meaning that it will never be forwarded by a router. All 32 bits are 1s: **_11111111 11111111 11111111 11111111_**.
+**Limited broadcast** refers to a broadcast on a directly-connected network. It is used during system startup by a computer that does not yet know the network number. Informally, we say that the broadcast is limited to a “single LAN” meaning that it will never be forwarded by a router. All 32 bits are 1s: **11111111 11111111 11111111 11111111**.
 
-TCP/IP contains protocols a computer can use to obtain its IP address automatically when the computer boots... but the startup protocols also use an IP to communicate, this is all 0s **_00000000 00000000 00000000 00000000_**.
+A computer obtains its IP address (using DHCP) uses all 0s as IP to communicate **00000000 00000000 00000000 00000000**.
 
-**Loopback address** used to test network applications. e.g., for preliminary debugging after a network application has been created. A programmer must have two application programs that are intended to communicate across a network, instead of executing each program on a separate computer the programmer runs both programs on a single computer and instructs them to use a loopback address when communicating. During loopback testing no packets ever leave a computer, the IP software forwards packets from one application to another. IP serverves the network prefix 127/8 (so 01111111 **_00000000 00000000 00000000_**).
+**Loopback address** used to test network applications. e.g., for preliminary debugging after a network application has been created. A programmer must have two application programs that are intended to communicate across a network, instead of executing each program on a separate computer the programmer runs both programs on a single computer and instructs them to use a loopback address when communicating. During loopback testing no packets ever leave a computer, the IP software forwards packets from one application to another. IP serverves the network prefix 127/8 (so 01111111 **00000000 00000000 00000000**).
 
-**Multicast address** means send a packet to a group of hosts, in internet multicast is notmally blocked. In IPv4 they start with 1110, so 224.0.0.0 to 239.255.255.255 (1110**0000 00000000 00000000 00000000**).
+**Multicast address** means send a packet to a group of hosts, in internet multicast is normally blocked. In IPv4 they start with 1110, so 224.0.0.0 to 239.255.255.255 (1110**0000 00000000 00000000 00000000**).
 
 Subnet reserved to enable local communication when hosts **cannot find an IP** address: 169.254.0.0/16. Each host randomly chooses one IP from that subnet.
 
@@ -648,6 +647,13 @@ NAT (Network Address Translation) uses a 16-bit port number field to store outsi
 DHCP **issues a lease** on the address for a finite period. The use of leases allows a DHCP server to reclaim addresses. When the lease expires the server places the address to the pool of available addresses. When a lease expires, a host can choose to relinquish the address or renegotiate with DHCP to extend the lease, negotiation occurs concurrent with other activity.
 
 DHCP can **return**: address of first-hop router for client, name and IP address of DNS server, network mask. If no DHCP is set up, then link-local address can be used and manual IP configuration is required.
+
+The process of getting a new ip using DHCP is:
+
+- **DHCP discover** when host sends in broadcast the message
+- **DHCP offer** is the message sent by the DHCP server to the clint (says I'm here)
+- **DHCP request** is the message sent by the host to request a DHCP (says I need a IP)
+- **DHCP ack** is the message sent by the server with the new IP (says that's your IP)
 
 ## IPv6
 
@@ -707,7 +713,6 @@ That's how the Distance Vector (using Bellman Ford) algoritm works:
 
 - Initialize the routing tables of routers by filling them only with their direct neighborns
 - Following the order of routers:
-
   - Send to each neighborn its DV
   - Update the nightborn routing table if DVe[A].cost + c(A, E) < RA[A].cost
   - Repeate until we finish the neighborns
@@ -752,17 +757,13 @@ Border Gateway Protocol provides each AS:
 - determine "good" routes to other networks based on reachability information and policy
 - allows subnet to advertise its existence to the rest of the Internet: "I am here"
 
-![https://i.imgur.com/9ASOo7K.png](https://i.imgur.com/9ASOo7K.png)
+How it works the **BGP session**: two BGP routers (“peers”) exchange BGP messages over semi-permanent TCP connection advertising paths to different destination network prefixes (BGP is a “path vector” protocol).
 
-How it works the BGP session: two BGP routers (“peers”) exchange BGP messages over semi-permanent TCP connection advertising paths to different destination network prefixes (BGP is a “path vector” protocol).
-
-BGP achieving policy problem: Suppose an ISP only wants to route traffic to/from its customers (doesn't want to carry transit traffic between other ISPs):
-
-- A advertises path Aw to B and to C
-- B chooses not to advertise BAwto C: B gets no “revenue” for routing CBAw, since none of C, A, w are B’s customers, C does not learn about CBAw path.
-- C will route CAw (not using B) to get to w
+BGP achieving policy problem, for example suppose an ISP only wants to route traffic to/from its customers (doesn't want to carry transit traffic between other ISPs).
 
 Why are Intra-AS and Inter-AS routing different? Performance: intra-AS can focus on performance, inter-AS policy may dominate over performance.
+
+![https://i.imgur.com/9ASOo7K.png](https://i.imgur.com/9ASOo7K.png)
 
 ## Data Link
 
@@ -883,6 +884,6 @@ Store-and-forward and Forwarding tables comparison.
 
 **Broadcast domain** is a portion of the network that can be reached via a layer-2 broadcast
 
-Orange Broadcast domain, blue Collision domain.
+Orange = Broadcast domain, Blue = Collision domain:
 
 ![https://i.imgur.com/YJ3DW96.png](https://i.imgur.com/YJ3DW96.png)
