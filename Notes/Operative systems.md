@@ -2,17 +2,13 @@
 
 ## What is an OS
 
-Un sistema operativo è un insieme di programmi che affisce come intermediario tra hardware e uomo. Il SO offre un ambiente per controllare e coordinare l'utilizzo dell'HW da parte di programmi applcativi. Può rendere efficiente l'utilizzo dell'hardware e gestisce i conflitti (e.g. due utenti accedono alla stessa risorsa).
-Il SO facilita l'uso della macchina, facendo l'astrazione del codice scritto.
-Il SO gesisce le risorse HW come dischi e memoria e SW come file e programmi.
-Il sistema operativo si posiziona tra programmi applicativi e hardware.  
-The operative system is always on (or at least a part of the kernel), because it needs to have the control over the machine.
+An operative system is a bundle of software that is used between hardware and man. The OS offers an enviroment to control and coordinate the usage of the HW from application programs (programmi applicativi). To make it efficient, the OS manages the conflicts (e.g. 2 uses access the same resource). The OS make abstraction of the written code, allowinf an easier usage of the machine. The OS manages the HW resources like disks, memory and SW like programs. The operative system is always on (or at least a part of the kernel), because it needs to have the control over the machine. The SO checks the efficiency and abstraction. If a program does not have good performance, it does not make sense to use an OS.
 
-![Sistema operativo](https://i.imgur.com/1xaaJlO.png)
+OS example:
 
-Il SO controlla anche l'efficienza dell'astrazione. Se un programma non ha buone performance, non ha molto senso utilizzarlo.
+![https://i.imgur.com/1xaaJlO.png](https://i.imgur.com/1xaaJlO.png)
 
-### Generations
+## Generations
 
 **Polling** is used to interact between CPU and I/O using blocking instructions. To override CPU and I/O is necessary to have an asyncronous mechanism. So the CPU stop when I/O finishes the operation, so I/O sends signal to the CPU and CPU stops what it is doing saving the state, makes the operation and start again with what it was doing.
 
@@ -23,7 +19,7 @@ Il SO controlla anche l'efficienza dell'astrazione. Se un programma non ha buone
 
 The problem with spooling is that the disks are sequential, so random access disks are introduced.
 
-### Kernel
+## Kernel
 
 The kernel can be executed in 3 different ways:
 
@@ -58,21 +54,21 @@ The image of the memory contains:
 
 ![Image memory](https://i.imgur.com/lEF9Kh0.png)
 
-### Process states
+Process states:
 
 ![Process states](https://i.imgur.com/rJxqp6k.png)
 
-### Dispathcher
+## Dispathcher
 
 Dispatcher is used by CPU to manage processes:
 
-- Context switch
-  - operation where the state is saved in the process control block
-  - operation where the state is restored from the process control block
+- Context switch: operation where the state is saved/restored in the process control block
 - Kernel mode to user mode
 - Caricamento nel program counter del prossimo processo
 
-![Process flow](https://i.imgur.com/wD59Jtx.png)
+Process flow:
+
+![https://i.imgur.com/wD59Jtx.png](https://i.imgur.com/wD59Jtx.png)
 
 When a process is created it is attached to the father process.  
 When a fork is made to create a clild process.
@@ -99,9 +95,7 @@ The context switch is way faster in threads, compared to processes.
 For example in Solaris the creation of a process is 30 time slower than the creation of a thread. And the context switch is 5 time slower.
 Another vantage is scalabity, a process is not possible to be scaled and with a thread it is.
 
-### Thread statuses
-
-Threads can be:
+Threads status can be:
 
 - ready
 - in execution
@@ -117,13 +111,13 @@ Threads can be implemented on kernel level or user level.
 All OSs(Linux, Unix, Windows) make a combination of the 2, so some threads are mapped one to one from kernel space to user space, some are mapped such as some threads in user space (for example 3) are mapped to some in kernel space (for example 2). This happens because at kernel space the threads are a fixed number, in user space can possibly be infinite.
 
 Advantages of user-level kernel: faster and no context-switch needed, programmers can work with threads.  
-A disadvantage is that once a kernel in user mode is locked, the process locks (can be solved by programmers), another one is that kkis not possible to use parallelism.  
+A disadvantage is that once a kernel in user mode is locked, the process locks (can be solved by programmers), another one is that it's not possible to use parallelism.  
 Advantages kernel-level thread: if a process blocks it can continue, parallelism is possible.  
 Disadvantage kernel-level thread: low efficiency.
 
-### Inter Process Communication (Communication between processes)
+## Inter Process Communication
 
-Inter process communication is the technique to make 2 processes communicate. This needs to be fast and secure, the information inside a process needs to be protected.  
+Inter process communication (communication between processes) is the technique to make 2 processes communicate. This needs to be fast and secure, the information inside a process needs to be protected.  
 This can be done in a shared space or can be done by the kernel.  
 Memory can be shared between one or more processes.
 General purpouse OSs implements both.
@@ -170,7 +164,7 @@ This is how CPU distributes the load:
 
 ![CPU scheduler](https://i.imgur.com/z5wJerR.png)
 
-### Preemption
+## Preemption
 
 **Preemptive shedulers** can force the CPU to leave the process and put it back to queue.  
 **Non-preemptive schedulers** need to wait for the process.
@@ -200,118 +194,6 @@ Minimize:
 - turnaround time
 - response time
 
-Goes to [Scheduling algorithms](#Scheduling-algorithms)
-
-### Creation of shared memory
-
-When memory is **shared**, a piece of memory is attached to the heap.
-
-![Attach](https://i.imgur.com/jc2ZxTn.png)
-
-This is an example:
-
-```C
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <sys/shm.h>
-#include <sys/stat.h>
-
-int main() {
-  key_t key;
-  int   i,a;
-  int  shm, shm1;
-  char *addr, *addr1;
-  struct shmid_ds buf;
-
-  key = ftok("pathname", 3);
-  printf("key=%d\n",key);
-
-  shm1 = shmget(key, 100, IPC_CREAT+S_IRUSR+S_IWUSR);
-  addr1 = shmat (shm1, NULL, 0);
-
-  addr1 = shmat (shm1, NULL, 0);
-
-  printf("P4: identifier of the shared memory shm1= %d\n", shm1);
-  printf("P4 read from shared memory %s\n", addr1);
-  sprintf(addr1, " P4 wrote on shared memory: bruno crispo");
-  printf("%s\n", addr1);
-
-  shmdt(addr1);
-  shmctl(shm1,IPC_RMID,0);
- }
-```
-
-## Pipe
-
-Pipes make communicate two processes.
-
-### Ordinary pipe
-
-**Ordinary pipe** have a producer and a cosumer.  
-The producer writes in the write-end.  
-The consumer reads in the read-end.  
-Two processes can be both producer and consumer.  
-To use pipes two processes need to be father and child.
-
-### Pipe with name
-
-**Pipes with name** don't need to be parent and child and more than one process can communicate through this pipe.
-
-An example of **writer** is:
-
-```C
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-int main()
-{
-    int fd;
-    char * myfifo = "./myfifo";
-
-    /* create the FIFO (named pipe) */
-    mkfifo(myfifo, 0666);
-
-    /* write "Hi" to the FIFO */
-    fd = open(myfifo, O_WRONLY);
-    write(fd, "I am your named pipe", sizeof("I am your named pipe"));
-    close(fd);
-
-    /* remove the FIFO */
-    unlink(myfifo);
-
-    return 0;
-}
-```
-
-An example of **reader** is:
-
-```C
-#include <fcntl.h>
-#include <stdio.h>
-#include <sys/stat.h>
-#include <unistd.h>
-
-#define MAX_BUF 1024
-
-int main()
-{
-  int fd;
-  char * myfifo = "./myfifo";
-  char buf[MAX_BUF];
-
-  /* open, read, and display the message from the FIFO */
-  fd = open(myfifo, O_RDONLY);
-  read(fd, buf, MAX_BUF);
-  printf("Received: %s\n", buf);
-  close(fd);
-
-  return 0;
-}
-```
-
 ## Scheduling algorithms
 
 ### First-Come First-Served algorithm
@@ -322,9 +204,9 @@ This is an algorithm without [preemption](#preemption), this mean waiting-time(T
 
 The problem with this algorithm is that if a process with a large burst is exectured, the writing-time (when all the process started, but still are not done) will be long.
 
-![https://i.imgur.com/kYWkGj7.png](https://i.imgur.com/kYWkGj7.png)
+FCFS algorithm example:
 
-***FCFS algorithm***
+![https://i.imgur.com/kYWkGj7.png](https://i.imgur.com/kYWkGj7.png)
 
 ### Shortest-Job-First
 
@@ -336,21 +218,17 @@ Non-preemptive example:
 
 ![https://i.imgur.com/vkBv98E.png](https://i.imgur.com/vkBv98E.png)
 
-***Non-preemptive example***
-
 Preemptive example, aka **Shortest Remaining Time First** (in this example the switch time is not counted):
 
 ![https://i.imgur.com/MlL0Cao.png](https://i.imgur.com/MlL0Cao.png)
-
-***Preemptive example***
 
 ### Time approximation
 
 The problem with the algorithms above is that the CPU burst time is not known, to solve this, an estimation needs to be made with the time burst of the past.
 
-![https://i.imgur.com/w33odLr.png](https://i.imgur.com/w33odLr.png)
+Time estimation:
 
-Time estimation
+![https://i.imgur.com/w33odLr.png](https://i.imgur.com/w33odLr.png)
 
 ### Priority of processes
 
@@ -361,8 +239,6 @@ Priority
 Priority example:
 
 ![https://i.imgur.com/o4RXGV1.png](https://i.imgur.com/o4RXGV1.png)
-
-Priority example
 
 ### Starvation
 
@@ -397,17 +273,13 @@ Round robin example with quant = 2:
 
 Round robin
 
-Processes exercises:
+Example exercises:
 
-![https://i.imgur.com/zcxTZl1.png](https://i.imgur.com/zcxTZl1.png)
+![https://i.imgur.com/HcMFkku.jpg](https://i.imgur.com/HcMFkku.jpg)
 
-Exercises processes 1
+![https://i.imgur.com/zomBU78.png](https://i.imgur.com/zomBU78.png)
 
-![https://i.imgur.com/j78ZoNn.png](https://i.imgur.com/j78ZoNn.png)
-
-Exercises processes 2
-
-### Multilevel queue without feedback
+## Multilevel queue without feedback
 
 The algorithm seen before are different from what’s used in real life. In real life, different queues are used for diffrent types of processes. For example an algotitm for foreground processes could be round robin and one for background processes could be FCFS.
 
@@ -422,33 +294,21 @@ Example priority of queue:
 
 ![https://i.imgur.com/lNLmeRn.png](https://i.imgur.com/lNLmeRn.png)
 
-Example queue
-
 In the static queues the processes are evaluated only the first time I see that process, there it remains until it ends. Here there is the problem that the processes are not evaluated watching the code, if I miss the category, I could have a less performant execution.
 
-### Multilevel queue with feedback
+## Multilevel queue with feedback
 
-In real systems there are the **multilevel queue with feedback**, so the process can move between queues depending on characteristics.
+In real systems there are the **multilevel queue with feedback**, so the process can move between queues depending on characteristics. A multilevel queue with feedback example:
 
 ![https://i.imgur.com/VruCjGg.png](https://i.imgur.com/VruCjGg.png)
 
-Multilevel queue with feedback example
+## Fair share
 
-This is the order:
-
-![https://i.imgur.com/1jml5gT.png](https://i.imgur.com/1jml5gT.png)
-
-Multilevel queue with feedback example 2
-
-### Fair share
-
-Fair share divides the CPU in more slices and here the processes are ran by app. So if an app have 2 processes and an app have 10, this avoids that the process with the most processes to have priority.
+Fair share divides the CPU in more slices and here the processes are ran by app. So if an app have 2 processes and an app have 10, this avoids that the process with the most processes to have priority. Fair share example:
 
 ![https://i.imgur.com/VP81fwI.png](https://i.imgur.com/VP81fwI.png)
 
-Fair share example
-
-### Models to evalutate an algorithm
+## Models to evalutate an algorithm
 
 **Deterministic algorithm** is the model we made in the previous exercises. So if we know the processes that go into it, we can predict the output. The problem is that if we change processes the output changes.
 
@@ -464,7 +324,7 @@ Because there are shared resources an algorithm that manages the order of the ex
 
 Problem of producer and consumer:
 
-- profucer: make the message
+- procucer: make the message
 - consumer: uses the message
 
 The execution of these read and write needs to be synced and the buffer used is limited in size.
@@ -476,13 +336,9 @@ Buffer used by the processes **is circular**:
 
 ![https://i.imgur.com/bbcguZZ.png](https://i.imgur.com/bbcguZZ.png)
 
-Buffer
-
-Code:
+Buffer code:
 
 ![https://i.imgur.com/25tnV1a.png](https://i.imgur.com/25tnV1a.png)
-
-Buffer code
 
 The problem with this script is that the CPU can stop the process in any time, so for example in the consumer script it could stop the execution before the line `counter++` and this would mean not updating the counter. And this is an example that could happen (counter is shared between processes):
 
@@ -494,7 +350,7 @@ And this would resolve in inconsistency.
 
 The soulution to this is **critical section**.
 
-### Critical section
+## Critical section
 
 Critical section is a piece of code in which we acess a shared resource.
 
@@ -516,71 +372,48 @@ Algorithm 1, **wrong** algorithm:
 
 ![https://i.imgur.com/CuC4C8N.png](https://i.imgur.com/CuC4C8N.png)
 
-Algorithm 1
-
 The problem with this algorithm is that if a process exits, then the other one wait for him and never enters. For example j terminate, then i wait for ever there. So **progress** is not respected.
 
 Algorithm 2, **wrong** algorithm:
 
 ![https://i.imgur.com/atbpwPr.png](https://i.imgur.com/atbpwPr.png)
 
-Algorithm 2
-
 The problem of the process waiting forever is solved, because in case one goes away it will have the flag set to false. So process is now respected. The problem is that the flag could be set to true before the while is entered (critical section) so there will be a deadlock situation:
 
 ![https://i.imgur.com/z27D6m4.png](https://i.imgur.com/z27D6m4.png)
-
-Deadlock
 
 Algorithm 3:
 
 ![https://i.imgur.com/EICjmVo.png](https://i.imgur.com/EICjmVo.png)
 
-Algorithm 3
-
 This algorithm checks both if it’s the correct turn and if the process has the key. Now we need to solve the problem for more than one processes.
 
-### Lamport’s bakery algorithm
+## Lamport’s bakery algorithm
 
 Here we solve the problem of having more than 2 processes.
 
-Algorithm 1, **wrong**:
+Algorithm 1, **wrong**, the problem with this solution is that the `max(number[0], ... , number[N-1])` is atomic, so it could be calculated and the the context switch made without the `number[i]`:
+
 
 ![https://i.imgur.com/TglFJ93.png](https://i.imgur.com/TglFJ93.png)
 
-Lamport’s bakery algorithm 1
-
-The problem with this soulution is that the `max(number[0], ... , number[N-1])` is atomic, so it could be calculated and the the context switch made without the `number[i]`.
-
-Algorithm 2, **wrong**:
+Algorithm 2, **wrong** what is changing here is that if a process did not finish to choose the number in which it will enter the queue, the processes will not be executed because they wait for everyone to choose it’s number:
 
 ![https://i.imgur.com/4HqbWCw.png](https://i.imgur.com/4HqbWCw.png)
 
-Lamport’s bakery algorithm 2
-
-What is changing here is that if a process did not finish to choose the number in which it will enter the queue, the processes will not be executed because they wait for everyone to choose it’s number.
-
-Algorithm 3, **right**:
+Algorithm 3, **right** there were the software solution, the problem is that it’s really a complex solution and there is a lot of time wasting checking in the while:
 
 ![https://i.imgur.com/jzpQAhK.png](https://i.imgur.com/jzpQAhK.png)
 
-Lamport’s bakery algorithm 3
+## Hardware solutions
 
-There were the software solution, the problem is that it’s really a complex solution and there is a lot of time wasting checking in the while.
-
-### Hardware solutions
-
-A solution is to diable interupt while a shared variable is being accessed, the problem is that then a process can take how much time it wants and possibly blocking the acess to other processes.
+A solution is to diable interupt while a shared variable is being accessed, the problem is that then a process can take how much time it wants and possibly blocking the access to other processes.
 
 One solution is **test and set**:
 
 ![https://i.imgur.com/hAAv0u1.png](https://i.imgur.com/hAAv0u1.png)
 
-Test and set 1
-
 ![https://i.imgur.com/FueM0xu.png](https://i.imgur.com/FueM0xu.png)
-
-Test and set 2
 
 This test is always atomic. This function allows to set the lock to the processes that are called are return the previous state of them, if it was set to FALSE, so the lock was open then it would enter the critical section.
 
@@ -588,19 +421,13 @@ Onther solution is **swap**:
 
 ![https://i.imgur.com/EHKHvYg.png](https://i.imgur.com/EHKHvYg.png)
 
-Swap 1
-
 ![https://i.imgur.com/lNDZ8Lx.png](https://i.imgur.com/lNDZ8Lx.png)
-
-Swap 2
 
 The problem with swap and test and set is that a process could always be executed, terminate and come back in the critical section continuously, never leaving time for the other processes to enter.
 
 Here is the solution to this problem:
 
 ![https://i.imgur.com/6tu26mY.png](https://i.imgur.com/6tu26mY.png)
-
-Test and set sol 2
 
 This solution allows to set FALSE to the lock only in the case there are no other processes that are waiting to go in the critic section.
 
@@ -623,13 +450,9 @@ Conceptual execution of **binary** semaphores:
 
 ![https://i.imgur.com/dcssv4G.png](https://i.imgur.com/dcssv4G.png)
 
-Semaphores
-
 Conceptual execution of **generic** semaphores:
 
 ![https://i.imgur.com/gEuzSsU.png](https://i.imgur.com/gEuzSsU.png)
-
-Semaphores
 
 These 2 piece of code are evaluated in one time, so in a atomic trasnsaction.
 
@@ -640,35 +463,22 @@ There are two implementation:
 
 Busy waiting is also called **spin lock**, spin because of the while (watch next pic), lock because it locks the process.
 
-Implemenation with busy waiting:
+Semaphore implemenation with busy waiting. In this implementation the Swap is a atomic transaction, so it is ensured by the hardware that this transaction cannot be stopped in the middle:
 
 ![https://i.imgur.com/syuoNlm.png](https://i.imgur.com/syuoNlm.png)
-
-semaphore implementation with busy waiting
-
-In this implementation the Swap is a atomic transaction, so it is ensured by the hardware that this transaction cannot be stopped in the middle.
 
 For the implementation with non binary semaphores **with busy waiting**:
 
 ![https://i.imgur.com/XWokXUH.png](https://i.imgur.com/XWokXUH.png)
 
-implementation with non binary semaphores
-
-Implementation on V **without busy waiting**:
+Implementation on V **without busy waiting**, in this implementation there is a list of all the processes (PCB or process control block). In this case the process is appended to the list and it’s put into sleep, so it leaves the CPU making other process run. So P(delay) is not run, saving computing time:
 
 ![https://i.imgur.com/C8zXRJm.png](https://i.imgur.com/C8zXRJm.png)
 
-implementation V no busy waiting
+Implementation on P **without busy waiting**. This wakes up the processes in case there are processes that are waiting. The problem with this implemenation is the starvation that could occure if we have a list with priorities, if we have FCFS this doesn’t happen:
 
-In this implementation there is a list of all the processes (PCB or process control block). In this case the process is appended to the list and it’s put into sleep, so it leaves the CPU making other process run. So P(delay) is not run, saving computing time.
-
-Implementation on P **without busy waiting**:
 
 ![https://i.imgur.com/DqBQM8K.png](https://i.imgur.com/DqBQM8K.png)
-
-implementation P no busy waiting
-
-This wakes up the processes in case there are processes that are waiting. The problem with this implemenation is the starvation that could occure if we have a list with priorities, if we have FCFS this doesn’t happen.
 
 Usually in the OS the **busy waiting is accepted** and implemented instead of the list of processes.
 
@@ -676,51 +486,38 @@ The execution is normally:
 
 ![https://i.imgur.com/xwHdt26.png](https://i.imgur.com/xwHdt26.png)
 
-execution of semaphores
-
 Here s could be called in other ways, the important thing is that P and V are called with their names.
 
-### Semaphores exercises
+## Semaphores exercises
 
 I want to execute before A, then B:
 
 ![https://i.imgur.com/ACBNqtS.png](https://i.imgur.com/ACBNqtS.png)
 
-exerxise 1 semaphores
-
 Processes that wait each other:
 
 ![https://i.imgur.com/OwS7Wmi.png](https://i.imgur.com/OwS7Wmi.png)
 
-exerise 2 semaphores
-
-A limitation of the semaphores is the **deadlock**.
+A limitation of the semaphores is the **deadlock**. Deadlock example:
 
 ![https://i.imgur.com/ztiS9RS.png](https://i.imgur.com/ztiS9RS.png)
 
-deadlock example
-
 Another problem is **starvation**, for example if I forget a V, then a process is never run.
 
-### Producer and consumer problem
+## Producer and consumer problem
 
-The **problem of the producer and consumer** has the buffer of N elements that need to be checked (if there is space to produce or consume) before entering the produce or consume section. We need to introduce **full** and **empty** semaphores.
+The **problem of the producer and consumer** has the buffer of N elements that need to be checked (if there is space to produce or consume) before entering the produce or consume section. We need to introduce **full** and **empty** semaphores. Producer and consumer problem:
 
 ![https://i.imgur.com/7eCx9yV.png](https://i.imgur.com/7eCx9yV.png)
 
-producer and consumer problem
 
-### Dinning philosophers problem
+## Dinning philosophers problem
 
 ![https://i.imgur.com/ZpoKAJv.png](https://i.imgur.com/ZpoKAJv.png)
-
-problem
 
 We can solve this problem trying to take the right and left sticks, then eating.
 
 ![https://i.imgur.com/rtNDJw1.png](https://i.imgur.com/rtNDJw1.png)
-
-sol 1
 
 Here we have the deadlock situation, because if everyone takes the right strick, then no one eats.
 
@@ -728,15 +525,11 @@ Wrong solutions:
 
 ![https://i.imgur.com/VqUaicU.png](https://i.imgur.com/VqUaicU.png)
 
-wrong soulutions
-
 All of these change what the problem asked, so they are wrong. For example the first one remove one filosopher, but the problem asked for all of them at the same time. Or the third one adds a token, not allowed.
 
 Soultion:
 
 ![https://i.imgur.com/IJer85Y.png](https://i.imgur.com/IJer85Y.png)
-
-solution part1
 
 Is this solution is really important to avoid describing the Think() and Eat() because these two do not have problems of concurrecy.
 
@@ -744,25 +537,21 @@ The solution is in testing if the two pilosophers close to me are hungry on not.
 
 ![https://i.imgur.com/ZTwQPQT.png](https://i.imgur.com/ZTwQPQT.png)
 
-solution part2
-
 ![https://i.imgur.com/eOSecjT.png](https://i.imgur.com/eOSecjT.png)
-
-solution part3
 
 In this part I don’t only putj the fork back to available, I also put the philosophers close to me in eating state, in the case they were hungry. This last step **avoid deadlock** but **not starvation** (only in the case of spare number of philosophers). The starvation problem is solved by adding some sort of priority to the solution.
 
-### Sleepy barber problem
+## Sleepy barber problem
+
+Problem:
 
 ![https://i.imgur.com/qWaKOiY.png](https://i.imgur.com/qWaKOiY.png)
 
-***Problem***
+Solution:
 
 ![https://i.imgur.com/XTFQnlk.png](https://i.imgur.com/XTFQnlk.png)
 
-***Solution***
-
-### Limitation of the semaphores
+## Limitation of the semaphores
 
 The main problem with semaphores is the raising complexity going up with the complexity of the problem.
 
@@ -782,9 +571,7 @@ Monitor producer and consumer:
 
 ![https://i.imgur.com/18U8M4m.png](https://i.imgur.com/18U8M4m.png)
 
-***Monitor producer and consumer***
-
-### Writes and readers problem
+## Writes and readers problem
 
 Rules:
 
@@ -798,45 +585,33 @@ Writers solution:
 
 ![https://i.imgur.com/FLERJ9u.png](https://i.imgur.com/FLERJ9u.png)
 
-***Writers***
-
 Readers solution:
 
 ![https://i.imgur.com/pqiCrsq.png](https://i.imgur.com/pqiCrsq.png)
-
-***Readers***
 
 The problem with this solution is **starvation**.
 
 ## Deadlock
 
-The deadlock happens when processes are waiting for resources to be freed, and these resources are occupied by resources that are waiting for other locked resources.
+The deadlock happens when processes are waiting for resources to be freed, and these resources are occupied by resources that are waiting for other locked resources. Deadlock example:
 
 ![https://i.imgur.com/V1S7GjY.png](https://i.imgur.com/V1S7GjY.png)
 
-Deadlock example
-
 The problem above can be solved with preemption of rollback. With preemption we don’t allow more than one car at a time in the bridge, with rollback, we make a car go back to it’s track, the problem with this is that if there are more than one car to rollback, then there rollback is not light in performances.
 
-Ececution of 2 processes:
+Execution of 2 processes:
 
 ![https://i.imgur.com/2PqjCEF.png](https://i.imgur.com/2PqjCEF.png)
-
-Ececution of 2 processes
 
 Deadlock possibilities:
 
 ![https://i.imgur.com/8PXEu3g.png](https://i.imgur.com/8PXEu3g.png)
-
-Deadlock possibilities
 
 In the execution above, in the 6 possibilities, 2 of them go into a deadlock situation.
 
 The conditions to have a deadlock are:
 
 ![https://i.imgur.com/UXhzZYi.png](https://i.imgur.com/UXhzZYi.png)
-
-conditions to have a deadlock
 
 A model to understand if there are deadlock is RAG.
 
@@ -846,25 +621,19 @@ The RAG is:
 
 ![https://i.imgur.com/ABF8wFh.png](https://i.imgur.com/ABF8wFh.png)
 
-Rag
-
 Rag example:
 
 ![https://i.imgur.com/IibLWFY.png](https://i.imgur.com/IibLWFY.png)
-
-Rag example
 
 Here we need to check if we have cycles inside:
 
 ![https://i.imgur.com/wF5BnVx.png](https://i.imgur.com/wF5BnVx.png)
 
-Cycles check
-
 In this example we have a cycle between P1 and P3. We also have a cycle inside the second exaple, but in the case R1 is locked by P2, when P2 frees up, then P3 is able to run, the same thing with P4. In the first case it isn’t the same thing, because both R1 and R2 are waiting for P2, in the case it is blocked, then R2 and R3 are blocked, whitch create a deadlock.
 
 What to do when something like this happens? Static prevention; dynamic prevention; detenction and recovery; not doing anything.
 
-### Static prevention
+## Static prevention
 
 With hold and wait the process allocate all the resources that it needs to use, then if a context switch comes and another process is waiting for that resource, it won’t be able to do anything, so there is a waste of memory. Hold and wait can also cause starvation.
 
@@ -872,15 +641,13 @@ Another possibility to solve the deadlock problem is forcing a process to releas
 
 Static prevention in not used in real world applications because of its cost.
 
-### Dynamic prevention
+## Dynamic prevention
 
 The dynamic prevention requires to know the used resources by the processes. If it doesn’t have this information, it will use the maximum possible resources used, and this could lead into resources waste.
 
 This prevention checks if the system is in a safe state, this means no deadlock. The system is in a safe state if using the resources it’s possible to allocate in some order the processes available. If there isn’t a safe state, then it’s unsafe, so a deadlock could occure.
 
 ![https://i.imgur.com/DNYTO1W.png](https://i.imgur.com/DNYTO1W.png)
-
-example
 
 In this example the state is safe in the orfer P1 P0 P2.
 
@@ -895,11 +662,9 @@ RAG example:
 
 ![https://i.imgur.com/yaJ49No.png](https://i.imgur.com/yaJ49No.png)
 
-rag example
+## Banker’s algorithm
 
-### Banker’s algorithm
-
-the idea of this algorighm is that the bank that have 1000 bank accounts with in total 1.000.000 euros, the money that it needs to have available to give back to the users is way lower than the amount of money that the user really have, because cases like all the users come in the same day and closes all the accounts is almost impossible. If a user ask for a small amount of money, the bank gives it immedialy, if requires a big amount, the bank ask him to come back in some days.
+The idea behind this algorighm a bank that have 1000 bank accounts with in total 1.000.000 euros, the money that it needs to have available to give back to the users is way lower than the amount of money that the user really have, because cases like all the users come in the same day and closes all the accounts is almost impossible. If a user ask for a small amount of money, the bank gives it immedialy, if requires a big amount, the bank ask him to come back in some days.
 
 The algorithm requires that the processes to know the used resources. If a process ask resources, if the state is still in a safe state without that resources, then the resources are allocated, if not the resources are not allocated.
 
@@ -909,23 +674,13 @@ Allocation algorithm:
 
 ![https://i.imgur.com/LYQ6Erc.png](https://i.imgur.com/LYQ6Erc.png)
 
-allocation algorithm
-
 Verification algorithm:
 
 ![https://i.imgur.com/u2zB6ty.png](https://i.imgur.com/u2zB6ty.png)
 
-verification algorithm
+Banker’s algorithm exercise (algoritmo del banchiere):
 
-Banker’s algorithm exercise:
-
-![https://i.imgur.com/7KZPYeB.png](https://i.imgur.com/7KZPYeB.png)
-
-Banker’s algorithm exercise pt1
-
-![https://i.imgur.com/4Rto8bn.png](https://i.imgur.com/4Rto8bn.png)
-
-Banker’s algorithm exercise pt2
+![https://i.imgur.com/DHvvWCF.png](https://i.imgur.com/DHvvWCF.png)
 
 ### Deadlock & restore
 

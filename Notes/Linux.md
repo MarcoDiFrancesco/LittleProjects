@@ -34,3 +34,113 @@ When making a system call, the system can return a code between 1 and 255. If th
 System call examples:
 
 ![System call examples](https://i.imgur.com/7NTlVA8.png)
+
+### Creation of shared memory
+
+When memory is **shared**, a piece of memory is attached to the heap.
+
+![Attach](https://i.imgur.com/jc2ZxTn.png)
+
+This is an example:
+
+```C
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+
+int main() {
+  key_t key;
+  int   i,a;
+  int  shm, shm1;
+  char *addr, *addr1;
+  struct shmid_ds buf;
+
+  key = ftok("pathname", 3);
+  printf("key=%d\n",key);
+
+  shm1 = shmget(key, 100, IPC_CREAT+S_IRUSR+S_IWUSR);
+  addr1 = shmat (shm1, NULL, 0);
+
+  addr1 = shmat (shm1, NULL, 0);
+
+  printf("P4: identifier of the shared memory shm1= %d\n", shm1);
+  printf("P4 read from shared memory %s\n", addr1);
+  sprintf(addr1, " P4 wrote on shared memory: bruno crispo");
+  printf("%s\n", addr1);
+
+  shmdt(addr1);
+  shmctl(shm1,IPC_RMID,0);
+ }
+```
+
+## Pipe
+
+Pipes make communicate two processes.
+
+### Ordinary pipe
+
+**Ordinary pipe** have a producer and a cosumer.  
+The producer writes in the write-end.  
+The consumer reads in the read-end.  
+Two processes can be both producer and consumer.  
+To use pipes two processes need to be father and child.
+
+### Pipe with name
+
+**Pipes with name** don't need to be parent and child and more than one process can communicate through this pipe.
+
+An example of **writer** is:
+
+```C
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main()
+{
+    int fd;
+    char * myfifo = "./myfifo";
+
+    /* create the FIFO (named pipe) */
+    mkfifo(myfifo, 0666);
+
+    /* write "Hi" to the FIFO */
+    fd = open(myfifo, O_WRONLY);
+    write(fd, "I am your named pipe", sizeof("I am your named pipe"));
+    close(fd);
+
+    /* remove the FIFO */
+    unlink(myfifo);
+
+    return 0;
+}
+```
+
+An example of **reader** is:
+
+```C
+#include <fcntl.h>
+#include <stdio.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#define MAX_BUF 1024
+
+int main()
+{
+  int fd;
+  char * myfifo = "./myfifo";
+  char buf[MAX_BUF];
+
+  /* open, read, and display the message from the FIFO */
+  fd = open(myfifo, O_RDONLY);
+  read(fd, buf, MAX_BUF);
+  printf("Received: %s\n", buf);
+  close(fd);
+
+  return 0;
+}
+```
