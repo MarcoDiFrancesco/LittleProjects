@@ -699,8 +699,6 @@ Restoring **using RAG**:
 
 ![https://i.imgur.com/h8paGix.png](https://i.imgur.com/h8paGix.png)
 
-restoring using graph
-
 The RAG is used removing the resources, and watching the processes. In this case there is a dealock situation because there is a cycle in P2, P3, P4, P1.
 
 Rilevamento **using kind of banker’s agorithm**:
@@ -719,11 +717,7 @@ Deadlock & restore
 
 ![https://i.imgur.com/0WXL7MF.png](https://i.imgur.com/0WXL7MF.png)
 
-Rilevamento exercise pt1
-
 ![https://i.imgur.com/JzEiTaq.png](https://i.imgur.com/JzEiTaq.png)
-
-Rilevamento exercise pt2
 
 ### Restore
 
@@ -739,7 +733,7 @@ The soution with **killing the processes** are 2:
 
 A solution to this can be [aging](#Starvation).
 
-### Conclusion
+## Conclusion
 
 A good solution for deadlock is a combination of the soulutions OR using the **ostrich** (struzzo) solution, so don’t handle the deadlocks.
 
@@ -750,14 +744,12 @@ Something is a process only if some **central memory is assigned to it**. The pr
 The transformation between program memory written in the disk, to memory allocation that is located in the main memory. This takes place through:
 
 - Compiler
-- Linke
+- Linker
 - Loader
 
 Translation process:
 
 ![https://i.imgur.com/5yvFtzV.png](https://i.imgur.com/5yvFtzV.png)
-
-Translation process
 
 The binding process can be at:
 
@@ -765,21 +757,17 @@ The binding process can be at:
 - Load time
 - Run time
 
-Description:
+Binding process description:
 
 ![https://i.imgur.com/VdszfNa.png](https://i.imgur.com/VdszfNa.png)
 
-Binding process description
-
-Example:
+Binding process example:
 
 ![https://i.imgur.com/MYAy5Kg.png](https://i.imgur.com/MYAy5Kg.png)
 
-Binding process example
-
 At runtime the address (1000) is loaded from the hardware, this could change with a context switch, for example 1000 becomes 2000, then all the adresses need to be calculated again.
 
-### Linking
+## Linking
 
 Linking can be static or dynamic:
 
@@ -791,13 +779,11 @@ Loading can be static or dyncamic:
 - Static: all code is loaded in memory
 - Dynamic: code is splited and if there are piece of code not needed, they are not loaded
 
-### Spazi di indirizzamento
+## Spazi di indirizzamento
 
 The **address space** can be logical or physical. The difference is that at compile or load time, the logical and physical adresses coincide, at run time, it’s likely that they are different:
 
 ![https://i.imgur.com/fStzLp9.png](https://i.imgur.com/fStzLp9.png)
-
-Static and dynamic binding
 
 The **Memory Management Unit** (MMU) is the thing that at run time gives the assign the addresses. For example a logical process says it has the memory between 0 and 20K, and the MMU assign the physical address between 50K and 70K (at run time).
 
@@ -807,7 +793,7 @@ The binding in new computer is always dynamic, because it can’t be possible to
 
 Here we see how the memory is assigned to a process.
 
-### Fixed partition technique
+## Fixed partition technique
 
 The **fixed partition technique** works in dividing the memory in partitions. This works allocating the memory required to the partition that are available and the partition that can fit the memory required.
 
@@ -823,22 +809,18 @@ So the disadvantages of First Available Fit are:
 
 ![https://i.imgur.com/6XlPIcX.png](https://i.imgur.com/6XlPIcX.png)
 
-Static and dynamic binding
-
 2 problems of these solutions are:
 
 - **Internal fragmentation** when the process is smaller than the assigned memory block, so there is a waste of memory.
 - **External fragmentation** when the process is too big and it’s not fitting in the available memory block.
 
-### Dynamic partition technique
+## Dynamic partition technique
 
 This technique there is no fixed size of memory blocks, so there is only one big partition that is splitted in smaller memory blocks on the fly.
 
 When the memory is assigned it looks like this:
 
 ![https://i.imgur.com/VcPp8Qz.png](https://i.imgur.com/VcPp8Qz.png)
-
-Memory assignment with only one partition
 
 Here we can decide how to allocate new incoming memory blocks: with **best fit** we can fit the incoming process in the smallest memory block that we have, where that block fits, the problem with this is that it’s almost sure that the memory block remaining (if the memory block wasn’t exactly the size available) no other process will fit.
 
@@ -848,45 +830,37 @@ Another possibility is to fit the block in the **first available memory block**,
 
 Here we solved the problem of internal fragmentation, but we still have the problem of external fragmentation. We can solve this problem making the reallocation of the memory but this reallocation is really expensive.
 
-### Buddy system
+## Buddy system
 
-There is also a technique called **buddy system** trying always to split in 2 the memory until we find the space in which fits.
+There is also a technique called **buddy system** trying always to split in 2 the memory until we find the space in which fits. In this system we still have the problem of internal fragmentation but we have the advantage that when 2 blocks of 256KB close, they form a 512KB, that is different from the fixed size blocks. Buddy system example:
 
 ![https://i.imgur.com/XLQgfhs.png](https://i.imgur.com/XLQgfhs.png)
 
-Buddy system
+## Pagination
 
-In this system we still have the problem of internal fragmentation but we have the advantage that when 2 blocks of 256KB close, they form a 512KB, that is different from the fixed size blocks.
-
-### Pagination
-
-The problem we want to solve is the internal and external fragmentation. For example in the buddy system if we fragment the blocks and we have 2 different blocks that are not closed by, we won't be able to use those 2 blocks for one process.
+The problem we want to solve is the internal and external fragmentation. For example in the buddy system if we fragment the blocks and we have 2 different blocks that are not closed by, we won't be able to use those 2 blocks for one process. Pagination example:
 
 ![https://i.imgur.com/l3zYMrN.png](https://i.imgur.com/l3zYMrN.png)
 
-Pagination example
-
-With pagination if the dimention of a page is 1KB and the program requires 2.3KB, then 3 pages will be used. With this solution there is still a little bit of memory waste, but not a lot.
+With pagination if the dimention of a page is 1KB and the program requires 2.3KB, then 3 pages will be used. With this solution there is still a little bit of memory waste, but not a lot. How memory gets divided:
 
 ![https://i.imgur.com/qp4nJEJ.png](https://i.imgur.com/qp4nJEJ.png)
-
-How memory gets divided
 
 In pagination we also have a more difficult translation in addressing space MMU.
 
 ![https://i.imgur.com/KjSCb8p.png](https://i.imgur.com/KjSCb8p.png)
 
-![https://i.imgur.com/YWkrUsJ.png](https://i.imgur.com/YWkrUsJ.png)
+Translation example:
 
-Translation example
+![https://i.imgur.com/YWkrUsJ.png](https://i.imgur.com/YWkrUsJ.png)
 
 This addresses are written in the **page table** that sits in memory. We can find the page table adress in the registers of the CPU, the adress and the lenght. The problem with this solution is that the memory needs to be accessed 2 times in order to be used.
 
 We solve this with the **translation look-aside buffer** (TLB) that is a small accociative memory that contains a small amount memory addresses. So we first check the TLB, if there is a miss, then we look in the memory (as explained above) taking more time. The TLB is useful only if there is a low miss rate.
 
-![https://i.imgur.com/Q7rDMBa.png](https://i.imgur.com/Q7rDMBa.png)
+MMU with TLB:
 
-MMU in case of TLB
+![https://i.imgur.com/Q7rDMBa.png](https://i.imgur.com/Q7rDMBa.png)
 
 Because the TLB is really costy because we need to clear it each time there is a context switch, so we can't keep all the adresses in the TLB.
 
@@ -906,7 +880,7 @@ These segmentation is stored in a TLB using the segment-table base register STBR
 
 A problem with the segmentation is that we could have **external fragmentation**.
 
-### Segmented pagination
+## Segmented pagination
 
 In segmented pagination there is a **page table for each segment**. In phisical memory there is only the concept of frame, not the one of segments. The concept of segments it's inside each frame.
 
