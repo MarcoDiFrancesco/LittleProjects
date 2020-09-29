@@ -394,7 +394,6 @@ Here we solve the problem of having more than 2 processes.
 
 Algorithm 1, **wrong**, the problem with this solution is that the `max(number[0], ... , number[N-1])` is atomic, so it could be calculated and the the context switch made without the `number[i]`:
 
-
 ![https://i.imgur.com/TglFJ93.png](https://i.imgur.com/TglFJ93.png)
 
 Algorithm 2, **wrong** what is changing here is that if a process did not finish to choose the number in which it will enter the queue, the processes will not be executed because they wait for everyone to choose it’s number:
@@ -477,7 +476,6 @@ Implementation on V **without busy waiting**, in this implementation there is a 
 
 Implementation on P **without busy waiting**. This wakes up the processes in case there are processes that are waiting. The problem with this implemenation is the starvation that could occure if we have a list with priorities, if we have FCFS this doesn’t happen:
 
-
 ![https://i.imgur.com/DqBQM8K.png](https://i.imgur.com/DqBQM8K.png)
 
 Usually in the OS the **busy waiting is accepted** and implemented instead of the list of processes.
@@ -509,7 +507,6 @@ Another problem is **starvation**, for example if I forget a V, then a process i
 The **problem of the producer and consumer** has the buffer of N elements that need to be checked (if there is space to produce or consume) before entering the produce or consume section. We need to introduce **full** and **empty** semaphores. Producer and consumer problem:
 
 ![https://i.imgur.com/7eCx9yV.png](https://i.imgur.com/7eCx9yV.png)
-
 
 ## Dinning philosophers problem
 
