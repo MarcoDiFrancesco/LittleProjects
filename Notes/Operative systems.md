@@ -2,7 +2,7 @@
 
 ## What is an OS
 
-An operative system is a bundle of software that is used between hardware and man. The OS offers an enviroment to control and coordinate the usage of the HW from application programs (programmi applicativi). To make it efficient, the OS manages the conflicts (e.g. 2 uses access the same resource). The OS make abstraction of the written code, allowinf an easier usage of the machine. The OS manages the HW resources like disks, memory and SW like programs. The operative system is always on (or at least a part of the kernel), because it needs to have the control over the machine. The SO checks the efficiency and abstraction. If a program does not have good performance, it does not make sense to use an OS.
+An operative system is a bundle of software that is used between hardware and man. The OS offers an environment to control and coordinate the usage of the HW from application programs (programmi applicativi). To make it efficient, the OS manages the conflicts (e.g. 2 uses access the same resource). The OS make abstraction of the written code, allowinf an easier usage of the machine. The OS manages the HW resources like disks, memory and SW like programs. The operative system is always on (or at least a part of the kernel), because it needs to have the control over the machine. The SO checks the efficiency and abstraction. If a program does not have good performance, it does not make sense to use an OS.
 
 OS example:
 
@@ -10,9 +10,9 @@ OS example:
 
 ## Generations
 
-**Polling** is used to interact between CPU and I/O using blocking instructions. To override CPU and I/O is necessary to have an asyncronous mechanism. So the CPU stop when I/O finishes the operation, so I/O sends signal to the CPU and CPU stops what it is doing saving the state, makes the operation and start again with what it was doing.
+**Polling** is used to interact between CPU and I/O using blocking instructions. To override CPU and I/O is necessary to have an asynchronous mechanism. So the CPU stop when I/O finishes the operation, so I/O sends signal to the CPU and CPU stops what it is doing saving the state, makes the operation and start again with what it was doing.
 
-**Direct memory access** uses the principle of polling but sends interrupt signal with a block of informaion.
+**Direct memory access** uses the principle of polling but sends interrupt signal with a block of information.
 
 **Buffering** when CPU and I/O are making the same job.  
 **Spooling** when CPU and I/O are making different jobs.
@@ -27,12 +27,12 @@ The kernel can be executed in 3 different ways:
 - kernel executed on a user process
 - kernel executed as a process
 
-The kernel executed in a **separately enviroment** uses a part of the memory that is not used by any other process, it is more priviledged than other processes. This was used in momolitic kernel once apon a time.
+The kernel executed in a **separately environment** uses a part of the memory that is not used by any other process, it is more privileged  than other processes. This was used in momolitic kernel once upon a time.
 
 The kernel executed in **user processes** so each process has the structures to call all functionalities of the kernel (a reference to them). The kernel functionalities are not replicated in each process, they are poining to a process contining all of the functionalities.
 This type of kernel is more performant, because when there is a system call, the switch between user mode and kernel mode is faster than making a mod switch because we are in the same process, if we would be in two different processes, we would require to make the context switch.
 
-The kernel stack contain all the processes that are running.  
+The kernel stack contains all the processes that are running.  
 The shared address space is shared across all processes.
 
 Kernel as user process:
@@ -64,7 +64,7 @@ Dispatcher is used by CPU to manage processes:
 
 - Context switch: operation where the state is saved/restored in the process control block
 - Kernel mode to user mode
-- Caricamento nel program counter del prossimo processo
+- Loading into the program counter of the next process
 
 Process flow:
 
