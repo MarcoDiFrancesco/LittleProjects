@@ -30,7 +30,7 @@ Every layer provides services to the **upper layer** throgh a **Service Access P
 
 In a system with M layers:
 
-- The **service data unit** (SDU) is the "packed" piece of data recived from the layer above
+- The **service data unit** (SDU) is the "packed" piece of data received from the layer above
 - The **protocol control information** (PCI) is the piece of data attached to the SDU containing the receiver and sender addresses
 - The **protocol data unit** (PDU) is the result of SDU + PCI, and it is passed to the layer below
 
