@@ -85,7 +85,7 @@ it makes so if a browser does not unsertand audio tag, ignore it and show downlo
 
 In the old version of HTML (behind 4.01) the code and the aspect of the contents where togeder, in the new versions the CSS is separated. CSS describes how a page needs to be presented.
 
-The HTML page is devided in HEAD and BODY:
+  The HTML page is devided in HEAD and BODY:
 
 - **Head** contatins:
   - Title
