@@ -9,9 +9,9 @@
 
   URI, URL and URN:
 
-  - URI (Uniform Resource Identifier) identifies an abstract or physical location
-  - URL (Uniform Resource Location) is a subset of URI and refers  to the rappresentation of their primary access mechanism, e.g. their location
-  - URN (Uniform Resource Name) is a subset of URI and refers  to the rappresentation od a globally unique and persistent location, even when the resource does not exist anymore, e.g. the ISBN of a book
+- URI (Uniform Resource Identifier) identifies an abstract or physical location
+- URL (Uniform Resource Location) is a subset of URI and refers to the rappresentation of their primary access mechanism, e.g. their location
+- URN (Uniform Resource Name) is a subset of URI and refers to the rappresentation od a globally unique and persistent location, even when the resource does not exist anymore, e.g. the ISBN of a book
 
   ### URI vs URL vs URN
 
@@ -65,7 +65,7 @@
 
   An important property of HTML is **graceful degradation of presentation**, if there is some mistakes inside the code, the page needs to be shown anyway.
 
-  HTML is not case sensitive: something like:
+HTML is not case sensitive: something like:
 
   ```HTML
   <h1>Title<H1>
@@ -83,9 +83,9 @@
 
   it makes so if a browser does not unsertand audio tag, ignore it and show download tag.
 
-  In the old version of HTML (behind 4.01) the code and the aspect of the contents where together, in the new versions the CSS is separated. CSS describes how a page needs to be presented.
+In the old version of HTML (behind 4.01) the code and the aspect of the contents where together, in the new versions the CSS is separated. CSS describes how a page needs to be presented.
 
-  The HTML page is devided in HEAD and BODY:
+The HTML page is devided in HEAD and BODY:
 
   - **Head** contatins:
     - Title
