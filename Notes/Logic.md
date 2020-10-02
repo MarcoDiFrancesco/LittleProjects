@@ -1,22 +1,22 @@
 # Logic
 
-Logic couse 3rd semester Unitn.
+Logic course 3rd semester Unitn.
 
 ## Conceptual model
 
-A **conceptual model** is a meaningful rapresentation of the world, described in a certain **language**.  
+A **conceptual model** is a meaningful representation of the world, described in a certain **language**.  
 **Conceptual modeling** is the activity of building conceptual models.  
 
 ## Mental model
 
 **World** is what we perceive.  
-**Mental model** is a rappresentation of the world composted in 4 consistuents.  
+**Mental model** is a representation of the world composted in 4 consistuents.  
 **Semantic gap** is the difference between the world and the mental model.  
 
 **Language** is the alphabet and the syntax used to describe the world.  
 **Theory** is formed of sentences describing what ***is true*** in the world aka facts.  
-**Domain** is formed of "images and pictures" which rappresent atomic elements used to describe what we see.  
-**Model** is formed of "images and pictures" which rapresent the sets of facts (scenes) that we have seen (and are true).
+**Domain** is formed of "images and pictures" which represent atomic elements used to describe what we see.  
+**Model** is formed of "images and pictures" which represent the sets of facts (scenes) that we have seen (and are true).
 
 Menatal model
 
@@ -34,8 +34,8 @@ Logical model
 
 **Language** *same*.  
 **Theory** *same*.  
-**Domain** are *sets of elements* which rappresent atomic elements used to describe what we see.  
-**Model** are *sets of elements* which rapresent the sets of facts (scenes) that we have seen (and are true).
+**Domain** are *sets of elements* which represent atomic elements used to describe what we see.  
+**Model** are *sets of elements* which represent the sets of facts (scenes) that we have seen (and are true).
 
 **Interpretation** is a function which associates each and any element of the language to one and only one element of the domain.  
 **Entailment** (aka truth-relation or satisfiability) is a relation which associates what is true in a model with a subset of the sentence of the language.  
@@ -43,7 +43,7 @@ Note that a sentence can be an element in a theory if and only if its interpreta
 
 ![Logical model](https://i.imgur.com/MBvm6Hf.png)
 
-Logical model rappresentation
+Logical model representation
 
 ![Logical model rappresentation](https://i.imgur.com/ijkWOAX.png)
 
@@ -72,5 +72,5 @@ Given L, I and ⊨ a logic allows to define two components: **theory** that is a
 
 ---
 
-**Funzione di interpretazione** assegna un valore vero o falso a ciascuna variabile.  
-Una funzione di interpretazione è detta **modello** di una funzione φ se le sue assegnazioni rendono il valore della funzione vero. In simboli: I |= φ.  
+**Interpretation function** assigns a true or false value to each variable.  
+An Interpretation function is called a **model** of a function φ if its assignments make the value of the function true. In symbols: I |= φ.  
