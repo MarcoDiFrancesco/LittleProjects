@@ -28,3 +28,29 @@ nbproject
 conf
 # Netbeans target folder
 target
+
+# Database
+*.sqlite3
+*.db
+
+Django/**/migrations
+Django/**/__pycache__
+
+# Django cms
+Django/**/bin/
+Django/**/lib/
+Django/**/include/
+
+# C++ projects input file
+/input.txt
+
+# Python virual envieroments
+venv/
+.venv/
+
+# Java web
+*.dat
+*.log
+*.lck
+*.ctrl
+

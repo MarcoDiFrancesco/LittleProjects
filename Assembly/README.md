@@ -1,12 +1,15 @@
 # Calcolatori
+
 Il primo computer venne creato dall'università della Pennsylvania chiamato ENIAC (Electronic Numerical Integrator And Computer). Nel 1969 venne creato l'Apollo Guidance Computer che consisteva di 2800 circuiti integrati, il processore aveva una frequenza di 0.042 MHz, aveva 152 KByte tra ROM e RAM e aveva un'interfaccia DSKY (Display&Keyboard).
 
 ## Programmazione assembly
+
 Il linguaggio Assembly è stato creato per andare a tradurre sequenze di bit in semplici istruzioni, per esempio `add A,B` viene l'assembler lo traduce in `00000000000010001000100001000000`.
 
 L'elaborazione dei dati viene effettuta dal processore, diviso in due parti: parte operativa e parte di controllo. I dati vengono memorizzati nelle unità di memoria. I dispositivi di input e di outpurt permettono di scambiare informazioni con l'esterno.
 
 ## Basi di numerazione
+
 Un numero in base n ha n cifre che partono da 0 a n-1.
 Il byte è composto da 8 bit, con 28 valori, da 0 (=00000000) a 255 (=11111111).
 Si utilizza la base 16 per la compattezza e la facilità di conversione:
@@ -25,6 +28,7 @@ Quando devo fare la moltiplicazione tra un numero più grande di 2 basta che rep
 Nella *codifica con modulo e segno* ho il primo bit assegnato al segno, 0 per il segno positivo e 1 per il segno negativo.
 I numeri codificati sono: da `-2^(k-1)+1` a `2^(k-1)-1`.  
 Il **complemento a 1**:
+
 * Numero positivo: rappresento il valore assoluto
 * Numero negativo: rappresento il complemento a 1 del valore assoluto
 
@@ -53,9 +57,12 @@ Esempio:
 ![moltiplication with binary numbers on complemento a 1](https://i.imgur.com/xWVcBXn.png)  
 ![moltiplication with binary numbers on complemento a 1](https://i.imgur.com/1c6weBs.png)  
 Vediamo che si ha overflow nel complemento a 2 quando:
+
 * a+b > 2^(k-1)-1
 * a+b < -2^(k-1)
+
 ## Virgola fissa e mobile
+
 Trasformazione da decimale a binario con virgola fissa: moltiplico la parte decimale ricordivamente per 2 tante volte quanti sono i bit della parte devimale e considero nell'ordine le parti intere della moltiplicazione.
 Esempio:  
 ![moltiplication with binary numbers on complemento a 1](https://i.imgur.com/cpKUlyD.png)  

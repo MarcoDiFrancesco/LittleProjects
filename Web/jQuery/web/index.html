@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>jQuery example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#changeContent").click(function () {
+                    $.ajax({url: "demo_text.txt", success: function (result) {
+                            $("#div1").html(result);
+                        }});
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div>
+            <h1>jQuery example</h1>
+            <p>In this example I have an index page that ask jquery to load the text inside <code>demo_text.txt</code>.</p>
+            <div id="div1">
+                <p>Change this text</p>
+            </div>
+            <button id="changeContent">Get External Content</button>
+        </div>
+    </body>
+</html>

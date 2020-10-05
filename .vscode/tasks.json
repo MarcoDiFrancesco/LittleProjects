@@ -2,49 +2,77 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build C",
+      "label": "gcc build",
       "type": "shell",
-      "command": "clear; gcc '${fileDirname}/${fileBasename}'; ./a.out;",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}"
+      "command": "/bin/gcc",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "/tmp/a.out"
+      ],
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "showReuseMessage": false,
+        "clear": true
       },
-      "problemMatcher": []
+      "problemMatcher": [
+        "$gcc"
+      ]
     },
     {
-      "label": "Build C++",
+      "label": "g++ build",
       "type": "shell",
-      "command": "clear; g++ '${fileDirname}/${fileBasename}'; ./a.out;",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Build sml",
-      "type": "shell",
-      "command": "sml '${fileDirname}/${fileBasename}'",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}/Sml"
-      },
-      "problemMatcher": []
-    },
-    // used by the debugger
-    {
-      "type": "shell",
-      "label": "g++ build active file",
       "command": "/bin/g++",
       "args": [
         "-g",
         "${file}",
         "-o",
-        "${workspaceFolder}/a.out"
+        "/tmp/a.out"
       ],
-      "options": {
-        "cwd": "/bin"
-      }
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "C/C++ run",
+      "type": "shell",
+      "command": "/tmp/a.out",
+      "presentation": {
+        "echo": false,
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "C++ build and run",
+      "group": "build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "g++ build",
+        "C/C++ run"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "C build and run",
+      "group": "build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "gcc build",
+        "C/C++ run"
+      ],
+      "problemMatcher": []
     }
   ]
 }
