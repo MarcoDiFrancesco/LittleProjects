@@ -75,4 +75,32 @@ Given L, I and ⊨ a logic allows to define two components: **theory** that is a
 ---
 
 **Interpretation function** assigns a true or false value to each variable.  
-An Interpretation function is called a **model** of a function φ if its assignments make the value of the function true. In symbols: I |= φ.  
+An Interpretation function is called a **model** of a function φ if its assignments make the value of the function true. In symbols: I |= φ.
+
+### Exercise
+
+**TEXT:**
+Provide the definition of “Propositional theory”.
+**SOLUTION:**
+A theory is a set of formulas closed under the logical consequence relation. I.e. 𝑇 is a theory if and only if 𝑇 ⊨ 𝐴 implies that 𝐴 ∈ 𝑇.
+
+**TEXT:**
+Convert the following formula 𝜑 into CNF and show step by step the DPLL procedure to demonstrate
+whether it is satisfiable.
+(𝐶 ↔ 𝐴) & ¬((𝐴 ∨ 𝐵) → 𝐴)
+**SOLUTION:**
+Conversion of 𝜑 into CNF:
+*𝐶𝑁𝐹*((𝐶 ≡ 𝐴) ∧ ¬((𝐴 ∨ 𝐵) → 𝐴)) =
+*𝐶𝑁𝐹*(𝐶 ≡ 𝐴) ∧ *𝐶𝑁𝐹*(¬((𝐴 ∨ 𝐵) → 𝐴)) =
+*𝐶𝑁𝐹*(𝐶 → 𝐴) ∧ *𝐶𝑁𝐹*(𝐴 → 𝐶) ∧ (*𝐶𝑁𝐹*(𝐴 ∨ 𝐵) ∧ ¬𝐴) =
+(¬𝐶 ∨ 𝐴) ∧ (¬𝐴 ∨ 𝐶) ∧ (𝐴 ∨ 𝐵) ∧ ¬𝐴
+*DPLL procedure:*
+𝐷𝑃𝐿𝐿({¬𝐶, 𝐴},{¬𝐴, 𝐶},{𝐴,𝐵},{¬𝐴})
+{{¬𝐶, 𝐴},{¬𝐴, 𝐶},{𝐴, 𝐵},{¬𝐴}}|𝐴
+𝐼(𝐴) = 𝐹
+{{¬𝐶, 𝐹},{𝑇, 𝐶},{𝐹,𝐵},{𝑇}}
+{{¬𝐶},{𝐵}}|𝐵
+𝐼(𝐵) = 𝑇
+{{¬𝐶},{𝑇}}
+{{¬𝐶}} 𝐼(𝐶) = 𝐹
+The formula 𝜑 is satisfiable for 𝐼 = {𝐵}
