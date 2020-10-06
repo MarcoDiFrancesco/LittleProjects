@@ -6,7 +6,9 @@
 **Computer security** is the practise of protecting computer systems and information from theft, and unauthorized use. This practise include protecting hardware (with locks, dors etc.) and protecting software.  
 **Network security** is the practise of taking physical and software preventative measures to protect the networking infrastructure from unauthorized access, malfunction, modification, destruction etc. creating a secure platform for computers, users and programs to perform their permitted functions.
 
-![Security system](https://i.imgur.com/uzkMHlH.png)
+Security system:
+
+![https://i.imgur.com/uzkMHlH.png](https://i.imgur.com/uzkMHlH.png)
 
 **Cyber security** is the ability to protect and defend the use of cyberspace (a global domain consisting of interdependent network of information systems infrastructures, including the internet, embedded processors, telecommunications networks ecc.) from cyber attacks (an attack targeting an organization's use of cyberspace for the purpose of destroying, disrupting, disabling or controlling a computer infrastructure).  
 **Cyber security readiness** is the ability to have critical information and tools rapidly available and in place in order to identify vulnerabilities, combat threats, deter attacks and remediate risks. The cyber security readiness improves security posture and allows the organization to remain complaint with the policy, regulations and laws.
@@ -36,7 +38,9 @@
 - Interfering with physical world: IoT, smart vehicles, power system, traffic control
 **Risk** is the probability that a particular security threat will exploit a system vulnerability
 
-![Risk matrix](https://i.imgur.com/Ikvc01f.png)
+Risk matrix:
+
+![https://i.imgur.com/Ikvc01f.png](https://i.imgur.com/Ikvc01f.png)
 
 **Security Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protecting the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriate areas. Another example is: Employees need to use a secure password on all systems and these credentials must be unique.  
 **Security Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allow access to resource in an information system. Another example is authorization that grants or denies access rights to a user, program or process.  
@@ -63,9 +67,9 @@ The requerements from an hash function are:
 There are two ways of salting:
 
 - **Basic hash functions** in which there a re wto blocks of data, and return a hash  
-![Basic hash function](https://i.imgur.com/JnGWIY3.png)
+![https://i.imgur.com/JnGWIY3.png](https://i.imgur.com/JnGWIY3.png)
 - **Butterfly effect** are chained basic hash functions  
-![Butterfly effect function](https://i.imgur.com/ljKzLwc.png)
+![https://i.imgur.com/ljKzLwc.png](https://i.imgur.com/ljKzLwc.png)
 
 Some hash functions:
 
@@ -88,7 +92,9 @@ The only way to mitigate this attack is to create a large enough output hash so 
 **Single sign on (SSO)** is allows users to access multiple apps throgh a single authentication act. Good factors are usability, because only one password needs to be rememberd, secure because the tokens needs to be complex, usabile because you can get shared sessions. The cons is the security, because only one password need to be compromised.  
 A famouse SSO protocol is SAML 2.0.
 
-![Assurance levels](https://i.imgur.com/AIUbfyg.png)
+Assurance levels:
+
+![https://i.imgur.com/AIUbfyg.png](https://i.imgur.com/AIUbfyg.png)
 
 **Contextual authentication** is where the context around the user's login are considered and assessed (valutate) to then decide whether the person is who the say they are. If there's a chance they are not, then an appropriate action is taken. For example if I'm logging in a new computer in a place where I've never been, more steps in my authentication needs to be required and a notification should be sent to me.
 
