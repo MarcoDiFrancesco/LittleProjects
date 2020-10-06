@@ -37,7 +37,7 @@ The shared address space is shared across all processes.
 
 Kernel as user process:
 
-![Shared kernel model](https://i.imgur.com/AQ1If7H.png)
+![https://i.imgur.com/AQ1If7H.png](https://i.imgur.com/AQ1If7H.png)
 
 ## Processes
 
@@ -52,11 +52,13 @@ The image of the memory contains:
 - dyncamic memory
 - attributes (id, state, control)
 
-![Image memory](https://i.imgur.com/lEF9Kh0.png)
+Image memory:
+
+![https://i.imgur.com/lEF9Kh0.png](https://i.imgur.com/lEF9Kh0.png)
 
 Process states:
 
-![Process states](https://i.imgur.com/rJxqp6k.png)
+![https://i.imgur.com/rJxqp6k.png](https://i.imgur.com/rJxqp6k.png)
 
 ## Dispathcher
 
@@ -87,7 +89,9 @@ The thread has:
 - registers (of the CPU)
 - stack
 
-![Thread](https://i.imgur.com/in1TxZu.png)
+Thread:
+
+![https://i.imgur.com/in1TxZu.png](https://i.imgur.com/in1TxZu.png)
 
 The threads have been created because if a process has a thread blocked, can still run in other threads.  
 The thread have also the memory shared, so the access in memory is faster.
@@ -103,7 +107,9 @@ Threads status can be:
 
 When a process waits it can block the other threads in the process or can make them running, depending on the implementation.
 
-![Kernel](https://i.imgur.com/Z3LFyUE.png)
+Kernel:
+
+![https://i.imgur.com/Z3LFyUE.png](https://i.imgur.com/Z3LFyUE.png)
 
 ### Mapping threads user space to kernel space
 
@@ -122,7 +128,9 @@ This can be done in a shared space or can be done by the kernel.
 Memory can be shared between one or more processes.
 General purpouse OSs implements both.
 
-![Inter process communication](https://i.imgur.com/6WXAmyZ.png)
+Inter process communication:
+
+![https://i.imgur.com/6WXAmyZ.png](https://i.imgur.com/6WXAmyZ.png)
 
 Advantages of kernel mediation are: more secure because kernel checks everything and in the shared space the processes need to remember that they are working with information that is shared.
 
