@@ -18,13 +18,13 @@ A **conceptual model** is a meaningful representation of the world, described in
 **Domain** is formed of "images and pictures" which represent atomic elements used to describe what we see.  
 **Model** is formed of "images and pictures" which represent the sets of facts (scenes) that we have seen (and are true).
 
-Menatal model
+Menatal model:
 
-![Menatal model](https://i.imgur.com/J1DJm16.png)
+![https://i.imgur.com/J1DJm16.png](https://i.imgur.com/J1DJm16.png)
 
-Mental model rappresentation
+Mental model rappresentation:
 
-![Mental model rappresentation](https://i.imgur.com/EjpqXv8.png)
+![https://i.imgur.com/EjpqXv8.png](https://i.imgur.com/EjpqXv8.png)
 
 Logical model
 
@@ -41,11 +41,13 @@ Logical model
 **Entailment** (aka truth-relation or satisfiability) is a relation which associates what is true in a model with a subset of the sentence of the language.  
 Note that a sentence can be an element in a theory if and only if its interpretation is true in the model.
 
-![Logical model](https://i.imgur.com/MBvm6Hf.png)
+Logical model:
 
-Logical model representation
+![https://i.imgur.com/MBvm6Hf.png](https://i.imgur.com/MBvm6Hf.png)
 
-![Logical model rappresentation](https://i.imgur.com/ijkWOAX.png)
+Logical model representation:
+
+![https://i.imgur.com/ijkWOAX.png](https://i.imgur.com/ijkWOAX.png)
 
 ### Language
 
