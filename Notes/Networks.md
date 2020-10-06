@@ -1,5 +1,7 @@
 # Networks
 
+3rd semester course.
+
 ## Protocol
 
 What's a protocol? Protocols define format, order of msgs sent and received among network entities, and actions taken on msg transmission, receipt.
@@ -208,9 +210,9 @@ Some types of domains are: A (normal), CNAME (alias), NS (domain name), MX (mail
 
 ## LDAP
 
-LDAP (Lightweight directory access protocol) is used to store recors (like DNS) and is meant to be easy to query.
+LDAP (Lightweight directory access protocol) is used to store recors (like DNS) and is meant to be easy to query:
 
-![LDAP](https://i.imgur.com/aqrgh7L.png)
+![https://i.imgur.com/aqrgh7L.png](https://i.imgur.com/aqrgh7L.png)
 
 ## CDN
 
