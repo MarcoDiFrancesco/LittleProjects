@@ -83,7 +83,9 @@ The ISPs can be devided in categories:
 
 In Tier-1 there can also be **content provider** networks like Google and Microsoft, which run their (private) network to bring their services close to the end user.
 
-![ISP networks](https://i.imgur.com/cQf9Ke6.png)
+ISP networks:
+
+![https://i.imgur.com/cQf9Ke6.png](https://i.imgur.com/cQf9Ke6.png)
 
 ## Network architectures
 
@@ -165,16 +167,18 @@ Some of the HTTPS response status codes are:
 
 The are 4 main types of **Cookies**: cookies header line of HTTP response meassage (Susan always access internet from PC), cookie header line in next HTTP request message (she visits specific e-commerce site fo the first time), cookies file kept on a user's host manages by the browser (to give unique ID in a login so that in refres the browser doesn't log out) and back-end database at Web site (website tracks the user shopping list).
 
-![Cookies](https://i.imgur.com/DZ42h5b.png)
+Cookies:
+
+![https://i.imgur.com/DZ42h5b.png](https://i.imgur.com/DZ42h5b.png)
 
 ## Proxy server
 
 **Proxy servers** are used to cache a certain web page. For example if a user in the university (using the university's proxy server) request a static page from a web server the proxy server saves it, so in case another user request it, the proxy server won't reach it another time.  
 Proxy server acts as both client and server, in the server side a preprocessed page can be given to a user if he requests it in short period of times.
 
-In HTTP there is also the **conditional GET**, it doesn't sent object if cache has up-to-date cached version.
+In HTTP there is also the **conditional GET**, it doesn't sent object if cache has up-to-date cached version:
 
-![Conditional GET](https://i.imgur.com/f2VcYzK.png)
+![https://i.imgur.com/f2VcYzK.png](https://i.imgur.com/f2VcYzK.png)
 
 ## Email protocols
 
@@ -182,15 +186,15 @@ In HTTP there is also the **conditional GET**, it doesn't sent object if cache h
 
 **POP3** (Post Office Protocol) is stateless across sessions and has 2 modes "downloads and delete" (by default) and "download and keep" emails (not used because there is IMAP).
 
-**IMAP** (Internet Mail Access Protocol) stores the email always in a mail server, it allows users to group related messages and place them in folders, which can in turn be arranged hierarchically. It's also equipped with message flags that indicate whether a message has been read, deleted, or replied to. It even allows users to carry out searches against the server mailboxes.
+**IMAP** (Internet Mail Access Protocol) stores the email always in a mail server, it allows users to group related messages and place them in folders, which can in turn be arranged hierarchically. It's also equipped with message flags that indicate whether a message has been read, deleted, or replied to. It even allows users to carry out searches against the server mailboxes:
 
-![IMAP](https://i.imgur.com/dtiVb7r.png)
+![https://i.imgur.com/dtiVb7r.png](https://i.imgur.com/dtiVb7r.png)
 
 ## DNS
 
-DNS (Domain Name System) makes the translation from hostname to IP address. A problem of DNS is that has a single point of failure so does not scale.
+DNS (Domain Name System) makes the translation from hostname to IP address. A problem of DNS is that has a single point of failure so does not scale:
 
-![DNS](https://i.imgur.com/ScGAE4J.png)
+![https://i.imgur.com/ScGAE4J.png](https://i.imgur.com/ScGAE4J.png)
 
 The **DNS root name** servers are 13 in all the world and return the mapping to local name servers.
 
