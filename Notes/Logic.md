@@ -78,12 +78,12 @@ Given L, I and ⊨ a logic allows to define two components: **theory** that is a
 An Interpretation function is called a **model** of a function φ if its assignments make the value of the function true. In symbols: I |= φ.
 
 ### Exercise
-
+####Exercise 1: PL Basic Concepts [2]
 **TEXT:**
 Provide the definition of “Propositional theory”.
 **SOLUTION:**
 A theory is a set of formulas closed under the logical consequence relation. I.e. 𝑇 is a theory if and only if 𝑇 ⊨ 𝐴 implies that 𝐴 ∈ 𝑇.
-
+####Exercise 3: PL Reasoning [3]
 **TEXT:**
 Convert the following formula 𝜑 into CNF and show step by step the DPLL procedure to demonstrate
 whether it is satisfiable.
@@ -104,3 +104,10 @@ Conversion of 𝜑 into CNF:
 {{¬𝐶},{𝑇}}
 {{¬𝐶}} 𝐼(𝐶) = 𝐹
 The formula 𝜑 is satisfiable for 𝐼 = {𝐵}
+
+####Exercise 4: FOL Basic Concepts [2]
+
+####Exercise 5: FOL Formalization [3]
+
+####Exercise 7: ML Basic Concepts [2]
+
