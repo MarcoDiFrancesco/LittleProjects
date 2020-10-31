@@ -178,11 +178,10 @@ GET vs PUT.
 ## CSS
 
 The lenght of the style can be specified as:
-
-- cm, mm
-- in (inch), pt (point), pc (pica)
-- em (height of element font) that goes from the bottom of the letter o in font to the top
 - ex (extended height of element font) that goes from the bottom of the letter f to the top
+- em (height of element font) that goes from the bottom of the letter o in font to the top
+- in (inch), pt (point), pc (pica)
+- cm, mm
 
 ![font mesures](https://i.imgur.com/gacu04q.png)
 
