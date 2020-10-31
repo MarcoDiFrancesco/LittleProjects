@@ -22,9 +22,9 @@ The output corresponds to the number of classification we want. If we want 3 cla
 
 The **loss function** is a function that computes how good the prediction of a neural network are so then it's possible to other functions to update the weights. A common loss function is MSE (mean sqared error). There can be 2 losses function: training loss and validation loss, depending on the types of set you are looking at.
 
-The **optimazer** in a neural network the algorithm that calculate the values to optimize the ouput. The objective of an optimizer is to minimize the loss function. A famous algorithm is SGD. An example of what the optimzer is trying to do is calculating the output if an image is a dog or a cat. In the case the image is a cat and the algorithm predicted that it was a cat, then the algorithm will adjust the weights to minimize the error.
-
 The **stochastic gradient decent** is general thing that updates the weights inside a neural network.
+
+The **optimazer** in a neural network the algorithm that calculate the values to optimize the ouput. The objective of an optimizer is to minimize the loss function. A famous algorithm is SGD. An example of what the optimzer is trying to do is calculating the output if an image is a dog or a cat. In the case the image is a cat and the algorithm predicted that it was a cat, then the algorithm will adjust the weights to minimize the error.
 
 The **leaning rate** is a value usually between 0.01 and 0.0001 that is used to update the value in the node in this way: `(d(loss)/d(weight))*LearningRate`. Raising the leaning rate means that we could **overshoot** and miss the minimum of the minimize loss function. Lower the leaning rate means learning slower. This number is just guessed.
 
@@ -42,7 +42,7 @@ The training sets are of 3 types:
 
 A Convolutional Neural Network (or CNN) is used to detect patterns in an image.
 
-A CNN is made of convolutional layers and non-convolutional layers. A convolutional layer has filters that can be specified to detect the patterns. A pattern in an image can be a circle, or an edge, or a particular shape. If the pattern we want to detect is an edge, then it's called an edge detector.
+A CNN is made of convolutional layers and non-convolutional layers. A convolutional layer has filters that can be specified to detect the patterns. A pattern in an image can be a circle, or an edge, or a particular shape. If the pattern we want to detect is an edge, then it is called an edge detector.
 
 Convolving in a CNN means this:
 
