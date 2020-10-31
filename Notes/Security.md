@@ -4,7 +4,7 @@
 
 **Information security** is the practise of preventing unauthorized access, use, disclosure, disruption, modification, recording or destruction od information.  
 **Computer security** is the practise of protecting computer systems and information from theft, and unauthorized use. This practise include protecting hardware (with locks, dors etc.) and protecting software.  
-**Network security** is the practise of taking physical and software preventative measures to protect the networking infrastructure from unauthorized access, malfunction, modification, destruction etc. creating a secure platform for computers, users and programs to perform their permitted functions.
+**Network security** is the practise of taking physical and software preventative measures to protect the networking infrastructure from unauthorized access, malfunction, modification, destruction etc. Creating a secure platform for computers, users and programs to perform their permitted functions.
 
 Security system:
 
@@ -42,7 +42,7 @@ Risk matrix:
 
 ![https://i.imgur.com/Ikvc01f.png](https://i.imgur.com/Ikvc01f.png)
 
-**Security Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protecting the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriate areas. Another example is: Employees need to use a secure password on all systems and these credentials must be unique.  
+**Security Policy** is a set of rules and requirements established by an organization that governs the acceptable use of its information and services and the level and means for protecting the confidentiality, integrity and availability of its information. An example of policy is: the company's visitors must be escorted by an autorized emplyee and he must restrict them to appropriate areas. Another example is: employees need to use a secure password on all systems and these credentials must be unique.  
 **Security Mechianism** is a device or function designed to provide one or more security services usually rated in therms of strenght of service and assurance of the disign. An example is authentication: verifying the identity o user, process or device often as a prerequisite to allow access to resource in an information system. Another example is authorization that grants or denies access rights to a user, program or process.  
 **Security Service** is the capability that supports one or more of the security requirements, for example key management, access control and authentication.
 
@@ -202,11 +202,11 @@ Security services provided by cryptographic mechanism are:
 
 A cryptosystem is a 5-tuple where:
 
-- **E** is an enctyption algorithm
-- **D** is a decryption algorithm
-- **M** is the set of plaintexts
-- **K** is the set of keys
-- **C** is the set of cyphertexts
+- **E** is an enctyption algorithm;
+- **D** is a decryption algorithm;
+- **M** is the set of plaintexts;
+- **K** is the set of keys;
+- **C** is the set of cyphertexts.
 
 So `M x K = C` and `C x K = M`.  
 
@@ -507,9 +507,9 @@ The security of a system is defined in terms of a policy. A **policy** is a set 
 
 The three main points of access control are:
 
-- **policy** that is a set of rules that control what actions a sucbject can perform
-- **model** is a mathematical rappresentation of the policy
-- **enforcement** is the low level (software and hardware) in which the models are implemented
+- **policy** that is a set of rules that control what actions a sucbject can perform;
+- **model** is a mathematical rappresentation of the policy;
+- **enforcement** is the low level (software and hardware) in which the models are implemented.
 
 A **problem with enforcement** was that commands were maximum 256 chars and the rest of the string was executed in the cpu. This was a old problem, but still most of the programmers are careless of the size of the input.
 
@@ -610,10 +610,10 @@ The OAuth scope contains: the type of actions can do (read, write, delete), reso
 
 The security consideration we need to think about are:
 
-- use short-lived access tokens and long-lived refresh tokens
-- when a token is expiring the the client has to run the reauthorization process again to get a new access token
-- when a token is stolen it cannot be used outside of a certain application
-- when there is not access token a refresh token ask for credentials
+- use short-lived access tokens and long-lived refresh tokens;
+- when a token is expiring the the client has to run the reauthorization process again to get a new access token;
+- when a token is stolen it cannot be used outside of a certain application;
+- when there is not access token a refresh token ask for credentials.
 
 OAuth tokens are similar can be managed with DAC and MAC but increasing the size of the users or sesources the operation can become comutationally expensive.  
 It can be solved with RBAC (as Google does) assigning the permissions to roles in the organization instead of directly to users.  
