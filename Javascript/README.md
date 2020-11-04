@@ -4,6 +4,7 @@ JavaScript make the browser smart, so the name **smart browser** was invented.
 
 ## Variables
 
+`<nothing>` are global variables
 `var` are variables that can be used in all the program  
 `let` are used in the scope where you declear that  
 `const` variable that can never change
@@ -284,9 +285,28 @@ Classes are just sintactic sugar, they have been added in Ecma 2015 but it was p
 
 Classes do not have hoisting, this means that it's possible to used them only after you declare them (not like functions).
 
-In the classes it's not possible to add variables ouside the constructor:
+In the classes it's not possible to add variables ouside the constructor.
 
-![variables outside the constructor](https://i.imgur.com/A9vQdMY.png)
+Classes for ES2015:
+
+``` JS
+function Classe() {}
+Classe.prototype.metodo = function() {
+    console.log('ciao');
+};
+varistanza =newClasse();
+```
+
+Classes after ES2015:
+
+``` JS
+lassClasse {
+    metodo() {
+        console.log('è colpa di mattia');
+    }
+}
+let istanza =newClasse();
+```
 
 It's possible to add static methods:
 
@@ -326,3 +346,23 @@ fs.readFile(fileName, "utf8", function(error, data) {
 ```
 
 Promises are a more elegant ways to make non-blocking calls.
+
+## Strings
+
+Quasi tutti gli sviluppatori JavaScript utilizzano gli apici singoli anziché quelli doppi, a differenza di Java. Ciò significa che anche se entrambe queste forme sono corrette: `let a = "testo"; letb ='testo';`. Quella preferita è quasi sempre la seconda.
+
+## Loop on items
+
+Two ways of looping over a list:
+
+``` JS
+for(letitemofarr) {
+    console.log(item);
+}
+
+OR
+
+arr.forEach((item) => {
+    console.log(item);
+});
+```
