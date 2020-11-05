@@ -366,3 +366,7 @@ arr.forEach((item) => {
     console.log(item);
 });
 ```
+
+## Export and import functions
+
+![https://i.imgur.com/M6cTdrd.png](https://i.imgur.com/M6cTdrd.png)
