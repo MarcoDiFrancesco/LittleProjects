@@ -1,2 +1,6 @@
 matplotlib
 ipykernel
+numpy
+Cython
+pykrige
+gstools
