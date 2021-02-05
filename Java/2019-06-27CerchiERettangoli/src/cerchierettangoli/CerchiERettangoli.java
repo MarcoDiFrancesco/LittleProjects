@@ -16,6 +16,7 @@ public class CerchiERettangoli extends Application {
   }
 
   public static void main(String[] args) {
+      System.err.println("Before");
     launch(args);
   }
 }

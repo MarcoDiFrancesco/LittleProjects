@@ -1,18 +1,10 @@
 package poker;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.*;
@@ -23,8 +15,7 @@ public class Poker extends Application {
   @Override
   public void start(Stage primaryStage) {
     Game game = new Game();
-    List<Card> hand = new ArrayList();
-    hand = game.newGame();
+    List<Card> hand = game.newGame();
     int numberOfCards = hand.size();
     Stage stage = new Stage();
     BorderPane borderPane = new BorderPane();

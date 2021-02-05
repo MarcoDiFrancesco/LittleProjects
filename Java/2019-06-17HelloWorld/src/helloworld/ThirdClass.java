@@ -11,6 +11,7 @@ public class ThirdClass extends SecondClass {
     this.z = z;
   }
 
+  @Override
   public String toString() {
     return ("(" + super.x + "-" + super.y + "-" + z + ")");
   }
