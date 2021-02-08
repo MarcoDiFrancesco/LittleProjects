@@ -29,6 +29,7 @@ The folders are separated by programming language or program used, it starts fro
 * [Sh](Sh)
 * [Sml](Sml)
 * [Sql](Sql)
+* [Streamlit](Streamlit)
 * [Uml](Uml)
 * [Web](Web)
 * [Xlsx](Xlsx)
