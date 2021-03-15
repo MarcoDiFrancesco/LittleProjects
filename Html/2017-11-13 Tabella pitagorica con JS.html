@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+	background-color: indigo;
+	color: white;
+	font-family: lucida console;
+	font-variant: small-caps;
+}
+table, td, tr{
+	border: 2px solid white;
+	border-collapse:2px solid white;
+	font-size: 120%;
+}
+
+</style>
+</head>
+<body>
+<h1>Esercizio 5</h1>
+<script>
+var r = parseInt(prompt("Di quanti numeri vuoi vedere la tabella pitagorica?"));
+var c=r;
+var l;
+document.write("<table cellspacing='0'>");  
+var x="";
+for (i=1; i<=r; i++){                   //ciclo esterno per r righe
+  document.write("<tr>");              //tag html di inizio riga
+  for (j=1; j<=c; j++){ 				//ciclo interno per c colonne
+	if (i==1){
+		x = i*j;
+		document.write("<th>"+ x +"</th>" ); 
+	}else{
+		x = i*j;
+		document.write("<th>"+ x +"</th>" ); 
+	}
+  }
+  document.write("</tr>"); 
+}
+document.write("</table>");
+</script>
+
+</body>
+</html>
