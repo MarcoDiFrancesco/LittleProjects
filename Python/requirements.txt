@@ -4,3 +4,4 @@ numpy
 Cython
 pykrige
 gstools
+pandas
