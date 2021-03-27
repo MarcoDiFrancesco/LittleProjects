@@ -1,3 +1,0 @@
-# Logic
-
-# MOVED TO NOTION
