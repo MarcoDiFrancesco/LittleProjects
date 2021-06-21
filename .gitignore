@@ -58,41 +58,28 @@ venv/
 *.lck
 *.ctrl
 
-/Java/TheNewStart/nbproject/private/
-/Java/HelloWorld/nbproject/private/
-/Java/Point/nbproject/private/
-/Java/ShapesJavaFX/nbproject/private/
-/Java/Shape/nbproject/private/
-/Java/CircleWithRadius/nbproject/private/
-/Java/2019-06-17HelloWorld_/nbproject/private/
-/Java/2019-06-17HelloWorld/nbproject/private/
-/Java/2019-06-18Point_/nbproject/private/
-/Java/2019-06-18CircleWithRadius/nbproject/private/
-/Java/UniversityManagement/nbproject/private/
-/Java/2019-06-18UniversityManagement/nbproject/private/
-/Java/Virus/nbproject/private/
-/Java/2019-06-19Virus/nbproject/private/
-/Java/PictureInAWindow/nbproject/private/
-/Java/2019-06-19PictureInAWindow/nbproject/private/
-/Java/Poker/nbproject/private/
-/Java/2019-06-20Poker/nbproject/private/
-/Java/ListenerApp/nbproject/private/
-/Java/2019-06-22ListenerApp/nbproject/private/
-/Java/PickAColor/nbproject/private/
-/Java/2019-06-22PickAColor/nbproject/private/
-/Java/MiniCalculator/nbproject/private/
-/Java/2019-06-23MiniCalculator/nbproject/private/
-/Java/Calculator/nbproject/private/
-/Java/2019-06-24Calculator/nbproject/private/
-/Java/PositionPane/nbproject/private/
-/Java/2019-06-23PositionPane/nbproject/private/
-/Java/NumberPad/nbproject/private/
-/Java/2019-06-25NumberPad/nbproject/private/
-/Java/City/nbproject/private/
-/Java/2019-06-26City/nbproject/private/
-/Java/CerchiERettangoli/nbproject/private/
-/Java/2019-06-27CerchiERettangoli/nbproject/private/
-/Java/FigureGeometriche/nbproject/private/
-/Java/2019-06-28FigureGeometriche/nbproject/private/
-/Java/RectanglesInARow/nbproject/private/
-/Java/2019-06-28RectanglesInARow/nbproject/private/
+### Java template
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# INtellij Idea
+hs_err_pid*
+*.iml
+.idea/
+*.ipr
+*.iws
+/out/
+.idea_modules/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+.attach*
+.DS_Store
