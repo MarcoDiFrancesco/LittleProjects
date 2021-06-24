@@ -56,10 +56,20 @@ public class Game extends Poker {
     }
 
     public int askForCardNumber() {
-        TextInputDialog textInputDialog = new TextInputDialog();
-        textInputDialog.setContentText("Number of cards");
-        textInputDialog.showAndWait();
-        return Integer.parseInt(textInputDialog.getResult());
+        boolean failure=true;
+        int value = 0;
+        while(failure){
+            TextInputDialog textInputDialog = new TextInputDialog();
+            textInputDialog.setContentText("Number of cards");
+            textInputDialog.showAndWait();
+            try {
+                value = Integer.parseInt(textInputDialog.getResult());
+                failure = false;
+            } catch (NumberFormatException e) {
+            }
+        }
+        
+        return value;
     }
 
     /**

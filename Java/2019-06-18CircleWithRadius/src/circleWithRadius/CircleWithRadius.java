@@ -46,65 +46,9 @@ public class CircleWithRadius extends Application {
         dialogRadius.setContentText("The radius was not a number, set a number...");
       }
     } while (exceptionInt == false);
-
-    /*
-     // input from text
-     Scanner scanner = new Scanner(System.in);
-     System.out.println("Tell me something");
-     String inputString = scanner.nextLine();
-     System.out.println(inputString);
-     */ /*
-     // alert
-     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-     alert.setTitle("I'm your favorite alert");
-     alert.setHeaderText("I'm your favourite Header");
-     alert.setContentText("This is my favourite context bar");
-     alert.showAndWait();
-     */ /*
-     // input from dialog
-     TextInputDialog dialog = new TextInputDialog("Default input dialog");
-     dialog.setTitle("I'm your favourite input dialog");
-     dialog.setHeaderText("I'm your favourite header");
-     dialog.setContentText("I'm your favourite context");
-     dialog.showAndWait();
-     String dialogString = dialog.getContentText();
-     System.out.println(dialogString);
-     */ /*
-     //parsing with try catch
-     String numberString = "10";
-     int numberInt = Integer.parseInt(numberString);
-     System.out.println(numberInt);
-
-     String piString = "3.1415";
-     float piFloat = Float.parseFloat(piString);
-     System.out.println(piFloat);
-
-     boolean correctNumber = false;
-     String inputString = "";
-     int inputInt = 0;
-     Scanner scanner = new Scanner(System.in);
-     do {
-     System.out.println("Give me a number... ");
-     inputString = scanner.next();
-     try{
-     inputInt = Integer.parseInt(inputString);
-     correctNumber = true;
-     } catch (NumberFormatException exception) {
-     System.out.println("That's not a number");
-     correctNumber = false;
-     } finally {
-     // do it in both
-     }
-     }while(correctNumber == false);
-     System.out.println("The number is: " + inputInt);
-     */
-
-
-
   }
 
   public static void main(String[] args) {
     launch(args);
   }
-
 }
