@@ -41,7 +41,6 @@ public class PlayingField extends FlowPane {
     }
 
     void update() {
-        System.out.println("Updating");
         getChildren().clear();
         getChildren().addAll(dice);
     }
