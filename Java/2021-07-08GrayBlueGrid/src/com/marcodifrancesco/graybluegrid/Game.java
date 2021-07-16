@@ -12,5 +12,5 @@ public class Game extends BorderPane {
         buttonsBar = new ButtonsBar(playingField);
         setBottom(buttonsBar);
     }
-
+    
 }
