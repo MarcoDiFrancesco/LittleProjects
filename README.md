@@ -38,7 +38,6 @@ The folders are separated by programming language or program used, it starts fro
 
 This folder contains all the notes not related to a specific programming language.
 
-* [Networks](Notes/Networks.md)
 * [Operative systems](Notes/Operative%20systems.md)
 * [Security](Notes/Security.md)
 * [Software engineering](Notes/Software%20engineering.md)
