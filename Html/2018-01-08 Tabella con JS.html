@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body {
+				background-color: blue;
+				color: white;
+				font-family: serif;
+				font-variant: small-caps;
+			}
+			table, td, tr{
+				border: 2px solid white;
+				border-collapse:10px;
+				font-size: 120%;
+				padding:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<table cellspacing='2'>
+		<script>
+			do{
+				var r = parseInt(prompt("Quante righe vuoi all'intero della tabella? MINIMO 5")); // numero righe
+				if(r<5){
+					alert("Inserisci un numero piu grande di righe da inserire all'interno della tabella");
+				} 
+			} while(r<5);
+
+			do{
+				var c = parseInt(prompt("Quante colonne vuoi all'intero della tabella? MINIMO 5")); // numero colonne
+				if(c<5){
+					alert("Inserisci un numero piu grande di colonne da inserire all'interno della tabella");
+				} 
+			} while(c<5);
+
+			var cr=2; // Colonna del Rowspan
+			var rr=2; // Riga del Rowspan
+			var gr=2; // Grandezza del Rowspan
+
+			var cc=4; // Colonna del Colspan
+			var rc=4; // Riga del Colspan
+			var gc=2; // Grandezza del Colspan
+
+			document.write("<tr>");
+			document.write("<th colspan='" +r+"'>Di Francesco</th>"); 
+			document.write("</tr>");
+
+			for (var r1=1;r1<=c; r1++){ // for delle righe 
+				document.write("<tr>");
+				for( var c1=1; c1<=r; c1++){ // for delle colonne
+					if(r1==rr && c1==cr){ // if per inserire il rowspan
+						document.write("<td rowspan='" + gr + "'>" + r1 + "</td>");
+					} else if(r1==rc && c1==cc) { // if per inserire il colspan
+						document.write("<td colspan='" + gc + "'>" + r1 + "</td>");
+						c1 = c1 + gc  - 1 ; // faccio in modo che nella posizione in cui si inerisce il colspan non si aggiunga una cella che sfasa la tabella
+					} else {
+						document.write("<td>"+r1+"</td>");
+					}
+					r2=r1-1;
+					if(r2==rr&&c1==cr){
+						c1++;
+					}
+				}
+				document.write("</tr>");
+			}
+			document.write("</table>");
+		</script>
+	</body>
+</html>

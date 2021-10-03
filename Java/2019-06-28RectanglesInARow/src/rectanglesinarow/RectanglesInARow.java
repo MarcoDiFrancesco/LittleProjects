@@ -1,54 +1,51 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package rectanglesinarow;
 
-import java.util.ArrayList;
-import java.util.List;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * The objects inside the scene update automatically (for example a text inside
- * scene update alone) but the objects inside a StackPane (inside scene) need to
- * be removed and replaced
  *
  * @author marco
  */
 public class RectanglesInARow extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        Button btn = new Button();
+        btn.setText("Say 'Hello World'");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+            }
+        });
+        
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        
+        Scene scene = new Scene(root, 300, 250);
+        
+        primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
-  HBox hBox;
-  List<Rectangle> rectangle;
-
-  @Override
-  public void start(Stage stage) {
-    rectangle = new ArrayList();
-
-    stage.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-      Rectangle newRectangle = new Rectangle(100, 100, Color.BLACK);
-      newRectangle.setStroke(Color.RED);
-      newRectangle.setStrokeWidth(2);
-      rectangle.add(newRectangle);
-      System.out.println(rectangle);
-      refresh();
-    });
-
-    hBox = new HBox();
-    refresh();
-    Scene scene = new Scene(hBox, 1000, 300);
-    stage.setScene(scene);
-    stage.show();
-  }
-
-  public static void main(String[] args) {
-    launch(args);
-  }
-
-  private void refresh() {
-    hBox.getChildren().clear();
-    hBox.getChildren().addAll(rectangle);
-  }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
 }
