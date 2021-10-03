@@ -33,11 +33,3 @@ The folders are separated by programming language or program used, it starts fro
 * [Uml](Uml)
 * [Web](Web)
 * [Xlsx](Xlsx)
-
-## Notes
-
-This folder contains all the notes not related to a specific programming language.
-* [Software engineering](Notes/Software%20engineering.md)
-* [Web](Notes/Web.md)
-
-
