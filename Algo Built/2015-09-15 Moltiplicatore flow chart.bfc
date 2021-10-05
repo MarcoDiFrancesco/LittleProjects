@@ -10,4 +10,3 @@ PROG main
 	END DO_WHILE numeri_da_calcolare>0
 	OUT totale
 END PROG //main
-ENTER PLS IL TUO PIETRO
