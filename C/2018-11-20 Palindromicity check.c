@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 int main(){
   int nchar = strlen(stringCheck); // number of characters in the string
