@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 
-
 /*
 Data una sequenza di caratteri in
 ingresso, riscriverla in ordine inverso.
