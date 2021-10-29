@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 
 /*
 Data una sequenza di caratteri in

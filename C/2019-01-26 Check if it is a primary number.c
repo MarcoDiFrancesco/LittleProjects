@@ -1,4 +1,3 @@
-#include <math.h>
 // function for testing an exercisie from the exam 
 
 bool CercaSQPrimo(int sq[], int len){

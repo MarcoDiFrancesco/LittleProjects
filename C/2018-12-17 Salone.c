@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #define MAX_AUTO 100
 
 // LAB 8 es 1

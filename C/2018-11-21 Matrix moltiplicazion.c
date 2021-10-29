@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 int main(){
   int size1 = 2; // size of cols matrix1 and rows matrix2 
