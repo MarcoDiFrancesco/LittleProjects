@@ -21,7 +21,6 @@ These are my projects starting from the first year of high school.
 * [Inkscape](Inkscape)
 * [Java](Java)
 * [Javascript](Javascript)
-* [Notes](Notes)
 * [Packet tracer](Packet%20tracer)
 * [Powershell](Powershell)
 * [Pseudocode](Pseudocode)
