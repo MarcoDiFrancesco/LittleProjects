@@ -1,6 +1,6 @@
 # Little projects
 
-## This repository contains all the personal little scripts/projects I've been making
+## This repository contains all my personal little scripts
 
 The folders are separated by programming language or program used.
 
