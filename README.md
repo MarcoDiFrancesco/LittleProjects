@@ -19,7 +19,6 @@ The folders are separated by programming language or program used, it starts fro
 * [Inkscape](Inkscape)
 * [Java](Java)
 * [Javascript](Javascript)
-* [Notes](Notes)
 * [Packet tracer](Packet%20tracer)
 * [Powershell](Powershell)
 * [Pseudocode](Pseudocode)
