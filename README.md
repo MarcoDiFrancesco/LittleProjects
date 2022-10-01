@@ -1,35 +1,50 @@
 # Little projects
 
-## This repository contains all the personal little scripts/projects I've been making
+## This repository contains all my personal little scripts
 
-The folders are separated by programming language or program used, it starts from the first year of high school up to now.  
+The folders are separated by programming language or program used.
 
 ## Projects
-
+2015:
 * [Algo Built](Algo%20Built)
-* [Arduino](Arduino)
 * [Assembly](Assembly)
 * [AutoCad](AutoCad)
-* [C](C)
+* [Inkscape](Inkscape)
+* [Xlsx](Xlsx)
+
+2016:
+* [Arduino](Arduino)
 * [C++](C++)
+* [Java](Java)
+* [Packet tracer](Packet%20tracer)
+
+2017:
+* [Servlet](Servlet)
+* [Sql](Sql)
 * [Cryptool](Cryptool)
+
+2018:
+* [C](C)
+
+2020:
 * [Django](Django)
 * [Docker](Docker)
+
+2018:
 * [HTML](Html)
-* [Inkscape](Inkscape)
-* [Java](Java)
-* [Javascript](Javascript)
-* [Notes](Notes)
-* [Packet tracer](Packet%20tracer)
 * [Powershell](Powershell)
+
+2019:
+* [Javascript](Javascript)
 * [Pseudocode](Pseudocode)
-* [Python](Python)
 * [R](R)
-* [Servlet](Servlet)
 * [Sh](Sh)
 * [Sml](Sml)
-* [Sql](Sql)
-* [Streamlit](Streamlit)
 * [Uml](Uml)
+
+2020:
+* [Python](Python)
+* [Streamlit](Streamlit)
+
+2021:
 * [Web](Web)
-* [Xlsx](Xlsx)

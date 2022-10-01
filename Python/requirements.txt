@@ -5,3 +5,4 @@ Cython
 pykrige
 gstools
 pandas
+sklearn

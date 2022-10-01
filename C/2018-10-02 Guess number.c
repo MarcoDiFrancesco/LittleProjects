@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <math.h>
+#include <header_file>
 int main()
 {
     int n1 = 0, n2, test = 0; // Initializing int
