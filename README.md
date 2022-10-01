@@ -7,20 +7,20 @@ The folders are separated by programming language or program used.
 ## Projects
 2015:
 * [Algo Built](Algo%20Built)
-* **[Assembly](Assembly)**
+* **[Assembly](Assembly) (Notes)**
 * [AutoCad](AutoCad)
 * [Inkscape](Inkscape)
 * [Xlsx](Xlsx)
 
 2016:
 * [Arduino](Arduino)
-* **[C++](C++)**
+* **[C++](C++) (Notes)**
 * [Java](Java)
 * [Packet tracer](Packet%20tracer)
 
 2017:
 * [Servlet](Servlet)
-* **[Sql](Sql)**
+* **[Sql](Sql) (Notes)**
 * [Cryptool](Cryptool)
 
 2018:
@@ -28,18 +28,18 @@ The folders are separated by programming language or program used.
 
 2020:
 * [Django](Django)
-* **[Docker](Docker)**
+* **[Docker](Docker) (Notes)**
 
 2018:
 * [HTML](Html)
 * [Powershell](Powershell)
 
 2019:
-* **[Javascript](Javascript)**
+* **[Javascript](Javascript) (Notes)**
 * [Pseudocode](Pseudocode)
-* **[R](R)**
+* **[R](R) (Notes)**
 * [Sh](Sh)
-* **[Sml](Sml)**
+* **[Sml](Sml) (Notes)**
 * [Uml](Uml)
 
 2020:
